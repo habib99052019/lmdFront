@@ -1,0 +1,146 @@
+[
+  {
+    "id": "001",
+    "no": "B123451",
+    "dName": "Housekeeping",
+    "hod": "Pooja Sarma",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "12"
+  },
+  {
+    "id": "002",
+    "no": "B123452",
+    "dName": "Food and Beverage",
+    "hod": "Sanjay Chohan",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "30"
+  },
+  {
+    "id": "003",
+    "no": "B123453",
+    "dName": "Kitchen",
+    "hod": "Sarah Smith",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "10"
+  },
+  {
+    "id": "004",
+    "no": "B123454",
+    "dName": "Accounts",
+    "hod": "Ashton Cox",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "30"
+  },
+  {
+    "id": "005",
+    "no": "B123455",
+    "dName": "Security",
+    "hod": "Rajesh Malhotra",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "20"
+  },
+  {
+    "id": "006",
+    "no": "B123456",
+    "dName": "Food and Beverage",
+    "hod": "Sanjana Patil",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "20"
+  },
+  {
+    "id": "007",
+    "no": "B123457",
+    "dName": "Transport",
+    "hod": "Airi Satou",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "15"
+  },
+  {
+    "id": "008",
+    "no": "B123458",
+    "dName": "Food and Beverage",
+    "hod": "Pooja Sarma",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "10"
+  },
+  {
+    "id": "009",
+    "no": "B123459",
+    "dName": "Accounts",
+    "hod": "Sarah Smith",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "10"
+  },
+  {
+    "id": "010",
+    "no": "B1234510",
+    "dName": "Purchase",
+    "hod": "Rajesh Malhotra",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "15"
+  },
+  {
+    "id": "011",
+    "no": "B1234511",
+    "dName": "Security",
+    "hod": "Sanjay Chohan",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "30"
+  },
+  {
+    "id": "012",
+    "no": "B1234512",
+    "dName": "Kitchen",
+    "hod": "Pooja Sarma",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "10"
+  },
+  {
+    "id": "013",
+    "no": "B1234513",
+    "dName": "Kitchen",
+    "hod": "Sanjana Patil",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "20"
+  },
+  {
+    "id": "014",
+    "no": "B1234514",
+    "dName": "Transport",
+    "hod": "Airi Satou",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "20"
+  },
+  {
+    "id": "015",
+    "no": "B1234515",
+    "dName": "Accounts",
+    "hod": "Ashton Cox",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "10"
+  },
+  {
+    "id": "016",
+    "no": "B1234516",
+    "dName": "Housekeeping",
+    "hod": "Sarah Smith",
+    "phone": "(123)456789",
+    "email": "test@example.com",
+    "totalStaff": "20"
+  }
+]

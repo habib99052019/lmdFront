@@ -1,0 +1,593 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header mt-n3">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="fw-bold">Hi, Welcome back!</h4>
+              <h4 class="font-weight-normal mb-0">Spice Dashboard,</h4>
+            </li>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+          <div class="align-items-center justify-content-between breadcrumb breadcrumb-style">
+            <div class="mb-xl-0">
+              <div class="float-end msl-2">
+                <p class="text-secondary  mb-0">Total Income</p>
+                <apx-chart [series]="commonBarSparklineOptions.series" [chart]="commonBarSparklineOptions.chart"
+                  [plotOptions]="commonBarSparklineOptions.plotOptions" [tooltip]="commonBarSparklineOptions.tooltip">
+                </apx-chart>
+              </div>
+              <div class="float-end msr-3">
+                <p class="text-secondary mb-2">Customer Ratings</p>
+                <div class="rating-star"> <i class="material-icons">star</i>
+                  <i class="material-icons">star</i>
+                  <i class="material-icons">star</i>
+                  <i class="material-icons">star_half</i>
+                  <i class="material-icons">star_border</i>
+                  <span>(9,876)</span> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Widgets -->
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon shadow-primary float-start bg-purple">
+              <i class="fas fa-paste"></i>
+            </div>
+            <div class="float-end m-4">
+              <div>
+                <h5 class="float-end">Total Booking</h5>
+              </div>
+              <div class="card-body float-end">
+                1,245
+              </div>
+            </div>
+          </div>
+          <div class="card-content m-3">
+            <div class="progress skill-progress m-b-20 w-100">
+              <div class="progress-bar l-bg-purple width-per-45" role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon shadow-primary float-start bg-orange">
+              <i class="fas fa-bed"></i>
+            </div>
+            <div class="float-end m-4">
+              <div>
+                <h5 class="float-end">Rooms Available</h5>
+              </div>
+              <div class="card-body float-end">
+                287
+              </div>
+            </div>
+          </div>
+          <div class="card-content m-3">
+            <div class="progress skill-progress m-b-20 w-100">
+              <div class="progress-bar l-bg-orange width-per-45" role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon shadow-primary float-start bg-green">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="float-end m-4">
+              <div>
+                <h5 class="float-end">New Customers</h5>
+              </div>
+              <div class="card-body float-end">
+                1,532
+              </div>
+            </div>
+          </div>
+          <div class="card-content m-3">
+            <div class="progress skill-progress m-b-20 w-100">
+              <div class="progress-bar l-bg-green width-per-45" role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="card card-statistic-2">
+          <div class="clearfix">
+            <div class="card-icon shadow-primary float-start bg-cyan">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="float-end m-4">
+              <div>
+                <h5 class="float-end">Total Revenue</h5>
+              </div>
+              <div class="card-body float-end">
+                $22,567
+              </div>
+            </div>
+          </div>
+          <div class="card-content m-3">
+            <div class="progress skill-progress m-b-20 w-100">
+              <div class="progress-bar l-bg-cyan width-per-45" role="progressbar" aria-valuenow="45" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #END# Widgets -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="card">
+          <div class="header">
+            <h2>
+              Hotel Survay</h2>
+            <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Action</button>
+              <button mat-menu-item>Another action</button>
+              <button mat-menu-item>Something else here</button>
+            </mat-menu>
+          </div>
+          <div class="body">
+            <apx-chart [series]="areaChartOptions.series" [chart]="areaChartOptions.chart"
+              [xaxis]="areaChartOptions.xaxis" [yaxis]="areaChartOptions.yaxis" [colors]="areaChartOptions.colors"
+              [stroke]="areaChartOptions.stroke" [legend]="areaChartOptions.legend" [tooltip]="areaChartOptions.tooltip"
+              [dataLabels]="areaChartOptions.dataLabels"></apx-chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card">
+          <div class="header">
+            <h2>Room Booking Chart</h2>
+            <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Action</button>
+              <button mat-menu-item>Another action</button>
+              <button mat-menu-item>Something else here</button>
+            </mat-menu>
+          </div>
+          <div class="body">
+            <div echarts [options]="donut_chart" class="desktop-pie-height"></div>
+            <table class="table mb-0">
+              <tbody>
+                <tr>
+                  <td><i class="fas fa-circle text-primary"></i> Single</td>
+                  <td class="text-end">734</td>
+                </tr>
+                <tr>
+                  <td><i class="fas fa-circle text-warning"></i> Double</td>
+                  <td class="text-end">567</td>
+                </tr>
+                <tr>
+                  <td><i class="fas fa-circle text-danger"></i> King</td>
+                  <td class="text-end">464</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="header">
+            <h2>Booking Details</h2>
+            <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Action</button>
+              <button mat-menu-item>Another action</button>
+              <button mat-menu-item>Something else here</button>
+            </mat-menu>
+          </div>
+          <div class="tableBody">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Status</th>
+                    <th>Phone</th>
+                    <th>Room Type</th>
+                    <th>Documents</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user8.jpg" alt="">
+                    </td>
+                    <td>John Deo</td>
+                    <td>12-08-2019</td>
+                    <td>15-08-2019</td>
+                    <td>
+                      <div class="badge col-green">Paid</div>
+                    </td>
+                    <td>(123)123456</td>
+                    <td>Single</td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="btn-tbl-edit">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button class="btn-tbl-delete">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user2.jpg" alt="">
+                    </td>
+                    <td>Jens Brincker</td>
+                    <td>13-08-2019</td>
+                    <td>16-08-2019</td>
+                    <td>
+                      <div class="badge col-red">Unpaid</div>
+                    </td>
+                    <td>(123)123456</td>
+                    <td>Double</td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="btn-tbl-edit">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button class="btn-tbl-delete">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user3.jpg" alt="">
+                    </td>
+                    <td>Mark Hay</td>
+                    <td>15-08-2019</td>
+                    <td>18-08-2019</td>
+                    <td>
+                      <div class="badge col-green">Paid</div>
+                    </td>
+                    <td>(123)123456</td>
+                    <td>Single</td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="btn-tbl-edit">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button class="btn-tbl-delete">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user4.jpg" alt="">
+                    </td>
+                    <td>Anthony Davie</td>
+                    <td>16-08-2019</td>
+                    <td>17-08-2019</td>
+                    <td>
+                      <div class="badge col-red">Unpaid</div>
+                    </td>
+                    <td>(123)123456</td>
+                    <td>King</td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="btn-tbl-edit">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button class="btn-tbl-delete">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user6.jpg" alt="">
+                    </td>
+                    <td>Alan Gilchrist</td>
+                    <td>21-08-2019</td>
+                    <td>23-08-2019</td>
+                    <td>
+                      <div class="badge col-green">Paid</div>
+                    </td>
+                    <td>(123)123456</td>
+                    <td>Appartment</td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="btn-tbl-edit">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button class="btn-tbl-delete">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user7.jpg" alt="">
+                    </td>
+                    <td>Sue Woodger</td>
+                    <td>25-08-2019</td>
+                    <td>26-08-2019</td>
+                    <td>
+                      <div class="badge col-orange">Pending</div>
+                    </td>
+                    <td>(123)123456</td>
+                    <td>Single</td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="btn-tbl-edit">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button class="btn-tbl-delete">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user8.jpg" alt="">
+                    </td>
+                    <td>David Perry</td>
+                    <td>26-08-2019</td>
+                    <td>29-08-2019</td>
+                    <td>
+                      <div class="badge col-red">Unpaid</div>
+                    </td>
+                    <td>(123)123456</td>
+                    <td>Single</td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="btn-tbl-edit">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button class="btn-tbl-delete">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user9.jpg" alt="">
+                    </td>
+                    <td>Sneha Pandit</td>
+                    <td>27-08-2019</td>
+                    <td>28-08-2019</td>
+                    <td>
+                      <div class="badge col-green">Paid</div>
+                    </td>
+                    <td>(123)123456</td>
+                    <td>Double</td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button class="btn-tbl-edit">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button class="btn-tbl-delete">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card">
+          <div class="header">
+            <h2>Activity</h2>
+            <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Action</button>
+              <button mat-menu-item>Another action</button>
+              <button mat-menu-item>Something else here</button>
+            </mat-menu>
+          </div>
+          <div class="body">
+            <div class="assign-style" style="position: relative; max-height: 355px;" [perfectScrollbar]>
+              <ul class="feedBody">
+                <li class="active-feed">
+                  <div class="feed-user-img">
+                    <img src="assets/images/user/user1.jpg" class="img-radius " alt="User-Profile-Image">
+                  </div>
+                  <h6>
+                    <span class="feedLblStyle lblFileStyle">File</span> Sarah Smith
+                    <small class="text-muted float-end">6 hours ago</small>
+                  </h6>
+                  <p class="m-b-15 m-t-15">
+                    hii John, I have upload doc related to task.
+                  </p>
+                </li>
+                <li class="diactive-feed">
+                  <div class="feed-user-img">
+                    <img src="assets/images/user/user2.jpg" class="img-radius " alt="User-Profile-Image">
+                  </div>
+                  <h6>
+                    <span class="feedLblStyle lblTaskStyle">Task </span> Jalpa Joshi
+                    <small class="text-muted float-end">5 hours ago
+                    </small>
+                  </h6>
+                  <p class="m-b-15 m-t-15">
+                    Please do as specify. Let me know if you have any query.
+                  </p>
+                </li>
+                <li class="diactive-feed">
+                  <div class="feed-user-img">
+                    <img src="assets/images/user/user3.jpg" class="img-radius " alt="User-Profile-Image">
+                  </div>
+                  <h6>
+                    <span class="feedLblStyle lblCommentStyle">comment</span> Lina Smith
+                    <small class="text-muted float-end">6 hours ago</small>
+                  </h6>
+                  <p class="m-b-15 m-t-15">
+                    Hey, How are you??
+                  </p>
+                </li>
+                <li class="active-feed">
+                  <div class="feed-user-img">
+                    <img src="assets/images/user/user4.jpg" class="img-radius " alt="User-Profile-Image">
+                  </div>
+                  <h6>
+                    <span class="feedLblStyle lblReplyStyle">Reply</span> Jacob Ryan
+                    <small class="text-muted float-end">7 hours ago</small>
+                  </h6>
+                  <p class="m-b-15 m-t-15">
+                    I am fine. You??
+                  </p>
+                </li>
+                <li class="active-feed">
+                  <div class="feed-user-img">
+                    <img src="assets/images/user/user5.jpg" class="img-radius " alt="User-Profile-Image">
+                  </div>
+                  <h6>
+                    <span class="feedLblStyle lblFileStyle">File</span> Sarah Smith
+                    <small class="text-muted float-end">6 hours ago</small>
+                  </h6>
+                  <p class="m-b-15 m-t-15">
+                    hii John, I have upload doc related to task.
+                  </p>
+                </li>
+                <li class="diactive-feed">
+                  <div class="feed-user-img">
+                    <img src="assets/images/user/user6.jpg" class="img-radius " alt="User-Profile-Image">
+                  </div>
+                  <h6>
+                    <span class="feedLblStyle lblTaskStyle">Task </span> Jalpa Joshi
+                    <small class="text-muted float-end">5 hours ago
+                    </small>
+                  </h6>
+                  <p class="m-b-15 m-t-15">
+                    Please do as specify. Let me know if you have any query.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="card">
+          <div class="header">
+            <h2>Customer Review</h2>
+            <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Action</button>
+              <button mat-menu-item>Another action</button>
+              <button mat-menu-item>Something else here</button>
+            </mat-menu>
+          </div>
+          <div class="body">
+            <div class="review-block">
+              <div class="row">
+                <div class="review-img">
+                  <img src="assets/images/user/user1.jpg" alt="">
+                </div>
+                <div class="col">
+                  <h6 class="m-b-5">Alis Smith
+                    <span class="float-end m-r-10 text-muted"> a week ago</span>
+                  </h6>
+                  <i class="material-icons">star</i>
+                  <i class="material-icons">star</i>
+                  <i class="material-icons">star</i>
+                  <i class="material-icons">star_half</i>
+                  <i class="material-icons">star_border</i>
+                  <p class="m-t-15 m-b-15 text-muted">Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Etiam vel rutrum ex, at
+                    ornare mi. In quis scelerisque dui, eget rhoncus orci. Fusce et sodales
+                    ipsum.
+                    Nam id nunc euismod, aliquet arcu quis, mattis nisi.</p>
+                  <button mat-icon-button class="m-r-10 col-blue">
+                    <mat-icon>thumb_up</mat-icon>
+                  </button>
+                  <button mat-icon-button class="m-r-10 col-red">
+                    <mat-icon>thumb_down</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="review-img">
+                  <img src="assets/images/user/user2.jpg" alt="">
+                </div>
+                <div class="col">
+                  <h6 class="m-b-5">John Dio
+                    <span class="float-end m-r-10 text-muted"> a week ago</span>
+                  </h6>
+                  <i class="material-icons">star</i>
+                  <i class="material-icons">star_half</i>
+                  <i class="material-icons">star_border</i>
+                  <i class="material-icons">star_border</i>
+                  <i class="material-icons">star_border</i>
+                  <p class="m-t-15 m-b-15 text-muted">Nam quis ligula est. Nunc sed risus non
+                    turpis tristique tempor. Ut sollicitudin
+                    faucibus magna nec gravida. Suspendisse ullamcorper justo vel porta
+                    imperdiet.
+                    Nunc nec ipsum vel augue placerat faucibus. </p>
+                  <button mat-icon-button class="m-r-10 col-blue">
+                    <mat-icon>thumb_up</mat-icon>
+                  </button>
+                  <button mat-icon-button class="m-r-10 col-red">
+                    <mat-icon>thumb_down</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="text-center  m-b-5">
+                <a href="javascript:void(0)" class="b-b-primary text-primary">View all Customer Reviews</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

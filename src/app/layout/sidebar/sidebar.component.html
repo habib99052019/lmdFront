@@ -1,0 +1,76 @@
+<div>
+  <!-- Left Sidebar -->
+  <aside id="leftsidebar" class="sidebar" (mouseenter)="mouseHover($event)" (mouseleave)="mouseOut($event)">
+    <!-- Menu -->
+    <div class="menu">
+      <ul class="list"
+        [ngStyle]="{'position' : 'relative', 'max-height' : listMaxHeight+'px', 'max-width' : listMaxWidth+'px'}"
+        [perfectScrollbar]>
+        <li class="sidebar-user-panel">
+          <div class="user-panel">
+            <div class=" image">
+              <img src="assets/images/usrbig.jpg" class="img-circle user-img-circle" alt="User Image" />
+            </div>
+          </div>
+          <div class="profile-usertitle">
+            <div class="sidebar-userpic-name">Emily Smith </div>
+            <div class="profile-usertitle-job ">Manager </div>
+          </div>
+          <div class="sidebar-userpic-btn">
+            <a mat-icon-button disabled routerLink="extra-pages/profile" matTooltip="Profile"
+              [matTooltipPosition]="'above'">
+              <i class="material-icons-two-tone">account_circle</i>
+            </a>
+            <a mat-icon-button disabled routerLink="email/inbox" matTooltip="Email" [matTooltipPosition]="'above'">
+              <i class="material-icons-two-tone">mark_email_unread</i>
+            </a>
+            <a mat-icon-button disabled routerLink="calendar" matTooltip="Calendar" [matTooltipPosition]="'above'">
+              <i class="material-icons-two-tone">event</i>
+            </a>
+            <a mat-icon-button disabled routerLink="authentication/locked" matTooltip="Lock"
+              [matTooltipPosition]="'above'">
+              <i class="material-icons-two-tone">lock</i>
+            </a>
+          </div>
+        </li>
+        <!-- Top Most level menu -->
+        <li [class.active]="level1Menu === sidebarItem.moduleName && sidebarItem.submenu.length != 0"
+          *ngFor="let sidebarItem of sidebarItems" [routerLinkActive]="sidebarItem.submenu.length != 0 ? '' : 'active'">
+          <div class="header" *ngIf="sidebarItem.groupTitle === true">{{sidebarItem.title}}</div>
+          <a [routerLink]="sidebarItem.class === '' ? [sidebarItem.path] : null" *ngIf="!sidebarItem.groupTitle;"
+            [ngClass]="[sidebarItem.class]" (click)="callLevel1Toggle($event, sidebarItem.moduleName)" class="menu-top">
+            <i [ngClass]="[sidebarItem.iconType]">{{sidebarItem.icon}}</i>
+            <span class="hide-menu">{{sidebarItem.title}}
+            </span>
+            <span *ngIf="sidebarItem.badge != '' " [ngClass]="[sidebarItem.badgeClass]">{{sidebarItem.badge}}</span>
+          </a>
+          <!-- First level menu -->
+          <ul class="ml-menu" *ngIf="sidebarItem.submenu.length > 0">
+            <li [ngClass]="level2Menu === sidebarSubItem.moduleName? 'activeSub':''"
+              *ngFor="let sidebarSubItem of sidebarItem.submenu"
+              [routerLinkActive]="sidebarSubItem.submenu.length > 0 ? '' : 'active'">
+              <a [routerLink]="sidebarSubItem.submenu.length > 0 ? null : [sidebarSubItem.path]"
+                (click)="callLevel2Toggle($event,sidebarSubItem.moduleName)" [ngClass]="[sidebarSubItem.class]">
+                {{sidebarSubItem.title}}
+              </a>
+              <!-- Second level menu -->
+              <ul class="ml-menu-2" *ngIf="sidebarSubItem.submenu.length > 0">
+                <li *ngFor="let sidebarSubsubItem of sidebarSubItem.submenu"
+                  [ngClass]="level3Menu === sidebarSubsubItem.moduleName? 'activeSubSub':''"
+                  [routerLinkActive]="sidebarSubsubItem.submenu.length > 0 ? '' : 'active'">
+                  <a [routerLink]="sidebarSubsubItem.submenu.length > 0 ? null : [sidebarSubsubItem.path]"
+                    (click)="callLevel3Toggle($event,sidebarSubsubItem.moduleName)"
+                    [ngClass]="[sidebarSubsubItem.class]">
+                    {{sidebarSubsubItem.title}}
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- #Menu -->
+  </aside>
+  <!-- #END# Left Sidebar -->
+</div>

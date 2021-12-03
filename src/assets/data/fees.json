@@ -1,0 +1,178 @@
+[
+  {
+    "id": "001",
+    "rollNo": "1",
+    "sName": "Jenish Shah",
+    "fType": "library",
+    "date": "2019-02-25T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "cash",
+    "status": "unpaid",
+    "amount": "170$"
+  },
+  {
+    "id": "002",
+    "rollNo": "2",
+    "sName": "Priya Patel",
+    "fType": "annual",
+    "date": "2019-02-17T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "cheque",
+    "status": "pending",
+    "amount": "170$"
+  },
+  {
+    "id": "003",
+    "rollNo": "3",
+    "sName": "Mayank Jani",
+    "fType": "other",
+    "date": "2020-01-01T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "cheque",
+    "status": "pending",
+    "amount": "250$"
+  },
+  {
+    "id": "004",
+    "rollNo": "4",
+    "sName": "Bertie Jones",
+    "fType": "annual",
+    "date": "2019-02-01T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "cheque",
+    "status": "paid",
+    "amount": "340$"
+  },
+  {
+    "id": "005",
+    "rollNo": "5",
+    "sName": "Jenish Shah",
+    "fType": "transport",
+    "date": "2019-02-02T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "credit card",
+    "status": "paid",
+    "amount": "170$"
+  },
+  {
+    "id": "006",
+    "rollNo": "6",
+    "sName": "Sarah Smith",
+    "fType": "exam",
+    "date": "2019-02-26T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "cash",
+    "status": "paid",
+    "amount": "340$"
+  },
+  {
+    "id": "007",
+    "rollNo": "7",
+    "sName": "Pam Abbott",
+    "fType": "tution",
+    "date": "2019-02-22T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "cheque",
+    "status": "unpaid",
+    "amount": "340$"
+  },
+  {
+    "id": "008",
+    "rollNo": "8",
+    "sName": "Bethaney Spence",
+    "fType": "library",
+    "date": "2019-02-19T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "credit card",
+    "status": "paid",
+    "amount": "250$"
+  },
+  {
+    "id": "009",
+    "rollNo": "9",
+    "sName": "Ivan Bell",
+    "fType": "transport",
+    "date": "2019-02-14T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "cheque",
+    "status": "unpaid",
+    "amount": "170$"
+  },
+  {
+    "id": "010",
+    "rollNo": "10",
+    "sName": "Jay Soni",
+    "fType": "tution",
+    "date": "2019-02-27T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "credit card",
+    "status": "paid",
+    "amount": "340$"
+  },
+  {
+    "id": "011",
+    "rollNo": "11",
+    "sName": "Wesley Casey",
+    "fType": "annual",
+    "date": "2019-02-21T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "cash",
+    "status": "pending",
+    "amount": "340$"
+  },
+  {
+    "id": "012",
+    "rollNo": "12",
+    "sName": "Robin Graves",
+    "fType": "exam",
+    "date": "2019-02-10T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "cheque",
+    "status": "paid",
+    "amount": "340$"
+  },
+  {
+    "id": "013",
+    "rollNo": "13",
+    "sName": "Ivan Bell",
+    "fType": "Tuition",
+    "date": "2019-02-10T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "credit card",
+    "status": "pending",
+    "amount": "170$"
+  },
+  {
+    "id": "014",
+    "rollNo": "14",
+    "sName": "Justin Copeland",
+    "fType": "transport",
+    "date": "2019-02-16T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "other",
+    "status": "unpaid",
+    "amount": "250$"
+  },
+  {
+    "id": "015",
+    "rollNo": "15",
+    "sName": "Kendra King",
+    "fType": "Tuition",
+    "date": "2019-02-04T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "online transfer",
+    "status": "paid",
+    "amount": "340$"
+  },
+  {
+    "id": "016",
+    "rollNo": "16",
+    "sName": "Alexandra Clarke",
+    "fType": "annual",
+    "date": "2019-02-04T14:22:18Z",
+    "invoiceNo": "IN-5645644",
+    "pType": "cash",
+    "status": "paid",
+    "amount": "340$"
+  }
+]

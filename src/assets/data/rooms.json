@@ -1,0 +1,162 @@
+[
+  {
+    "id": "001",
+    "roomNo": "103",
+    "type": "Delux",
+    "acNonac": "AC",
+    "meal": "Free Lunch",
+    "capacity": "2",
+    "phone": "1234567890",
+    "rent": "30"
+  },
+  {
+    "id": "002",
+    "roomNo": "101",
+    "type": "Super Delux",
+    "acNonac": "Non AC",
+    "meal": "Free Dinner",
+    "capacity": "1",
+    "phone": "1234567890",
+    "rent": "28"
+  },
+  {
+    "id": "003",
+    "roomNo": "105",
+    "type": "Double",
+    "acNonac": "AC",
+    "meal": "Free Dinner",
+    "capacity": "1",
+    "phone": "1234567890",
+    "rent": "32"
+  },
+  {
+    "id": "004",
+    "roomNo": "109",
+    "type": "Double",
+    "acNonac": "Non AC",
+    "meal": "Free Lunch",
+    "capacity": "3",
+    "phone": "1234567890",
+    "rent": "26"
+  },
+  {
+    "id": "005",
+    "roomNo": "104",
+    "type": "Delux",
+    "acNonac": "AC",
+    "meal": "None",
+    "capacity": "2",
+    "phone": "1234567890",
+    "rent": "27"
+  },
+  {
+    "id": "006",
+    "roomNo": "107",
+    "type": "Single",
+    "acNonac": "Non AC",
+    "meal": "None",
+    "capacity": "2",
+    "phone": "1234567890",
+    "rent": "30"
+  },
+  {
+    "id": "007",
+    "roomNo": "108",
+    "type": "Super Delux",
+    "acNonac": "AC",
+    "meal": "None",
+    "capacity": "4",
+    "phone": "1234567890",
+    "rent": "26"
+  },
+  {
+    "id": "008",
+    "roomNo": "110",
+    "type": "Double",
+    "acNonac": "Non AC",
+    "meal": "Free Lunch",
+    "capacity": "3",
+    "phone": "1234567890",
+    "rent": "27"
+  },
+  {
+    "id": "009",
+    "roomNo": "111",
+    "type": "Delux",
+    "acNonac": "AC",
+    "meal": "Free Lunch",
+    "capacity": "4",
+    "phone": "1234567890",
+    "rent": "32"
+  },
+  {
+    "id": "010",
+    "roomNo": "112",
+    "type": "Single",
+    "acNonac": "AC",
+    "meal": "Free Dinner",
+    "capacity": "4",
+    "phone": "1234567890",
+    "rent": "27"
+  },
+  {
+    "id": "011",
+    "roomNo": "113",
+    "type": "Double",
+    "acNonac": "AC",
+    "meal": "Free Dinner",
+    "capacity": "2",
+    "phone": "1234567890",
+    "rent": "26"
+  },
+  {
+    "id": "012",
+    "roomNo": "114",
+    "type": "Delux",
+    "acNonac": "Non AC",
+    "meal": "Free Lunch",
+    "capacity": "3",
+    "phone": "1234567890",
+    "rent": "30"
+  },
+  {
+    "id": "013",
+    "roomNo": "115",
+    "type": "Super Delux",
+    "acNonac": "Non AC",
+    "meal": "Free Lunch",
+    "capacity": "2",
+    "phone": "1234567890",
+    "rent": "28"
+  },
+  {
+    "id": "014",
+    "roomNo": "116",
+    "type": "Super Delux",
+    "acNonac": "Non AC",
+    "meal": "None",
+    "capacity": "4",
+    "phone": "1234567890",
+    "rent": "32"
+  },
+  {
+    "id": "015",
+    "roomNo": "117",
+    "type": "Single",
+    "acNonac": "AC",
+    "meal": "None",
+    "capacity": "3",
+    "phone": "1234567890",
+    "rent": "27"
+  },
+  {
+    "id": "016",
+    "roomNo": "118",
+    "type": "Single",
+    "acNonac": "Non AC",
+    "meal": "Free Dinner",
+    "capacity": "3",
+    "phone": "1234567890",
+    "rent": "26"
+  }
+]

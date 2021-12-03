@@ -1,0 +1,152 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Calendar</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a href="#" onClick="return false;">
+                                <i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">Calendar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row flex ">
+                            <div class="col-md-12">
+
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-between align-content-center">
+                            <div class="col-md-3 mt-2 text-start">
+                                <button mat-raised-button color="primary" (click)="addNewEvent()">Réserver</button>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <label class="font-15">Disponible</label>
+                                <label class="switch">
+                                    <input type="checkbox"(change)="toggle($event)" >
+                                    <span class="slider round"></span>
+                                   
+                                </label>
+                            </div>
+                            <div class="col-md-3  text-end">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>À partir de</mat-label>
+                                    <input matInput [matDatepicker]="picker" (dateChange)="this.start = $event.value ; changeView($event)">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3 text-end">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Jusqu'à</mat-label>
+                                    <input matInput [matDatepicker]="picker1" (dateChange)="end = $event.value ; changeView2($event)">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-12 p-l-30">
+                                <div class="filter-container">
+                                    <!-- <ul>
+                                        <li>
+                                            <mat-checkbox [checked]="this.toutLesChambre" color="primary" (change)="reset($event)">
+                                                Tout les chambres
+                                            </mat-checkbox>
+                                        </li>
+                                    </ul> -->
+                                    <!-- <div class="col pt-3">
+                                        <div *ngFor="let room of roomsList" class="m-t-10">
+                                            <input type="checkbox" [value]="room.name" (change)="changeCategory($event)">
+                                            <button class="btn btn-primary" [color]="room.color" style="width : 100px">{{room.name}}</button>
+                                        </div>
+                                    </div> -->
+                                    <ul>
+
+                                        <li *ngFor="let room of roomsList">
+                                            <mat-checkbox [checked]="room.checked" [value]="room.name" color="primary" (change)="changeCategory($event, room)">
+                                                {{room.name}}
+                                            </mat-checkbox>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate" (viewDateChange)="fillCalendar()" (viewChange)="fillCalendar()" (click)="this.refresh.next()">
+                                </mwl-demo-utils-calendar-header>
+                                <div [ngSwitch]="view">
+                                    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events">
+                                    </mwl-calendar-month-view>
+                                    <mwl-calendar-week-view #angularCalendar *ngSwitchCase="'week'" [viewDate]="viewDate" [refresh]="refresh" [events]="events" [hourSegments]="0">
+                                    </mwl-calendar-week-view>
+                                    <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events">
+                                    </mwl-calendar-day-view>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<ng-template #viewEvent let-modal>
+    <div class="modal-header editRowModal">
+        <h4 class="modal-title" id="modal-basic-title">
+            <div class="table-modal-header">
+                <div class="modal-about">
+                    <div class="font-weight-bold p-t-10 font-30">
+                        Reservation Info
+                    </div>
+                </div>
+            </div>
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="row d-flex justify-content-between align-items-center m-2">
+            <div class="col-md-6 text-start">
+                <h3>
+                    <mat-icon class="text-danger">domain</mat-icon> {{this.modalData.roomName}}
+                </h3>
+            </div>
+            <div class="col-md-6 text-capitalize text-end">
+                <h3>{{this.modalData.first_name}} {{this.modalData.last_name}}</h3>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-between align-items-center m-2">
+            <div class="col-md-3">
+                <mat-icon class="text-info">face</mat-icon> {{this.modalData.number_guests}}
+            </div>
+            <div class="col-md-3">
+                <mat-icon class="text-info">child_care</mat-icon>{{this.modalData.number_children}}
+            </div>
+            <div class="col-md-3">
+                <mat-icon class="text-success">attach_money</mat-icon>{{this.modalData.price}}
+            </div>
+            <div class="col-md-3">
+                {{this.modalData.startDate | date: 'dd/MM' }}-{{this.modalData.endDate | date: 'dd/MM' }}
+            </div>
+        </div>
+        <div class="row m-2">
+            <button *ngIf="this.modalData.status === 'OCCUPE'" class="btn btn-block btn-danger " disabled>Occupé</button>
+            <button class="btn btn-block btn-warning " disabled>Reservé</button>
+        </div>
+    </div>
+
+</ng-template>

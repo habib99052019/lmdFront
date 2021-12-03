@@ -1,0 +1,258 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Chambre</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a routerLink="/dashboard/main">
+                                <i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="#" onClick="return false;">Reservation</a>
+                        </li>
+                        <li class="breadcrumb-item active">Chambre</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="tabbable-line">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="card">
+                                <div class="body">
+                                    <div class="table-responsive">
+                                        <div class="materialTableHeader">
+                                            <div class="row w-100">
+
+                                                <div class="col-md-10">
+                                                    <ul class="header-buttons-left ">
+                                                        <li>
+                                                            <button mat-raised-button color="primary" (click)="addnew()">Réserver</button>
+                                                        </li>
+                                                        <li class="dropdown m-l-20 m-r-20">
+                                                            <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                                                            <input placeholder="Search" type="text" class="browser-default search-field" aria-label="Search box" (keyup)='search($event.target.value)'>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-2 text-end mt-2 ">
+                                                    <button mat-icon-button matTooltip="Filtre" disabled [matTooltipPosition]="'above'">
+                                                        <i class="material-icons-two-tone">date_range</i>
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <mat-table #table [dataSource]="this.TableSourceData" matSort class="mat-cell">
+                                            <!-- Checkbox Column -->
+
+                                            <!-- ID Column -->
+                                            <ng-container matColumnDef="Client name">
+                                                <mat-header-cell *matHeaderCellDef>Client
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{row.first_name}} {{row.last_name}}</mat-cell>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Room name">
+                                                <mat-header-cell mat-header-cell *matHeaderCellDef>Chambre
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Start date">
+                                                <mat-header-cell *matHeaderCellDef>Date d’arrivée
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{row.startDate | date: 'MM/dd/yyyy'}}</mat-cell>
+                                            </ng-container>
+                                            <ng-container matColumnDef="End date">
+                                                <mat-header-cell *matHeaderCellDef>Date de départ
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{row.endDate | date: 'MM/dd/yyyy'}}</mat-cell>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Price">
+                                                <mat-header-cell *matHeaderCellDef>Prix
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{row.price}} DT</mat-cell>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Status">
+                                                <mat-header-cell *matHeaderCellDef>Status
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">{{row.status}}</mat-cell>
+                                            </ng-container>
+                                            <!-- actions -->
+                                            <ng-container matColumnDef="actions">
+                                                <mat-header-cell class="pr-0" *matHeaderCellDef>Actions
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
+                                                    <button mat-icon-button color="accent" class="btn-tbl-edit" (click)="openEditModal(row)">
+                                                  <mat-icon aria-label="Edit" class="col-white">edit
+                                                  </mat-icon>
+                                                </button>
+                                                    <button mat-icon-button color="accent" class="btn-tbl-delete" (click)="deleteSingleRow(row) ">
+                                                  <mat-icon aria-label="Delete" class="col-white">delete
+                                                  </mat-icon>
+                                                </button>
+                                                </mat-cell>
+                                            </ng-container>
+                                            <mat-header-row *matHeaderRowDef="displayedColumns">
+                                            </mat-header-row>
+                                            <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+                                            <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple>
+                                            </mat-row>
+                                        </mat-table>
+                                        <!-- <div class="no-results" [style.display]="this.TableSourceData?.length == 0 ? '' : 'none'">
+                                            No results
+                                        </div> -->
+                                        <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+                                        </mat-paginator>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<ng-template #dateModal let-modal>
+    <div class="modal-body">
+        <form [formGroup]="filterForm">
+            <div class="row">
+                <mat-form-field appearance="outline" class="pr-5">
+                    <mat-label>À partir de</mat-label>
+                    <input matInput type="date" class="form-control" formControlName="fromDate">
+                </mat-form-field>
+            </div>
+            <div class="row ">
+                <mat-form-field appearance="outline" class="pr-5">
+                    <mat-label>À partir de</mat-label>
+                    <input matInput type="date" class="form-control" formControlName="toDate">
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button mat-raised-button color="primary" (click)="filterPeriod(filterForm.value);modal.dismiss()">Filtré</button>
+    </div>
+
+</ng-template>
+<ng-template #editModal let-modal>
+    <div class="modal-body">
+        <form class="register-form m-4" [formGroup]="reservationChambreForm">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Nom</mat-label>
+                        <input matInput formControlName="first_name" required>
+                        <mat-icon matSuffix>face</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Prenom</mat-label>
+                        <input matInput formControlName="last_name" required>
+                        <mat-icon matSuffix>face</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Chambre</mat-label>
+                        <mat-select formControlName="roomID" required (selectionChange)="showRoom($event)">
+                            <mat-option *ngFor="let chambre of this.Chambre_list" [value]=chambre>
+                                {{chambre.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Date d’arrivée</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="startDate" required [min]="this.todayDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Date de départ</mat-label>
+                        <input matInput [matDatepicker]="picker2" formControlName="endDate" required (dateChange)="calculDateDays($event)">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Nombre d’adultes</mat-label>
+                        <input matInput formControlName="number_guests" required type="number" [min]="1" [(max)]="this.max_guests">
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Nombre d’enfants</mat-label>
+                        <input matInput formControlName="number_children" type="number" [min]="0">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Commentaire</mat-label>
+                        <textarea matInput formControlName="comment"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>extras</mat-label>
+                        <textarea matInput formControlName="extra"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body bg-gray text-white text-capitalize">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>prix chambre : {{this.RoomPrice}}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>nuits : {{this.Days}} </p>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>Total : {{this.priceTotal}} DT</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
+                    <div class="example-button-row">
+                        <button mat-raised-button color="primary" [mat-dialog-close]="1" [type]="submit" [disabled]="!reservationChambreForm.valid" (click)="addNewReservation()">Save</button>
+                        <button mat-raised-button color="warn" (click)="dialogRef.close()" tabindex="-1">Cancel</button>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">
+                    <div class="example-button-row" *ngIf="showDeleteBtn">
+                        <button mat-mini-fab aria-label color="warn" (click)="deleteEvent()">
+              <mat-icon class="font-20">delete</mat-icon>
+            </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</ng-template>

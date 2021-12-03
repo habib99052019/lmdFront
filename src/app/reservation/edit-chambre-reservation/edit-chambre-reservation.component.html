@@ -1,0 +1,154 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Modifier reservation</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a routerLink="/dashboard/main">
+                                <i class="fas fa-home"></i>Home</a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="#" onClick="return false;">Chambre</a>
+                        </li>
+                        <li class="breadcrumb-item active">Modification</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Modification reservation</h2>
+                    </div>
+                    <div class="body">
+                        <form class="register-form m-4" [formGroup]="this.reservationForm">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Prenom</mat-label>
+                                        <input matInput formControlName="first_name">
+                                        <mat-icon matSuffix>face</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>nom</mat-label>
+                                        <input matInput formControlName="last_name">
+                                        <mat-icon matSuffix>face</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Chambre</mat-label>
+                                        <mat-select formControlName="roomID" required (selectionChange)="showRoom($event)">
+                                            <mat-option *ngFor="let chambre of this.rooms " [value]=chambre>
+                                                {{chambre.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Status</mat-label>
+                                        <mat-select formControlName="status" required>
+                                            <mat-option value="INITIALISER">
+                                                INITIALISER
+                                            </mat-option>
+                                            <mat-option value="REMBOURSSE">
+                                                REMBOURSSE
+                                            </mat-option>
+                                            <mat-option value="PAYE">
+                                                PAYE
+                                            </mat-option>
+                                            <mat-option value="ANNULER">
+                                                ANNULER
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Date d’arrivée</mat-label>
+                                        <input matInput [matDatepicker]="picker" formControlName="startDate" required (dateChange)="checkDates($event)" [max]="this.maxDate" [min]="this.todayDate">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Date de départ</mat-label>
+                                        <input matInput [matDatepicker]="picker2" formControlName="endDate" required [min]="this.minDate" (dateChange)="calculDateDays($event)">
+                                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Nombre d’adultes</mat-label>
+                                        <input matInput formControlName="number_guests" required type="number" [min]="1" [(max)]="this.max_guests">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Nombre d’enfants</mat-label>
+                                        <input matInput formControlName="number_children" type="number" [min]="0">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>Commentaire</mat-label>
+                                        <textarea matInput formControlName="comment"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                        <mat-label>extras</mat-label>
+                                        <textarea matInput formControlName="extra"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body bg-gray text-white text-capitalize">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>prix chambre : {{this.RoomPrice}}</p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p>nuits : {{this.Days}} </p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p>Total : {{this.priceTotal}} DT</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                                    <button class="msr-3" [disabled]="!reservationForm.valid " mat-raised-button color="primary">Edit</button>
+                                    <button type="button" mat-button>Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
