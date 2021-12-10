@@ -5,6 +5,8 @@ import { ChambreComponent} from './chambre/chambre.component'
 import { ChambreListComponent } from './chambre-list/chambre-list.component';
 import {EditChambreReservationComponent} from './edit-chambre-reservation/edit-chambre-reservation.component';
 import { DemoComponent } from './demo/component';
+import { ChambreReservationComponent } from './chambre-reservation/chambre-reservation.component';
+import { AddchambreReservationComponent } from './chambre-reservation/addchambre-reservation/addchambre-reservation.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,11 @@ const routes: Routes = [
   },
   {
     path: 'calendrier',
-    component: ChambreComponent
+    component: ChambreReservationComponent
+  },
+  {
+    path : 'reserver/:object',
+    component : AddchambreReservationComponent,
   },
   {
     path : 'chambre',

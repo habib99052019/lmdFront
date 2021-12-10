@@ -41,6 +41,7 @@
                             "./node_modules/angular-calendar/scss/angular-calendar.scss"
                         ],
                         "scripts": [
+                            
                             "./node_modules/moment/min/moment.min.js",
                             "./node_modules/chart.js/dist/Chart.bundle.js",
                             "./node_modules/apexcharts/dist/apexcharts.min.js"

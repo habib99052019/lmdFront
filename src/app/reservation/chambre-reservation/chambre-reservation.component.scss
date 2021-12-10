@@ -1,0 +1,123 @@
+#e1{
+    background-color: rgb(250, 212, 233);
+    display:inline-block;
+    width: 90px;
+    border-radius: 5px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    }
+    
+    #e2{
+    background-color: rgb(203, 219, 255);
+    display:inline-block;
+    width: 90px;
+    border-radius: 5px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    }
+    
+    #e3{
+    background-color: rgb(253, 215, 158);
+    display:inline-block;
+    width: 90px;
+    border-radius: 5px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    }
+    
+    #e4{
+    background-color: rgb(228, 204, 255);
+    display:inline-block;
+    width: 90px;
+    border-radius: 5px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    }
+    
+    #e5{
+    background-color: rgb(244, 255, 182);
+    display:inline-block;
+    width: 90px;
+    border-radius: 5px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    }
+    #e6{
+    background-color: rgb(255, 234, 254);
+    display:inline-block;
+    width: 90px;
+    border-radius: 5px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    }
+    #e7{
+    background-color: rgb(157, 203, 255);
+    display:inline-block;
+    width: 90px;
+    border-radius: 5px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    }
+    #e8{
+    background-color: rgb(180, 253, 204);
+    display:inline-block;
+    width: 90px;
+    border-radius: 5px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    }
+
+    .min-calendar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;      
+    }
+
+
+.dispo{
+position:absolute;
+right: 15px;
+top:90px      
+}
+
+.fc.fc-button-primary {
+color: var(--fc-button-text-color,#fff) !important;
+background-color: #3f51b5 !important;
+border-color: var(--fc-button-border-color,#3f51b5) !important;
+}
+
+#dispo{
+    color: green; 
+    margin-left: 20px; 
+    }
+    #occup{
+    color: rgb(235, 12, 12);
+    margin-left: 38px;
+    }
+    #Reserv{
+    color: rgb(243, 247, 35);
+    margin-left: 37px;
+    }
+    #Ferm{
+    color: rgb(182, 182, 182);
+    margin-left: 48px;
+    }
+    p {
+        font-family: Lato;
+      }
+
+/*
+.card {
+background-color: #fff;
+border-radius: 10px;
+position: relative;
+margin-bottom: 30px;
+border: 1px solid #deebfd;
+box-shadow: -8px 12px 18px 0 #dadee8;
+
+
+}*/
+
+.fullscreen-dialog {
+    position: fixed;
+  }

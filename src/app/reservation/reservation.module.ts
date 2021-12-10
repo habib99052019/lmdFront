@@ -21,6 +21,9 @@ import { ChambreAddFormDialogComponent } from './chambre-list/form-dialog/form-d
 import { EditChambreReservationComponent } from './edit-chambre-reservation/edit-chambre-reservation.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import {DemoComponent} from './demo/component';
+import { ChambreReservationComponent } from './chambre-reservation/chambre-reservation.component';
+import { DialogreservationnInfosComponent } from './chambre-reservation/dialogreservationn-infos/dialogreservationn-infos.component';
+import { AddchambreReservationComponent } from './chambre-reservation/addchambre-reservation/addchambre-reservation.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -40,7 +43,10 @@ FullCalendarModule.registerPlugins([
     ChambreAddFormDialogComponent,
     ChambreFormDialogComponent,
     ChambreListComponent,
-    EditChambreReservationComponent
+    EditChambreReservationComponent,
+    ChambreReservationComponent,
+    DialogreservationnInfosComponent,
+    AddchambreReservationComponent
   ],
   imports: [
     CommonModule,

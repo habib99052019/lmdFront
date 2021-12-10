@@ -95,6 +95,7 @@ export class ChambreAddFormDialogComponent implements OnInit{
       type : 'room' ,
       first_name : this.reservationChambreForm.get('first_name').value,
       last_name : this.reservationChambreForm.get('last_name').value,
+      
       roomID : this.reservationChambreForm.get('roomID').value,
       requestDate : formatDate(new Date(), 'yyyy-MM-dd', 'en') ,
       startDate : formatDate(this.reservationChambreForm.get('startDate').value, 'yyyy-MM-dd', 'en') ,
@@ -144,6 +145,9 @@ export class ChambreAddFormDialogComponent implements OnInit{
       this.calculTotal(this.Days , this.RoomPrice);
     }
   }
+
+
+
   selectRoomType(event: any){
     this.roomType = event.value;    
     if (this.room){

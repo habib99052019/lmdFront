@@ -1,0 +1,139 @@
+
+<h2 mat-dialog-title>Details</h2>
+
+
+<div class="parent">
+<!----------------start first row------>
+<div class="first__row">
+
+<form>
+  <mat-form-field  appearance="outline">
+    <mat-label>Chambre</mat-label>
+    <input type="text" matInput  [(ngModel)]="data.title" name="title"
+           >
+
+    <mat-error>
+      Please enter a valid room
+    </mat-error>
+    <mat-error>
+       FirstName <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
+ 
+<form style="margin-left:8px; margin-right: 8px;">
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Date d'arriver</mat-label>
+    <input type="text" matInput  [(ngModel)]="data.start" name="start">
+    <mat-error>
+      Please enter a valid date
+    </mat-error>
+    <mat-error>
+       FirstName <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
+
+<form>
+  <mat-form-field appearance="outline">
+    <mat-label>Date de départ</mat-label>
+    <input type="text" matInput  [(ngModel)]="data.end" name="end">
+    <mat-error>
+      Please enter a valid date
+    </mat-error>
+    <mat-error>
+       FirstName <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
+</div>
+
+<!----------end first row------------->
+
+<!-----------start second row------------------------->
+
+<div class="second__row">
+<form>
+  <mat-form-field  appearance="outline">
+    <mat-label>FirstName</mat-label>
+    <input type="text" matInput  [(ngModel)]="data.firstName" name="firstName"
+           >
+
+    <mat-error>
+      Please enter a valid firstname
+    </mat-error>
+    <mat-error>
+       FirstName <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
+
+<form style="margin-left:8px; margin-right: 8px;">
+  <mat-form-field  appearance="outline">
+    <mat-label>LastName</mat-label>
+    <input type="text" matInput  [(ngModel)]="data.lastName" name="lastName"
+           >
+
+    <mat-error>
+      Please enter a valid lastname
+    </mat-error>
+    <mat-error>
+       LastName <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
+<form >
+  <mat-form-field  appearance="outline">
+    <mat-label>Persones</mat-label>
+    <input type="number" matInput  [(ngModel)]="data.nbp" name="nbp">
+
+    <mat-error>
+      Please enter a valid email address
+    </mat-error>
+    <mat-error>
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
+
+</div>
+
+<!--------------end second row---------------------->
+
+<!--------------start thread row---------------------->
+
+<div class="thread__row">
+  <mat-radio-group labelPosition="after"   [(ngModel)]="isReserve" name="isReserve">
+    <mat-radio-button    [value]="1">Reserver</mat-radio-button>
+    <mat-radio-button style="margin-left:10px; margin-right: 10px;"      [value]="0">Occuper</mat-radio-button>
+    <mat-radio-button    [value]="0">Fermer</mat-radio-button>
+   
+  </mat-radio-group>
+</div>
+<!--------------end thread row---------------------->
+
+<!-----routerLink="reservation/29"------->
+<!--------------start forty row---------------------->
+
+<div class="forty__row">
+  <mat-dialog-actions align="end">
+    <button mat-stroked-button color="accent" mat-dialog-close (click)="gotoReservation()" >Reserver</button>
+  <button mat-stroked-button color="warn" mat-dialog-close>Anuller</button>
+  <button  mat-stroked-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Modifier</button>
+  
+  </mat-dialog-actions>
+</div>
+
+
+<!--------------end forty row---------------------->
+
+</div>
+
+  
+
+
+
+  
+
+
+

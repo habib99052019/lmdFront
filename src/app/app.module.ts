@@ -38,6 +38,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PageLoaderComponent,
     SidebarComponent,
     RightSidebarComponent,
+    
   ],
   imports: [
     BrowserModule,

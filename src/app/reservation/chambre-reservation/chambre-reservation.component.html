@@ -1,0 +1,138 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Calendar</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a href="#" onClick="return false;">
+                                <i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">Calendar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row flex ">
+                            <div class="col-md-12">
+
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-between align-content-center">
+                            
+                            <form class="min-calendar" [formGroup]="">
+                                <div>
+                                    <button  id="updateHeader" (click)="gotoReservation()"    mat-flat-button color="primary">Réserver</button>
+                                </div>
+                                <mat-form-field appearance="outline">
+                                    <input formControlName="date1" matInput placeholder="A partir de" required [matDatepicker]="picker1">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker ngDefaultControl #picker1 color="primary"></mat-datepicker>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <input formControlName="date2" matInput placeholder="Jusqu'a" required [matDatepicker]="picker2">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker ngDefaultControl #picker2 color="primary"></mat-datepicker>
+                                </mat-form-field>
+                            </form>
+                        </div>
+
+                        <button class="fc fc-button-primary dispo" mat-button [matMenuTriggerFor]="aboveMenu">Disponible</button>
+                        <mat-menu #aboveMenu="matMenu" yPosition="above">
+                         
+                          <button (click)="setColorEvents('red')"      mat-menu-item class="disp">
+                            <span>Occupé</span>
+                            <mat-icon id="occup">brightness_1</mat-icon>
+                          </button>
+                          <button (click)="setColorEvents('yellow')" mat-menu-item class="disp">
+                            <span >Réservé</span>
+                            <mat-icon id="Reserv">brightness_1</mat-icon>
+                          </button>
+                          <button  (click)="setColorEvents('gray')"   mat-menu-item class="disp">
+                            <span>Fermé</span>
+                            <mat-icon id="Ferm">brightness_1</mat-icon>
+                          </button>
+                          <button (click)="setColorEvents('test')"  mat-menu-item class="disp">
+                            <span>Inexistante</span>
+                            <mat-icon id="dispo">brightness_1</mat-icon>
+                          </button>
+                        </mat-menu>
+
+
+
+                        <div class="row">
+                            <div class="col-md-2 col-sm-12 p-l-30">
+                                <div class="filter-container">
+                                    <!-- <ul>
+                                        <li>
+                                            <mat-checkbox [checked]="this.toutLesChambre" color="primary" (change)="reset($event)">
+                                                Tout les chambres
+                                            </mat-checkbox>
+                                        </li>
+                                    </ul> -->
+                                    <!-- <div class="col pt-3">
+                                        <div *ngFor="let room of roomsList" class="m-t-10">
+                                            <input type="checkbox" [value]="room.name" (change)="changeCategory($event)">
+                                            <button class="btn btn-primary" [color]="room.color" style="width : 100px">{{room.name}}</button>
+                                        </div>
+                                    </div> -->
+
+
+                                    <ul>
+                                          <!--
+                                              <li *ngFor="let room of roomsList">
+                                            <mat-checkbox [checked]="room.checked" [value]="room.name" color="primary" (change)="changeCategory($event, room)">
+                                                {{room.name}}
+                                            </mat-checkbox>
+                                        </li>
+                                          -->
+
+                                          <li>
+                                            <div  id='e1'>Ruppia</div>
+                                            <div  id='e2'>Ciconia</div>
+                                            <div  id='e3'>Amorpha</div>
+                                            <div  id='e4'>Marabou</div>
+                                            <div  id='e5'>Brecon</div>
+                                            <div  id='e6'>Colony</div>
+                                            <div  id='e7'>Cicogne</div>
+                                            <div  id='e8'>Bonnelli</div>
+                                          </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-10" style="padding:8px;">
+                                <full-calendar 
+                                #calendar
+                                
+                                
+                                [options]="calendarOptions"
+                              
+                              
+                             ></full-calendar>
+
+
+                             
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,45 @@
+
+.parent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.first__row{
+    display: flex;
+    flex-direction: row;
+}
+
+.second__row{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.thread__row{
+    display: flex;
+    flex-direction: row;  
+}
+
+.forty__row{
+    display: flex;
+    flex-direction: row;  
+}
+
+.fullscreen-dialog {
+    position: fixed;
+  }
+
+
+
+
+  .mat-dialog-content {
+    display: flex;
+    margin: 10px -24px;
+    padding: 20px;
+    max-height: 65vh;
+    overflow: auto;
+   //-webkit-overflow-scrolling: touch;
+   background-color: red;
+
+}
