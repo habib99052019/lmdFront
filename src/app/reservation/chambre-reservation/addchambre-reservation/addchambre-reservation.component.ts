@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationServiceService } from 'src/app/core/service/reservation-service.service';
@@ -178,6 +179,11 @@ SINGLE_HAUTE_SAISON : any;
 DOUBLE_BAS_SAISON:any;
 DOUBLE_HAUTE_SAISON:any;
 roomName: any;
+showMenuDetails = false;
+extraType:any;
+roombackgroundColor = ''
+extraPrice:any;
+
 
   constructor(
     public routerActivated: ActivatedRoute,
@@ -188,19 +194,27 @@ roomName: any;
   ) {
 
     this.routerActivated.params.subscribe(params => {
-      console.log("start>>>", params.object)
-        this.end = params.object
+      console.log("date >>>>",params.object)
+       if(params.object === "#"){
+         this.end = "";
+         console.log("date >>>>",this.end)
+       }else{
+        const date =  params.object.slice(0, 11);
+        this.end = date +'13:00:00'
+        console.log("date >>>>",this.end)
+       }
+        
      })
     
      this.reservationChambreForm = this.createContactForm();
-     console.log('reservationChambreForm>>>', this.reservationChambreForm);
+     //console.log('reservationChambreForm>>>', this.reservationChambreForm);
      
    }
 
 
 
   ngOnInit(): void {
-
+   
   }
 
 
@@ -216,6 +230,8 @@ createContactForm(): FormGroup {
       startDate : ['' , Validators.required],
       endDate : ['' , Validators.required],
       number_guests : [2 ],
+      number_children: [0, Validators.required],
+      number_adulte:[0, Validators.required],
       comment : [''],
       remarque : [''],
       taarif : [''],
@@ -223,8 +239,6 @@ createContactForm(): FormGroup {
       price : [''],
     });
   }
-
-
 
 
 checkDates(event : any ){
@@ -277,34 +291,369 @@ selectRoomType(event: any){
   console.log('roomName>>>', this.reservationChambreForm.value.roomID);
 
   if (this.reservationChambreForm.value.roomID){
-    if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
-      this.RoomPrice = 300
-      this.SINGLE_BAS_SAISON = true
-    } 
-    else if (this.roomType === 'single' && this.taarifType === 'haut de saison'){
-      this.RoomPrice = 500
-      this.SINGLE_HAUTE_SAISON = true;
-    }
-    else if (this.roomType === 'double' && this.taarifType === 'bas de saison'){
-      this.RoomPrice = 450
-      this.DOUBLE_BAS_SAISON = true;
-    }
-    else if (this.roomType === 'double' && this.taarifType === 'haut de saison'){
-      this.RoomPrice = 800
-      this.DOUBLE_HAUTE_SAISON = true;
-    }
+
+        if(this.reservationChambreForm.value.roomID === 'Ruppia')
+            {
+              if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 245;
+                  this.SINGLE_BAS_SAISON = true;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+
+              } 
+              else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 315;
+                  this.DOUBLE_BAS_SAISON = true;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+              }
+              //cas single et haute de saison
+              else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+                  this.RoomPrice = 315;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = true;
+                  this.DOUBLE_HAUTE_SAISON = false;
+                }
+              //cas double et haute de saison
+                else{
+                  this.RoomPrice = 385;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = true;
+                }
+            }
+        if(this.reservationChambreForm.value.roomID === 'Bonnelli'){
+                if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 210;
+                  this.SINGLE_BAS_SAISON = true;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+
+              } 
+              else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 280;
+                  this.DOUBLE_BAS_SAISON = true;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+              }
+              //cas single et haute de saison
+              else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+                this.RoomPrice = 280;
+                this.DOUBLE_BAS_SAISON = false;
+                this.SINGLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = true;
+                this.DOUBLE_HAUTE_SAISON = false;
+              }
+            //cas double et haute de saison
+              else{
+                this.RoomPrice = 350;
+                this.DOUBLE_BAS_SAISON = false;
+                this.SINGLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = false;
+                this.DOUBLE_HAUTE_SAISON = true;
+              }
+              
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Amorpha'){
+              if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+                this.RoomPrice = 245;
+                this.SINGLE_BAS_SAISON = true;
+                this.DOUBLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = false;
+                this.DOUBLE_HAUTE_SAISON = false;
+
+            } 
+            else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+                this.RoomPrice = 315;
+                this.DOUBLE_BAS_SAISON = true;
+                this.SINGLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = false;
+                this.DOUBLE_HAUTE_SAISON = false;
+            }
+            //cas single et haute de saison
+            else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+              this.RoomPrice = 315;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = true;
+              this.DOUBLE_HAUTE_SAISON = false;
+            }
+          //cas double et haute de saison
+            else{
+              this.RoomPrice = 385;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = true;
+            }
+        }
+
+          if(this.reservationChambreForm.value.roomID === 'Ciconia'){
+            if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+              this.RoomPrice = 230;
+              this.SINGLE_BAS_SAISON = true;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+
+          } 
+          else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+              this.RoomPrice = 300;
+              this.DOUBLE_BAS_SAISON = true;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+          }
+            //cas single et haute de saison
+            else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+              this.RoomPrice = 300;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = true;
+              this.DOUBLE_HAUTE_SAISON = false;
+            }
+          //cas double et haute de saison
+            else{
+              this.RoomPrice = 370;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = true;
+            }
+
+        }
+          
+        if(this.reservationChambreForm.value.roomID === 'Marabou'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 300;
+              this.SINGLE_BAS_SAISON = true;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 370;
+              this.DOUBLE_BAS_SAISON = true;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+        }
+        //cas single et haute de saison
+        else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+          this.RoomPrice = 370;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = true;
+          this.DOUBLE_HAUTE_SAISON = false;
+        }
+      //cas double et haute de saison
+        else{
+          this.RoomPrice = 440;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = false;
+          this.DOUBLE_HAUTE_SAISON = true;
+        }
+
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Brecon'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 335;
+            this.SINGLE_BAS_SAISON = true;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 405;
+              this.DOUBLE_BAS_SAISON = true;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+        }
+          //cas single et haute de saison
+          else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+            this.RoomPrice = 405;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = true;
+            this.DOUBLE_HAUTE_SAISON = false;
+          }
+        //cas double et haute de saison
+          else{
+            this.RoomPrice = 475;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = true;
+          }
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Colony'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 385;
+            this.SINGLE_BAS_SAISON = true;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 455;
+            this.DOUBLE_BAS_SAISON = true;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+        }
+         //cas single et haute de saison
+         else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+          this.RoomPrice = 455;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = true;
+          this.DOUBLE_HAUTE_SAISON = false;
+        }
+      //cas double et haute de saison
+        else{
+          this.RoomPrice = 525;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = false;
+          this.DOUBLE_HAUTE_SAISON = true;
+        }
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Cicogne'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 265;
+            this.SINGLE_BAS_SAISON = true;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 335;
+            this.DOUBLE_BAS_SAISON = true;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+        }
+          //cas single et haute de saison
+          else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+            this.RoomPrice = 335;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = true;
+            this.DOUBLE_HAUTE_SAISON = false;
+          }
+        //cas double et haute de saison
+          else{
+            this.RoomPrice = 405;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = true;
+          }
+
+        }
     
     this.calculTotal(this.Days , this.RoomPrice);
   }
 }
 
 
-calculTotal(days : any , roomPrice : any ){
-  //console.log('room price>>>',roomPrice);
-  //console.log('days>>>',days);
-  this.priceTotal = roomPrice * days
+
+selectExtraType(event:any){
+    
+  if(event.value != undefined){
+     this.extraPrice = true
+     this.extraType = event.value;
+     this.calculTotal(this.Days,this.RoomPrice)
+  }else{
+      this.extraPrice = false
+      this.extraType = event.value;
+      this.calculTotal(this.Days,this.RoomPrice)
+  }
+ 
+}
+
+
+
+
+calculTotal(days : any , roomPrice : any){
+  console.log('room price>>>',roomPrice);
+  console.log('extraprice>>>',this.extraPrice);
+  if(this.extraPrice){
+    console.log('days>>>',days);
+     this.priceTotal = (roomPrice * days) + 60;
+  }else{
+    this.priceTotal = roomPrice * days;
+  }
+ 
+ // this.priceTotal += this.extraPrice;
   console.log("price", this.priceTotal)
   this.reservationChambreForm.get('price').setValue(this.priceTotal);
+}
+
+
+
+showMenu(event : MatSelectChange){
+ // this.extraType = event.value;
+  console.log('event extra type>>>', event.value);
+  
+  this.showMenuDetails = true ; 
+  
+}
+
+
+verifyRoomColor(roomName:any){
+    if (roomName === 'Ruppia'){
+        this.roombackgroundColor = '#E32500';
+    }
+    else if(roomName === 'Marabou'){
+        this.roombackgroundColor = '#AA5D5D';
+    }
+    else if(roomName === 'Colony'){
+         this.roombackgroundColor = '#F94B4B';
+    }
+    else if (roomName === 'Ciconia'){
+         this.roombackgroundColor = '#82AFA7';
+    }
+    else if (roomName === 'Cicogne'){
+      this.roombackgroundColor = '#C4D6F0';
+    }
+    else if (roomName === 'Brécon'){
+      this.roombackgroundColor = '#F6E6C3';
+    }
+    else if (roomName === 'Bonnelli'){
+      this.roombackgroundColor = '#D2F6D5';
+    }
+    else{
+      this.roombackgroundColor = '#FFE2D9';
+    }
+
+
+}
+
+re_calculTotal(event: any){
+  console.log('event nombre enfant>>>', event.target.value);
+  
+  //this.calculTotal(event.target.value  , this.MenuPrice );
 }
 
 
@@ -312,32 +661,49 @@ calculTotal(days : any , roomPrice : any ){
 addNewReservation(){
 
   //console.log('addReservation>>>', this.reservationChambreForm)
- 
+  console.log('single bas de saison>>>', this.SINGLE_BAS_SAISON);
+  console.log('double bas de saison>>>', this.DOUBLE_BAS_SAISON);
+  console.log('single bas de saison>>>', this.SINGLE_HAUTE_SAISON);
+  console.log('double bas de saison>>>', this.DOUBLE_HAUTE_SAISON);
+  console.log('numbre adulte>>>',this.reservationChambreForm.get('number_children').value);
+  console.log('number children>>>',this.reservationChambreForm.get('number_adulte').value);
+  
+  
   const realStart = formatDate(this.reservationChambreForm.get('startDate').value, 'yyyy-MM-dd', 'en')+'T13:00:00';
- 
   const realEnd = formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en')+'T11:00:00';
- 
+  console.log('realstart>>>', realStart);
+  console.log('realend>>>', realEnd);
+  
+  
+  if (this.end == ''){
+    this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
+    console.log('this.end egal vide >>>', this.end);
   const reservation = {
     type : 'room' ,
     first_name : this.reservationChambreForm.get('first_name').value,
     last_name : this.reservationChambreForm.get('last_name').value,
     name : this.reservationChambreForm.get('roomID').value,
     backgroundColor:"yellow",
-    other:"rgb(157, 203, 255)",
+    other:this.roombackgroundColor,
     last:realEnd,
     SINGLE_BAS_SAISON: this.SINGLE_BAS_SAISON,
+    DOUBLE_BAS_SAISON:this.DOUBLE_BAS_SAISON,
+    SINGLE_HAUTE_SAISON:this.DOUBLE_HAUTE_SAISON,
+    DOUBLE_HAUTE_SAISON:this.SINGLE_HAUTE_SAISON,
     status:"RESERVE",
     status_reservation: "INITIALISER",    
     startDate : realStart,
     endDate : realEnd,
+    startFiltre:formatDate(this.reservationChambreForm.get('startDate').value, 'yyyy-MM-dd', 'en'),
+    endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
     number_guests : 0,
-    number_children : 0,
+    number_children :this.reservationChambreForm.get('number_children').value,
+    number_adulte:this.reservationChambreForm.get('number_adulte').value,
     comment : this.reservationChambreForm.get('comment').value,
     extra : this.reservationChambreForm.get('extra').value,
     price : this.priceTotal
   }
 
-  
   this._reservationService.addReservation(reservation).subscribe((data : any) => {
   // console.log('data from server >>>',data);
     
@@ -348,9 +714,50 @@ addNewReservation(){
       'end'
     );
     this.router.navigate(['/reservation/calendrier'])
-    
   })
 
+  }else {
+    console.log('this.end different vide >>>', this.end);
+    const reservation = {
+      type : 'room' ,
+      first_name : this.reservationChambreForm.get('first_name').value,
+      last_name : this.reservationChambreForm.get('last_name').value,
+      name : this.reservationChambreForm.get('roomID').value,
+      backgroundColor:"yellow",
+      other:"rgb(157, 203, 255)",
+      last:realEnd,
+      SINGLE_BAS_SAISON: this.SINGLE_BAS_SAISON,
+      DOUBLE_BAS_SAISON:this.DOUBLE_BAS_SAISON,
+      SINGLE_HAUTE_SAISON:this.DOUBLE_HAUTE_SAISON,
+      DOUBLE_HAUTE_SAISON:this.SINGLE_HAUTE_SAISON,
+      status:"RESERVE",
+      status_reservation: "INITIALISER",    
+      startDate : this.end,
+      endDate : realEnd,
+      startFiltre:formatDate(this.reservationChambreForm.get('startDate').value, 'yyyy-MM-dd', 'en'),
+      endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
+      number_guests : 0,
+      number_children :this.reservationChambreForm.get('number_children').value,
+      number_adulte:this.reservationChambreForm.get('number_adulte').value,
+      comment : this.reservationChambreForm.get('comment').value,
+      extra : this.reservationChambreForm.get('extra').value,
+      price : this.priceTotal
+    }
+
+    this._reservationService.addReservation(reservation).subscribe((data : any) => {
+    // console.log('data from server >>>',data);
+      
+      this.showNotification(
+        'snackbar-success',
+         data.message,
+        'top',
+        'end'
+      );
+      this.router.navigate(['/reservation/calendrier'])
+    })
+  
+  }
+ 
 }
 
 

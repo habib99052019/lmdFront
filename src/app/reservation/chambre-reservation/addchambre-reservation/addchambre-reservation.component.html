@@ -72,12 +72,26 @@
                                             </mat-select>
                                         </mat-form-field>
                                     </div>
+                                    <div class="col">
+                                        <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                            <mat-label>nombre d’adulte</mat-label>
+                                            <input matInput formControlName="number_children" type="number" [min]="1" (change)="re_calculTotal($event)">
+                                            <mat-icon matSuffix>group</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                            <mat-label>nombre d’enfant</mat-label>
+                                            <input matInput formControlName="number_adulte" type="number" [min]="1" (change)="re_calculTotal($event)">
+                                            <mat-icon matSuffix>group</mat-icon>
+                                        </mat-form-field>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <mat-form-field class="example-full-width" appearance="outline">
                                             <mat-label>taarif</mat-label>
-                                            <mat-select formControlName="taarifType" required (selectionChange)="selectTaarifType($event)" >
+                                            <mat-select formControlName="taarifType" required (selectionChange)="selectTaarifType($event)"   (selectionChange)="showMenu($event)"      >
                                                 <mat-option [value]="'bas de saison'">
                                                     Bas de saison
                                                 </mat-option>
@@ -88,15 +102,17 @@
                                         </mat-form-field>
                                     </div>
                                     <div class="col text-center mt-3">
-                                        <mat-radio-group formControlName="roomType" color="primary" required>
+                                        <mat-radio-group formControlName="roomType" color="primary">
                                             <mat-radio-button value="single" (change)="selectRoomType($event)">Single</mat-radio-button>
                                             <mat-radio-button value="double" (change)="selectRoomType($event)">Double</mat-radio-button>
                                         </mat-radio-group>
                                     </div>
-                                    <div class="col">
+                                    <div class="col" id="my_div">
                                         <mat-form-field class="example-full-width mb-3" appearance="outline">
                                             <mat-label>Extras</mat-label>
-                                            <mat-select formControlName="extra">
+                                            <mat-select formControlName="extra" (selectionChange)="selectExtraType($event)"   >
+                                                <mat-option [value]="">
+                                                </mat-option>
                                                 <mat-option [value]="'lit adulte'">
                                                     Lit adulte
                                                 </mat-option>
@@ -110,7 +126,8 @@
                                 </div>
 
                                 <div  style="border-width: 5px solid; background-color: rgb(202, 230, 255);
-                                                 border-radius: 5px; "   class="row d-flex justify-content-between align-items-center m-1 text-capitalize">
+                                                 border-radius: 5px; "   class="row d-flex justify-content-between align-items-center m-1 text-capitalize"
+                                      *ngIf="showMenuDetails" >
                                        
                                         <div class="col-6 mb-4 mt-2">
                                             taarif: {{taarifType}}
@@ -119,31 +136,13 @@
                                             type: {{roomType}}
                                         </div>
                                         <div class="col-6 mb-2">
-                                            extras: {{extra}}
+                                            extras: {{extraType}}
                                         </div>
                                         <div class="col-6 ">
                                             prix: {{ priceTotal }} DT
                                         </div>
-                                </div>
-                                <div class="row mt-5">
-                                    <div class="col-md-6 col-lg-6">
-                                        <mat-form-field class="example-full-width" appearance="outline">
-                                            <mat-label>Commentaire</mat-label>
-                                            <textarea matInput formControlName="comment"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-6">
-                                        <mat-form-field class="example-full-width" appearance="outline">
-                                            <mat-label>Remarque</mat-label>
-                                            <textarea matInput formControlName="remarque"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
+                                </div> 
+                                <div class="row mt-3"  *ngIf="showMenuDetails">
                                     <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-body bg-gray text-white text-capitalize">
@@ -162,10 +161,34 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
+
+
+                                <div class="row mt-3">
+                                    <div class="col-md-6 col-lg-6">
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Commentaire</mat-label>
+                                            <textarea matInput formControlName="comment"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6">
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Remarque</mat-label>
+                                            <textarea matInput formControlName="remarque"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+
+
                                
                                  <div style="display: flex; flex-direction:row; justify-content:end;">
                                      <div>
-                                            <button mat-raised-button color="warn">Annuler</button>
+                                            <button mat-raised-button color="warn" routerLink="/reservation/calendrier"  >Annuler</button>
                                             <button  style="margin-left:10px" mat-raised-button color="primary" (click)="addNewReservation()"  >Confirmer</button>
                                             
                                   

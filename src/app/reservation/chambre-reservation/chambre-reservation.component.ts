@@ -81,7 +81,6 @@ export class ChambreReservationComponent implements OnInit {
          meridiem: "short",
       
        },
-       
        eventColor: 'rgb(205, 241, 255)',//add color for all events
        eventTextColor: 'black',//set text color for all events
        firstDay: 1,//start with monday
@@ -103,10 +102,7 @@ export class ChambreReservationComponent implements OnInit {
        allDayText:'toute la journée',
        eventDisplay:'auto',
        timeFormat: 'H(:mm)',
-    
       eventClick: this.handleEventClick.bind(this),
-     
-    
      eventContent: function(arg:any) {
       let italicEl = document.createElement('i')
        console.log('eventcontent',arg.event)
@@ -177,7 +173,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
     console.log('info', info);
 
      if(this.colorEvent){
-       return    ( req.get('http://localhost:3000/cleansports/api/events/color?color='+this.colorEvent)
+       return    ( req.get('http://localhost:3001/cleansports/api/events/color?color='+this.colorEvent)
                 .type('json')
                 .query({
                   start: info.start.valueOf(),
@@ -203,7 +199,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
      }
      else  {
 
-      return    ( req.get('http://localhost:3000/cleansports/api/events/color?color=')
+      return    ( req.get('http://localhost:3001/cleansports/api/events/color?color=')
       .type('json')
       .query({
         start: info.start.valueOf(),

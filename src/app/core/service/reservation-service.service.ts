@@ -21,6 +21,7 @@ export class ReservationServiceService {
     return this.http.get(this.ApiPath + 'rooms');
   }
 
+  //add new room reservation 
   addReservation(reservation : any){
    return this.http.post(this.ApiPath + 'reservations' , reservation);
   }

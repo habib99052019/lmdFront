@@ -24,12 +24,12 @@ export class DialogreservationnInfosComponent implements OnInit {
 
 
 
-  constructor(
+constructor(
     public dialogRef: MatDialogRef<DialogreservationnInfosComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any ,
      public _router:Router) { }
 
-  ngOnInit(): void {
+ngOnInit(): void {
 
     console.log('data>>>', this.data)
     this.firstName = this.data['firstName'];
@@ -59,16 +59,15 @@ export class DialogreservationnInfosComponent implements OnInit {
   else if(this.data['isFermer'] === true){
     this.isOccupe = 1;
   }
-  else if(this.data['isFermer'] === false){
+   else if(this.data['isFermer'] === false){
     this.isOccupe = 0;
   }
-  }
+}
 
 
   
-  gotoReservation(){
+gotoReservation(){
     this._router.navigate(["reservation/reserver/"+String(`${this.last}`)])
-   //this._router.navigate(["reservation"], { state: { hello: 'world' }})
 }
 
 

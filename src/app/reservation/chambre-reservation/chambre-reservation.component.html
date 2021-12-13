@@ -65,9 +65,7 @@
                             <mat-icon id="dispo">brightness_1</mat-icon>
                           </button>
                         </mat-menu>
-
-
-
+                        
                         <div class="row">
                             <div class="col-md-2 col-sm-12 p-l-30">
                                 <div class="filter-container">
@@ -86,7 +84,7 @@
                                     </div> -->
 
 
-                                    <ul>
+                                        <ul>
                                           <!--
                                               <li *ngFor="let room of roomsList">
                                             <mat-checkbox [checked]="room.checked" [value]="room.name" color="primary" (change)="changeCategory($event, room)">
@@ -106,23 +104,15 @@
                                             <div  id='e8'>Bonnelli</div>
                                           </li>
                                         
-                                    </ul>
+                                       </ul>
                                 </div>
                             </div>
                             <div class="col-10" style="padding:8px;">
                                 <full-calendar 
                                 #calendar
-                                
-                                
                                 [options]="calendarOptions"
-                              
-                              
-                             ></full-calendar>
-
-
-                             
-
-
+                                 >
+                                 </full-calendar>
 
                             </div>
                         </div>
