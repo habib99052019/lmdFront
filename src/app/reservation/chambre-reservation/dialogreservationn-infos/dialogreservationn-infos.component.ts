@@ -21,8 +21,9 @@ export class DialogreservationnInfosComponent implements OnInit {
   isOccupe = 0;
   isFermer = 0
   last = '';
-
-
+  nb_days = 0;
+  nb_children = 0;
+  price = 0;
 
 constructor(
     public dialogRef: MatDialogRef<DialogreservationnInfosComponent>,
@@ -33,15 +34,16 @@ ngOnInit(): void {
 
     console.log('data>>>', this.data)
     this.firstName = this.data['firstName'];
-    this.lastName= this.data['lastName'];
-    this.isReserve = this.data['isReserve'];
-    this.isOccupe = this.data['isOccupe'];
-    this.isFermer = this.data['isFermer'];
+    this.lastName= this.data['lastName'];        
     this.title = this.data['title']
     this.nbp = this.data['nbp'];
     this.start = this.data['start'],
     this.end = this.data['end']
     this.last = this.data['last']
+    this.price = this.data['price']
+    this.nb_days = this.data['nb_days']
+    this.nb_children = this.data['nb_children']
+   
 
     if(this.data['isReserve'] === true){
       this.isReserve = 1;

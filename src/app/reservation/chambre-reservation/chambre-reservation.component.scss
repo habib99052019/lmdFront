@@ -78,7 +78,7 @@
 .dispo{
 position:absolute;
 right: 15px;
-top:90px      
+top:80px      
 }
 
 .fc.fc-button-primary {
@@ -88,8 +88,8 @@ border-color: var(--fc-button-border-color,#3f51b5) !important;
 }
 
 #dispo{
-    color: green; 
-    margin-left: 20px; 
+    color: #b366ff; 
+    margin-left: 58px; 
     }
     #occup{
     color: rgb(235, 12, 12);
@@ -122,3 +122,5 @@ box-shadow: -8px 12px 18px 0 #dadee8;
 .fullscreen-dialog {
     position: fixed;
   }
+
+

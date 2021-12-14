@@ -46,7 +46,7 @@
                                      <div class="col">
                                         <mat-form-field class="example-full-width" appearance="outline">
                                             <mat-label>Date d’arrivée</mat-label>
-                                            <input matInput [matDatepicker]="picker" formControlName="startDate" required (dateChange)="checkDates($event)" [max]="this.maxDate" [min]="this.todayDate">
+                                            <input matInput    [matDatepicker]="picker"   name="date" [formControl]="date"      required (dateChange)="checkDates($event)" [max]="this.maxDate" [min]="this.todayDate">
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-datepicker #picker></mat-datepicker>
                                         </mat-form-field>

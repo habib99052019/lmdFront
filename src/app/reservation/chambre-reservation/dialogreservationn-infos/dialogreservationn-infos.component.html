@@ -55,43 +55,43 @@
 <div class="second__row">
 <form>
   <mat-form-field  appearance="outline">
-    <mat-label>FirstName</mat-label>
+    <mat-label>Nom</mat-label>
     <input type="text" matInput  [(ngModel)]="data.firstName" name="firstName"
            >
 
     <mat-error>
-      Please enter a valid firstname
+      Please enter a valid Nom
     </mat-error>
     <mat-error>
-       FirstName <strong>required</strong>
+       Nom <strong>required</strong>
     </mat-error>
   </mat-form-field>
 </form>
 
 <form style="margin-left:8px; margin-right: 8px;">
   <mat-form-field  appearance="outline">
-    <mat-label>LastName</mat-label>
+    <mat-label>Prenom</mat-label>
     <input type="text" matInput  [(ngModel)]="data.lastName" name="lastName"
            >
 
     <mat-error>
-      Please enter a valid lastname
+      Please enter a valid prenom
     </mat-error>
     <mat-error>
-       LastName <strong>required</strong>
+       prenom <strong>required</strong>
     </mat-error>
   </mat-form-field>
 </form>
 <form >
   <mat-form-field  appearance="outline">
-    <mat-label>Persones</mat-label>
+    <mat-label>Nombre des persones</mat-label>
     <input type="number" matInput  [(ngModel)]="data.nbp" name="nbp">
 
     <mat-error>
-      Please enter a valid email address
+      Please enter a valid nb
     </mat-error>
     <mat-error>
-      Email is <strong>required</strong>
+     nb persone is <strong>required</strong>
     </mat-error>
   </mat-form-field>
 </form>
@@ -99,6 +99,53 @@
 </div>
 
 <!--------------end second row---------------------->
+
+<div class="second__row">
+  <form>
+    <mat-form-field  appearance="outline">
+      <mat-label>Prix</mat-label>
+      <input type="number" matInput  [(ngModel)]="data.price" name="price"
+             >
+  
+      <mat-error>
+        Please enter a valid price
+      </mat-error>
+      <mat-error>
+         FirstName <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+  
+  <form style="margin-left:8px; margin-right: 8px;">
+    <mat-form-field  appearance="outline">
+      <mat-label>Nombre des nuitées</mat-label>
+      <input type="number" matInput  [(ngModel)]="data.nb_days" name="nb_days"
+             >
+
+      <mat-error>
+        Please enter a valid nb days
+      </mat-error>
+      <mat-error>
+         LastName <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+  <form >
+    <mat-form-field  appearance="outline">
+      <mat-label>Nombre d'enfants</mat-label>
+      <input type="number" matInput  [(ngModel)]="data.nb_children" name="nb_children">
+  
+      <mat-error>
+        Please enter a valid email nb_children
+      </mat-error>
+      <mat-error>
+        nb_children <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+  
+  </div>
+
 
 <!--------------start thread row---------------------->
 

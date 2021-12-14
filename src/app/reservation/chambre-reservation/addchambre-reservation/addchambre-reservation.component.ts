@@ -1,10 +1,13 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationServiceService } from 'src/app/core/service/reservation-service.service';
+import * as _moment from 'moment';
+import { Moment } from 'moment';
+const moment = _moment;
 
 @Component({
   selector: 'app-addchambre-reservation',
@@ -183,6 +186,19 @@ showMenuDetails = false;
 extraType:any;
 roombackgroundColor = ''
 extraPrice:any;
+endfiltreSearsh:any;
+nbp=0;
+datetosent : any
+realStartTosent: any;
+startFiltre:any;
+
+ //used for multiple select date
+ dates: moment.Moment[] = []
+ date:any;
+ //date = new Date((new Date().getTime() - 3888000000));
+ //datess: FormControl;
+ //this.datess= new FormControl(new Date("12/25/2021"))
+startDate:any;
 
 
   constructor(
@@ -200,6 +216,8 @@ extraPrice:any;
          console.log("date >>>>",this.end)
        }else{
         const date =  params.object.slice(0, 11);
+        this.datetosent = params.object.slice(0, 10)
+        this.endfiltreSearsh = date;
         this.end = date +'13:00:00'
         console.log("date >>>>",this.end)
        }
@@ -208,14 +226,31 @@ extraPrice:any;
     
      this.reservationChambreForm = this.createContactForm();
      //console.log('reservationChambreForm>>>', this.reservationChambreForm);
+    // console.log('startdate >>>', this.date.value);
      
    }
 
 
 
   ngOnInit(): void {
-   
+    console.log('this.datetosent>>>', this.datetosent);
+    
+    if(this.datetosent != undefined){
+      this.date = new FormControl(new Date(String(this.datetosent)))
+    }else{
+       this.date = ''
+    }
+    
   }
+
+   
+
+
+
+
+
+
+  
 
 
 createContactForm(): FormGroup {
@@ -240,9 +275,20 @@ createContactForm(): FormGroup {
     });
   }
 
+  setDefaultDate() {
+    this.reservationChambreForm.patchValue({
+      startDate: moment("12/25/2021", "MM/DD/YYYY"),
+     
+    });
+  }
+
+
+
 
 checkDates(event : any ){
-  //  console.log('checkDates>>>', event)
+   console.log('checkDates>>>', event.value)
+   this.startDate = event.value;
+   /*
     const temporryDate = this.reservationChambreForm.get('startDate').value.getTime() + (1000 * 60 * 60 * 24)
     this.minDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
     if (this.reservationChambreForm.get('endDate').value){
@@ -250,11 +296,34 @@ checkDates(event : any ){
       var Days = Time / (1000 * 3600 * 24);
       this.Days = Days
       this.calculTotal(this.Days , this.RoomPrice);
+    }*/
+    if(this.datetosent != undefined){
+      const temporryDate = this.date.value.getTime() + (1000 * 60 * 60 * 24)
+      this.minDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
+      if (this.reservationChambreForm.get('endDate').value){
+      var Time = this.reservationChambreForm.get('endDate').value.getTime() - this.date.value.getTime() ; 
+      var Days = Time / (1000 * 3600 * 24);
+      this.Days = Days
+      this.calculTotal(this.Days , this.RoomPrice);
+     }
     }
+    else{ 
+      const temporryDate = event.value.getTime() + (1000 * 60 * 60 * 24)
+      this.minDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
+      if (this.reservationChambreForm.get('endDate').value){
+      var Time = this.reservationChambreForm.get('endDate').value.getTime() - event.value.getTime() ; 
+      var Days = Time / (1000 * 3600 * 24);
+      this.Days = Days
+      this.calculTotal(this.Days , this.RoomPrice);
+    }
+
+    }
+   
     return
 }
 
  calculDateDays(event : any ){
+  /*
   const temporryDate = this.reservationChambreForm.get('endDate').value.getTime() - (1000 * 60 * 60 * 24)
   this.maxDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
   if (this.reservationChambreForm.get('startDate').value){
@@ -262,7 +331,37 @@ checkDates(event : any ){
     var Days = Time / (1000 * 3600 * 24);
     this.Days = Days
     this.calculTotal(this.Days , this.RoomPrice);
+  }*/
+
+  if(this.datetosent != undefined){
+    console.log('this.date>>>>', this.date.value);
+    console.log('end date reservatonform>>>',this.reservationChambreForm.get('endDate').value);
+    
+    
+    const temporryDate = this.reservationChambreForm.get('endDate').value.getTime() - (1000 * 60 * 60 * 24)
+    this.maxDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
+    if (this.date.value){
+      var Time = event.value.getTime() - this.date.value.getTime() ; 
+      var Days = Time / (1000 * 3600 * 24);
+      console.log('days>>>',Math.ceil(Days));
+      
+      this.Days = Math.ceil(Days)
+      this.calculTotal(this.Days , this.RoomPrice);
+    }
+  }else{
+    console.log('teeeeeeeeee');
+    
+    const temporryDate = this.reservationChambreForm.get('endDate').value.getTime() - (1000 * 60 * 60 * 24)
+    this.maxDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
+    if (this.startDate){
+      var Time = event.value.getTime() - this.startDate.getTime() ; 
+      var Days = Time / (1000 * 3600 * 24);
+      console.log('days>>>',Days);
+      this.Days = Days
+      this.calculTotal(this.Days , this.RoomPrice);
+    }
   }
+ 
   return 
 }
 
@@ -576,8 +675,6 @@ selectRoomType(event: any){
   }
 }
 
-
-
 selectExtraType(event:any){
     
   if(event.value != undefined){
@@ -593,14 +690,12 @@ selectExtraType(event:any){
 }
 
 
-
-
 calculTotal(days : any , roomPrice : any){
   console.log('room price>>>',roomPrice);
   console.log('extraprice>>>',this.extraPrice);
   if(this.extraPrice){
     console.log('days>>>',days);
-     this.priceTotal = (roomPrice * days) + 60;
+     this.priceTotal = (roomPrice * days) + 90;
   }else{
     this.priceTotal = roomPrice * days;
   }
@@ -609,7 +704,6 @@ calculTotal(days : any , roomPrice : any){
   console.log("price", this.priceTotal)
   this.reservationChambreForm.get('price').setValue(this.priceTotal);
 }
-
 
 
 showMenu(event : MatSelectChange){
@@ -657,10 +751,15 @@ re_calculTotal(event: any){
 }
 
 
+numberPersons(nba: number, nbc:number){
+    this.nbp = nba + nbc
+}
+
 
 addNewReservation(){
 
-  //console.log('addReservation>>>', this.reservationChambreForm)
+  //console.log('new date start >>>', formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00' )
+  
   console.log('single bas de saison>>>', this.SINGLE_BAS_SAISON);
   console.log('double bas de saison>>>', this.DOUBLE_BAS_SAISON);
   console.log('single bas de saison>>>', this.SINGLE_HAUTE_SAISON);
@@ -669,17 +768,28 @@ addNewReservation(){
   console.log('number children>>>',this.reservationChambreForm.get('number_adulte').value);
   
   
-  const realStart = formatDate(this.reservationChambreForm.get('startDate').value, 'yyyy-MM-dd', 'en')+'T13:00:00';
-  const realEnd = formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en')+'T11:00:00';
-  console.log('realstart>>>', realStart);
-  console.log('realend>>>', realEnd);
+ // const realStart = formatDate(this.reservationChambreForm.get('startDate').value, 'yyyy-MM-dd', 'en')+'T13:00:00';
+ if(this.datetosent != undefined){
+  this.realStartTosent = formatDate(this.date.value, 'yyyy-MM-dd', 'en')+'T13:00:00';
+  this.startFiltre = formatDate(this.date.value, 'yyyy-MM-dd', 'en');
+ }else{
+  this.realStartTosent = formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00';
+  this.startFiltre = formatDate(this.startDate, 'yyyy-MM-dd', 'en');
+ }
+ 
+
+ const realEnd = formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en')+'T11:00:00';
+  //console.log('realstart>>>', realStart);
+ //console.log('realend>>>', realEnd);
   
   
   if (this.end == ''){
+    this.numberPersons(this.reservationChambreForm.get('number_adulte').value,this.reservationChambreForm.get('number_children').value)
     this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
     console.log('this.end egal vide >>>', this.end);
-  const reservation = {
-    type : 'room' ,
+    console.log('this.npb >>>', this.nbp);
+    const reservation = {
+    roomType: 'room' ,
     first_name : this.reservationChambreForm.get('first_name').value,
     last_name : this.reservationChambreForm.get('last_name').value,
     name : this.reservationChambreForm.get('roomID').value,
@@ -688,24 +798,26 @@ addNewReservation(){
     last:realEnd,
     SINGLE_BAS_SAISON: this.SINGLE_BAS_SAISON,
     DOUBLE_BAS_SAISON:this.DOUBLE_BAS_SAISON,
-    SINGLE_HAUTE_SAISON:this.DOUBLE_HAUTE_SAISON,
-    DOUBLE_HAUTE_SAISON:this.SINGLE_HAUTE_SAISON,
-    status:"RESERVE",
+    SINGLE_HAUTE_SAISON:this.SINGLE_HAUTE_SAISON,
+    DOUBLE_HAUTE_SAISON:this.DOUBLE_HAUTE_SAISON,
+    status_room:"RESERVE",
     status_reservation: "INITIALISER",    
-    startDate : realStart,
+    startDate : this.realStartTosent,
     endDate : realEnd,
-    startFiltre:formatDate(this.reservationChambreForm.get('startDate').value, 'yyyy-MM-dd', 'en'),
+    startFiltre:this.startFiltre,
     endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
     number_guests : 0,
     number_children :this.reservationChambreForm.get('number_children').value,
     number_adulte:this.reservationChambreForm.get('number_adulte').value,
+    number_persons:this.nbp,
+    number_days:this.Days,
     comment : this.reservationChambreForm.get('comment').value,
     extra : this.reservationChambreForm.get('extra').value,
     price : this.priceTotal
   }
 
   this._reservationService.addReservation(reservation).subscribe((data : any) => {
-  // console.log('data from server >>>',data);
+   console.log('data from server >>>',data);
     
     this.showNotification(
       'snackbar-success',
@@ -714,31 +826,43 @@ addNewReservation(){
       'end'
     );
     this.router.navigate(['/reservation/calendrier'])
+  }, err => {
+     console.log('err>>>',err);
+     this.showNotification(
+      'snackbar-danger',
+       err,
+      'top',
+      'end'
+    );
   })
 
   }else {
+    this.numberPersons(this.reservationChambreForm.get('number_adulte').value,this.reservationChambreForm.get('number_children').value)
+    this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
     console.log('this.end different vide >>>', this.end);
     const reservation = {
-      type : 'room' ,
+      roomType: 'room' ,
       first_name : this.reservationChambreForm.get('first_name').value,
       last_name : this.reservationChambreForm.get('last_name').value,
       name : this.reservationChambreForm.get('roomID').value,
       backgroundColor:"yellow",
-      other:"rgb(157, 203, 255)",
+      other:this.roombackgroundColor,
       last:realEnd,
       SINGLE_BAS_SAISON: this.SINGLE_BAS_SAISON,
       DOUBLE_BAS_SAISON:this.DOUBLE_BAS_SAISON,
-      SINGLE_HAUTE_SAISON:this.DOUBLE_HAUTE_SAISON,
-      DOUBLE_HAUTE_SAISON:this.SINGLE_HAUTE_SAISON,
-      status:"RESERVE",
+      SINGLE_HAUTE_SAISON:this.SINGLE_HAUTE_SAISON,
+      DOUBLE_HAUTE_SAISON:this.DOUBLE_HAUTE_SAISON,
+      status_room:"RESERVE",
       status_reservation: "INITIALISER",    
       startDate : this.end,
       endDate : realEnd,
-      startFiltre:formatDate(this.reservationChambreForm.get('startDate').value, 'yyyy-MM-dd', 'en'),
+      startFiltre:this.endfiltreSearsh,
       endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
       number_guests : 0,
       number_children :this.reservationChambreForm.get('number_children').value,
       number_adulte:this.reservationChambreForm.get('number_adulte').value,
+      number_persons:this.nbp,
+      number_days:this.Days,
       comment : this.reservationChambreForm.get('comment').value,
       extra : this.reservationChambreForm.get('extra').value,
       price : this.priceTotal
@@ -754,10 +878,18 @@ addNewReservation(){
         'end'
       );
       this.router.navigate(['/reservation/calendrier'])
-    })
+    }, err => {
+      console.log('err>>>',err);
+      this.showNotification(
+       'snackbar-danger',
+        err,
+       'top',
+       'end'
+     );
+   })
   
   }
- 
+
 }
 
 
