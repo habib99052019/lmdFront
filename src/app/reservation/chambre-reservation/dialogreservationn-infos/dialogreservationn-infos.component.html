@@ -150,12 +150,17 @@
 <!--------------start thread row---------------------->
 
 <div class="thread__row">
-  <mat-radio-group labelPosition="after"   [(ngModel)]="isReserve" name="isReserve">
-    <mat-radio-button    [value]="1">Reserver</mat-radio-button>
-    <mat-radio-button style="margin-left:10px; margin-right: 10px;"      [value]="0">Occuper</mat-radio-button>
-    <mat-radio-button    [value]="0">Fermer</mat-radio-button>
+  <mat-radio-group labelPosition="after"  [(ngModel)]="selected"     name="selected">
+
+    <mat-radio-button  (change)="selectedValue($event)"    [value]="1">Reserver</mat-radio-button>
+   
+    <mat-radio-button style="margin-left:10px; margin-right: 10px;" 
+    (change)="selectedValue($event)"     [value]="2">Occuper</mat-radio-button>
+
+    <mat-radio-button   (change)="selectedValue($event)"    [value]="3">Fermer</mat-radio-button>
    
   </mat-radio-group>
+
 </div>
 <!--------------end thread row---------------------->
 
@@ -164,9 +169,10 @@
 
 <div class="forty__row">
   <mat-dialog-actions align="end">
-    <button mat-stroked-button color="accent" mat-dialog-close (click)="gotoReservation()" >Reserver</button>
+  <button mat-stroked-button color="warn" mat-dialog-close (click)="deleteReservation(data)" >Supprimer</button>
+  <button mat-stroked-button color="accent" mat-dialog-close (click)="gotoReservation()" >Reserver</button>
   <button mat-stroked-button color="warn" mat-dialog-close>Anuller</button>
-  <button  mat-stroked-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Modifier</button>
+  <button  mat-stroked-button color="primary"  [mat-dialog-close]="data" cdkFocusInitial>Modifier</button>
   
   </mat-dialog-actions>
 </div>

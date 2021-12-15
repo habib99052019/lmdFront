@@ -195,9 +195,6 @@ startFiltre:any;
  //used for multiple select date
  dates: moment.Moment[] = []
  date:any;
- //date = new Date((new Date().getTime() - 3888000000));
- //datess: FormControl;
- //this.datess= new FormControl(new Date("12/25/2021"))
 startDate:any;
 
 
@@ -217,7 +214,7 @@ startDate:any;
        }else{
         const date =  params.object.slice(0, 11);
         this.datetosent = params.object.slice(0, 10)
-        this.endfiltreSearsh = date;
+        this.endfiltreSearsh = params.object.slice(0, 10);
         this.end = date +'13:00:00'
         console.log("date >>>>",this.end)
        }
@@ -275,12 +272,7 @@ createContactForm(): FormGroup {
     });
   }
 
-  setDefaultDate() {
-    this.reservationChambreForm.patchValue({
-      startDate: moment("12/25/2021", "MM/DD/YYYY"),
-     
-    });
-  }
+ 
 
 
 

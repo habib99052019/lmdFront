@@ -3,7 +3,7 @@
 
 import { Component, ElementRef, forwardRef, OnInit, ViewChild } from '@angular/core';
 import { Calendar, EventClickArg } from '@fullcalendar/core'; // include this line
-import interactionPlugin from '@fullcalendar/interaction';
+import interactionPlugin, { ThirdPartyDraggable } from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import timeGridPlugin from "@fullcalendar/timegrid";// a plugin
 import listPlugin from '@fullcalendar/list';
@@ -11,6 +11,8 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
 import { DialogreservationnInfosComponent } from './dialogreservationn-infos/dialogreservationn-infos.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ReservationServiceService } from 'src/app/core/service/reservation-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 const req = require('superagent');
 
 @Component({
@@ -22,16 +24,20 @@ export class ChambreReservationComponent implements OnInit {
 
   calendarOptions: any;
   colorEvent:any ;
+  status: any;
+  backgroundColor:any;
   
    //used for fulcalandar
    @ViewChild('itemcont') itemcont: ElementRef;
    // references the #calendar in the template
    @ViewChild('calendar') calendarComponent: FullCalendarComponent;
-  @ViewChild('external') external: ElementRef;
+   @ViewChild('external') external: ElementRef;
 
   constructor(
     public dialog: MatDialog,
-    public _router: Router
+    public _router: Router,
+    public _reservationService: ReservationServiceService,
+    private snackBar: MatSnackBar,
   ) {
     forwardRef(() => Calendar);
    }
@@ -42,14 +48,7 @@ export class ChambreReservationComponent implements OnInit {
 
 
 
-
-
-
-
-
-
-
-  initfullcalendar = () => {
+initfullcalendar = () => {
     
     this.calendarOptions = {
  
@@ -254,14 +253,68 @@ handleEventClick(clickInfo: EventClickArg) {
           title: clickInfo.event.extendedProps.roomID.name,
           start: clickInfo.event._instance?.range.start.toLocaleDateString('locales', { weekday:"long", year:"numeric", month:"short", day:"numeric",hour:"numeric"}),
           end: clickInfo.event._instance?.range.end.toLocaleDateString('locales', { weekday:"long", year:"numeric", month:"short", day:"numeric",hour:"numeric"}),
-          last: clickInfo.event.extendedProps.last
+          last: clickInfo.event.extendedProps.last,
+          roomID: clickInfo.event.extendedProps.roomID._id,
+          status_room: clickInfo.event.extendedProps.roomID.status,
+          selected:0,
+          reservation_ID: clickInfo.event.extendedProps._id
+
         }
       });
     
     
         
        dialogRef.afterClosed().subscribe(result => {
+        const calendarApi = this.calendarComponent.getApi();
+        calendarApi.next(); // call a method on the Calendar object
+        calendarApi.prev();
         console.log("data from dialog add team >>>", result)
+          const roomId = result.roomID;
+         if(result.selected === 1){
+             this.status = "RESERVE" ;
+             this.backgroundColor ="yellow";
+
+         }
+         else if (result.selected === 2){
+             this.status = "OCCUPE";
+             this.backgroundColor = "red";
+         }
+         else {
+             this.status = "FERMER";
+             this.backgroundColor = "gray"
+         }
+
+         const datatosent = {
+           status: this.status,
+           backgroundColor: this.backgroundColor
+
+         }
+       
+         this._reservationService.updateReservation(roomId,datatosent).subscribe((data :any) => {
+         
+                this.showNotification(
+                  'snackbar-success',
+                  data.message,
+                  'top',
+                  'end'
+                )
+                const calendarApi = this.calendarComponent.getApi();
+                calendarApi.next(); // call a method on the Calendar object
+                calendarApi.prev();
+         }, err => {
+           if(err != 'Not Found'){
+              console.log('err>>>',err);
+                this.showNotification(
+                'snackbar-danger',
+                  err,
+                'top',
+                'end'
+              );
+           }
+               
+       })
+
+
      
          
       })
@@ -272,6 +325,23 @@ handleEventClick(clickInfo: EventClickArg) {
     
 }
     
+
+
+
+
+
+
+
+
+showNotification(colorName, text, placementFrom, placementAlign) {
+  this.snackBar.open(text, '', {
+    duration: 3000,
+    verticalPosition: placementFrom,
+    horizontalPosition: placementAlign,
+    panelClass: colorName,
+  });
+}
+
     
 setColorEvents(color:string){
   
