@@ -28,7 +28,7 @@
                         </div>
                         <div class="row d-flex justify-content-between align-content-center">
                             
-                            <form class="min-calendar" [formGroup]="">
+                            <form class="min-calendar" [formGroup]="cal">
                                 <div>
                                     <button  id="updateHeader" (click)="gotoReservation()"    mat-flat-button color="primary">Réserver</button>
                                 </div>
@@ -43,6 +43,22 @@
                                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                         <mat-datepicker ngDefaultControl #picker2 color="primary"></mat-datepicker>
                                     </mat-form-field>
+                                                   <!--
+                                                        <mat-icon style="transform: rotate(90deg); margin-left: 20px;
+                                                         background-color: rgb(235, 235, 235);
+                                                         padding-right: 25px; border-radius: 7px;border-width: 10px solid;
+                                                         color:rgb(56, 63, 158); font-size: 26px;
+                                                        align-self: center; cursor: pointer;">search</mat-icon>
+                                                   -->
+                                                   
+                                       
+                                       <button style="margin-left: 5px; margin-bottom: 10px;"  mat-button (click)="searchDateRange()">
+                                        <mat-icon>search</mat-icon>
+                                       
+                                        </button>
+                               
+
+                                   
                                 </div>
                                
                             </form>

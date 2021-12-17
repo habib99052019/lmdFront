@@ -191,10 +191,9 @@ nbp=0;
 datetosent : any
 realStartTosent: any;
 startFiltre:any;
-
- //used for multiple select date
- dates: moment.Moment[] = []
- date:any;
+//used for multiple select date
+dates: moment.Moment[] = []
+date:any;
 startDate:any;
 
 
@@ -229,7 +228,7 @@ startDate:any;
 
 
 
-  ngOnInit(): void {
+ngOnInit(): void {
     console.log('this.datetosent>>>', this.datetosent);
     
     if(this.datetosent != undefined){
@@ -238,18 +237,9 @@ startDate:any;
        this.date = ''
     }
     
-  }
+}
 
    
-
-
-
-
-
-
-  
-
-
 createContactForm(): FormGroup {
     return this.fb.group({
       type : [ 'room' ],
@@ -272,14 +262,10 @@ createContactForm(): FormGroup {
     });
   }
 
- 
-
-
-
-
 checkDates(event : any ){
    console.log('checkDates>>>', event.value)
    this.startDate = event.value;
+   console.log('end gate time>>>',this.reservationChambreForm.get('startDate').value.getTime() - this.date.value.getTime());
    /*
     const temporryDate = this.reservationChambreForm.get('startDate').value.getTime() + (1000 * 60 * 60 * 24)
     this.minDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
@@ -292,6 +278,8 @@ checkDates(event : any ){
     if(this.datetosent != undefined){
       const temporryDate = this.date.value.getTime() + (1000 * 60 * 60 * 24)
       this.minDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
+      
+      
       if (this.reservationChambreForm.get('endDate').value){
       var Time = this.reservationChambreForm.get('endDate').value.getTime() - this.date.value.getTime() ; 
       var Days = Time / (1000 * 3600 * 24);
@@ -300,9 +288,15 @@ checkDates(event : any ){
      }
     }
     else{ 
+      
       const temporryDate = event.value.getTime() + (1000 * 60 * 60 * 24)
+      console.log('temporryDate>>>',event.value);
+      
       this.minDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
+     
       if (this.reservationChambreForm.get('endDate').value){
+        
+        
       var Time = this.reservationChambreForm.get('endDate').value.getTime() - event.value.getTime() ; 
       var Days = Time / (1000 * 3600 * 24);
       this.Days = Days
@@ -805,7 +799,9 @@ addNewReservation(){
     number_days:this.Days,
     comment : this.reservationChambreForm.get('comment').value,
     extra : this.reservationChambreForm.get('extra').value,
-    price : this.priceTotal
+    price : this.priceTotal,
+    tarifType:this.taarifType,
+    remark:this.reservationChambreForm.get('remarque').value
   }
 
   this._reservationService.addReservation(reservation).subscribe((data : any) => {
@@ -857,7 +853,9 @@ addNewReservation(){
       number_days:this.Days,
       comment : this.reservationChambreForm.get('comment').value,
       extra : this.reservationChambreForm.get('extra').value,
-      price : this.priceTotal
+      price : this.priceTotal,
+      tarifType:this.taarifType,
+      remark:this.reservationChambreForm.get('remarque').value
     }
 
     this._reservationService.addReservation(reservation).subscribe((data : any) => {

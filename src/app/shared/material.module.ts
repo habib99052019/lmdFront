@@ -46,7 +46,7 @@ const materialModules = [
   MatCheckboxModule,
   MaterialFileInputModule,
   MatMenuModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
 
 ];
 

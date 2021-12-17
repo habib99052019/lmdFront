@@ -13,7 +13,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ReservationServiceService } from 'src/app/core/service/reservation-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormControl, FormGroup } from '@angular/forms';
 const req = require('superagent');
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-chambre-reservation',
@@ -26,12 +28,23 @@ export class ChambreReservationComponent implements OnInit {
   colorEvent:any ;
   status: any;
   backgroundColor:any;
-  
+  startDate:any;
+  endDate:any;
+  roomType:any;
+  roombackgroundColor : any;
+  nbp:number;
    //used for fulcalandar
    @ViewChild('itemcont') itemcont: ElementRef;
    // references the #calendar in the template
    @ViewChild('calendar') calendarComponent: FullCalendarComponent;
    @ViewChild('external') external: ElementRef;
+
+
+   cal = new FormGroup({
+    date1: new FormControl(''),
+    date2: new FormControl(''),
+  });
+
 
   constructor(
     public dialog: MatDialog,
@@ -103,6 +116,7 @@ initfullcalendar = () => {
        eventDisplay:'auto',
        timeFormat: 'H(:mm)',
       eventClick: this.handleEventClick.bind(this),
+      validRange: this.validRangeClick.bind(this),
      eventContent: function(arg:any) {
       let italicEl = document.createElement('i')
        console.log('eventcontent>>>',arg.event)
@@ -236,12 +250,27 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
 
 handleEventClick(clickInfo: EventClickArg) {
       console.log('item>>>', clickInfo.event)
-    
-     
-      const dialogRef = this.dialog.open(DialogreservationnInfosComponent, {
+      if(clickInfo.event.extendedProps.roomID.DOUBLE_BAS_SAISON_PRICE){
+          this.roomType = "double"
+      }
+      else if (clickInfo.event.extendedProps.roomID.DOUBLE_HAUTE_SAISON_PRICE){
+          this.roomType = "double"
+      }
+      else if(clickInfo.event.extendedProps.roomID.SINGLE_BAS_SAISON_PRICE){
+          this.roomType = "single"
+      }
+      else {
+          this.roomType = "single"
+      }
+      console.log('roomType>>>',this.roomType);
       
-        width: '700px',
-        height:'400px',
+      const dialogRef = this.dialog.open(DialogreservationnInfosComponent, {
+ 
+        
+
+      
+        width: '1300px',
+        height:'615px',
        
         data:{
           firstName: clickInfo.event.extendedProps.clientID.first_name,
@@ -257,19 +286,33 @@ handleEventClick(clickInfo: EventClickArg) {
           roomID: clickInfo.event.extendedProps.roomID._id,
           status_room: clickInfo.event.extendedProps.roomID.status,
           selected:0,
-          reservation_ID: clickInfo.event.extendedProps._id
-
+          reservation_ID: clickInfo.event.extendedProps._id,
+          comment:clickInfo.event.extendedProps.comment,
+          startFiltre:clickInfo.event.extendedProps.startFiltre,
+          endFiltre:clickInfo.event.extendedProps.endFiltre,
+          number_adulte:clickInfo.event.extendedProps.number_adulte,
+          extra:clickInfo.event.extendedProps.extra,
+          DOUBLE_BAS_SAISON: false,
+          DOUBLE_HAUTE_SAISON: false,
+          SINGLE_BAS_SAISON: false,
+          SINGLE_HAUTE_SAISON: false,
+          tarifType: clickInfo.event.extendedProps.tarifType,
+          roomType:this.roomType,
+          remark:clickInfo.event.extendedProps.remark
         }
       });
     
     
         
        dialogRef.afterClosed().subscribe(result => {
-        const calendarApi = this.calendarComponent.getApi();
-        calendarApi.next(); // call a method on the Calendar object
-        calendarApi.prev();
-        console.log("data from dialog add team >>>", result)
-          const roomId = result.roomID;
+
+          const calendarApi = this.calendarComponent.getApi();
+          calendarApi.next(); // call a method on the Calendar object
+          calendarApi.prev();
+          console.log("data from dialog add team >>>", result)
+          const id = result.reservation_ID;
+
+
          if(result.selected === 1){
              this.status = "RESERVE" ;
              this.backgroundColor ="yellow";
@@ -283,14 +326,45 @@ handleEventClick(clickInfo: EventClickArg) {
              this.status = "FERMER";
              this.backgroundColor = "gray"
          }
+      
+         
 
+         this.verifyRoomColor(result.name)
+         this.numberPersons(result.number_adulte, result.nb_children)
          const datatosent = {
-           status: this.status,
-           backgroundColor: this.backgroundColor
+           roomType: "room" ,
+           first_name : result.firstName,
+           last_name : result.lastName,
+           name : result.title,
+           backgroundColor:this.backgroundColor,
+           other:this.roombackgroundColor,
+           last:result.endFiltre+'T11:00:00',
+           SINGLE_BAS_SAISON: result.SINGLE_BAS_SAISON,
+           DOUBLE_BAS_SAISON:result.DOUBLE_BAS_SAISON,
+           SINGLE_HAUTE_SAISON:result.SINGLE_BAS_SAISON,
+           DOUBLE_HAUTE_SAISON:result.DOUBLE_HAUTE_SAISON,
+           status_room: this.status,
+           status_reservation: "INITIALISER",    
+           startDate : result.startFiltre+'T13:00:00',
+           endDate: result.endFiltre+'T11:00:00',
+           startFiltre: result.startFiltre,
+           endFiltre: result.endFiltre,
+           number_guests: 0,
+           number_children:result.nb_children,
+           number_adulte:result.number_adulte,
+           number_persons:this.nbp,
+           number_days:result.nb_days,
+           comment: result.comment,
+           extra:  result.extra,
+           price : result.price,
+           tarifType:result.tarifType,
+           remark :result.remark,
+           
+
 
          }
        
-         this._reservationService.updateReservation(roomId,datatosent).subscribe((data :any) => {
+         this._reservationService.updateReservation(id,datatosent).subscribe((data :any) => {
          
                 this.showNotification(
                   'snackbar-success',
@@ -324,11 +398,44 @@ handleEventClick(clickInfo: EventClickArg) {
     
     
 }
-    
+
+
+
+numberPersons(nba: number, nbc:number){
+  this.nbp = nba + nbc
+}
 
 
 
 
+verifyRoomColor(roomName:any){
+  if (roomName === 'Ruppia'){
+      this.roombackgroundColor = '#E32500';
+  }
+  else if(roomName === 'Marabou'){
+      this.roombackgroundColor = '#AA5D5D';
+  }
+  else if(roomName === 'Colony'){
+       this.roombackgroundColor = '#F94B4B';
+  }
+  else if (roomName === 'Ciconia'){
+       this.roombackgroundColor = '#82AFA7';
+  }
+  else if (roomName === 'Cicogne'){
+    this.roombackgroundColor = '#C4D6F0';
+  }
+  else if (roomName === 'Brécon'){
+    this.roombackgroundColor = '#F6E6C3';
+  }
+  else if (roomName === 'Bonnelli'){
+    this.roombackgroundColor = '#D2F6D5';
+  }
+  else{
+    this.roombackgroundColor = '#FFE2D9';
+  }
+
+
+}
 
 
 
@@ -341,8 +448,7 @@ showNotification(colorName, text, placementFrom, placementAlign) {
     panelClass: colorName,
   });
 }
-
-    
+  
 setColorEvents(color:string){
   
   this.colorEvent= color;
@@ -355,10 +461,37 @@ gotoReservation(){
   this._router.navigate(['reservation/reserver/#'])
 }
 
+validRangeClick(nowDate:any){
+ // console.log('start date <>>>>>', this.startDate);
+ 
+
+/*
+if(this.startDate){
+  console.log('info valid range >>>', formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00');
+
+}
+  if(this.startDate && this.endDate){
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); // call a method on the Calendar object
+    calendarApi.prev();
+    return {
+      start: formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00',
+      end: formatDate(this.endDate, 'yyyy-MM-dd', 'en')+'T11:00:00'
+    };
+  
+
+  }*/
+ 
+ 
+  
+}
 
 
-
-
+searchDateRange(){
+  console.log('search date range',this.cal.value.date1);
+  this.startDate = this.cal.value.date1;
+  this.endDate = this.cal.value.date2;
+}
 
 
 
