@@ -25,7 +25,7 @@ import { formatDate } from '@angular/common';
 export class ChambreReservationComponent implements OnInit {
 
   calendarOptions: any;
-  colorEvent:any ;
+  statusReservation:any ;
   status: any;
   backgroundColor:any;
   startDate:any;
@@ -74,7 +74,7 @@ initfullcalendar = () => {
       // editable: true,//enable editing
        headerToolbar: {//set headerToolbar setting
          left: 'prev,dayGridWeek,next',
-         center: 'title',
+         center: '',
          right: '',
        },
        titleFormat: { // will produce something like "Tuesday, September 18, 2018"
@@ -124,7 +124,7 @@ initfullcalendar = () => {
       if (arg.event) {
         italicEl.innerHTML = `
        
-        <div style="background-color:white;box-shadow: -4px 1px 14px 1px rgba(0,0,0,0.28);
+        <div style="background-color:${arg.event._def.extendedProps.roomID.other};box-shadow: -4px 1px 14px 1px rgba(0,0,0,0.28);
         -webkit-box-shadow: -4px 1px 14px 1px rgba(0,0,0,0.28);
         -moz-box-shadow: -4px 1px 14px 1px rgba(0,0,0,0.28); display:flex;flex-direction: column;width:100%; height:50px">
           
@@ -133,11 +133,11 @@ initfullcalendar = () => {
                  <div style="width: 10px; height: 10px;border-radius: 20px;background-color: ${arg.event._def.extendedProps.roomID.backgroundColor};">
                  </div>
 
-                 <p style="background-color:${arg.event._def.extendedProps.roomID.other} ; width:35px;height:10px; border-radius:8px;font-size:8px; margin-top:5px;padding-left:5px;padding-bottom:5px">${arg.event._def.extendedProps.roomID.name}</p>
+                 <p style="width:35px;height:10px; border-radius:8px;font-size:8px; margin-top:5px;padding-left:5px;padding-bottom:5px">${arg.event._def.extendedProps.roomID.name}</p>
                
                  <div style="margin-right:5px;">
                    
-                    <span  style="color:#ff6600; font-size:12px"   class="material-icons">date_range</span>
+                    <span  style="color:gray; font-size:12px"   class="material-icons">date_range</span>
             
                  </div> 
 
@@ -147,10 +147,10 @@ initfullcalendar = () => {
            <div style="justify-content: space-between ; display:flex;">
                 
                 <div style="display:flex;flex-direction:row ;">
-                    <span  style="margin-top:12px;color:#ff6600;font-size:12px"    class="material-icons">person</span>
-                    <p style="margin-top:11px; color:#ff6600;font-size:10px">${arg.event._def.extendedProps.number_persons}</p>
-                    <span  style="margin-top:12px;color:#ff6600;font-size:12px;margin-left:8px"    class="material-icons">watch_later</span>
-                    <p style="margin-top:11px; color:#ff6600;font-size:10px">${arg.event._def.extendedProps.number_days}</p>
+                    <span  style="margin-top:12px;color:gray;font-size:12px"    class="material-icons">person</span>
+                    <p style="margin-top:11px; color:gray;font-size:10px">${arg.event._def.extendedProps.number_persons}</p>
+                    <span  style="margin-top:12px;color:gray;font-size:12px;margin-left:8px"    class="material-icons">watch_later</span>
+                    <p style="margin-top:11px; color:gray;font-size:10px">${arg.event._def.extendedProps.number_days}</p>
                 </div>
               
 
@@ -187,20 +187,19 @@ initfullcalendar = () => {
    }
 
 
-
 getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
  
-    console.log('info', info);
+    console.log('info', this.statusReservation);
 
-     if(this.colorEvent){
-       return    ( req.get('')
+     if(this.statusReservation == 'yellow' || this.statusReservation == 'red' || this.statusReservation == 'gray'){
+       return    ( req.get('http://localhost:3000/reservations/filter?color='+this.statusReservation)
                 .type('json')
                 .query({
                   start: info.start.valueOf(),
                   end: info.end.valueOf()
                 })
                 .end(function(err:any, res:any) {
-                   console.log("src>>>",src);
+                  // console.log("src>>>",src);
                    
                   console.log('response>>>', res)
                   if (err) {
@@ -209,7 +208,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
           
                     successCallback(
 
-                    res.body.events
+                      res.body
                       
                     
                     )
@@ -217,18 +216,41 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
                 }))
                 
      }
-       
-     else  {
-
-      return    ( req.get("http://localhost:3000/reservations")
+     else if( this.statusReservation == 'all'){
+      return    ( req.get('http://localhost:3000/reservations/filter?color=')
       .type('json')
       .query({
         start: info.start.valueOf(),
         end: info.end.valueOf()
       })
       .end(function(err:any, res:any) {
-         console.log("src>>>",src);
-         
+        
+        console.log('response>>>', res)
+        if (err) {
+          failureCallback(err);
+        } else {
+
+          successCallback(
+
+            res.body
+            
+          
+          )
+        }
+
+      }))
+     }
+     
+     else  {
+
+      return    ( req.get('http://localhost:3000/reservations/filter?color=')
+      .type('json')
+      .query({
+        start: info.start.valueOf(),
+        end: info.end.valueOf()
+      })
+      .end(function(err:any, res:any) {
+        
         console.log('response>>>', res)
         if (err) {
           failureCallback(err);
@@ -249,7 +271,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
 
 
 handleEventClick(clickInfo: EventClickArg) {
-      console.log('item>>>', clickInfo.event)
+      console.log('item>>>', clickInfo.event.extendedProps.clientID.number_cin)
       if(clickInfo.event.extendedProps.roomID.DOUBLE_BAS_SAISON_PRICE){
           this.roomType = "double"
       }
@@ -266,11 +288,10 @@ handleEventClick(clickInfo: EventClickArg) {
       
       const dialogRef = this.dialog.open(DialogreservationnInfosComponent, {
  
-        
-
-      
-        width: '1300px',
-        height:'615px',
+        panelClass: 'custom-dialog-container',
+         // width:'1000px',
+         // height:'800px',
+         
        
         data:{
           firstName: clickInfo.event.extendedProps.clientID.first_name,
@@ -298,7 +319,8 @@ handleEventClick(clickInfo: EventClickArg) {
           SINGLE_HAUTE_SAISON: false,
           tarifType: clickInfo.event.extendedProps.tarifType,
           roomType:this.roomType,
-          remark:clickInfo.event.extendedProps.remark
+          remark:clickInfo.event.extendedProps.remark,
+          number_cin:clickInfo.event.extendedProps.clientID.number_cin
         }
       });
     
@@ -329,7 +351,7 @@ handleEventClick(clickInfo: EventClickArg) {
       
          
 
-         this.verifyRoomColor(result.name)
+         this.verifyRoomColor(result.title)
          this.numberPersons(result.number_adulte, result.nb_children)
          const datatosent = {
            roomType: "room" ,
@@ -359,6 +381,7 @@ handleEventClick(clickInfo: EventClickArg) {
            price : result.price,
            tarifType:result.tarifType,
            remark :result.remark,
+           number_cin:result.number_cin
            
 
 
@@ -388,7 +411,7 @@ handleEventClick(clickInfo: EventClickArg) {
                
        })
 
-
+     
      
          
       })
@@ -400,45 +423,39 @@ handleEventClick(clickInfo: EventClickArg) {
 }
 
 
-
 numberPersons(nba: number, nbc:number){
   this.nbp = nba + nbc
 }
 
 
-
-
 verifyRoomColor(roomName:any){
   if (roomName === 'Ruppia'){
-      this.roombackgroundColor = '#E32500';
-  }
-  else if(roomName === 'Marabou'){
-      this.roombackgroundColor = '#AA5D5D';
-  }
-  else if(roomName === 'Colony'){
-       this.roombackgroundColor = '#F94B4B';
-  }
-  else if (roomName === 'Ciconia'){
-       this.roombackgroundColor = '#82AFA7';
-  }
-  else if (roomName === 'Cicogne'){
-    this.roombackgroundColor = '#C4D6F0';
-  }
-  else if (roomName === 'Brécon'){
-    this.roombackgroundColor = '#F6E6C3';
-  }
-  else if (roomName === 'Bonnelli'){
-    this.roombackgroundColor = '#D2F6D5';
-  }
-  else{
-    this.roombackgroundColor = '#FFE2D9';
-  }
-
-
+    this.roombackgroundColor = '#b7bdf04a';
+}
+else if(roomName === 'Marabou'){
+    this.roombackgroundColor = '#ead1dcff';
+}
+else if(roomName === 'Colony'){
+     this.roombackgroundColor = '#f4ff406e';
+}
+else if (roomName === 'Ciconia'){
+     this.roombackgroundColor = '#98ef9871';
+}
+else if (roomName === 'Cicogne'){
+  this.roombackgroundColor = '#0cbacd66';
+}
+else if (roomName === 'Brecon'){
+  this.roombackgroundColor = '#fab409aB';
+}
+else if (roomName === 'Bonnelli'){
+  this.roombackgroundColor = '#633b084a';
+}
+else if (roomName === 'Amorpha'){
+  this.roombackgroundColor = '#d1518a67';
 }
 
 
-
+}
 
 showNotification(colorName, text, placementFrom, placementAlign) {
   this.snackBar.open(text, '', {
@@ -450,47 +467,40 @@ showNotification(colorName, text, placementFrom, placementAlign) {
 }
   
 setColorEvents(color:string){
-  
-  this.colorEvent= color;
-  console.log('color yellow', this.colorEvent);
-// window.location.reload();
+  console.log('color events >>>', color);
+  this.statusReservation= color;
+  console.log('color yellow', this.statusReservation);
+  const calendarApi = this.calendarComponent.getApi();
+  calendarApi.next(); // call a method on the Calendar object
+  calendarApi.prev();
 
-   
 }
+
 gotoReservation(){
   this._router.navigate(['reservation/reserver/#'])
 }
 
 validRangeClick(nowDate:any){
- // console.log('start date <>>>>>', this.startDate);
- 
-
-/*
-if(this.startDate){
+console.log('end date <>>>>>', this.endDate);
+if(this.startDate && this.endDate){
+  const startfiltre = formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00';
+  const endfiltre = formatDate(this.endDate, 'yyyy-MM-dd', 'en')+'T11:00:00';
   console.log('info valid range >>>', formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00');
-
+  return {
+    start: startfiltre,
+    end: endfiltre
+  };
 }
-  if(this.startDate && this.endDate){
-    const calendarApi = this.calendarComponent.getApi();
-    calendarApi.next(); // call a method on the Calendar object
-    calendarApi.prev();
-    return {
-      start: formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00',
-      end: formatDate(this.endDate, 'yyyy-MM-dd', 'en')+'T11:00:00'
-    };
-  
-
-  }*/
- 
- 
-  
+//add find function in the database
 }
-
 
 searchDateRange(){
   console.log('search date range',this.cal.value.date1);
   this.startDate = this.cal.value.date1;
   this.endDate = this.cal.value.date2;
+  const calendarApi = this.calendarComponent.getApi();
+  calendarApi.next(); // call a method on the Calendar object
+  calendarApi.prev();
 }
 
 

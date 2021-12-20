@@ -1,194 +1,13 @@
 
 <!--<h2 mat-dialog-title>Details</h2>-->
 
-
-
-<!--
-  <div class="parent">
-
-<div class="first__row">
-
-<form>
-  <mat-form-field  appearance="outline">
-    <mat-label>Chambre</mat-label>
-    <input type="text" matInput  [(ngModel)]="data.title" name="title"
-           >
-
-    <mat-error>
-      Please enter a valid room
-    </mat-error>
-    <mat-error>
-       FirstName <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-</form>
- 
-<form style="margin-left:8px; margin-right: 8px;">
-  <mat-form-field class="full-width" appearance="outline">
-    <mat-label>Date d'arriver</mat-label>
-    <input type="text" matInput  [(ngModel)]="data.start" name="start">
-    <mat-error>
-      Please enter a valid date
-    </mat-error>
-    <mat-error>
-       FirstName <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-</form>
-
-<form>
-  <mat-form-field appearance="outline">
-    <mat-label>Date de départ</mat-label>
-    <input type="text" matInput  [(ngModel)]="data.end" name="end">
-    <mat-error>
-      Please enter a valid date
-    </mat-error>
-    <mat-error>
-       FirstName <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-</form>
-</div>
-
-
-
-<div class="second__row">
-<form>
-  <mat-form-field  appearance="outline">
-    <mat-label>Nom</mat-label>
-    <input type="text" matInput  [(ngModel)]="data.firstName" name="firstName"
-           >
-
-    <mat-error>
-      Please enter a valid Nom
-    </mat-error>
-    <mat-error>
-       Nom <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-</form>
-
-<form style="margin-left:8px; margin-right: 8px;">
-  <mat-form-field  appearance="outline">
-    <mat-label>Prenom</mat-label>
-    <input type="text" matInput  [(ngModel)]="data.lastName" name="lastName"
-           >
-
-    <mat-error>
-      Please enter a valid prenom
-    </mat-error>
-    <mat-error>
-       prenom <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-</form>
-<form >
-  <mat-form-field  appearance="outline">
-    <mat-label>Nombre des persones</mat-label>
-    <input type="number" matInput  [(ngModel)]="data.nbp" name="nbp">
-
-    <mat-error>
-      Please enter a valid nb
-    </mat-error>
-    <mat-error>
-     nb persone is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-</form>
-
-</div>
-
-
-
-<div class="second__row">
-  <form>
-    <mat-form-field  appearance="outline">
-      <mat-label>Prix</mat-label>
-      <input type="number" matInput  [(ngModel)]="data.price" name="price"
-             >
-  
-      <mat-error>
-        Please enter a valid price
-      </mat-error>
-      <mat-error>
-         FirstName <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-  </form>
-  
-  <form style="margin-left:8px; margin-right: 8px;">
-    <mat-form-field  appearance="outline">
-      <mat-label>Nombre des nuitées</mat-label>
-      <input type="number" matInput  [(ngModel)]="data.nb_days" name="nb_days"
-             >
-
-      <mat-error>
-        Please enter a valid nb days
-      </mat-error>
-      <mat-error>
-         LastName <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-  </form>
-  <form >
-    <mat-form-field  appearance="outline">
-      <mat-label>Nombre d'enfants</mat-label>
-      <input type="number" matInput  [(ngModel)]="data.nb_children" name="nb_children">
-  
-      <mat-error>
-        Please enter a valid email nb_children
-      </mat-error>
-      <mat-error>
-        nb_children <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-  </form>
-  
-  </div>
-
-
-
-
-<div class="thread__row">
-  <mat-radio-group labelPosition="after"  [(ngModel)]="selected"     name="selected">
-
-    <mat-radio-button  (change)="selectedValue($event)"    [value]="1">Reserver</mat-radio-button>
-   
-    <mat-radio-button style="margin-left:10px; margin-right: 10px;" 
-    (change)="selectedValue($event)"     [value]="2">Occuper</mat-radio-button>
-
-    <mat-radio-button   (change)="selectedValue($event)"    [value]="3">Fermer</mat-radio-button>
-   
-  </mat-radio-group>
-
-</div>
-
-
-
-<div class="forty__row">
-  <mat-dialog-actions align="end">
-  <button mat-stroked-button color="warn" mat-dialog-close (click)="deleteReservation(data)" >Supprimer</button>
-  <button mat-stroked-button color="accent" mat-dialog-close (click)="gotoReservation()" >Reserver</button>
-  <button mat-stroked-button color="warn" mat-dialog-close>Anuller</button>
-  <button  mat-stroked-button color="primary"  [mat-dialog-close]="data" cdkFocusInitial>Modifier</button>
-  
-  </mat-dialog-actions>
-</div>
-
-
-
-
-</div>
--->
-  
-
 <div class="row">
-  <div class="col-md-12 col-sm-12">
-      <div class="card">
+  <div class="col-md-12 col-sm-12" >
+      <div class="card" style="padding-left:18px;">
           <div class="card-body">
-              <div class="row flex ">
+              <div class="row flex">
                  
-                      <div class="row">
+                      <div class="row row-cols-4">
                           <div class="col">
                               <form>
                                  <mat-form-field class="example-full-width" appearance="outline">
@@ -235,7 +54,7 @@
                       </div> 
 
                       <div class="row">
-                          <div class="col-lg-6 col-md-6">
+                          <div class="col">
                             <form>
                                <mat-form-field   class="example-full-width" appearance="outline">
                                   <mat-label>Chambre</mat-label>
@@ -248,6 +67,16 @@
                             </form>
                              
                           </div>
+                          <div class="col">
+                            <form>
+                              <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                <mat-label>numéro CIN</mat-label>
+                                <input matInput  [(ngModel)]="data.number_cin"  name="number_cin" type="number" [min]="8"  required>
+                    
+                              </mat-form-field>
+                            </form>
+                            
+                        </div>
                           <div class="col">
                              <form>
                                <mat-form-field class="example-full-width mb-3" appearance="outline">
@@ -296,7 +125,7 @@
                           </div>
                           <div class="col" id="my_div">
                             <form>
-                               <mat-form-field class="example-full-width mb-3" appearance="outline">
+                               <mat-form-field class="example-full-width" appearance="outline">
                                   <mat-label>Extras</mat-label>
                                   <mat-select    [(ngModel)]="data.extra" name="extra"    (selectionChange)="selectExtraType($event)"   >
                                       <mat-option [value]="">
@@ -315,48 +144,67 @@
 
                       </div>
 
-                      <div  style="border-width: 5px solid; background-color: rgb(202, 230, 255);
-                                       border-radius: 5px;margin: 15px 0px 15px 0px "   class="row d-flex justify-content-between align-items-center  text-capitalize"
-                            *ngIf="showMenuDetails" >
-                             
-                              <div class="col-6 mb-4 mt-2">
-                                  taarif: {{tarifType}}
-                              </div>
-                              <div class="col-6 mb-4">
-                                  type: {{roomName}}
-                              </div>
-                              <div class="col-6 mb-2">
-                                  extras: {{extra}}
-                              </div>
-                              <div class="col-6 ">
-                                  prix: {{ priceTotal }} DT
-                              </div>
-                      </div> 
-                      <div class="row mt-3"  *ngIf="showMenuDetails">
-                          <div class="col-md-12">
-                              <div class="card">
-                                  <div class="card-body bg-gray text-white text-capitalize">
-                                      <div class="row">
-                                          <div class="col-md-12">
-                                              <p>prix chambre : {{this.RoomPrice}}</p>
-                                          </div>
-                                          <div class="col-md-12">
-                                              <p>nuits : {{this.Days}} </p>
-                                          </div>
-                                          <div class="col-md-12">
-                                              <p>Total : {{this.priceTotal}} DT</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
+                      <div class="row">
+
+                       <mat-accordion>
+                       
+                        <mat-expansion-panel (opened)="panelOpenState = true"
+                                             (closed)="panelOpenState = false">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              L'information sur les tarifs
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                           <!--start expansion-->
+                           <div  style="border-width: 5px solid; background-color: rgb(202, 230, 255);
+                           border-radius: 5px;margin: 15px 0px 15px 0px "   class="row d-flex justify-content-between align-items-center  text-capitalize"
+                          *ngIf="showMenuDetails" >
+                          
+                                <div class="col-6 mb-4 mt-2">
+                                    taarif: {{tarifType}}
+                                </div>
+                                <div class="col-6 mb-4">
+                                    type: {{roomName}}
+                                </div>
+                                <div class="col-6 mb-2">
+                                    extras: {{extra}}
+                                </div>
+                                <div class="col-6 ">
+                                    prix: {{ priceTotal }} DT
+                                </div>
+                           </div> 
+                            <div class="row mt-3"  *ngIf="showMenuDetails">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body bg-gray text-white text-capitalize">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>prix chambre : {{this.RoomPrice}}</p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p>nuits : {{this.Days}} </p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p>Total : {{this.priceTotal}} DT</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                           <!--end expansion---->
+
+                        </mat-expansion-panel>
+                      </mat-accordion>
                       </div>
-
-
-
-
-
-                      <div class="row mt-3">
+                    
+                      <div class="row mt-4">
                           <div class="col-md-6 col-lg-6">
                              <form>
                                 <mat-form-field class="example-full-width" appearance="outline">
@@ -403,15 +251,12 @@
                     </div>
 
                    
-                     
-
-
-                     
                        <div style="display: flex; justify-content: space-between;">
                            <div>
                               <mat-dialog-actions align="end">
-                                  <button mat-stroked-button color="warn" mat-dialog-close (click)="deleteReservation(data)">Supprimer</button>
                                   <button mat-stroked-button color="accent" mat-dialog-close (click)="gotoReservation()">Reserver</button>
+                                  <button mat-stroked-button color="warn" mat-dialog-close (click)="deleteReservation(data)">Supprimer</button>
+  
                               </mat-dialog-actions>
                            </div>
                            <div>
@@ -422,12 +267,7 @@
                            </div>
                       </div>
                  
-                      
                   
-
-        
-                    
-
 
               </div>
 

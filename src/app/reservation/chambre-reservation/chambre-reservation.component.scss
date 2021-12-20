@@ -1,5 +1,5 @@
 #e1{
-    background-color: #ca462b;
+    background-color: #b7bdf04a;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
@@ -9,7 +9,7 @@
     }
     
     #e2{
-    background-color: #82AFA7;
+    background-color: #98ef9871;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
@@ -18,7 +18,7 @@
     }
     
     #e3{
-    background-color: #FFE2D9;
+    background-color: #d1518a67;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
@@ -27,7 +27,7 @@
     }
     
     #e4{
-    background-color: #AA5D5D;
+    background-color: #ead1dcff;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
@@ -36,7 +36,7 @@
     }
     
     #e5{
-    background-color: #F6E6C3;
+    background-color: #fab409aB;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
@@ -44,7 +44,7 @@
     margin-bottom: 5px;
     }
     #e6{
-    background-color: #F94B4B;
+    background-color: #f4ff406e;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
@@ -52,7 +52,7 @@
     margin-bottom: 5px;
     }
     #e7{
-    background-color: #C4D6F0;
+    background-color: #0cbacd66;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
@@ -60,7 +60,7 @@
     margin-bottom: 5px;
     }
     #e8{
-    background-color: #D2F6D5;
+    background-color: #633b084a;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
@@ -78,7 +78,7 @@
 .dispo{
 position:absolute;
 right: 15px;
-top:80px      
+top:70px      
 }
 
 .fc.fc-button-primary {
@@ -123,4 +123,7 @@ box-shadow: -8px 12px 18px 0 #dadee8;
     position: fixed;
   }
 
-
+  .custom-dialog-container .mat-dialog-container {
+    width: '1200px';
+    height:'600px';
+}

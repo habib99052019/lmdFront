@@ -62,7 +62,7 @@
                                 </div> 
 
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6">
+                                    <div class="col">
                                         <mat-form-field   class="example-full-width" appearance="outline">
                                             <mat-label>Chambre</mat-label>
                                             <mat-select formControlName="roomID" required>
@@ -70,6 +70,13 @@
                                                     {{chambre.name}}
                                                 </mat-option>
                                             </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                            <mat-label>numéro CIN</mat-label>
+                                            <input matInput formControlName="number_cin" name="number_cin" type="number" [min]="8"  required>
+                                
                                         </mat-form-field>
                                     </div>
                                     <div class="col">

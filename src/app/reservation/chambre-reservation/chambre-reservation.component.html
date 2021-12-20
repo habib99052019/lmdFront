@@ -32,8 +32,8 @@
                                 <div>
                                     <button  id="updateHeader" (click)="gotoReservation()"    mat-flat-button color="primary">Réserver</button>
                                 </div>
-                                <div style="font-size: 10px">
-                                     <mat-form-field  style="margin-right: 99px;"  appearance="outline">
+                                <div style="font-size: 8px; margin-left:'31.5%';">
+                                     <mat-form-field  style="margin-right: 20px;"  appearance="outline">
                                         <input formControlName="date1" matInput placeholder="A partir de" required [matDatepicker]="picker1">
                                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                         <mat-datepicker ngDefaultControl #picker1 color="primary"></mat-datepicker>
@@ -51,14 +51,14 @@
                                                         align-self: center; cursor: pointer;">search</mat-icon>
                                                    -->
                                                    
-                                       
-                                       <button style="margin-left: 5px; margin-bottom: 10px;"  mat-button (click)="searchDateRange()">
-                                        <mat-icon>search</mat-icon>
-                                       
-                                        </button>
-                               
-
                                    
+                                </div>
+                                <div>
+                                    <button style="background-color: #3f51b5;margin-top: 3px;height: 34px;"  mat-button (click)="searchDateRange()">
+                                       <mat-icon style="color:white">search</mat-icon>
+                                 
+                                    </button>
+                         
                                 </div>
                                
                             </form>
@@ -79,7 +79,7 @@
                             <span>Fermé</span>
                             <mat-icon id="Ferm">brightness_1</mat-icon>
                           </button>
-                          <button (click)="setColorEvents('test')"  mat-menu-item class="disp">
+                          <button (click)="setColorEvents('all')"  mat-menu-item class="disp">
                             <span>Tous</span>
                             <mat-icon id="dispo">brightness_1</mat-icon>
                           </button>

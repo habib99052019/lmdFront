@@ -22,6 +22,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatRadioModule } from "@angular/material/radio";
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const materialModules = [
   MatButtonModule,
@@ -47,6 +49,8 @@ const materialModules = [
   MaterialFileInputModule,
   MatMenuModule,
   MatProgressSpinnerModule,
+  MatExpansionModule,
+  MatAutocompleteModule
 
 ];
 

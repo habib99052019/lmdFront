@@ -164,7 +164,25 @@ export class AddchambreReservationComponent implements OnInit {
         "DOUBLE_HAUTE_SAISON": 350,
         "SINGLE_BAS_SAISON": 210,
         "SINGLE_HAUTE_SAISON": 280
-    }
+    },
+    {
+      
+      "name": "Toute la villa",
+      "number": "99",
+      "floor": "3",
+      "price": "640",
+      "number_places": "3",
+      "created_at": "2021-10-07T14:35:32.892Z",
+      "updated_at": "2021-10-07T14:36:26.074Z",
+      "__v": 0,
+      "primary": "43ac6a",
+      "secondary": "rgb(210, 246, 213)",
+      "DOUBLE_BAS_SAISON": 280,
+      "DOUBLE_HAUTE_SAISON": 350,
+      "SINGLE_BAS_SAISON": 210,
+      "SINGLE_HAUTE_SAISON": 280
+  }
+
 ]
 roomType = '';
 taarifType = '';
@@ -253,6 +271,7 @@ createContactForm(): FormGroup {
       endDate : ['' , Validators.required],
       number_guests : [2 ],
       number_children: [0, Validators.required],
+      number_cin:['',Validators.required],
       number_adulte:[0, Validators.required],
       comment : [''],
       remarque : [''],
@@ -265,7 +284,6 @@ createContactForm(): FormGroup {
 checkDates(event : any ){
    console.log('checkDates>>>', event.value)
    this.startDate = event.value;
-   console.log('end gate time>>>',this.reservationChambreForm.get('startDate').value.getTime() - this.date.value.getTime());
    /*
     const temporryDate = this.reservationChambreForm.get('startDate').value.getTime() + (1000 * 60 * 60 * 24)
     this.minDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
@@ -353,21 +371,19 @@ checkDates(event : any ){
 
 selectTaarifType(event: any){
   this.taarifType = event.value;
-  if (this.room){
-    if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
-      this.RoomPrice = this.room?.SINGLE_BAS_SAISON  
-    } 
-    else if (this.roomType === 'single' && this.taarifType === 'haut de saison'){
-      this.RoomPrice = this.room?.SINGLE_HAUTE_SAISON        
-    }
-    else if (this.roomType === 'double' && this.taarifType === 'bas de saison'){
-      this.RoomPrice = this.room?.SINGLE_BAS_SAISON
-    }
-    else if (this.roomType === 'double' && this.taarifType === 'haut de saison'){
-      this.RoomPrice = this.room?.DOUBLE_HAUTE_SAISON
-    }
-    this.calculTotal(this.Days , this.RoomPrice);
+  console.log("tarif type>>>", this.taarifType);
+  console.log('roomName tarif type>>>', this.reservationChambreForm.value.roomID);
+  if(this.reservationChambreForm.value.roomID){
+      if(this.reservationChambreForm.value.roomID === 'Toute la villa' && this.taarifType === 'bas de saison'){
+          this.RoomPrice = 2100;
+          this.roomType === ''
+      }else if(this.reservationChambreForm.value.roomID === 'Toute la villa' && this.taarifType === 'haut de saison'){
+          this.RoomPrice = 2600;
+          this.roomType === ''
+      }
   }
+ this.calculTotal(this.Days , this.RoomPrice);
+  
 }
 
 
@@ -656,6 +672,7 @@ selectRoomType(event: any){
           }
 
         }
+        
     
     this.calculTotal(this.Days , this.RoomPrice);
   }
@@ -702,29 +719,31 @@ showMenu(event : MatSelectChange){
 
 
 verifyRoomColor(roomName:any){
+  console.log('roomname verify>>>', roomName);
+  
     if (roomName === 'Ruppia'){
-        this.roombackgroundColor = '#E32500';
+        this.roombackgroundColor = '#b7bdf04a';
     }
     else if(roomName === 'Marabou'){
-        this.roombackgroundColor = '#AA5D5D';
+        this.roombackgroundColor = '#ead1dcff';
     }
     else if(roomName === 'Colony'){
-         this.roombackgroundColor = '#F94B4B';
+         this.roombackgroundColor = '#f4ff406e';
     }
     else if (roomName === 'Ciconia'){
-         this.roombackgroundColor = '#82AFA7';
+         this.roombackgroundColor = '#98ef9871';
     }
     else if (roomName === 'Cicogne'){
-      this.roombackgroundColor = '#C4D6F0';
+      this.roombackgroundColor = '#0cbacd66';
     }
-    else if (roomName === 'Brécon'){
-      this.roombackgroundColor = '#F6E6C3';
+    else if (roomName === 'Brecon'){
+      this.roombackgroundColor = '#fab409aB';
     }
     else if (roomName === 'Bonnelli'){
-      this.roombackgroundColor = '#D2F6D5';
+      this.roombackgroundColor = '#633b084a';
     }
-    else{
-      this.roombackgroundColor = '#FFE2D9';
+    else if (roomName === 'Amorpha'){
+      this.roombackgroundColor = '#d1518a67';
     }
 
 
@@ -790,6 +809,7 @@ addNewReservation(){
     status_reservation: "INITIALISER",    
     startDate : this.realStartTosent,
     endDate : realEnd,
+    number_cin:this.reservationChambreForm.get('number_cin').value,
     startFiltre:this.startFiltre,
     endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
     number_guests : 0,
@@ -844,6 +864,7 @@ addNewReservation(){
       status_reservation: "INITIALISER",    
       startDate : this.end,
       endDate : realEnd,
+      number_cin:this.reservationChambreForm.get('number_cin').value,
       startFiltre:this.endfiltreSearsh,
       endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
       number_guests : 0,

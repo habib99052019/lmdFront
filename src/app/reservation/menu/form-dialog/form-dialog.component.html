@@ -13,10 +13,48 @@
       <mat-icon>close</mat-icon>
     </button>
     </div> -->
-    <div mat-dialog-content>
+    <div>
         <form class="register-form m-4" [formGroup]="this.reservationMenuForm" (ngSubmit)="submit">
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                <div class="col">
+                    <form>
+                         <!---
+                       <mat-form-field class="example-full-width mb-3" appearance="outline">
+                            <mat-label>selectUser</mat-label>
+                            <input matInput formControlName="client_ID" required>
+                            <mat-icon matSuffix>face</mat-icon>
+                            <mat-error *ngIf="reservationMenuForm.get('client_ID').hasError('required')">
+                                Nom est obligatoire
+                            </mat-error>
+                         </mat-form-field>
+                        -->
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>selectionner un utilisateur</mat-label>
+                            <input matInput type="text" 
+                                   [matAutocomplete]="auto"
+                                    #query
+                                    (keyup)="search(query.value)"
+                                   
+                                    [value]='this.user'
+                                   >
+                                   <mat-icon matSuffix>face</mat-icon>
+
+                            <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayFn" (optionSelected)="selected($event)">
+                                <mat-option *ngFor="let player of searchuser" [value]="player">
+                                   {{player.first_name}}
+                                    
+                                    {{player.last_name}}
+                                    {{player.number_cin}}
+                                </mat-option>
+
+                            </mat-autocomplete>
+                        </mat-form-field>
+                         
+                    </form>
+                  
+                </div>
+                <div class="col">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Nom</mat-label>
                         <input matInput formControlName="first_name" required>
@@ -26,7 +64,7 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                <div class="col">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Prenom</mat-label>
                         <input matInput formControlName="last_name" required>
@@ -36,26 +74,71 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-0 pb-0">
+                <div class="col">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Menu</mat-label>
                         <mat-select formControlName="menuID" required (selectionChange)="showMenu($event)">
                             <mat-option *ngFor="let menu of this.Menus" [value]="menu">
-                                {{menu.name}} {{menu.price}} Dt
+                                {{menu.name}} : {{menu.price}} Dt
                             </mat-option>
                         </mat-select>
 
                     </mat-form-field>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-0 pb-0">
+            </div>
+            <div class="row">
+               
+                <div class="col">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>nombre de personnes</mat-label>
                         <input matInput formControlName="number_guests" type="number" [min]="1" (change)="re_calculTotal($event)">
                         <mat-icon matSuffix>group</mat-icon>
                     </mat-form-field>
                 </div>
+
+                <div class="col">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>date prevue</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="startDate" [min]="today">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="reservationMenuForm.get('startDate').hasError('required')">
+                            Veuillez sélectionner la date prevu
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Chambre</mat-label>
+                        <mat-select formControlName="roomID" (selectionChange)="showRoom($event)">
+                            <mat-option *ngFor="let chambre of this.Chambres" [value]="chambre.name">
+                                {{chambre.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Status</mat-label>
+                        <mat-select formControlName="status" required>
+                            <mat-option [value]="'COMMANDE'">
+                                Commandé
+                            </mat-option>
+
+                            <mat-option [value]="'LIVRE'">
+                                Livré
+                            </mat-option>
+                            <mat-option [value]="'PAYE'">
+                                Payé
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="reservationMenuForm.get('status').hasError('required')">
+                            Veuillez sélectionner le status
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
             </div>
 
             <div class="row " *ngIf="showMenuDetails">
@@ -76,64 +159,19 @@
                 </div>
 
             </div>
+              
+         
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2 mt-2">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>date prevue</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="startDate" [min]="today">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                        <mat-error *ngIf="reservationMenuForm.get('startDate').hasError('required')">
-                            Veuillez sélectionner la date prevu
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Chambre</mat-label>
-                        <mat-select formControlName="roomID" (selectionChange)="showRoom($event)">
-                            <mat-option *ngFor="let chambre of this.Chambres" [value]="chambre._id">
-                                {{chambre.name}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Status</mat-label>
-                        <mat-select formControlName="status" required>
-                            <mat-option [value]="'COMMANDE'">
-                                Commandé
-                            </mat-option>
-
-                            <mat-option [value]="'LIVRE'">
-                                Livré
-                            </mat-option>
-                            <mat-option [value]="'PAYE'">
-                                Payé
-                            </mat-option>
-                        </mat-select>
-                        <mat-error *ngIf="reservationMenuForm.get('status').hasError('required')">
-                            Veuillez sélectionner le status
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ">
                     <mat-form-field class="example-full-width " appearance="outline">
                         <mat-label>Commentaire</mat-label>
                         <textarea matInput formControlName="comment"></textarea>
                     </mat-form-field>
                 </div>
             </div>
-            <div class="row d-flex justify-content-end">
-                <div class="col-md-4 m-t-0 text-end">
+
+            <div style="display: flex; flex-direction:row; justify-content:end;">
+                <div>
                     <button mat-icon-button color="warn" (click)="removeFromTotal('Soda')" [disabled]="this.sodaPrice === 0">
                         <mat-icon>remove</mat-icon>
                       </button> Soda
@@ -141,7 +179,7 @@
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
-                <div class="col-md-4 text-end">
+                <div>
                     <button mat-icon-button color="warn" (click)="removeFromTotal('Eau')" [disabled]="this.EauPrice === 0">
                         <mat-icon>remove</mat-icon>
                       </button> Eau
@@ -173,14 +211,15 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-                    <div class="example-button-row">
-                        <button mat-raised-button color="primary" [type]="submit" [disabled]="!reservationMenuForm.valid" (click)="confirmAdd()">Reservé</button>
-                        <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+           
+                <div style="display: flex; flex-direction:row; justify-content:end;">
+                    <div>
+                        <!---[disabled]="!reservationMenuForm.valid"-->
+                        <button  mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+                        <button  style="margin-left:10px"    mat-raised-button color="primary" [type]="submit" [mat-dialog-close]="1"  (click)="confirmAdd()">Reservé</button>
                     </div>
                 </div>
-            </div>
+            
         </form>
     </div>
 </div>

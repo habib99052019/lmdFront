@@ -12,6 +12,13 @@ import { ReservationServiceService } from 'src/app/core/service/reservation-serv
 import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+
+
+
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
@@ -24,8 +31,8 @@ export class FormDialogComponent implements OnInit {
   dialogTitle: string;
   reservationMenuForm: FormGroup;
   reservationMenu: reservationMenu;
-  Menus : any;
-  Chambres : any = []
+ // Menus : any;
+  //Chambres : any = []
   MenuPrice = 0;
   PriceTotal = 0 ;
   entree : any;
@@ -34,7 +41,227 @@ export class FormDialogComponent implements OnInit {
   showMenuDetails = false
   sodaPrice = 0; 
   EauPrice = 0;
+  options: string[] = ['Angular', 'React','Vue']
+  objectOptions = [
+    {name: 'Angular'},
+    {name: 'React'},
+    {name: 'Vue'}
+  ]
 
+  user:any;
+  myControl = new FormControl();
+  filterdOptions: Observable<string[]>;
+
+  Chambres = [
+    {
+        "status": "RESERVE",
+        "_id": "6154c96fe2993a55062ca035",
+        "name": "Ruppia",
+        "number": "99",
+        "floor": "3",
+        "number_places": "3",
+        "created_at": "2021-09-29T20:15:43.485Z",
+        "updated_at": "2021-10-07T14:32:42.407Z",
+        "__v": 0,
+        "price": "245",
+        "DOUBLE_BAS_SAISON": 315,
+        "DOUBLE_HAUTE_SAISON": 385,
+        "SINGLE_BAS_SAISON": 245,
+        "SINGLE_HAUTE_SAISON": 315,
+        "primary": "43ac6a",
+        "secondary": "rgb(227, 37, 0 , 0.15)"
+    },
+    {
+        "status": "LIBRE",
+        "_id": "6154ccbf6cf1ad59a1e77ce0",
+        "name": "Ciconia",
+        "number": "99",
+        "floor": "3",
+        "price": "210",
+        "tarif": "summer",
+        "number_places": "3",
+        "created_at": "2021-09-29T20:29:51.867Z",
+        "updated_at": "2021-10-06T22:07:24.914Z",
+        "__v": 0,
+        "DOUBLE_BAS_SAISON": 300,
+        "DOUBLE_HAUTE_SAISON": 370,
+        "SINGLE_BAS_SAISON": 230,
+        "SINGLE_HAUTE_SAISON": 300,
+        "primary": "43ac6a",
+        "secondary": "rgb(130, 175, 167 , 0.29)"
+    },
+    {
+        "status": "LIBRE",
+        "_id": "615b15ce5706e518be09c3ad",
+        "name": "Amorpha",
+        "number": "99",
+        "floor": "3",
+        "number_places": "3",
+        "created_at": "2021-09-29T20:15:43.485Z",
+        "updated_at": "2021-09-29T20:15:43.485Z",
+        "__v": 0,
+        "price": "240",
+        "DOUBLE_BAS_SAISON": 315,
+        "DOUBLE_HAUTE_SAISON": 385,
+        "SINGLE_BAS_SAISON": 245,
+        "SINGLE_HAUTE_SAISON": 315,
+        "primary": "43ac6a",
+        "secondary": "rgb(255, 226, 217)"
+    },
+    {
+        "status": "LIBRE",
+        "_id": "615b16755706e518be09c3ae",
+        "name": "Marabou",
+        "number": "99",
+        "floor": "3",
+        "number_places": "3",
+        "created_at": "2021-09-29T20:15:43.485Z",
+        "updated_at": "2021-09-29T20:15:43.485Z",
+        "__v": 0,
+        "price": "300",
+        "DOUBLE_BAS_SAISON": 370,
+        "DOUBLE_HAUTE_SAISON": 440,
+        "SINGLE_BAS_SAISON": 300,
+        "SINGLE_HAUTE_SAISON": 370,
+        "primary": "43ac6a",
+        "secondary": "rgb(170, 93, 93 , 0.31)"
+    },
+    {
+        "status": "LIBRE",
+        "_id": "615b1ba75706e518be09c3af",
+        "name": "Brecon",
+        "number": "99",
+        "floor": "3",
+        "number_places": "3",
+        "created_at": "2021-09-29T20:15:43.485Z",
+        "updated_at": "2021-09-29T20:15:43.485Z",
+        "__v": 0,
+        "price": "335",
+        "DOUBLE_BAS_SAISON": 405,
+        "DOUBLE_HAUTE_SAISON": 475,
+        "SINGLE_BAS_SAISON": 335,
+        "SINGLE_HAUTE_SAISON": 405,
+        "primary": "43ac6a",
+        "secondary": "rgb(246, 230, 195)"
+    },
+    {
+        "status": "LIBRE",
+        "_id": "615b1c395706e518be09c3b0",
+        "name": "Colony",
+        "number": "99",
+        "floor": "3",
+        "number_places": "3",
+        "created_at": "2021-09-29T20:15:43.485Z",
+        "updated_at": "2021-09-29T20:15:43.485Z",
+        "__v": 0,
+        "price": "385",
+        "DOUBLE_BAS_SAISON": 455,
+        "DOUBLE_HAUTE_SAISON": 525,
+        "SINGLE_BAS_SAISON": 385,
+        "SINGLE_HAUTE_SAISON": 455,
+        "primary": "43ac6a",
+        "secondary": "rgb(249, 75, 75 , 0.31)"
+    },
+    {
+        "status": "LIBRE",
+        "_id": "615b1c945706e518be09c3b2",
+        "name": "Cicogne",
+        "number": "99",
+        "floor": "3",
+        "price": "265",
+        "tarif": "summer",
+        "number_places": "1",
+        "created_at": "2021-09-29T20:29:51.867Z",
+        "updated_at": "2021-10-04T15:16:16.369Z",
+        "__v": 0,
+        "DOUBLE_BAS_SAISON": 335,
+        "DOUBLE_HAUTE_SAISON": 405,
+        "SINGLE_BAS_SAISON": 265,
+        "SINGLE_HAUTE_SAISON": 335,
+        "primary": "43ac6a",
+        "secondary": "rgb(196, 214, 240)"
+    },
+    {
+        "status": "RESERVE",
+        "_id": "615f05b49fe274596998ffec",
+        "name": "Bonnelli",
+        "number": "99",
+        "floor": "3",
+        "price": "640",
+        "number_places": "3",
+        "created_at": "2021-10-07T14:35:32.892Z",
+        "updated_at": "2021-10-07T14:36:26.074Z",
+        "__v": 0,
+        "primary": "43ac6a",
+        "secondary": "rgb(210, 246, 213)",
+        "DOUBLE_BAS_SAISON": 280,
+        "DOUBLE_HAUTE_SAISON": 350,
+        "SINGLE_BAS_SAISON": 210,
+        "SINGLE_HAUTE_SAISON": 280
+    },
+    {
+      
+      "name": "Toute la villa",
+      "number": "99",
+      "floor": "3",
+      "price": "640",
+      "number_places": "3",
+      "created_at": "2021-10-07T14:35:32.892Z",
+      "updated_at": "2021-10-07T14:36:26.074Z",
+      "__v": 0,
+      "primary": "43ac6a",
+      "secondary": "rgb(210, 246, 213)",
+      "DOUBLE_BAS_SAISON": 280,
+      "DOUBLE_HAUTE_SAISON": 350,
+      "SINGLE_BAS_SAISON": 210,
+      "SINGLE_HAUTE_SAISON": 280
+  }
+
+]
+
+
+  Menus = [
+    {
+          dessert: "Assiette de fruits de saison",
+          entrée: "Trio de salade",
+          name: "Menu 1",
+          price: 150,
+          suite: "Agneau à la gargoulette",
+          tarif: "simple",
+          _id: "615de00b5f8924312bf7b297",
+    },
+    {
+      dessert: "Assiette de fruits de saison",
+      entrée: "Trio de salade",
+      name: "Menu 2",
+      price: 80,
+      suite: "grillade mixte",
+      tarif: "simple",
+      _id: "615de0b75f8924312bf7b298"
+    },
+    {
+      dessert: "Assiette de fruits de saison",
+      entrée: "Trio de salade",
+      name: "Menu 3",
+      price: 90,
+      suite: "Poisson grillé",
+      tarif: "simple",
+      _id: "615de0f55f8924312bf7b299"
+    },
+    {
+      dessert: "Assiette de fruits de saison",
+      entrée: "Trio de salade",
+      name: "Menu 4",
+      price: 120,
+      suite: "couscous à l'agneau",
+      tarif: "simple",
+      _id: "615de1365f8924312bf7b29a"
+    },
+    
+  ]
+
+  searchuser!: any[];
+  users!: any[];
 
   constructor(
     private service : ReservationServiceService,
@@ -45,42 +272,96 @@ export class FormDialogComponent implements OnInit {
   ) {
     // Set the defaults
     this.reservationMenuForm = this.createContactForm();
+    
   }
 
   ngOnInit() {
+     if(this.user == undefined){
+       this.user = '';
+     }
+    /*
+     this.filterdOptions = this.myControl.valueChanges.pipe(
+       startWith(''),
+       map(value => this._filter(value))
+     )*/
+     this.service.getUserList().subscribe((users:any[]) => {
+      console.log('users>>>>',users);
+      //this.users = users;
+      this.searchuser = this.users = users;
+  })
     this.getRooms()
     this.getMenus();
   }
 
-
-  getMenus(){
-    this.service.getMenuList().subscribe((data : any)=>{
-      
-     this.Menus = data
-    })
-  }
-
-  getRooms(){
-    this.service.getRoomList().subscribe((data : any)=>{
-      this.Chambres = data ;
-    })
-  }
+/*
+  private _filter(value: string):any[]{
+    const filterValue = value.toLowerCase();
+    return this.users.filter((option:any) => 
+      option.first_name.toLowerCase().includes(filterValue))
+  }*/
 
 
-
-  formControl = new FormControl('', [
-    Validators.required
-    // Validators.email,
-  ]);
-  getErrorMessage() {
-    return this.formControl.hasError('required')
-      ? 'Required field'
-        : '';
+  
+  search(query:string)
+  {
+    console.log('query>>>',query);
+     this.searchuser = (query) ? this.users.filter( players =>
+       players.first_name.toLowerCase().includes(query.toLowerCase()) ||
+       players.last_name.toLowerCase().includes(query.toLowerCase()) 
+       ) 
+       : this.users;
   }
   
 
 
-  showMenu(event : MatSelectChange){
+  selected(event: MatAutocompleteSelectedEvent): void {
+    console.log('event selected>>>',event.option.value._id);
+  
+      this.user = event.option.value.first_name;
+   
+    
+  }
+
+  ////////
+
+  displayFn(subject:any)
+  {
+     return subject ? subject.first_name : undefined;
+  }
+  
+
+
+  /////////////
+
+  getMenus(){
+    this.service.getMenuList().subscribe((data : any)=>{
+      
+    // this.Menus = data
+    })
+  }
+
+getRooms(){
+    this.service.getRoomList().subscribe((data : any)=>{
+     // this.Chambres = data ;
+    })
+}
+
+
+
+formControl = new FormControl('', [
+    Validators.required
+    // Validators.email,
+]);
+
+getErrorMessage() {
+    return this.formControl.hasError('required')
+      ? 'Required field'
+        : '';
+}
+  
+
+
+showMenu(event : MatSelectChange){
     this.entree = event.value.entrée;
     this.dessert = event.value.dessert;
     this.suite = event.value.suite;
@@ -91,7 +372,7 @@ export class FormDialogComponent implements OnInit {
     this.reservationMenuForm.get('menuID').setValue(event.value._id) 
     this.calculTotal(this.reservationMenuForm.get('number_guests').value  , this.MenuPrice );
     
-  }
+}
 
   resetChambre(event : MatSelectChange){
     if (event.value = "null") {
@@ -122,6 +403,8 @@ export class FormDialogComponent implements OnInit {
     }
    }
  }
+
+
  removeFromTotal(type :any){
   if (this.PriceTotal){
     if(type === "Soda") {
@@ -148,6 +431,7 @@ export class FormDialogComponent implements OnInit {
       menuID : [''],
       startDate : ['' , Validators.required],
       number_guests : [1,Validators.required],
+      client_ID : ['',Validators.required],
       number_identity_document : this.randomKey,
       comment : [''],
       status : [''],
@@ -186,7 +470,10 @@ export class FormDialogComponent implements OnInit {
     number_identity_document : this.reservationMenuForm.get('number_identity_document').value,
     first_name : this.reservationMenuForm.get('first_name').value,
     last_name : this.reservationMenuForm.get('last_name').value,
+    client_ID:this.reservationMenuForm.get('client_ID').value,
    }
+   
+   console.log('reservationForm>>>', reservationForm);
    
    this.service.addReservation(reservationForm).subscribe((data : any) => {
      console.log(data)
@@ -199,6 +486,8 @@ export class FormDialogComponent implements OnInit {
   })
     
   }
+
+
   showNotification(colorName, text, placementFrom, placementAlign) {
     this.snackBar.open(text, '', {
       duration: 3000,

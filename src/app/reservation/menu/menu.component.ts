@@ -36,7 +36,7 @@ export class MenuComponent implements OnInit {
   reservationData : any
   menus : any
   rooms : any
-  Menus : any
+  //Menus : any
   filterData: any;
   MenuPrice = 0;
   PriceTotal = 0 ;
@@ -47,6 +47,46 @@ export class MenuComponent implements OnInit {
   EauPrice = 0;
   showMenuDetails = false;
   today = new Date() ;
+
+  //liste de menus
+  Menus = [
+    {
+        "_id": "615de00b5f8924312bf7b297",
+        "name": "Menu 1",
+        "entrée": "Trio de salade",
+        "suite": "Agneau à la gargoulette",
+        "dessert": "Assiette de fruits de saison",
+        "price": "150",
+        "tarif": "simple"
+    },
+    {
+        "_id": "615de0b75f8924312bf7b298",
+        "name": "Menu 2",
+        "entrée": "Trio de salade",
+        "suite": "grillade mixte",
+        "dessert": "Assiette de fruits de saison",
+        "price": "80",
+        "tarif": "simple"
+    },
+    {
+        "_id": "615de0f55f8924312bf7b299",
+        "name": "Menu 3",
+        "entrée": "Trio de salade",
+        "suite": "Poisson grillé",
+        "dessert": "Assiette de fruits de saison",
+        "price": "90",
+        "tarif": "simple"
+    },
+    {
+        "_id": "615de1365f8924312bf7b29a",
+        "name": "Menu 4",
+        "entrée": "Trio de salade",
+        "suite": "couscous à l'agneau",
+        "dessert": "Assiette de fruits de saison",
+        "price": "120",
+        "tarif": "simple"
+    }
+]
 
     TableSourceData : MatTableDataSource<any> =  new MatTableDataSource
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -71,11 +111,13 @@ export class MenuComponent implements OnInit {
   ngAfterViewInit() {
     this.TableSourceData.paginator = this.paginator;
   }
+
   getMenus(){
     this.service.getMenuList().subscribe((data : any)=>{
      this.Menus = data
     })
   }
+  
   getRooms(){
     this.service.getRoomList().subscribe((data : any)=>{
       this.Chambres = data ;
@@ -83,7 +125,7 @@ export class MenuComponent implements OnInit {
   }
 
 
-  search(term: string) {
+search(term: string) {
     if(!term) {
       this.TableSourceData.data =  this.filterData 
     } else {
@@ -96,10 +138,10 @@ export class MenuComponent implements OnInit {
          reservation.status.trim().toLowerCase().includes(term.trim().toLowerCase()) 
       );
     }
-  }
+}
   
 
-  getMenuReservations(){
+getMenuReservations(){
     this.service.getReservationList().subscribe((data : any ) => {
         this.MenuReservationsList = data.filter(reservation => reservation.type === 'menu');
         this.service.getMenuList().subscribe((menus : any) =>{
@@ -130,11 +172,11 @@ export class MenuComponent implements OnInit {
          })
         })
     })
-  }
+ }
 
 
 
-  addNew() {
+addNew() {
     let tempDirection;
     if (localStorage.getItem("isRtl") === "true") {
       tempDirection = "rtl";
@@ -142,6 +184,8 @@ export class MenuComponent implements OnInit {
       tempDirection = "ltr";
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
+      width:'1200px',
+      height:'600px',
       data: {
         reservationMenu: null,
         action: "add",
@@ -150,12 +194,14 @@ export class MenuComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-        window.location.reload();
+        //window.location.reload();
       }
     });
-  }
+ }
 
-  deleteSingleRow(row) {
+
+
+deleteSingleRow(row) {
   console.log(row);
   Swal.fire({
     title: "Es-tu sûr?",
@@ -179,7 +225,9 @@ export class MenuComponent implements OnInit {
     }
   });
 }
-  editCall(row) {
+
+
+editCall(row) {
     this.id = row.id;
     let tempDirection;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -214,6 +262,8 @@ export class MenuComponent implements OnInit {
       // }
     });
   }
+
+
   openEditModal(row){
     
     this.modalData = row;
@@ -235,9 +285,12 @@ export class MenuComponent implements OnInit {
   
     });
   }
+
+
   closeModal(){
     this.dialog.closeAll()
   }
+
   showNotification(colorName, text, placementFrom, placementAlign) {
     this.snackBar.open(text, '', {
       duration: 3000,
@@ -279,6 +332,7 @@ export class MenuComponent implements OnInit {
     this.calculTotal(event.target.value  , this.MenuPrice );
    }
    else {
+     //get list of menus from backend
     this.service.getMenuById(this.reservationMenuEditForm.get("menuID").value).subscribe((data : any)=>{
         this.PriceTotal = data.price * event.target.value
     })

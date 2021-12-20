@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ThirdPartyDraggable } from '@fullcalendar/interaction';
 import * as moment from 'moment';
 import { ReservationServiceService } from 'src/app/core/service/reservation-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dialogreservationn-infos',
@@ -162,7 +163,24 @@ export class DialogreservationnInfosComponent implements OnInit {
         "DOUBLE_HAUTE_SAISON": 350,
         "SINGLE_BAS_SAISON": 210,
         "SINGLE_HAUTE_SAISON": 280
-    }
+    },
+    {
+      
+      "name": "Toute la villa",
+      "number": "99",
+      "floor": "3",
+      "price": "640",
+      "number_places": "3",
+      "created_at": "2021-10-07T14:35:32.892Z",
+      "updated_at": "2021-10-07T14:36:26.074Z",
+      "__v": 0,
+      "primary": "43ac6a",
+      "secondary": "rgb(210, 246, 213)",
+      "DOUBLE_BAS_SAISON": 280,
+      "DOUBLE_HAUTE_SAISON": 350,
+      "SINGLE_BAS_SAISON": 210,
+      "SINGLE_HAUTE_SAISON": 280
+  }
 ]
 
   title = '';
@@ -182,6 +200,7 @@ export class DialogreservationnInfosComponent implements OnInit {
   status_room = 0;
   selected = 0;
   reservation_ID = '';
+  number_cin='';
   showMenuDetails = true;
   minDate : any ;
   maxDate : any ;
@@ -213,6 +232,7 @@ export class DialogreservationnInfosComponent implements OnInit {
   gendfiltre:any;
   startchekdate:any;
   endchekdate:any;
+  panelOpenState = false;
 
 constructor(
     public dialogRef: MatDialogRef<DialogreservationnInfosComponent>,
@@ -255,6 +275,7 @@ ngOnInit(): void {
     this.extra = this.data['extra']
     this.tarifType = this.data['tarifType']
     this.remark = this.data['remark']
+    this.number_cin = this.data['number_cin']
     console.log('roomtype>>>',this.data['roomType']);
     
     
@@ -291,7 +312,8 @@ ngOnInit(): void {
 
 initTarifType(){
   
-  console.log('tarif>>>>>', );
+  console.log('title>>>>>',this.title );
+  console.log('tarif type>>>>>',this.tarifType );
   
   if (true){
 
@@ -609,6 +631,12 @@ initTarifType(){
       }
 
     }
+    if(this.title === 'Toute la villa' && this.tarifType === 'bas de saison'){
+       this.RoomPrice = 2100;
+    }
+    if(this.title === 'Toute la villa' && this.tarifType === 'haut de saison'){
+       this.RoomPrice = 2600;
+    }
 
 this.calculTotal(this.Days , this.RoomPrice);
 }
@@ -680,9 +708,6 @@ initcalculTotal(days : any , roomPrice : any){
  // this.reservationChambreForm.get('price').setValue(this.priceTotal);
  this.price = this.priceTotal
 }
-
-
-
 
 
 calculTotal(days : any , roomPrice : any){
@@ -1015,16 +1040,17 @@ selectTaarifType(event: any){
     }
 
   }
+  if(this.title === 'Toute la villa' && this.tarifType === 'bas de saison'){
+    this.RoomPrice = 2100;
+ }
+ if(this.title === 'Toute la villa' && this.tarifType === 'haut de saison'){
+    this.RoomPrice = 2600;
+ }
 
 this.calculTotal(this.Days , this.RoomPrice);
 }
  
  }
-
-
-
-
-
 
 
 //probleme de refreche tarif 
@@ -1329,9 +1355,6 @@ selectRoomType(event: any){
 }
 
 
-
-
-
   
 gotoReservation(){
     this._router.navigate(["reservation/reserver/"+String(`${this.last}`)])
@@ -1347,8 +1370,32 @@ selectedValue(event:any){
 
 deleteReservation(data:any){
   console.log('reservationid>>>', data.reservation_ID);
-  
- this._reservationService.deleteReservation(data.reservation_ID).subscribe((resp:any) => {
+/////////////
+//delete with confirmation
+/*
+Swal.fire({
+  title: "Es-tu sûr?",
+  showCancelButton: true,
+  cancelButtonText: "Annuler",
+  confirmButtonColor: "#f44336",
+  cancelButtonColor: "#96a2b4",
+  confirmButtonText: "Oui",
+}).then((result) => {
+  console.log(result)
+  if (result.value) {
+    this._reservationService.deleteReservation(data.reservation_ID).subscribe((resp:any) => {
+      this.showNotification(
+        'snackbar-success',
+        resp.message,
+        'top',
+        'end'
+      )
+     })
+  }
+});
+*/
+ 
+this._reservationService.deleteReservation(data.reservation_ID).subscribe((resp:any) => {
   this.showNotification(
     'snackbar-success',
     resp.message,
