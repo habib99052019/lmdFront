@@ -271,7 +271,7 @@ createContactForm(): FormGroup {
       endDate : ['' , Validators.required],
       number_guests : [2 ],
       number_children: [0, Validators.required],
-      number_cin:['',Validators.required],
+      number_phone:['',Validators.required],
       number_adulte:[0, Validators.required],
       comment : [''],
       remarque : [''],
@@ -737,7 +737,7 @@ verifyRoomColor(roomName:any){
       this.roombackgroundColor = '#0cbacd66';
     }
     else if (roomName === 'Brecon'){
-      this.roombackgroundColor = '#fab409aB';
+      this.roombackgroundColor = '#ffe7acab';
     }
     else if (roomName === 'Bonnelli'){
       this.roombackgroundColor = '#633b084a';
@@ -809,7 +809,7 @@ addNewReservation(){
     status_reservation: "INITIALISER",    
     startDate : this.realStartTosent,
     endDate : realEnd,
-    number_cin:this.reservationChambreForm.get('number_cin').value,
+    number_phone:this.reservationChambreForm.get('number_phone').value,
     startFiltre:this.startFiltre,
     endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
     number_guests : 0,
@@ -864,7 +864,7 @@ addNewReservation(){
       status_reservation: "INITIALISER",    
       startDate : this.end,
       endDate : realEnd,
-      number_cin:this.reservationChambreForm.get('number_cin').value,
+      number_phone:this.reservationChambreForm.get('number_phone').value,
       startFiltre:this.endfiltreSearsh,
       endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
       number_guests : 0,

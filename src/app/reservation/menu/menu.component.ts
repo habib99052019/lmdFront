@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, ElementRef, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { reservationMenu } from "./menu.model";
@@ -99,13 +99,16 @@ export class MenuComponent implements OnInit {
     public dialog: MatDialog , 
     private service : ReservationServiceService ,
      private snackBar : MatSnackBar,
-    private modalService : NgbModal) {}
+    private modalService : NgbModal,
+    private changeDetectorRefs: ChangeDetectorRef) {}
   onSubmit() {}
 
   ngOnInit() {
     this.getMenuReservations()
     this.getMenus();
     this.getRooms();
+    console.log('list reserbation menus>>>',this.TableSourceData.data);
+    
   }
 
   ngAfterViewInit() {
@@ -142,6 +145,7 @@ search(term: string) {
   
 
 getMenuReservations(){
+  /*
     this.service.getReservationList().subscribe((data : any ) => {
         this.MenuReservationsList = data.filter(reservation => reservation.type === 'menu');
         this.service.getMenuList().subscribe((menus : any) =>{
@@ -165,13 +169,22 @@ getMenuReservations(){
                     }) 
                     this.filterData = this.reservationData
                     this.TableSourceData.data = this.reservationData
-                    console.log(this.TableSourceData)
+                    console.log(this.reservationData)
 
 
           })  
          })
         })
+    })*/
+
+    this.service.getListOfMenusReservation().subscribe((menusReservation:any) => {
+        console.log('menuReservation>>>', menusReservation);
+            this.filterData = menusReservation
+            this.TableSourceData.data = menusReservation
+           // this.getMenuReservations()
+          // this.changeDetectorRefs.detectChanges();
     })
+    
  }
 
 

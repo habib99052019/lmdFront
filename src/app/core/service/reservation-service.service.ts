@@ -57,4 +57,12 @@ export class ReservationServiceService {
     return this.http.put(this.ApiPath + 'reservations/' + id , data)
   }
 
+  addMenuReservation(data){
+    return this.http.post(this.ApiPath + 'reservations/menu' , data);
+  }
+
+  getListOfMenusReservation(){
+    return this.http.get(this.ApiPath + 'reservations/menus')
+  }
+
 }

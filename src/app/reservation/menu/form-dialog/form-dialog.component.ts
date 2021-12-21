@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { formatDate } from '@angular/common';
 
 
 
@@ -31,7 +32,7 @@ export class FormDialogComponent implements OnInit {
   dialogTitle: string;
   reservationMenuForm: FormGroup;
   reservationMenu: reservationMenu;
- // Menus : any;
+  Menus : any;
   //Chambres : any = []
   MenuPrice = 0;
   PriceTotal = 0 ;
@@ -219,7 +220,7 @@ export class FormDialogComponent implements OnInit {
 
 ]
 
-
+/*
   Menus = [
     {
           dessert: "Assiette de fruits de saison",
@@ -258,11 +259,21 @@ export class FormDialogComponent implements OnInit {
       _id: "615de1365f8924312bf7b29a"
     },
     
-  ]
+  ]*/
 
+ // toppings = new FormControl();
+  EntreeFeroidsList: any[] = [{name:'Salade tunisienne', price:12},
+                              {name:'Salade de capese', price:18},
+                              {name:'Salade méchouia', price:13},
+                              {name:'Salade niçoise', price:14},
+                              {name:'Salade César', price:18},
+                              {name:'Salade Dar ichkeul', price:14},
+                              {name:'Salade de saumon fumé', price:25},
+                            ];
+  selectedd: string[] = ['Select all']
   searchuser!: any[];
   users!: any[];
-
+  showview = false;
   constructor(
     private service : ReservationServiceService,
     public dialogRef: MatDialogRef<FormDialogComponent>,
@@ -276,14 +287,18 @@ export class FormDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+
+     console.log('topping>>>',this.selectedd);
+     
+
+
      if(this.user == undefined){
        this.user = '';
+       this.showview = true
+     }else{
+       this.showview = false;
      }
-    /*
-     this.filterdOptions = this.myControl.valueChanges.pipe(
-       startWith(''),
-       map(value => this._filter(value))
-     )*/
+    
      this.service.getUserList().subscribe((users:any[]) => {
       console.log('users>>>>',users);
       //this.users = users;
@@ -293,18 +308,15 @@ export class FormDialogComponent implements OnInit {
     this.getMenus();
   }
 
-/*
-  private _filter(value: string):any[]{
-    const filterValue = value.toLowerCase();
-    return this.users.filter((option:any) => 
-      option.first_name.toLowerCase().includes(filterValue))
-  }*/
 
 
   
   search(query:string)
   {
     console.log('query>>>',query);
+    if(query == ''){
+      this.showview = true
+    }
      this.searchuser = (query) ? this.users.filter( players =>
        players.first_name.toLowerCase().includes(query.toLowerCase()) ||
        players.last_name.toLowerCase().includes(query.toLowerCase()) 
@@ -315,11 +327,13 @@ export class FormDialogComponent implements OnInit {
 
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    console.log('event selected>>>',event.option.value._id);
-  
+    console.log('event selected>>>',event.option.value);
+
       this.user = event.option.value.first_name;
-   
-    
+      if(this.user != undefined){
+        this.showview = false
+      }
+     
   }
 
   ////////
@@ -336,7 +350,7 @@ export class FormDialogComponent implements OnInit {
   getMenus(){
     this.service.getMenuList().subscribe((data : any)=>{
       
-    // this.Menus = data
+     this.Menus = data
     })
   }
 
@@ -423,10 +437,22 @@ showMenu(event : MatSelectChange){
 
 
   createContactForm(): FormGroup {
+    console.log('this user from form>>>',this.user);
+    
     return this.fb.group({
       type : [ 'menu' ],
-      first_name : [ '' , Validators.required],
+      first_name : ['' , Validators.required],
       last_name : ['' , Validators.required],
+      first:['' , Validators.required],
+      number_phone:['' , Validators.required],
+      number_heure:['' , Validators.required],
+      roomName:[],
+      entree_froides:[],
+      entree_chaudes:[],
+      nos_specialite:[],
+      boissons:[],
+      pates:[],
+      desserts:[],
       roomID : [''],
       menuID : [''],
       startDate : ['' , Validators.required],
@@ -438,7 +464,9 @@ showMenu(event : MatSelectChange){
       extra : [''],
       price : [''],
     });
+  
   }
+   
   
   showRoom(event : MatSelectChange){
     console.log(event.value)
@@ -454,35 +482,41 @@ showMenu(event : MatSelectChange){
     this.dialogRef.close();
   }
   confirmAdd(): void {
+    console.log('toppings>>>',this.reservationMenuForm);
+    
     this.reservationMenuForm.get('roomID').value
    const reservationForm  = {
-    tarif : 'SINGLE_BAS_SAISON_PRICE' ,
     type : 'menu',
     status : this.reservationMenuForm.get('status').value,
-    extra : this.reservationMenuForm.get('extra').value,
     comment : this.reservationMenuForm.get('comment').value,
     price : this.PriceTotal,
     number_guests : this.reservationMenuForm.get('number_guests').value,
-    menuID : this.reservationMenuForm.get('menuID').value,
-    roomID : this.reservationMenuForm.get('roomID').value,
-    startDate : this.reservationMenuForm.get('startDate').value,
-    endDate : this.reservationMenuForm.get('startDate').value,
-    number_identity_document : this.reservationMenuForm.get('number_identity_document').value,
+    startDate  : formatDate(this.reservationMenuForm.get('startDate').value, 'yyyy-MM-dd', 'en') ,
     first_name : this.reservationMenuForm.get('first_name').value,
     last_name : this.reservationMenuForm.get('last_name').value,
-    client_ID:this.reservationMenuForm.get('client_ID').value,
+    number_phone : this.reservationMenuForm.get('number_phone').value,
+    menuID : this.reservationMenuForm.get('menuID').value,
+    number_heure: this.reservationMenuForm.get('number_heure').value
    }
    
    console.log('reservationForm>>>', reservationForm);
    
-   this.service.addReservation(reservationForm).subscribe((data : any) => {
+   this.service.addMenuReservation(reservationForm).subscribe((data : any) => {
      console.log(data)
-    // this.showNotification(
-    //   'snackbar-success',
-    //    data.message,
-    //   'top',
-    //   'end'
-    // );
+     this.showNotification(
+         'snackbar-success',
+          data.message,
+         'top',
+         'end'
+       );  
+  },err => {
+    console.log('err>>>',err);
+    this.showNotification(
+     'snackbar-danger',
+      err,
+     'top',
+     'end'
+   );
   })
     
   }
