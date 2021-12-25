@@ -24,6 +24,8 @@ import {DemoComponent} from './demo/component';
 import { ChambreReservationComponent } from './chambre-reservation/chambre-reservation.component';
 import { DialogreservationnInfosComponent } from './chambre-reservation/dialogreservationn-infos/dialogreservationn-infos.component';
 import { AddchambreReservationComponent } from './chambre-reservation/addchambre-reservation/addchambre-reservation.component';
+import { EditPersoMenuComponent } from './menu/edit-perso-menu/edit-perso-menu.component';
+import { EditFormDialogComponent } from './menu/edit-perso-menu/edit-form-dialog/edit-form-dialog.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -46,7 +48,9 @@ FullCalendarModule.registerPlugins([
     EditChambreReservationComponent,
     ChambreReservationComponent,
     DialogreservationnInfosComponent,
-    AddchambreReservationComponent
+    AddchambreReservationComponent,
+    EditPersoMenuComponent,
+    EditFormDialogComponent
   ],
   imports: [
     CommonModule,

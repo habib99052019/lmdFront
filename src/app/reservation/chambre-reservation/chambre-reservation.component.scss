@@ -1,71 +1,88 @@
 #e1{
-    background-color: #b7bdf04a;
+    background-color: #6D363A;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
-    padding-left: 20px;
-    margin-bottom: 5px;
+  
+    margin-bottom: 2px;
+    color: white;
+    font-family: 'HelveticaNeue';
+    padding: 5px;
   
     }
-    
+
     #e2{
-    background-color: #98ef9871;
+    background-color: #B88E8F;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
-    padding-left: 20px;
     margin-bottom: 5px;
+    color: white;
+    font-family: 'HelveticaNeue';
+    padding: 5px;
     }
     
     #e3{
-    background-color: #d1518a67;
+    background-color: #415F62;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
-    padding-left: 20px;
     margin-bottom: 5px;
+    color: white;
+    font-family: 'HelveticaNeue';
+    padding: 5px;
     }
     
     #e4{
-    background-color: #ead1dcff;
+    background-color: #7D4F52;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
-    padding-left: 20px;
     margin-bottom: 5px;
+    color: white;
+    font-family: 'HelveticaNeue';
+    padding: 5px;
     }
     
     #e5{
-    background-color: #ffe7acab;
+    background-color: #B88E8F;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
-    padding-left: 20px;
     margin-bottom: 5px;
+    color: white;
+    font-family: 'HelveticaNeue';
+    padding: 5px;
     }
     #e6{
-    background-color: #f4ff406e;
+    background-color: #9B6F71;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
-    padding-left: 20px;
     margin-bottom: 5px;
+    color: white;
+    font-family: 'HelveticaNeue';
+    padding: 5px;
     }
     #e7{
-    background-color: #0cbacd66;
+    background-color: #D57C7D;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
-    padding-left: 20px;
     margin-bottom: 5px;
+    color: white;
+    font-family: 'HelveticaNeue';
+    padding: 5px;
     }
     #e8{
-    background-color: #633b084a;
+    background-color: #628F93;
     display:inline-block;
     width: 90px;
     border-radius: 5px;
-    padding-left: 20px;
     margin-bottom: 5px;
+    color: white;
+    font-family: 'HelveticaNeue';
+    padding: 5px;
     }
 
     .min-calendar{
@@ -83,8 +100,8 @@ top:70px
 
 .fc.fc-button-primary {
 color: var(--fc-button-text-color,#fff) !important;
-background-color: #93c47dff !important;
-border-color: var(--fc-button-border-color,#93c47dff) !important;
+background-color: #1c4587ff !important;
+border-color: var(--fc-button-border-color,#1c4587ff) !important;
 }
 
 #dispo{
@@ -127,3 +144,5 @@ box-shadow: -8px 12px 18px 0 #dadee8;
     width: '1200px';
     height:'600px';
 }
+
+.fc-toolbar { text-transform: capitalize; }

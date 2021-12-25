@@ -15,47 +15,29 @@
     </div> -->
     <div>
         <form class="register-form m-4" [formGroup]="this.reservationMenuForm" (ngSubmit)="submit">
+          
            
-            <div class="col">
-                <form>
-                     <!---
-                   <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>selectUser</mat-label>
-                        <input matInput formControlName="client_ID" required>
-                        <mat-icon matSuffix>face</mat-icon>
-                        <mat-error *ngIf="reservationMenuForm.get('client_ID').hasError('required')">
-                            Nom est obligatoire
-                        </mat-error>
-                     </mat-form-field>
-                    -->
-
-                    <mat-form-field appearance="outline">
-                        <mat-label>selectionner un utilisateur</mat-label>
-                        <input matInput type="text" 
-                               [matAutocomplete]="auto"
-                                #query
-                                (keyup)="search(query.value)"
-                               
-                                [value]='this.user'
-                               >
-                               <mat-icon matSuffix>face</mat-icon>
-
-                        <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayFn" (optionSelected)="selected($event)">
-                            <mat-option *ngFor="let player of searchuser" [value]="player">
-                                {{player.first_name}}
-                                {{player.number_cin}}
-                            </mat-option>
-
-                        </mat-autocomplete>
-                    </mat-form-field>
-                     
-                </form>
+            <div style="display: flex; margin-bottom: 10px;">
+                         <h1 style="font-size: 15px; color: rgb(75, 74, 77);cursor: pointer ;"
+                           
+                            [ngClass]="{'underline':isUnderline, '': false}"
+                            (click)="changeStandardView()"
+                            >Menu Standard
+                        </h1>
               
-            </div>
-           
-           <div *ngIf="showview; else otherView">
+              
+              <h1 style="font-size: 15px; color: rgb(75, 74, 77);
+                           margin-bottom: 15px; margin-left: 30px; cursor: pointer;"
+                           [ngClass]="{'underline':!isUnderline, '': false}"
+                           (click)="changePersoView()"
+                           >Menu Personnalisé</h1>
 
-            <p>Menu Standard</p>
+             </div>
+
+
+           <div *ngIf="showview; else otherView">
+             
+           
             <div class="row">
                 
                 <!---------------------------->
@@ -130,7 +112,7 @@
                 <div class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
                         <mat-label>l'heure</mat-label>
-                        <input matInput formControlName="number_heure" type="time" [min]="1" (change)="re_calculTotal($event)">
+                        <input matInput formControlName="number_heure" type="time" >
                         
                     </mat-form-field>
                 </div>
@@ -178,9 +160,22 @@
               
          
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <mat-form-field class="example-full-width " appearance="outline">
-                        <mat-label>Commentaire</mat-label>
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                    <mat-form-field class="example-full-width mb-1" appearance="outline">
+                        <mat-label>Choix entrées</mat-label>
+                        <mat-select formControlName="entreSta" (selectionChange)="showMenuStandard($event)">
+                            <mat-option *ngFor="let menu of this.RepasStandardTypeList" [value]="menu">
+                                {{menu}}
+                            </mat-option>
+                        </mat-select>
+
+                    </mat-form-field>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" style="font-size: 8px"  >
+                    <mat-form-field class="example-full-width"  appearance="outline">
+                        <mat-label style="font-size: 12px;">Commentaire</mat-label>
                         <textarea matInput formControlName="comment"></textarea>
                     </mat-form-field>
                </div>
@@ -239,22 +234,51 @@
             </div>
 
             <ng-template #otherView>
-                <p>Menu Personnalisé</p>
+                <!---
+                
+                -->
                 <div class="row">
                 
                     <!---------------------------->
+
+                     
+                    <div class="col">
+                        <form>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>selectionner un utilisateur</mat-label>
+                                <input matInput type="text" 
+                                    [matAutocomplete]="auto"
+                                        #query
+                                        (keyup)="search(query.value)"
+                                    
+                                        [value]='this.user'
+                                    >
+                                    <mat-icon matSuffix>face</mat-icon>
+
+                                <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayFn" (optionSelected)="selected($event)">
+                                    <mat-option *ngFor="let user of searchuser" [value]="user">
+                                        {{user.clientID.first_name}}
+                                        {{user.clientID.number_phone}}
+                                    </mat-option>
+
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            
+                        </form>
+                    
+                    </div>
                     <div class="col">
                         <mat-form-field class="example-full-width mb-1" appearance="outline">
                             <mat-label>chambre</mat-label>
-                            <input matInput formControlName="roomName">
-                            <mat-error *ngIf="reservationMenuForm.get('roomName').hasError('required')">
-                                chambre est obligatoire
-                            </mat-error>
+                            <input matInput  type="text"  [value]='roomName'>
+                             
+                    
                         </mat-form-field>
                     </div>
                     <div class="col">
                         <mat-form-field  class="example-full-width mb-1"   appearance="outline">
-                            <mat-select placeholder="Entrées froides" formControlName="entree_froides" multiple>
+                            <mat-select placeholder="Entrées froides" formControlName="entree_froides"  (selectionChange)="calculTarifPersoMenu($event)"      multiple>
                               <mat-option *ngFor="let feroids of EntreeFeroidsList" [value]="feroids">
                                   {{feroids.name}} : {{feroids.price}}DT
                                 </mat-option>
@@ -263,45 +287,56 @@
                     </div>
                     <div class="col">
                         <mat-form-field  class="example-full-width mb-1"   appearance="outline">
-                            <mat-select placeholder="Entrées chaudes" formControlName="entree_chaudes" multiple >
-                              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                            <mat-select placeholder="Entrées chaudes" formControlName="entree_chaudes"  (selectionChange)="calculTarifPersoMenu($event)"    multiple >
+                              <mat-option *ngFor="let chaudes of EntreeChaudesList" [value]="chaudes">
+                                  {{chaudes.name}} : {{chaudes.price}}DT
+                            </mat-option>
                             </mat-select>
                           </mat-form-field>
+                   
                     </div>
-                    <div class="col">
-                        <mat-form-field  class="example-full-width mb-1"    appearance="outline">
-                            <mat-select placeholder="Nos spécialités" formControlName="nos_specialite" multiple >
-                              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                    </div>
+
     
                   
                     <!-------------->
                 </div>
                 <div class="row">
-    
+                    <div class="col">
+                        <mat-form-field  class="example-full-width mb-1"    appearance="outline">
+                            <mat-select placeholder="Nos spécialités" formControlName="nos_specialite"   (selectionChange)="calculTarifPersoMenu($event)"          multiple >
+                              <mat-option *ngFor="let specialistes of NosSpecialistesList" [value]="specialistes">
+                                  {{specialistes.name}}: {{specialistes.price}}DT
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
                    
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
                         <mat-form-field  class="example-full-width mb-1"     appearance="outline">
-                            <mat-select placeholder="Pàtes" formControlName="pates" multiple >
-                              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                            <mat-select placeholder="Pàtes" formControlName="pates" multiple  (selectionChange)="calculTarifPersoMenu($event)"   >
+                              <mat-option *ngFor="let pates of  PatesList" [value]="pates">
+                                  {{pates.name}} : {{pates.price}}DT
+                             </mat-option>
                             </mat-select>
                           </mat-form-field>
                     </div>
     
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
                         <mat-form-field   class="example-full-width mb-1"     appearance="outline">
-                            <mat-select placeholder="Boissons" formControlName="boissons" multiple >
-                              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                            <mat-select placeholder="Boissons" formControlName="boissons" multiple  (selectionChange)="calculTarifPersoMenu($event)" >
+                              <mat-option *ngFor="let boissons of BoissonsList" [value]="boissons">
+                                  {{boissons.name}} : {{boissons.price}}DT
+                              </mat-option>
                             </mat-select>
                           </mat-form-field>
                     </div>
                   
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
                         <mat-form-field  class="example-full-width mb-1"    appearance="outline">
-                            <mat-select placeholder="Desserts" formControlName="desserts" multiple >
-                              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                            <mat-select placeholder="Desserts" formControlName="desserts" multiple  (selectionChange)="calculTarifPersoMenu($event)"    >
+                              <mat-option *ngFor="let desserts of DessertsList" [value]="desserts">
+                                  {{desserts.name}} : {{desserts.price}}DT
+                             </mat-option>
                             </mat-select>
                           </mat-form-field>
                     </div>
@@ -309,70 +344,64 @@
     
                 </div>
     
-                <div class="row " *ngIf="showMenuDetails">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body bg-gray text-white text-capitalize">
-                                <div class="col-md-12 m-2">
-                                    Entrée : {{ entree}}
-                                </div>
-                                <div class="col-md-12 m-2">
-                                    Suite : {{suite}}
-                                </div>
-                                <div class="col-md-12 m-2">
-                                    Dessert : {{dessert}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                </div>
-                  
              
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <mat-form-field class="example-full-width " appearance="outline">
-                            <mat-label>Commentaire</mat-label>
+
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width mb-1" appearance="outline">
+                            <mat-label>Choix entrées</mat-label>
+                            <mat-select formControlName="entrePerso" (selectionChange)="showMenuPerso($event)">
+                                <mat-option *ngFor="let menu of this.RepasPersoTypeList" [value]="menu">
+                                    {{menu}}
+                                </mat-option>
+                            </mat-select>
+    
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" style="font-size: 8px"  >
+                        <mat-form-field class="example-full-width"  appearance="outline">
+                            <mat-label style="font-size: 12px;">Commentaire</mat-label>
                             <textarea matInput formControlName="comment"></textarea>
                         </mat-form-field>
                    </div>
                 </div>
-              
-    
-                <div style="display: flex; flex-direction:row; justify-content:end;">
-                    <div>
-                        <button mat-icon-button color="warn" (click)="removeFromTotal('Soda')" [disabled]="this.sodaPrice === 0">
-                            <mat-icon>remove</mat-icon>
-                          </button> Soda
-                        <button mat-icon-button color="primary" (click)="addToTotal('Soda')">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
-                    <div>
-                        <button mat-icon-button color="warn" (click)="removeFromTotal('Eau')" [disabled]="this.EauPrice === 0">
-                            <mat-icon>remove</mat-icon>
-                          </button> Eau
-                        <button mat-icon-button color="primary" (click)="addToTotal('Eau')">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
-                </div>
+                   
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body bg-gray text-white text-capitalize">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <p>prix Menu : {{this.MenuPrice}} * {{this.reservationMenuForm.get('number_guests').value}}</p>
-                                    </div>
-                                    <div *ngIf="this.EauPrice !== 0" class="col-md-12">
-                                        <p>Eau : {{this.EauPrice }} Dt</p>
-                                    </div>
-                                    <div *ngIf="this.sodaPrice !== 0" class="col-md-12">
-                                        <p>Soda : {{this.sodaPrice }} Dt</p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <p>Total : {{this.PriceTotal}} Dt </p>
+                                    
+                                    
+                                      <div class="row">
+                                        <div class="col-8">
+                                             <div>
+                                               <mat-card class="bg-gray text-white">
+                                                 <mat-card-header>
+                                                    <mat-card-title style="margin-left: -22px;">Menu :</mat-card-title>
+                                                 </mat-card-header>
+                                                 <mat-card-content>
+                                                    <mat-list class="inline-list">
+                                                       <mat-list-item *ngFor="let menu of listOfTarifNames"> 
+                                                          <span style="color:rgb(255, 255, 255);
+                                                          margin-top: 20px; margin-bottom: 20px;
+                                                          width: 190px;">{{menu}} </span> 
+                                                        </mat-list-item>
+                                                     </mat-list>
+                                                  </mat-card-content>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                     </div>
+                                    
+                                    
+                            
+                                    
+                                  
+                    
+                                    <div class="col-md-12 mt-3">
+                                        <p>Total : {{totalePersoMenuPrice}} Dt </p>
                                     </div>
                                 </div>
                             </div>
@@ -388,6 +417,7 @@
                             <button  style="margin-left:10px"    mat-raised-button color="primary" [type]="submit" [mat-dialog-close]="1"  (click)="confirmAdd()">Reservé</button>
                         </div>
                     </div>
+                   
             </ng-template>
         </form>
     </div>

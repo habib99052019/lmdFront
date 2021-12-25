@@ -80,10 +80,11 @@ initfullcalendar = () => {
        titleFormat: { // will produce something like "Tuesday, September 18, 2018"
          year: 'numeric',
          month: 'short',
-         day: 'numeric'
+         day: 'numeric',
+         
        },
        dayHeaderFormat: {//set dayHeaderFormat setting
-         weekday: 'long',
+         weekday: 'short',
          day: 'numeric',
          month: 'short',
      
@@ -97,14 +98,14 @@ initfullcalendar = () => {
        eventColor: 'rgb(205, 241, 255)',//add color for all events
        eventTextColor: 'black',//set text color for all events
        firstDay: 1,//start with monday
-       selectable: true,//enable selecting
+       selectable: false,//enable selecting
        buttonText: {// enable change buttonText names
          today: 'Aujourd\'hui',
          month: 'Mois',
          dayGridWeek: 'Cette semaine',
          list: 'Cette semaine',
-         next: 'suivant',
-         prev: 'Précédente'
+         next: '',
+         prev: ''
  
        },
        droppable: true,//enable drag and ddrop
@@ -124,20 +125,17 @@ initfullcalendar = () => {
       if (arg.event) {
         italicEl.innerHTML = `
        
-        <div style="background-color:${arg.event._def.extendedProps.roomID.other};box-shadow: -4px 1px 14px 1px rgba(0,0,0,0.28);
-        -webkit-box-shadow: -4px 1px 14px 1px rgba(0,0,0,0.28);
-        -moz-box-shadow: -4px 1px 14px 1px rgba(0,0,0,0.28); display:flex;flex-direction: column;width:100%; height:50px">
+        <div style="background-color:${arg.event._def.extendedProps.roomID.other}; display:flex;flex-direction: column;width:100%; height:50px; border-left: 5px solid ${arg.event._def.extendedProps.roomID.backgroundColor}">
           
            <div style="justify-content: space-between ; display:flex;height:20px">
 
-                 <div style="width: 10px; height: 10px;border-radius: 20px;background-color: ${arg.event._def.extendedProps.roomID.backgroundColor};">
-                 </div>
+                 
 
-                 <p style="width:35px;height:10px; border-radius:8px;font-size:8px; margin-top:5px;padding-left:5px;padding-bottom:5px">${arg.event._def.extendedProps.roomID.name}</p>
+                 <p style="width:35px;height:10px; border-radius:8px;font-size:8px; margin-top:5px;padding-left:5px;padding-bottom:5px;color:white;font-family: Roboto">${arg.event._def.extendedProps.roomID.name}</p>
                
                  <div style="margin-right:5px;">
                    
-                    <span  style="color:gray; font-size:12px"   class="material-icons">date_range</span>
+                    <span  style="color:white; font-size:12px"   class="material-icons">date_range</span>
             
                  </div> 
 
@@ -147,24 +145,24 @@ initfullcalendar = () => {
            <div style="justify-content: space-between ; display:flex;">
                 
                 <div style="display:flex;flex-direction:row ;">
-                    <span  style="margin-top:12px;color:gray;font-size:12px"    class="material-icons">person</span>
-                    <p style="margin-top:11px; color:gray;font-size:10px">${arg.event._def.extendedProps.number_persons}</p>
-                    <span  style="margin-top:12px;color:gray;font-size:12px;margin-left:8px"    class="material-icons">watch_later</span>
-                    <p style="margin-top:11px; color:gray;font-size:10px">${arg.event._def.extendedProps.number_days}</p>
+                    <span  style="margin-top:16px;color:white;font-size:12px"    class="material-icons">person</span>
+                    <p style="margin-top:16px; color:white;font-size:10px;font-family: Roboto">${arg.event._def.extendedProps.number_persons}</p>
+                    <span  style="margin-top:17px;color:white;font-size:11px;margin-left:2px"    class="material-icons">brightness_3</span>
+                    <p style="margin-top:16px; color:white;font-size:10px;font-family: Roboto">${arg.event._def.extendedProps.number_days}</p>
                 </div>
               
 
-                <div style="display:flex;flex-direction:column; margin-bottom:50px">
+                <div style="display:flex;flex-direction:column; margin-bottom:190px">
                   
           
-                   <span style="font-family: Times New Roman, Times, serif; font-size:10px">${(arg.event._instance.range.start).toLocaleDateString('locales', { weekday:"long", year:"numeric", month:"short", day:"numeric",hour:"numeric"})}</span>
+                   <span style="font-family: Roboto; font-size:10px;color:white">${(arg.event._instance.range.start).toLocaleDateString('locales', { day:"numeric",hour:"numeric"})}</span>
             
-                   <span style="font-family: Times New Roman, Times, serif; font-size:10px " > ${(arg.event._instance.range.end).toLocaleDateString('locales', { weekday:"long", year:"numeric", month:"short", day:"numeric",hour:"numeric"})}</span>
+                   <span style="font-family: Roboto; serif; font-size:10px ;margin-bottom:120px;color:white" > ${(arg.event._instance.range.end).toLocaleDateString('locales', {day:"numeric",hour:"numeric"})}</span>
                 </div>
 
 
                 <div style="display:flex;flex-direction:column">
-                    <p style="margin-top:5px; margin-right:5px;font-family: Times New Roman, Times, serif;font-size:9px ">${arg.event._def.extendedProps.clientID.first_name} <br> ${arg.event._def.extendedProps.clientID.last_name} </p>
+                    <p style="margin-top:5px; margin-right:1px;font-family: Roboto;font-size:9px;color:white">${arg.event._def.extendedProps.clientID.first_name} <br> ${arg.event._def.extendedProps.clientID.last_name} </p>
                    
                  </div>
            
@@ -271,7 +269,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
 
 
 handleEventClick(clickInfo: EventClickArg) {
-      console.log('item>>>', clickInfo.event.extendedProps.clientID.number_cin)
+      console.log('item>>>', clickInfo.event.extendedProps)
       if(clickInfo.event.extendedProps.roomID.DOUBLE_BAS_SAISON_PRICE){
           this.roomType = "double"
       }
@@ -320,7 +318,7 @@ handleEventClick(clickInfo: EventClickArg) {
           tarifType: clickInfo.event.extendedProps.tarifType,
           roomType:this.roomType,
           remark:clickInfo.event.extendedProps.remark,
-          number_cin:clickInfo.event.extendedProps.clientID.number_cin
+          number_phone:clickInfo.event.extendedProps.clientID.number_phone
         }
       });
     
@@ -430,30 +428,31 @@ numberPersons(nba: number, nbc:number){
 
 verifyRoomColor(roomName:any){
   if (roomName === 'Ruppia'){
-    this.roombackgroundColor = '#b7bdf04a';
+    this.roombackgroundColor = '#6D363A';
 }
 else if(roomName === 'Marabou'){
-    this.roombackgroundColor = '#ead1dcff';
+    this.roombackgroundColor = '#7D4F52';
 }
 else if(roomName === 'Colony'){
-     this.roombackgroundColor = '#f4ff406e';
+     this.roombackgroundColor = '#9B6F71';
 }
 else if (roomName === 'Ciconia'){
-     this.roombackgroundColor = '#98ef9871';
+     this.roombackgroundColor = '#B88E8F';
 }
 else if (roomName === 'Cicogne'){
-  this.roombackgroundColor = '#0cbacd66';
+  this.roombackgroundColor = '#D57C7D';
 }
 else if (roomName === 'Brecon'){
-  this.roombackgroundColor = '#fab409aB';
+  this.roombackgroundColor = '#628F93';
 }
 else if (roomName === 'Bonnelli'){
-  this.roombackgroundColor = '#633b084a';
+  this.roombackgroundColor = '#415F62';
 }
 else if (roomName === 'Amorpha'){
-  this.roombackgroundColor = '#d1518a67';
+  this.roombackgroundColor = '#739296';
+}else{
+  this.roombackgroundColor = '#B98166'
 }
-
 
 }
 

@@ -1,0 +1,95 @@
+<div class="col-md-12 mb-5">
+    <div class="tabbable-line">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <div class="materialTableHeader">
+                                <div class="row w-100">
+
+                                    <div class="col-md-10">
+                                        <ul class="header-buttons-left ">
+                                            <!--
+                                              <li>
+                                                <button mat-raised-button color="primary" (click)="addNew()">Réserver</button>
+                                            </li>  
+                                            -->
+                                            
+                                            <li class="dropdown m-l-20 m-r-20">
+                                                <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                                                <input style="cursor: pointer;" placeholder="Search" type="text" class="browser-default search-field" aria-label="Search box" (keyup)='search($event.target.value)'>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <mat-table #table [dataSource]="this.DataPersoMenu" matSort class="mat-cell" >
+                                <!-- Checkbox Column -->
+
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="Client">
+                                    <mat-header-cell *matHeaderCellDef>Client
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.clientID.first_name}} {{row.clientID.last_name}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="startDate">
+                                    <mat-header-cell mat-header-cell *matHeaderCellDef>date prévue
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.startFiltre}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="name">
+                                    <mat-header-cell *matHeaderCellDef>Menu
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">Personnalisé</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="RoomName">
+                                    <mat-header-cell *matHeaderCellDef>Type de repas
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.listmenuID[0].typeRepas}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="price">
+                                    <mat-header-cell *matHeaderCellDef>Prix
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.listmenuID[0].price}} DT</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="status">
+                                    <mat-header-cell *matHeaderCellDef>Chambre
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.roomName}}</mat-cell>
+                                </ng-container>
+                                <!-- actions -->
+                                <ng-container matColumnDef="Actions">
+                                    <mat-header-cell class="pr-0" *matHeaderCellDef>Actions
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
+                                        <button mat-icon-button color="accent" class="btn-tbl-edit" (click)="openEditModal(row)">
+                                      <mat-icon aria-label="Edit" class="col-white">edit
+                                      </mat-icon>
+                                    </button>
+                                        <button mat-icon-button color="accent" class="btn-tbl-delete" (click)="deleteSingleRow(row) ">
+                                      <mat-icon aria-label="Delete" class="col-white">delete
+                                      </mat-icon>
+                                    </button>
+                                    </mat-cell>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="displayedColumns">
+                                </mat-header-row>
+                                <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+                                <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple>
+                                </mat-row>
+                            </mat-table>
+                            <!-- <div class="no-results" [style.display]="this.TableSourceData?.length == 0 ? '' : 'none'">
+                                No results
+                            </div> -->
+                            <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

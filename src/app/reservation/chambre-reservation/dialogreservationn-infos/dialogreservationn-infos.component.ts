@@ -200,7 +200,7 @@ export class DialogreservationnInfosComponent implements OnInit {
   status_room = 0;
   selected = 0;
   reservation_ID = '';
-  number_cin='';
+  number_phone='';
   showMenuDetails = true;
   minDate : any ;
   maxDate : any ;
@@ -275,7 +275,7 @@ ngOnInit(): void {
     this.extra = this.data['extra']
     this.tarifType = this.data['tarifType']
     this.remark = this.data['remark']
-    this.number_cin = this.data['number_cin']
+    this.number_phone = this.data['number_phone']
     console.log('roomtype>>>',this.data['roomType']);
     
     

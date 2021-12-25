@@ -1,3 +1,7 @@
+
+<!---
+-->
+
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
@@ -19,7 +23,41 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+
+           <!--------------->
+            <div style="display: flex;flex-direction:row; justify-content: space-between;">
+                <div class="row">
+                     <div style="display: flex;margin-left: 20px; align-self: center;">
+                        <h1 style="font-size: 15px; color: rgb(75, 74, 77);cursor: pointer ;"
+                          
+                           [ngClass]="{'underline':isUnderline, '': false}"
+                           (click)="changeStandardView()"
+                           >Menu Standard
+                       </h1>
+             
+             
+                        <h1 style="font-size: 15px; color: rgb(75, 74, 77);
+                          margin-bottom: 15px; margin-left: 35px; cursor: pointer;"
+                          [ngClass]="{'underline':!isUnderline, '': false}"
+                           (click)="assignComponent('cow')"
+                          >Menu Personnalisé</h1>
+
+                       </div>
+
+                </div>
+                <div style="margin-bottom:12px;margin-right:10px;">
+                    <button mat-raised-button  style="background-color: #1c4587ff ;color:white;"  (click)="addNew()">Réserver</button>
+
+                </div>
+
+            </div>
+           
+           <!--------------->
+
+        <div>
+             <h1><ng-container *ngComponentOutlet="dummyComponent"></ng-container></h1>
+        </div>
+        <div class="col-md-12 mb-5"  *ngIf="showview; else otherView">
             <div class="tabbable-line">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -31,12 +69,15 @@
 
                                             <div class="col-md-10">
                                                 <ul class="header-buttons-left ">
-                                                    <li>
+                                                    <!--
+                                                      <li>
                                                         <button mat-raised-button color="primary" (click)="addNew()">Réserver</button>
-                                                    </li>
+                                                    </li>  
+                                                    -->
+                                                    
                                                     <li class="dropdown m-l-20 m-r-20">
                                                         <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                                                        <input placeholder="Search" type="text" class="browser-default search-field" aria-label="Search box" (keyup)='search($event.target.value)'>
+                                                        <input  style="cursor: pointer;"   placeholder="Search" type="text" class="browser-default search-field" aria-label="Search box" (keyup)='search($event.target.value)'>
                                                     </li>
 
                                                 </ul>
@@ -44,7 +85,7 @@
 
                                         </div>
                                     </div>
-                                    <mat-table #table [dataSource]="this.TableSourceData" matSort class="mat-cell">
+                                    <mat-table #table [dataSource]="this.TableSourceData" matSort class="mat-cell" >
                                         <!-- Checkbox Column -->
 
                                         <!-- ID Column -->
@@ -64,9 +105,9 @@
                                             <mat-cell *matCellDef="let row">{{row.menuID.name}}</mat-cell>
                                         </ng-container>
                                         <ng-container matColumnDef="RoomName">
-                                            <mat-header-cell *matHeaderCellDef>Chambre
+                                            <mat-header-cell *matHeaderCellDef>Type de repas
                                             </mat-header-cell>
-                                            <mat-cell *matCellDef="let row">{{row.RoomName}}</mat-cell>
+                                            <mat-cell *matCellDef="let row">{{row.typeRepas}}</mat-cell>
                                         </ng-container>
                                         <ng-container matColumnDef="price">
                                             <mat-header-cell *matHeaderCellDef>Prix
@@ -111,23 +152,124 @@
                 </div>
             </div>
         </div>
+
+          
+       <!---Template for personnalisé menu-->
+
+       <ng-template #otherView>
+          <!--
+                 <div class="tabbable-line">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <div class="materialTableHeader">
+                                    <div class="row w-100">
+
+                                        <div class="col-md-10">
+                                            <ul class="header-buttons-left ">
+                                              
+                                                  <li>
+                                                    <button mat-raised-button color="primary" (click)="addNew()">Réserver</button>
+                                                </li>  
+                                            
+                                                
+                                                <li class="dropdown m-l-20 m-r-20">
+                                                    <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                                                    <input placeholder="Search" type="text" class="browser-default search-field" aria-label="Search box" (keyup)='search($event.target.value)'>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <mat-table #table [dataSource]="this.dataSource2" matSort class="mat-cell">
+                                   
+                                    <ng-container matColumnDef="Client">
+                                        <mat-header-cell *matHeaderCellDef>Client
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.clientID.first_name}} {{row.clientID.last_name}}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="startDate">
+                                        <mat-header-cell mat-header-cell *matHeaderCellDef>date prévue
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.startFiltre}}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="name">
+                                        <mat-header-cell *matHeaderCellDef>Menu
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">Personnalisé</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="RoomName">
+                                        <mat-header-cell *matHeaderCellDef>Type de repas
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.listmenuID[0].typeMeal}}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="price">
+                                        <mat-header-cell *matHeaderCellDef>Prix
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.listmenuID[0].price}} DT</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="status">
+                                        <mat-header-cell *matHeaderCellDef>Chambre
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">{{row.roomName}}</mat-cell>
+                                    </ng-container>
+                                 
+                                    <ng-container matColumnDef="Actions">
+                                        <mat-header-cell class="pr-0" *matHeaderCellDef>Actions
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
+                                            <button mat-icon-button color="accent" class="btn-tbl-edit" (click)="openEditModal(row)">
+                                          <mat-icon aria-label="Edit" class="col-white">edit
+                                          </mat-icon>
+                                        </button>
+                                            <button mat-icon-button color="accent" class="btn-tbl-delete" (click)="deleteSingleRow(row) ">
+                                          <mat-icon aria-label="Delete" class="col-white">delete
+                                          </mat-icon>
+                                        </button>
+                                        </mat-cell>
+                                    </ng-container>
+                                    <mat-header-row *matHeaderRowDef="displayedColumns">
+                                    </mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple>
+                                    </mat-row>
+                                </mat-table>
+                              
+                                <mat-paginator #paginator2 [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+                                </mat-paginator>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+          -->
+    
+       </ng-template>
+
+      <!--- end Template for personnalisé menu--> 
+
+
+
+
     </div>
 </section>
 
 
 
+
+
+
+<!----Teplate to edit menu standard table-->
 <ng-template #editModal mat-dialog-content let-modal class="modal">
    
         <form class="register-form m-4" [formGroup]="this.reservationMenuEditForm" (ngSubmit)="submit">
             <div class="row">
-                <div class="col">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Nom</mat-label>
-                        <input matInput formControlName="first_name">
-                        <mat-icon matSuffix>face</mat-icon>
-
-                    </mat-form-field>
-                </div>
+                
                 <div class="col">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Nom</mat-label>
@@ -145,11 +287,24 @@
                     </mat-form-field>
                 </div>
                 <div class="col">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-form-field class="example-full-width mb-1" appearance="outline">
+                        <mat-label>Numéro de téléphone</mat-label>
+                        <input matInput formControlName="number_phone">
+                        <mat-icon matSuffix>phone</mat-icon>
+                    </mat-form-field>
+                </div>
+
+
+
+                <div class="col">
+                    <mat-form-field class="example-full-width mb-1" appearance="outline">
                         <mat-label>Menu</mat-label>
-                        <mat-select formControlName="menuID" required (selectionChange)="showMenu($event)">
-                            <mat-option *ngFor="let menu of this.Menus" [value]="menu"> {{menu.name}} {{menu.price}} Dt</mat-option>
+                        <mat-select formControlName="menuID" (selectionChange)="showMenu($event)">
+                            <mat-option *ngFor="let menu of this.Menus" [value]="menu.name">
+                                {{menu.name}} : {{menu.price}} Dt
+                            </mat-option>
                         </mat-select>
+
                     </mat-form-field>
                 </div>
             </div>
@@ -163,24 +318,24 @@
                     </mat-form-field>
                 </div>
 
+            
                 <div class="col">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-form-field class="example-full-width mb-1" appearance="outline">
                         <mat-label>date prevue</mat-label>
                         <input matInput [matDatepicker]="picker" formControlName="startDate" [min]="today">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
-
+    
                     </mat-form-field>
                 </div>
                 <div class="col">
-                    <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Chambre</mat-label>
-                        <mat-select formControlName="roomID">
-                            <mat-option *ngFor="let chambre of this.Chambres" [value]='chambre._id'> {{chambre.name}}</mat-option>
-                        </mat-select>
-
+                    <mat-form-field class="example-full-width mb-1" appearance="outline">
+                        <mat-label>l'heure</mat-label>
+                        <input matInput formControlName="number_heure" type="time" >
+                        
                     </mat-form-field>
                 </div>
+               
                 <div class="col">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Status</mat-label>
@@ -199,6 +354,8 @@
 
                     </mat-form-field>
                 </div>
+
+
             </div>
 
             <div class="row " *ngIf="showMenuDetails">
@@ -223,12 +380,24 @@
                
             
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <mat-form-field class="example-full-width " appearance="outline">
-                        <mat-label>Commentaire</mat-label>
-                        <textarea matInput formControlName="comment"></textarea>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                    <mat-form-field class="example-full-width mb-1" appearance="outline">
+                        <mat-label>Type de repas</mat-label>
+                        <mat-select formControlName="entreSta" (selectionChange)="showMenuStandard($event)">
+                            <mat-option *ngFor="let menu of this.RepasStandardTypeList" [value]="menu">
+                                {{menu}}
+                            </mat-option>
+                        </mat-select>
+
                     </mat-form-field>
                 </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" style="font-size: 8px"  >
+                    <mat-form-field class="example-full-width"  appearance="outline">
+                        <mat-label style="font-size: 12px;">Commentaire</mat-label>
+                        <textarea matInput formControlName="comment"></textarea>
+                    </mat-form-field>
+               </div>
+
             </div>
             <div style="display: flex; flex-direction:row; justify-content:end;">
                 <div>
@@ -254,7 +423,7 @@
                         <div class="card-body bg-gray text-white text-capitalize">
                             <div class="row">
                                 <div class="col-md-12" *ngIf="this.MenuPrice !== 0">
-                                    <p>prix Menu : {{this.MenuPrice}} * {{this.reservationMenuEditForm.get('number_guests').value}}</p>
+                                    <p>prix Menu : {{this.MenuPrice}} * {{this.number_geuste}}</p>
                                 </div>
                                 <div *ngIf="this.EauPrice !== 0" class="col-md-12">
                                     <p>Eau {{this.EauPrice }} Dt</p>
@@ -274,7 +443,7 @@
                 <div style="display: flex; flex-direction:row; justify-content:end;">
                     <div>
                         <!--[disabled]="!reservationMenuEditForm.valid"-->
-                        <button mat-raised-button color="basic" tabindex="-1" (click)="closeModal()">Annuler</button>
+                        <button mat-raised-button color="warn" tabindex="-1" (click)="closeModal()">Annuler</button>
                         <button style="margin-left:10px"    mat-raised-button color="primary" [type]="submit"  (click)="updateReservation()">Confirmer</button>
 
                     </div>
@@ -283,3 +452,4 @@
         </form>
     
 </ng-template>
+<!-----End Teplate to edit menu standard table------>

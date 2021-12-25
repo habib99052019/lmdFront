@@ -271,7 +271,7 @@ createContactForm(): FormGroup {
       endDate : ['' , Validators.required],
       number_guests : [2 ],
       number_children: [0, Validators.required],
-      number_phone:['',Validators.required],
+      number_phone:[,Validators.required],
       number_adulte:[0, Validators.required],
       comment : [''],
       remarque : [''],
@@ -722,31 +722,34 @@ verifyRoomColor(roomName:any){
   console.log('roomname verify>>>', roomName);
   
     if (roomName === 'Ruppia'){
-        this.roombackgroundColor = '#b7bdf04a';
+        this.roombackgroundColor = '#6D363A';
     }
     else if(roomName === 'Marabou'){
-        this.roombackgroundColor = '#ead1dcff';
+        this.roombackgroundColor = '#7D4F52';
     }
     else if(roomName === 'Colony'){
-         this.roombackgroundColor = '#f4ff406e';
+         this.roombackgroundColor = '#9B6F71';
     }
     else if (roomName === 'Ciconia'){
-         this.roombackgroundColor = '#98ef9871';
+         this.roombackgroundColor = '#B88E8F';
     }
     else if (roomName === 'Cicogne'){
-      this.roombackgroundColor = '#0cbacd66';
+      this.roombackgroundColor = '#D57C7D';
     }
     else if (roomName === 'Brecon'){
-      this.roombackgroundColor = '#ffe7acab';
+      this.roombackgroundColor = '#628F93';
     }
     else if (roomName === 'Bonnelli'){
-      this.roombackgroundColor = '#633b084a';
+      this.roombackgroundColor = '#415F62';
     }
     else if (roomName === 'Amorpha'){
-      this.roombackgroundColor = '#d1518a67';
+      this.roombackgroundColor = '#739296';
+    }else{
+      this.roombackgroundColor = '#B98166'
     }
 
-
+   
+  
 }
 
 re_calculTotal(event: any){

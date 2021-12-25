@@ -59,7 +59,7 @@
                                <mat-form-field   class="example-full-width" appearance="outline">
                                   <mat-label>Chambre</mat-label>
                                   <mat-select  [(ngModel)]="data.title" name="title" required>
-                                      <mat-option *ngFor="let chambre of this.Chambres" [value]=chambre.name   >
+                                      <mat-option *ngFor="let chambre of this.Chambres" [value]=chambre.name>
                                           {{chambre.name}}
                                       </mat-option>
                                   </mat-select>
@@ -70,8 +70,8 @@
                           <div class="col">
                             <form>
                               <mat-form-field class="example-full-width mb-3" appearance="outline">
-                                <mat-label>numéro CIN</mat-label>
-                                <input matInput  [(ngModel)]="data.number_cin"  name="number_cin" type="number" [min]="8"  required>
+                                <mat-label>numéro de téléphone</mat-label>
+                                <input matInput  [(ngModel)]="data.number_phone"  name="number_phone" type="number" [min]="8"  required>
                     
                               </mat-form-field>
                             </form>

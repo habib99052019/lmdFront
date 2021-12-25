@@ -11,14 +11,14 @@
 //
 .fc .fc-button-primary {
     color: var(--fc-button-text-color,#fff) !important;
-    background-color: #64686a6f !important;
-    border-color: var(--fc-button-border-color,#64686a6f) !important;
+    background-color: #1c4587ff  !important;
+    border-color: var(--fc-button-border-color,#1c4587ff ) !important;
     }
    
 .fc .fc-button-primary:hover {
     color: var(--fc-button-text-color,#fff) !important;
-    background-color: #64686a6f !important;
-    border-color: var(--fc-button-border-color,#64686a6f) !important;
+    background-color: #1c4587ff  !important;
+    border-color: var(--fc-button-border-color,#1c4587ff ) !important;
 }
 
 
@@ -36,4 +36,8 @@
         font-size: 1.75em;
         margin-right: 120px !important;
        // color:red
+    }
+
+     .fc-toolbar {
+        text-transform: uppercase !important;
     }

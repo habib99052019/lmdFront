@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, TemplateRef, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, TemplateRef, ViewChild, ViewChildren } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { reservationMenu } from "./menu.model";
@@ -12,6 +12,9 @@ import Swal from "sweetalert2";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { MatSelectChange } from "@angular/material/select";
+import { MatSort } from "@angular/material/sort";
+import { EditPersoMenuComponent } from "./edit-perso-menu/edit-perso-menu.component";
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: "app-menu",
@@ -36,7 +39,7 @@ export class MenuComponent implements OnInit {
   reservationData : any
   menus : any
   rooms : any
-  //Menus : any
+  Menus : any
   filterData: any;
   MenuPrice = 0;
   PriceTotal = 0 ;
@@ -47,49 +50,47 @@ export class MenuComponent implements OnInit {
   EauPrice = 0;
   showMenuDetails = false;
   today = new Date() ;
+  menuIDfromedit:any;
+  RepasStandardTypeList: any[] = [
+    "petit déjeuner",
+     "déjeuner"  
+  ]
+  RepasPersoTypeList: any[] = [
+    "petit déjeune",
+    "déjeuner",
+    "diner"
+  ]
 
-  //liste de menus
-  Menus = [
-    {
-        "_id": "615de00b5f8924312bf7b297",
-        "name": "Menu 1",
-        "entrée": "Trio de salade",
-        "suite": "Agneau à la gargoulette",
-        "dessert": "Assiette de fruits de saison",
-        "price": "150",
-        "tarif": "simple"
-    },
-    {
-        "_id": "615de0b75f8924312bf7b298",
-        "name": "Menu 2",
-        "entrée": "Trio de salade",
-        "suite": "grillade mixte",
-        "dessert": "Assiette de fruits de saison",
-        "price": "80",
-        "tarif": "simple"
-    },
-    {
-        "_id": "615de0f55f8924312bf7b299",
-        "name": "Menu 3",
-        "entrée": "Trio de salade",
-        "suite": "Poisson grillé",
-        "dessert": "Assiette de fruits de saison",
-        "price": "90",
-        "tarif": "simple"
-    },
-    {
-        "_id": "615de1365f8924312bf7b29a",
-        "name": "Menu 4",
-        "entrée": "Trio de salade",
-        "suite": "couscous à l'agneau",
-        "dessert": "Assiette de fruits de saison",
-        "price": "120",
-        "tarif": "simple"
-    }
-]
+  number_geuste:any;
+  isUnderline = true;
+  showview = true;
+  dummyComponent:any;
+  menuID:any;
 
-    TableSourceData : MatTableDataSource<any> =  new MatTableDataSource
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+////////////Start perso menus variables //////////////////
+
+
+
+
+////////////end perso menus variables //////////////////
+
+
+
+
+
+
+    TableSourceData : MatTableDataSource<any> =  new MatTableDataSource;
+  //  TablePersoSourceData : MatTableDataSource<any> =  new MatTableDataSource
+ // dataSource : MatTableDataSource<any> =  new MatTableDataSource;
+ // dataSource2 : MatTableDataSource<any> =  new MatTableDataSource
+
+   @ViewChild(MatPaginator) paginator: MatPaginator;
+   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    this.setDataSourceAttributes();
+}
+  //@ViewChild('paginator') paginator: MatPaginator;
+ // @ViewChild('paginator2') paginator2: MatPaginator;
   reservationMenuEditForm: FormGroup;
   modalData: any;
   Chambres: any;
@@ -100,23 +101,55 @@ export class MenuComponent implements OnInit {
     private service : ReservationServiceService ,
      private snackBar : MatSnackBar,
     private modalService : NgbModal,
-    private changeDetectorRefs: ChangeDetectorRef) {}
+    private changeDetectorRefs: ChangeDetectorRef,
+    private dialogRef: MatDialog) {
+      //this.dataSource1 = new MatTableDataSource<any>();
+     // this.dataSource2 = new MatTableDataSource<any>();
+    }
+
+
   onSubmit() {}
 
   ngOnInit() {
     this.getMenuReservations()
     this.getMenus();
     this.getRooms();
-    console.log('list reserbation menus>>>',this.TableSourceData.data);
-    
+    //console.log('list reserbation menus>>>',this.TableSourceData.data);
+
+
+    //////////////start init perso menus /////////////
+   //  this.getlisPersoReervationMenus()
+   
+    //////////////start init perso menus /////////////
+
   }
 
+
+  //////////////////////// Start Menu Standar Task///////////////////////////////////
   ngAfterViewInit() {
+
+    
     this.TableSourceData.paginator = this.paginator;
+  
   }
+
+ 
+  setDataSourceAttributes() {
+    this.TableSourceData.paginator = this.paginator;
+   // this.TableSourceData.sort = this.sort;
+
+    if (this.paginator) {
+       //this.applyFilter('');
+    }
+}
+
+
+  
 
   getMenus(){
     this.service.getMenuList().subscribe((data : any)=>{
+      console.log('menus from get menus>>>',data);
+      
      this.Menus = data
     })
   }
@@ -129,63 +162,66 @@ export class MenuComponent implements OnInit {
 
 
 search(term: string) {
-    if(!term) {
-      this.TableSourceData.data =  this.filterData 
-    } else {
-      this.TableSourceData.data = this.filterData.filter(reservation => 
-         reservation.first_name.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
-         reservation.last_name.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
-         reservation.name.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
-         reservation.price.includes(term) ||  
-         reservation.RoomName.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
-         reservation.status.trim().toLowerCase().includes(term.trim().toLowerCase()) 
-      );
-    }
+
+  this.TableSourceData.data = this.filterData.filter(reservation => 
+    reservation.clientID.first_name.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
+    reservation.clientID.last_name.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
+    reservation.clientID.number_phone.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
+    reservation.price.includes(term) ||  
+    reservation.typeRepas.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
+    reservation.status_reservation.trim().toLowerCase().includes(term.trim().toLowerCase()) ||
+    reservation.menuID.name.trim().toLowerCase().includes(term.trim().toLowerCase()) 
+  )
 }
   
 
+
+assignComponent(component){
+  if(component === 'cow'){
+    this.isUnderline = false;
+    this.showview = false
+      this.dummyComponent = EditPersoMenuComponent
+      
+  }
+}
+
+changePersoView(){
+ // this.showview = false
+  this.isUnderline = false;
+  console.log('showview',this.showview);
+  //window.location.reload();
+  console.log('paginator>>>',this.paginator);
+}
+
+changeStandardView(){
+  this.showview = true
+  this.isUnderline = true;
+  this.dummyComponent = ''
+  console.log('showview',this.showview);
+ // window.location.reload();
+ console.log('paginator>>>',this.paginator);
+}
+
+
+
+
 getMenuReservations(){
-  /*
-    this.service.getReservationList().subscribe((data : any ) => {
-        this.MenuReservationsList = data.filter(reservation => reservation.type === 'menu');
-        this.service.getMenuList().subscribe((menus : any) =>{
-          this.menus = menus.map(menu => { return { name: menu.name ,id: menu._id , menuPrice : menu.price} }); 
-        this.service.getUserList().subscribe((users : any)=> {
-          this.service.getRoomList().subscribe((rooms : any) => {
-            this.rooms = rooms.map(room => { return { RoomName: room.name ,roomID: room._id}}); 
-
-            let mergedList = this.MenuReservationsList.map(reservation => {
-              let menus = this.menus.find(menu => menu.id === reservation.menuID)
-              return { ...menus, ...reservation}
-                })  
-                let otherMergedList = mergedList.map(reservation => {
-                  let room = this.rooms.find(room => room.roomID === reservation.roomID)
-                  return { ...room, ...reservation}
-                    })  
-
-                this.reservationData = otherMergedList.map(reservation => {
-                  let user = users.find(user => user._id === reservation.clientID)
-                  return {...user , ...reservation }
-                    }) 
-                    this.filterData = this.reservationData
-                    this.TableSourceData.data = this.reservationData
-                    console.log(this.reservationData)
-
-
-          })  
-         })
-        })
-    })*/
+ 
 
     this.service.getListOfMenusReservation().subscribe((menusReservation:any) => {
         console.log('menuReservation>>>', menusReservation);
-            this.filterData = menusReservation
+             this.filterData = menusReservation
             this.TableSourceData.data = menusReservation
+           //this.dataSource = menusReservation;
            // this.getMenuReservations()
           // this.changeDetectorRefs.detectChanges();
     })
     
  }
+
+
+
+
 
 
 
@@ -198,7 +234,7 @@ addNew() {
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       width:'1200px',
-      height:'600px',
+      height:'670px',
       data: {
         reservationMenu: null,
         action: "add",
@@ -207,7 +243,7 @@ addNew() {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-        //window.location.reload();
+         window.location.reload();
       }
     });
  }
@@ -215,7 +251,7 @@ addNew() {
 
 
 deleteSingleRow(row) {
-  console.log(row);
+  console.log('delete menu',row);
   Swal.fire({
     title: "Es-tu sûr?",
     showCancelButton: true,
@@ -227,6 +263,9 @@ deleteSingleRow(row) {
     console.log(result)
     if (result.value) {
       this.service.deleteReservation(row._id).subscribe((data:any) => {
+        console.log('delete >>>', data);
+        
+
         this.showNotification(
           'snackbar-danger',
            "la réservation a été supprimée avec succès",
@@ -278,24 +317,58 @@ editCall(row) {
 
 
   openEditModal(row){
+
+    console.log('row from edit modal>>>', row);
     
+     
     this.modalData = row;
+    if(this.modalData){
+       this.number_geuste = this.modalData.number_guests;
+    }
+
+    if(this.modalData.menuID.name == 'Menu 1'){
+     // this.showMenuDetails = true ; 
+      this.MenuPrice = 150
+     // this.calculTotal(this.number_geuste , this.MenuPrice );
+    }else if(this.modalData.menuID.name == 'Menu 2'){
+      //  this.showMenuDetails = true ; 
+        this.MenuPrice = 80
+        //this.calculTotal(this.number_geuste , this.MenuPrice );
+    }else if(this.modalData.menuID.name == 'Menu 3'){
+       // this.showMenuDetails = true ; 
+        this.MenuPrice = 90
+        //this.calculTotal(this.number_geuste , this.MenuPrice );
+    }else{
+       // this.showMenuDetails = true ; 
+        this.MenuPrice = 120
+       // this.calculTotal(this.number_geuste , this.MenuPrice );
+    }
+
+
+     console.log('mdale price >>>', this.modalData.price);
+     
+
+   
     this.PriceTotal = this.modalData.price;
     this.reservationMenuEditForm = this.fb.group({
       _id : [this.modalData._id ],
-      first_name : [ {value : this.modalData.first_name , disabled : true} ],
-      last_name : [ {value : this.modalData.last_name , disabled : true} ],
+      first_name : [this.modalData.clientID.first_name , Validators.required],
+      last_name : [this.modalData.clientID.last_name , Validators.required],
+      number_phone : [this.modalData.clientID.number_phone, Validators.required],
       roomID : [this.modalData.roomID , Validators.required],
-      menuID : [this.modalData.menuID ],
-      startDate : [this.modalData.startDate , Validators.required],
+      menuID : [this.modalData.menuID.name ],
+      startDate : [this.modalData.start , Validators.required],
+      number_heure: [this.modalData.number_heure , Validators.required],
       number_guests : [this.modalData.number_guests , Validators.required],
       comment : [this.modalData.comment ],
-      status : [this.modalData.status ],
-      price : [this.modalData.price , Validators.required]
+      status : [this.modalData.status_reservation],
+      price : [this.modalData.price , Validators.required],
+      entreSta : [this.modalData.typeRepas]
     });
 
     this.dialog.open( this.editModal, {
-  
+          width:'1200px',
+          height:'900px'
     });
   }
 
@@ -313,8 +386,44 @@ editCall(row) {
     });
   }
   
+
+
   showMenu(event : MatSelectChange){
-    this.entree = event.value.entrée;
+    console.log('event from show menu >>>>', event.value);
+    if(event.value == 'Menu 1'){
+         this.entree = "Trio de salade";
+         this.dessert = "Assiette de fruits de saison";
+         this.suite = "Agneau à la gargoulette";
+         this.showMenuDetails = true ; 
+         this.MenuPrice = 150
+         this.calculTotal(this.number_geuste , this.MenuPrice );
+    }else if(event.value == 'Menu 2'){
+        this.entree = "Trio de salade";
+        this.dessert = "Assiette de fruits de saison";
+        this.suite = "grillade mixte";
+        this.showMenuDetails = true ; 
+        this.MenuPrice = 80
+        this.calculTotal(this.number_geuste , this.MenuPrice );
+    }else if(event.value == 'Menu 3'){
+        this.entree = "Trio de salade";
+        this.dessert = "Assiette de fruits de saison";
+        this.suite = "Poisson grillé";
+        this.showMenuDetails = true ; 
+        this.MenuPrice = 90
+        this.calculTotal(this.number_geuste , this.MenuPrice );
+    }else{
+        this.entree = "Trio de salade";
+        this.dessert = "Assiette de fruits de saison";
+        this.suite = "couscous à l'agneau";
+        this.showMenuDetails = true ; 
+        this.MenuPrice = 120
+        this.calculTotal(this.number_geuste , this.MenuPrice );
+    }
+
+
+
+    /*
+    this.entree = event.value.entree;
     this.dessert = event.value.dessert;
     this.suite = event.value.suite;
     this.showMenuDetails = true ; 
@@ -323,7 +432,7 @@ editCall(row) {
     }
     this.reservationMenuEditForm.get('menuID').setValue(event.value._id) 
     this.calculTotal(this.reservationMenuEditForm.get('number_guests').value  , this.MenuPrice );
-    
+    */
   }
 
   resetChambre(event : MatSelectChange){
@@ -341,6 +450,10 @@ editCall(row) {
 
 
  re_calculTotal(event: any){
+   this.number_geuste = event.target.value;
+   console.log('number of personne>>>',event.target.value);
+   this.calculTotal(event.target.value  , this.MenuPrice );
+  /*
    if (this.MenuPrice){
     this.calculTotal(event.target.value  , this.MenuPrice );
    }
@@ -350,50 +463,78 @@ editCall(row) {
         this.PriceTotal = data.price * event.target.value
     })
    }
-    
+    */
    
  }
  
  addToTotal(type :any){
    if (this.PriceTotal){
      if(type === "Soda") {
-       this.sodaPrice = this.sodaPrice + 2
-       this.PriceTotal = this.PriceTotal + 2
-     }
+        this.sodaPrice = this.sodaPrice + 2
+        
+        
+        this.PriceTotal = this.PriceTotal + 2
+        console.log('price totale>>>',this.PriceTotal);
+        }
      else if (type === "Eau") {
       this.EauPrice = this.EauPrice + 1
       this.PriceTotal = this.PriceTotal + 1
-    }
+    
    }
  }
+ }
+
+
  removeFromTotal(type :any){
   if (this.PriceTotal){
     if(type === "Soda") {
       this.PriceTotal = this.PriceTotal - 2
+
       this.sodaPrice = this.sodaPrice - 2
       
     }
     else if (type === "Eau") {
-     this.PriceTotal = this.PriceTotal - 1
+    this.PriceTotal = this.PriceTotal - 1
+ 
      this.EauPrice = this.EauPrice - 1
    }
   }
 }
 
+verifyMenuID(menuName:string){
+  if(menuName == "Menu 1"){
+      this.menuID = "61c3178da5277719d47cfc13";
+  }else if(menuName == "Menu 2"){
+      this.menuID = "61c3175937bead3524b19243";
+  }else if( menuName == "Menu 3"){
+     this.menuID = "61c3170a86695a371c246c08";
+  }else{
+    this.menuID = "61c3169d00e12d508cf590a7";
+  }
+}
+
 updateReservation(){
+  this.verifyMenuID(this.reservationMenuEditForm.get('menuID').value);
   const ObjectToEdit = {
     _id : this.modalData._id ,
-    first_name :  this.modalData.first_name,
-    last_name :this.modalData.last_name ,
-    roomID : this.reservationMenuEditForm.get('roomID').value ,
-    menuID : this.reservationMenuEditForm.get('menuID').value ,
-    startDate : this.reservationMenuEditForm.get('startDate').value ,
+    type:"menu",
+    first_name :  this.reservationMenuEditForm.get('first_name').value,
+    last_name : this.reservationMenuEditForm.get('last_name').value ,
+    menuID :this.menuID ,
+    number_phone: this.reservationMenuEditForm.get('number_phone').value ,
+    number_heure: this.reservationMenuEditForm.get('number_heure').value ,
+    startDate : formatDate(this.reservationMenuEditForm.get('startDate').value, 'yyyy-MM-dd', 'en'),
     number_guests : this.reservationMenuEditForm.get('number_guests').value ,
     comment : this.reservationMenuEditForm.get('comment').value ,
     status : this.reservationMenuEditForm.get('status').value ,
-    price : this.PriceTotal
+    price : this.PriceTotal,
+    typeRepas:this.reservationMenuEditForm.get('entreSta').value
   }
-  this.service.updateReservation(this.modalData._id , ObjectToEdit).subscribe((data : any)=> {
+
+  console.log('object to edit>>>',ObjectToEdit);
+  
+  
+  this.service.updateStandReservationMenu(this.modalData._id , ObjectToEdit).subscribe((data : any)=> {
     console.log(data)
     this.showNotification(
       'snackbar-success',
@@ -401,11 +542,22 @@ updateReservation(){
       'top',
       'end'
     );
-    this.dialog.closeAll()
+    //this.dialog.closeAll()
+    this.dialogRef.closeAll()
     this.getMenuReservations();
 
   } );
+
+  
 }
+
+//////////////////////// end Menu Standar Task///////////////////////////////////
+
+
+
+
+
+
 
 }
 

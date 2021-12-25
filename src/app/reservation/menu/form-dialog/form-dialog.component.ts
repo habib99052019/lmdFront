@@ -17,13 +17,14 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { formatDate } from '@angular/common';
+import { ThirdPartyDraggable } from '@fullcalendar/interaction';
 
 
 
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
-  styleUrls: ['./form-dialog.component.sass']
+  styleUrls: ['./form-dialog.component.scss']
 })
 export class FormDialogComponent implements OnInit {
   action: string;
@@ -42,12 +43,7 @@ export class FormDialogComponent implements OnInit {
   showMenuDetails = false
   sodaPrice = 0; 
   EauPrice = 0;
-  options: string[] = ['Angular', 'React','Vue']
-  objectOptions = [
-    {name: 'Angular'},
-    {name: 'React'},
-    {name: 'Vue'}
-  ]
+  
 
   user:any;
   myControl = new FormControl();
@@ -261,19 +257,102 @@ export class FormDialogComponent implements OnInit {
     
   ]*/
 
- // toppings = new FormControl();
-  EntreeFeroidsList: any[] = [{name:'Salade tunisienne', price:12},
-                              {name:'Salade de capese', price:18},
-                              {name:'Salade méchouia', price:13},
-                              {name:'Salade niçoise', price:14},
-                              {name:'Salade César', price:18},
-                              {name:'Salade Dar ichkeul', price:14},
-                              {name:'Salade de saumon fumé', price:25},
-                            ];
+ // List des tarifs personaliser
+  EntreeFeroidsList: any[] = [
+   {name:'Salade tunisienne', price:12},
+   {name:'Salade de capese', price:18},
+   {name:'Salade méchouia', price:13},
+   {name:'Salade niçoise', price:14},
+   {name:'Salade César', price:18},
+   {name:'Salade Dar ichkeul', price:14},
+   {name:'Salade de saumon fumé', price:25},
+  ];
+  EntreeChaudesList: any[] = [
+    {name:"Soupe à l'agneau", price:16},
+    {name:'Brik au thion', price:6},
+    {name:'Brik à la viande', price:7}   
+  ]
+
+  NosSpecialistesList: any[] = [
+    {name:"Agneau à la gargoulette", price:35},
+    {name:"Cotelette d'agneau grillée", price:32},
+    {name:"Entrecote grillée beurre maitre d'hotel", price:40},
+    {name:"Filet de boeuf", price:45},
+    {name:"Grillades mixtes", price:39},
+    {name:"Cailles grillées", price:28},
+    {name:"Escalope de poulet à la crème", price:28},
+    {name:"Excalope de poulet panné", price:25},
+    {name:"Ojja Merguez", price:18},
+    {name:"Ojja chevrettes", price:28}    
+  ]
+
+ PatesList: any[] = [
+    {name:"Nwasser au poulet fermier", price:20},
+    {name:"Spaghettis Bolognaises", price:32},
+  ]
+
+BoissonsList: any[] = [
+    {name:"Eau minérale 1L", price:3},
+    {name:"Eau gazeuse 1L", price:3},
+    {name:"Soda", price:4},
+    {name:"Jus d'Orange", price:6},
+    {name:"Jus de Fraise", price:6},
+    {name:"Citronade", price:4},
+    {name:"Boissons énergétiques", price:8},
+    {name:"Nepresso", price:4.5},
+  ]
+
+  DessertsList: any[] = [
+    {name:"Sorbet", price:4},
+    {name:"Assiette de fruits(1pax)", price:8},
+    
+  ]
+
+ ///////////////////////////////
+ //list of personalize tarifs variable 
+ boissons:any;
+ desserts:any;
+ pates:any;
+ specialists:any;
+ chaudes:any;
+ froides:any;
+ totalePersoMenuPrice:any;
+
+ totalTarifBoissons:any;
+ totalTarifDesserts :any;
+ totalTarifPates:any;
+ totalTarifSpecialists:any;
+ totalTarifChaudes:any;
+ totalTarifFeroids :any;
+
   selectedd: string[] = ['Select all']
   searchuser!: any[];
   users!: any[];
-  showview = false;
+  //showview = false;
+  showview = true;
+  roomName:any;
+  isUnderline = true;
+  listOfTarifNames:any;
+  arrayBoisson:any;
+  arrayDessert:any;
+  arrayPate:any;
+  arraySpeciale:any;
+  arrayChaud:any;
+  arrayFeroids:any;
+  clientID:string;
+  RepasStandardTypeList: any[] = [
+    "petit déjeuner",
+     "déjeuner"  
+  ]
+  RepasPersoTypeList: any[] = [
+    "petit déjeune",
+    "déjeuner",
+    "diner"
+  ]
+
+
+  arrayOfeventValue=[];
+
   constructor(
     private service : ReservationServiceService,
     public dialogRef: MatDialogRef<FormDialogComponent>,
@@ -291,35 +370,53 @@ export class FormDialogComponent implements OnInit {
      console.log('topping>>>',this.selectedd);
      
 
-
+    
      if(this.user == undefined){
-       this.user = '';
-       this.showview = true
+        this.user = '';
+        // this.showview = true
      }else{
-       this.showview = false;
+        //this.showview = false;
+     }
+
+     if(this.roomName == undefined){
+        this.roomName = '';
      }
     
-     this.service.getUserList().subscribe((users:any[]) => {
-      console.log('users>>>>',users);
-      //this.users = users;
-      this.searchuser = this.users = users;
-  })
+    this.getUserList();
     this.getRooms()
     this.getMenus();
   }
 
 
 
+
+getUserList(){
+  /*
+  this.service.getUserList().subscribe((users:any[]) => {
+    console.log('users>>>>',users);
+    //this.users = users;
+    this.searchuser = this.users = users;
+})*/
+
+this.service.getReservationList().subscribe((users:any[]) => {
+  console.log('users>>>>',users);
+  this.users = users;
+  this.searchuser = this.users = users;
+})
+
+
+}
+
   
   search(query:string)
   {
     console.log('query>>>',query);
     if(query == ''){
-      this.showview = true
+      // this.showview = true
     }
-     this.searchuser = (query) ? this.users.filter( players =>
-       players.first_name.toLowerCase().includes(query.toLowerCase()) ||
-       players.last_name.toLowerCase().includes(query.toLowerCase()) 
+     this.searchuser = (query) ? this.users.filter( users =>
+       users.clientID.first_name.toLowerCase().includes(query.toLowerCase()) ||
+       users.clientID.last_name.toLowerCase().includes(query.toLowerCase()) 
        ) 
        : this.users;
   }
@@ -328,11 +425,16 @@ export class FormDialogComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     console.log('event selected>>>',event.option.value);
-
-      this.user = event.option.value.first_name;
+     
+      this.user = event.option.value.clientID.first_name;
+      this.clientID = event.option.value.clientID._id;
+      /*
       if(this.user != undefined){
         this.showview = false
-      }
+      }*/
+      this.roomName = event.option.value.roomID.name;
+      console.log('roomName>>>',this.roomName);
+      
      
   }
 
@@ -340,7 +442,7 @@ export class FormDialogComponent implements OnInit {
 
   displayFn(subject:any)
   {
-     return subject ? subject.first_name : undefined;
+     return subject ? subject.clientID.first_name : undefined;
   }
   
 
@@ -349,6 +451,7 @@ export class FormDialogComponent implements OnInit {
 
   getMenus(){
     this.service.getMenuList().subscribe((data : any)=>{
+      console.log('menus from get menus>>>',data);
       
      this.Menus = data
     })
@@ -360,6 +463,20 @@ getRooms(){
     })
 }
 
+
+changePersoView(){
+  this.showview = false
+  this.isUnderline = false;
+  console.log('showview',this.showview);
+  
+}
+
+changeStandardView(){
+  this.showview = true
+  this.isUnderline = true;
+  console.log('showview',this.showview);
+  
+}
 
 
 formControl = new FormControl('', [
@@ -374,9 +491,18 @@ getErrorMessage() {
 }
   
 
+showMenuStandard(event:MatSelectChange){
+  
+}
+
+showMenuPerso(event:MatSelectChange){
+
+}
+
+
 
 showMenu(event : MatSelectChange){
-    this.entree = event.value.entrée;
+    this.entree = event.value.entree;
     this.dessert = event.value.dessert;
     this.suite = event.value.suite;
     this.showMenuDetails = true ; 
@@ -444,8 +570,10 @@ showMenu(event : MatSelectChange){
       first_name : ['' , Validators.required],
       last_name : ['' , Validators.required],
       first:['' , Validators.required],
-      number_phone:['' , Validators.required],
-      number_heure:['' , Validators.required],
+      number_phone:['',Validators.required],
+      number_heure:['',Validators.required],
+      entreSta:[''],
+      entrePerso:[''],
       roomName:[],
       entree_froides:[],
       entree_chaudes:[],
@@ -481,43 +609,238 @@ showMenu(event : MatSelectChange){
   onNoClick(): void {
     this.dialogRef.close();
   }
-  confirmAdd(): void {
-    console.log('toppings>>>',this.reservationMenuForm);
+
+
+//calcul all perso tarifs
+calculTarifPersoMenu(event : MatSelectChange){
+ 
+  //////
+  if(event.source.ngControl.name == 'boissons'){
     
-    this.reservationMenuForm.get('roomID').value
-   const reservationForm  = {
-    type : 'menu',
-    status : this.reservationMenuForm.get('status').value,
-    comment : this.reservationMenuForm.get('comment').value,
-    price : this.PriceTotal,
-    number_guests : this.reservationMenuForm.get('number_guests').value,
-    startDate  : formatDate(this.reservationMenuForm.get('startDate').value, 'yyyy-MM-dd', 'en') ,
-    first_name : this.reservationMenuForm.get('first_name').value,
-    last_name : this.reservationMenuForm.get('last_name').value,
-    number_phone : this.reservationMenuForm.get('number_phone').value,
-    menuID : this.reservationMenuForm.get('menuID').value,
-    number_heure: this.reservationMenuForm.get('number_heure').value
-   }
+    this.boissons = event.value;
+    const names = event.value.map(v => {
+         return v.name;
+      });
    
-   console.log('reservationForm>>>', reservationForm);
+     this.arrayBoisson = names;
+    // this.listOfTarifNames = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || "")); 
+        let filterList = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""));
+            this.listOfTarifNames = filterList.filter(function(e){return e});
+
+
+
+          const totalTarifBoissons = this.boissons.reduce((acc,cur) => {
+          return acc + cur.price;
+        },0)
+    
+    this.totalTarifBoissons = totalTarifBoissons;
+    this.totalePersoMenuPrice = this.totalTarifBoissons + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
+   console.log('totale persomenu boissons',this.listOfTarifNames);
    
-   this.service.addMenuReservation(reservationForm).subscribe((data : any) => {
-     console.log(data)
-     this.showNotification(
-         'snackbar-success',
-          data.message,
-         'top',
-         'end'
-       );  
-  },err => {
-    console.log('err>>>',err);
-    this.showNotification(
-     'snackbar-danger',
-      err,
-     'top',
-     'end'
-   );
-  })
+  }
+
+//////////
+if(event.source.ngControl.name == 'desserts'){
+  this.desserts = event.value;
+  ////
+  const names = event.value.map(v => {
+    return v.name;
+ });
+ this.arrayDessert= names;
+ //this.listOfTarifNames = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
+ let filterList =  this.arrayDessert.concat((this.arrayBoisson || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
+ this.listOfTarifNames = filterList.filter(function(e){return e});
+///
+    const totalTarifDesserts = this.desserts.reduce((acc,cur) => {
+    return acc + cur.price;
+     },0)
+  
+   this.totalTarifDesserts = totalTarifDesserts;
+   this.totalePersoMenuPrice = this.totalTarifDesserts + (this.totalTarifBoissons || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
+   console.log('totale persomenu dessert',this.listOfTarifNames);
+}
+
+
+///////////
+if(event.source.ngControl.name == 'pates'){
+    this.pates = event.value;
+
+   ////
+  const names = event.value.map(v => {
+    return v.name;
+ });
+ this.arrayPate= names;
+ //this.listOfTarifNames = this.arrayPate.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
+ let filterList = this.arrayPate.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
+ this.listOfTarifNames = filterList.filter(function(e){return e});
+
+
+   const totalTarifPates = this.pates.reduce((acc,cur) => {
+   return acc + cur.price;
+  },0)
+ console.log('tarif pates price >>>', totalTarifPates);
+ this.totalTarifPates = totalTarifPates;
+ this.totalePersoMenuPrice =  this.totalTarifPates + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
+ console.log('totale persomenu pates',this.listOfTarifNames);
+
+}
+
+///////
+if(event.source.ngControl.name == 'nos_specialite'){
+     this.specialists = event.value;
+     ////
+  const names = event.value.map(v => {
+    return v.name;
+ });
+ this.arraySpeciale= names;
+ //this.listOfTarifNames = this.arraySpeciale.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arrayPate || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
+ let filterList = this.arraySpeciale.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arrayPate || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
+
+ this.listOfTarifNames = filterList.filter(function(e){return e});
+
+
+     const totalTarifSpecialists = this.specialists.reduce((acc,cur) => {
+     return acc + cur.price;
+  },0)
+  console.log('tarif specialiste price >>>', totalTarifSpecialists);
+  this.totalTarifSpecialists = totalTarifSpecialists;
+  this.totalePersoMenuPrice =  this.totalTarifSpecialists + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
+  console.log('totale persomenu specialiste',this.listOfTarifNames);
+
+}
+
+ ///////
+ if(event.source.ngControl.name == 'entree_chaudes'){
+   this.chaudes = event.value;
+
+    ////
+  const names = event.value.map(v => {
+    return v.name;
+ });
+ this.arrayChaud= names;
+// this.listOfTarifNames = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayBoisson || ""),(this.arrayFeroids || ""))
+ let filterList = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayBoisson || ""),(this.arrayFeroids || ""))
+
+ this.listOfTarifNames = filterList.filter(function(e){return e});
+
+
+    const totalTarifChaudes = this.chaudes.reduce((acc,cur) => {
+    return acc + cur.price;
+   },0)
+   console.log('tarif chaudes price >>>', totalTarifChaudes);
+   this.totalTarifChaudes = totalTarifChaudes;
+   this.totalePersoMenuPrice =  this.totalTarifChaudes + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifFeroids || 0);
+   console.log('totale persomenu chaud',this.listOfTarifNames);
+  }
+ 
+/////
+if(event.source.ngControl.name == 'entree_froides'){
+  this.froides = event.value;
+  ////
+  const names = event.value.map(v => {
+    return v.name;
+ });
+ this.arrayFeroids= names;
+ //this.listOfTarifNames = this.arrayFeroids.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayPate || ""))
+ let filterList = this.arrayFeroids.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayPate || ""))
+
+ this.listOfTarifNames = filterList.filter(function(e){return e});
+
+
+  const totalTarifFeroids = this.froides.reduce((acc,cur) => {
+  return acc + cur.price;
+  },0)
+  console.log('tarif feroids price >>>', totalTarifFeroids);
+   this.totalTarifFeroids = totalTarifFeroids;
+   this.totalePersoMenuPrice = this.totalTarifFeroids + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0);
+
+   console.log('totale persomenu froids',this.listOfTarifNames);
+  }
+
+
+}
+
+
+
+  confirmAdd(): void {
+    
+    console.log('toppings>>>',this.reservationMenuForm);
+ 
+  if(this.clientID){
+        
+    const reservationPersoForm  = {
+      comment : this.reservationMenuForm.get('comment').value,
+      price : this.totalePersoMenuPrice,
+      clientID:this.clientID,
+      menuList: this.listOfTarifNames,
+      isPersonalize:true,
+      entrePerso:this.reservationMenuForm.get('entrePerso').value
+      
+     }
+     
+     console.log('reservationForm>>>', reservationPersoForm);
+     
+     this.service.addPersoReservationMenu(reservationPersoForm).subscribe((data : any) => {
+       console.log('new perso reservation',data)
+       this.showNotification(
+           'snackbar-success',
+            data.message,
+           'top',
+           'end'
+         );  
+    },err => {
+      console.log('err>>>',err);
+      this.showNotification(
+       'snackbar-danger',
+        err,
+       'top',
+       'end'
+     );
+    })
+
+
+
+  }else{
+
+    console.log('typede repas>>>', this.reservationMenuForm.get('menuID').value);
+    
+    const reservationForm  = {
+      type : 'menu',
+      status : this.reservationMenuForm.get('status').value,
+      comment : this.reservationMenuForm.get('comment').value,
+      price : this.PriceTotal,
+      number_guests : this.reservationMenuForm.get('number_guests').value,
+      startDate  : formatDate(this.reservationMenuForm.get('startDate').value, 'yyyy-MM-dd', 'en') ,
+      first_name : this.reservationMenuForm.get('first_name').value,
+      last_name : this.reservationMenuForm.get('last_name').value,
+      number_phone : this.reservationMenuForm.get('number_phone').value,
+      menuID : this.reservationMenuForm.get('menuID').value,
+      number_heure: this.reservationMenuForm.get('number_heure').value,
+      entreSta:this.reservationMenuForm.get('entreSta').value,
+     }
+     
+     console.log('reservationForm>>>', reservationForm);
+     
+     this.service.addMenuReservation(reservationForm).subscribe((data : any) => {
+       console.log(data)
+       this.showNotification(
+           'snackbar-success',
+            data.message,
+           'top',
+           'end'
+         );  
+    },err => {
+      console.log('err>>>',err);
+      this.showNotification(
+       'snackbar-danger',
+        err,
+       'top',
+       'end'
+     );
+    })
+  }
+
+  
     
   }
 
