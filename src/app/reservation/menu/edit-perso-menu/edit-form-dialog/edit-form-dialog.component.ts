@@ -61,6 +61,76 @@ BoissonsList: any[] = [
    
  ]
 
+ globalLisMenus:any[] = [
+  {name:"Sorbet", price:4},
+  {name:"Assiette de fruits(1pax)", price:8},
+  {name:"Eau minérale 1L", price:3},
+   {name:"Eau gazeuse 1L", price:3},
+   {name:"Soda", price:4},
+   {name:"Jus Orange", price:6},
+   {name:"Jus de Fraise", price:6},
+   {name:"Citronade", price:4},
+   {name:"Boissons énergétiques", price:8},
+   {name:"Nepresso", price:4.5},
+   {name:"Nwasser au poulet fermier", price:20},
+   {name:"Spaghettis Bolognaises", price:32},
+   {name:"Agneau à la gargoulette", price:35},
+   {name:"Cotelette d'agneau grillée", price:32},
+   {name:"Entrecote grillée beurre maitre d'hotel", price:40},
+   {name:"Filet de boeuf", price:45},
+   {name:"Grillades mixtes", price:39},
+   {name:"Cailles grillées", price:28},
+   {name:"Escalope de poulet à la crème", price:28},
+   {name:"Excalope de poulet panné", price:25},
+   {name:"Ojja Merguez", price:18},
+   {name:"Ojja chevrettes", price:28},
+   {name:"Soupe à agneau", price:16},
+   {name:'Brik au thion', price:6},
+   {name:'Brik à la viande', price:7},
+   {name:'Salade tunisienne', price:12},
+  {name:'Salade de capese', price:18},
+  {name:'Salade méchouia', price:13},
+  {name:'Salade niçoise', price:14},
+  {name:'Salade César', price:18},
+  {name:'Salade Dar ichkeul', price:14},
+  {name:'Salade de saumon fumé', price:25},  
+ ]
+
+
+ StaticListTarifNames: any[] = [
+   "Sorbet",
+   "Assiette de fruits(1pax)",
+   "Eau minérale 1L",
+   "Eau gazeuse 1L",
+   "Soda",
+   "Jus Orange",
+   "Jus de Fraise",
+   "Citronade",
+   "Boissons énergétiques",
+   "Nepresso",
+   "Nwasser au poulet fermier",
+   "Spaghettis Bolognaises",
+   "Agneau à la gargoulette",
+   "Cotelette d'agneau grillée",
+   "Entrecote grillée beurre maitre d'hotel",
+   "Filet de boeuf",
+   "Grillades mixtes",
+   "Cailles grillées",
+   "Escalope de poulet à la crème",
+   "Excalope de poulet panné",
+   "Ojja Merguez",
+   "Ojja chevrettes",
+   "Soupe à agneau",
+   "Brik au thion",
+   'Brik à la viande',
+   'Salade tunisienne',
+    'Salade de capese',
+    'Salade méchouia',
+    'Salade niçoise',
+    'Salade César',
+    'Salade Dar ichkeul',
+    'Salade de saumon fumé',  
+ ]
 ///////////////////////////////
 RepasStandardTypeList: any[] = [
   "petit déjeuner",
@@ -110,6 +180,14 @@ listBoissons:any;
 listDesserts:any;
 listPates:any;
 
+globalMenu  = [{name:'', price:0}];
+arrayglobalMenu:any;
+totalTarifGlobal:any;
+globalOfListTarifNames:any;
+showMenuDetails = true;
+panelOpenState = false;
+
+
 
   constructor( public dialogRef: MatDialogRef<EditFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any) { }
@@ -131,13 +209,49 @@ listPates:any;
     this.PatsMenuList = this.data['menuList'];
     this.specialistMenuList  = this.data['menuList'];
     console.log('this.menuList>>>',this.BoissonMenuList);
+
+    this.initLitsMenuPrice()
     
     
   }
 
 
+ initLitsMenuPrice(){
+  this.chaudsMenuList.forEach(item => {
+    console.log('item boissons>>>>',item)
+    
+    const resultat = this.globalLisMenus.find( menu => {
+      if(menu.name === item){
+        if(this.globalMenu.includes(menu)){
+            this.globalMenu.splice(menu)
+           
+            console.log('boissons include>>>', this.globalMenu);
+            
+        }
+        this.globalMenu.push(menu)
+        console.log('list of item>>>', menu)
+      }
 
+    })
+      
+  })
+
+   this.arrayglobalMenu = this.chaudsMenuList;
+      let filterList = this.arrayglobalMenu.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""),(this.arrayBoisson || ""));
+          this.listOfTarifNames = filterList.filter(function(e){return e});
+           
+        const totalTarifglobal = this.globalMenu.reduce((acc,cur) => {
+        return acc + cur.price;
+      },0)
   
+  this.totalTarifGlobal = totalTarifglobal;
+  this.totalePersoMenuPrice = this.totalTarifGlobal + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
+ console.log('totale persomenu boissons',this.totalePersoMenuPrice);
+ }
+  
+
+
+
   search(query:string)
   {
     /*
@@ -168,46 +282,77 @@ listPates:any;
   }
 
 
+
+
+getDuplicates(data:any){
+ return   data.filter((value, index) => data.indexOf(value) === index);
+}
+
+
   //allwork is here
 calculTarifPersoMenu(event : MatSelectChange){
   console.log('event from calcul tarif perso>>>', event);
  //////
  if(event.source.ngControl.name == 'boissons'){
   console.log('event boisson>>>', event.value);
-   this.listBoissons = event.value;
-   
-   this.listBoissons.forEach(item => {
-    console.log('item boissons>>>>',item)
-    
-    const resultat = this.BoissonsList.find( menu => {
-      if(menu.name === item){
-        if(this.boissons.includes(menu)){
-            this.boissons.splice(menu)
-           
-            console.log('boissons include>>>', this.boissons);
-            
-        }
-        this.boissons.push(menu)
-        console.log('list of item>>>', menu)
-      }
-
-    })
-      
-  })
+ 
 
    this.arrayBoisson = event.value;
-      let filterList = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""));
+      let filterList = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""),(this.arrayglobalMenu || ""));
           this.listOfTarifNames = filterList.filter(function(e){return e});
+          this.globalOfListTarifNames = this.getDuplicates(this.listOfTarifNames)
+         
+           console.log('global list tarif>>>', this.globalOfListTarifNames);
+           if(!event.value.includes(this.globalOfListTarifNames)){
+                this.globalOfListTarifNames.forEach(item => {
+                  console.log('item boissons>>>>',item)
+                  
+                  const resultat = this.globalLisMenus.find( menu => {
+                    if(menu.name === item){
+                      if(this.globalMenu.includes(menu)){
+                          this.globalMenu.splice(menu)
+              
+                      }
+                      this.globalMenu.push(menu)
+                      console.log('list of item>>>', menu)
+                    }
+              
+                  })
+              
+                })
 
-        const totalTarifBoissons = this.boissons.reduce((acc,cur) => {
+
+           }else {
+                this.StaticListTarifNames.forEach(item => {
+                  console.log('item boissons222>>>>',item)
+                  
+                  const resultat = this.globalLisMenus.find( menu => {
+                    if(menu.name === item){
+                      if(this.globalMenu.includes(menu)){
+                          this.globalMenu.splice(menu)
+              
+                      }
+                      this.globalMenu.push(menu)
+                      console.log('list of item>>>', menu)
+                    }
+              
+                  })
+              
+                })
+           }
+          
+           
+         // console.log('lis names>>>', this.listOfTarifNames);
+
+        const totalTarifBoissons = this.globalMenu.reduce((acc,cur) => {
         return acc + cur.price;
       },0)
   
   this.totalTarifBoissons = totalTarifBoissons;
-  this.totalePersoMenuPrice = this.totalTarifBoissons + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
+  this.totalePersoMenuPrice =  this.totalTarifBoissons  + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
  console.log('totale persomenu boissons',this.totalePersoMenuPrice);
 }
- 
+
  ///////
  if(event.source.ngControl.name == 'desserts'){
   this.listDesserts = event.value;

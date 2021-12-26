@@ -157,7 +157,7 @@ openEditModal(row){
        first_name: row.clientID.first_name,
        last_name: row.clientID.last_name,
        roomName: row.roomName,
-       repasType: row.listmenuID[0].repasType,
+       repasType: row.listmenuID[0].typeRepas,
        comment: row.listmenuID[0].comment,
        price: row.listmenuID[0].price,
        menuList: row.listmenuID[0].menuList,

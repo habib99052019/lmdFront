@@ -242,6 +242,8 @@ addNew() {
       direction: tempDirection,
     });
     dialogRef.afterClosed().subscribe((result) => {
+        console.log('resultata from add new>>>', result);
+        
       if (result === 1) {
          window.location.reload();
       }

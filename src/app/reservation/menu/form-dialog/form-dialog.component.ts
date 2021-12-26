@@ -268,15 +268,15 @@ export class FormDialogComponent implements OnInit {
    {name:'Salade de saumon fumé', price:25},
   ];
   EntreeChaudesList: any[] = [
-    {name:"Soupe à l'agneau", price:16},
+    {name:"Soupe à agneau", price:16},
     {name:'Brik au thion', price:6},
     {name:'Brik à la viande', price:7}   
   ]
 
   NosSpecialistesList: any[] = [
     {name:"Agneau à la gargoulette", price:35},
-    {name:"Cotelette d'agneau grillée", price:32},
-    {name:"Entrecote grillée beurre maitre d'hotel", price:40},
+    {name:"Cotelette agneau grillée", price:32},
+    {name:"Entrecote grillée beurre maitre hotel", price:40},
     {name:"Filet de boeuf", price:45},
     {name:"Grillades mixtes", price:39},
     {name:"Cailles grillées", price:28},
@@ -295,7 +295,7 @@ BoissonsList: any[] = [
     {name:"Eau minérale 1L", price:3},
     {name:"Eau gazeuse 1L", price:3},
     {name:"Soda", price:4},
-    {name:"Jus d'Orange", price:6},
+    {name:"Jus Orange", price:6},
     {name:"Jus de Fraise", price:6},
     {name:"Citronade", price:4},
     {name:"Boissons énergétiques", price:8},
@@ -788,6 +788,8 @@ if(event.source.ngControl.name == 'entree_froides'){
            'top',
            'end'
          );  
+
+         
     },err => {
       console.log('err>>>',err);
       this.showNotification(

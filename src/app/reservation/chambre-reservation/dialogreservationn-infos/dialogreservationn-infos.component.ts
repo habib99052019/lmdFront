@@ -276,7 +276,7 @@ ngOnInit(): void {
     this.tarifType = this.data['tarifType']
     this.remark = this.data['remark']
     this.number_phone = this.data['number_phone']
-    console.log('roomtype>>>',this.data['roomType']);
+    console.log('status room>>>',this.data['status_room']);
     
     
 
@@ -287,7 +287,7 @@ ngOnInit(): void {
       else if(this.data['status_room'] === "OCCUPE"){
             this.selected = 2 ;
       }  
-      else {
+      else if(this.data['status_room'] === "FERMER"){
            this.selected = 3 ;
        }
         console.log('roomtypeselected>>>',this.roomTypeSelected );
@@ -302,7 +302,7 @@ ngOnInit(): void {
         this.initcheckDates()
         this.initcalculTotal(this.Days,this.RoomPrice)
        
-
+        this.data['selected'] = this.selected ;
 
        /////////
       

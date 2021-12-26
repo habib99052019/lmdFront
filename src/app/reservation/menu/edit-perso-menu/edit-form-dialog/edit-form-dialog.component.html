@@ -253,40 +253,68 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-body bg-gray text-white text-capitalize">
-                <div class="row">
-                    
-                  
-                    <div class="row">
-                        <div class="col-8">
-                             <div>
-                               <mat-card class="bg-gray text-white">
-                                 <mat-card-header>
-                                    <mat-card-title style="margin-left: -22px;">Menu :</mat-card-title>
-                                 </mat-card-header>
-                                 <mat-card-content>
-                                    <mat-list class="inline-list">
-                                       <mat-list-item *ngFor="let menu of listOfTarifNames"> 
-                                          <span style="color:rgb(255, 255, 255);
-                                          margin-top: 20px; margin-bottom: 20px;
-                                          width: 190px;">{{menu}} </span> 
-                                        </mat-list-item>
-                                     </mat-list>
-                                  </mat-card-content>
-                                </mat-card>
+
+
+            <div class="row">
+
+                <mat-accordion>
+                
+                 <mat-expansion-panel (opened)="panelOpenState = true"
+                                      (closed)="panelOpenState = false">
+                   <mat-expansion-panel-header>
+                     <mat-panel-title>
+                       L'information sur les tarifs
+                     </mat-panel-title>
+                     <mat-panel-description>
+                       
+                     </mat-panel-description>
+                   </mat-expansion-panel-header>
+                    <!--start expansion-->
+                   
+                    <div   *ngIf="showMenuDetails"    class="card-body bg-gray text-white text-capitalize">
+
+                        <div class="row">
+                            
+                            <div class="row">
+                                <div class="col-8">
+                                     <div>
+                                       <mat-card class="bg-gray text-white">
+                                         <mat-card-header>
+                                            <mat-card-title style="margin-left: -22px;">Menu :</mat-card-title>
+                                         </mat-card-header>
+                                         <mat-card-content>
+                                            <mat-list class="inline-list">
+                                               <mat-list-item *ngFor="let menu of listOfTarifNames"> 
+                                                  <span style="color:rgb(255, 255, 255);
+                                                  margin-top: 20px; margin-bottom: 20px;
+                                                  width: 190px;">{{menu}} </span> 
+                                                </mat-list-item>
+                                             </mat-list>
+                                          </mat-card-content>
+                                        </mat-card>
+                                    </div>
+                                </div>
+                             </div>
+            
+                            <div class="col-md-12 mt-3">
+                                <p>Total :  {{this.totalePersoMenuPrice}} Dt </p>
+                                <p>Old Total :  {{this.price}} Dt </p>
                             </div>
                         </div>
-                     </div>
-                    
-                      
-                    
-    
-                    <div class="col-md-12 mt-3">
-                        <p>Total :  {{this.totalePersoMenuPrice}} Dt </p>
-                        <p>Old Total :  {{this.price}} Dt </p>
                     </div>
-                </div>
-            </div>
+
+
+                    <!--end expansion---->
+
+                 </mat-expansion-panel>
+               </mat-accordion>
+               </div>
+
+
+
+          
+
+
         </div>
     </div>
 </div>
@@ -297,7 +325,7 @@
             <mat-dialog-actions align="end">
                     <!---[disabled]="!reservationMenuForm.valid"-->
                 <button  mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
-                <button  style="margin-left:10px"    mat-raised-button color="primary" [type]="submit"  [mat-dialog-close]="data" cdkFocusInitial    (click)="confirmAdd()">Reservé</button>
+                <button  style="margin-left:10px"    mat-raised-button color="primary" [type]="submit"  [mat-dialog-close]="data" cdkFocusInitial    (click)="confirmAdd()">Confirmer</button>
             </mat-dialog-actions>
            
         </div>

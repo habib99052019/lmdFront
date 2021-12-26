@@ -29,8 +29,11 @@
                         <div class="row d-flex justify-content-between align-content-center">
                             
                             <form class="min-calendar" [formGroup]="cal">
+                                
                                 <div>
-                                    <button  id="updateHeader" (click)="gotoReservation()"    mat-flat-button style="background-color:#1c4587ff;color:white">Réserver</button>
+                                    <mat-icon style="color:#1c4587ff;font-size:40px; cursor: pointer;"    (click)="gotoReservation()">add_circle</mat-icon>
+                                    
+                                   <!-- <button  id="updateHeader" (click)="gotoReservation()"    mat-flat-button style="background-color:#1c4587ff;color:white">Réserver</button>  --> 
                                 </div>
                                 <div style="font-size: 8px; margin-left:'31.5%';">
                                      <mat-form-field  style="margin-right: 20px;"  appearance="outline">

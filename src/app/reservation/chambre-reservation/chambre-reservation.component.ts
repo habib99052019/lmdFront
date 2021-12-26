@@ -329,10 +329,10 @@ handleEventClick(clickInfo: EventClickArg) {
           const calendarApi = this.calendarComponent.getApi();
           calendarApi.next(); // call a method on the Calendar object
           calendarApi.prev();
-          console.log("data from dialog add team >>>", result)
+          console.log("data from dialog add chambre >>>", result )
           const id = result.reservation_ID;
 
-
+    
          if(result.selected === 1){
              this.status = "RESERVE" ;
              this.backgroundColor ="yellow";
@@ -342,7 +342,7 @@ handleEventClick(clickInfo: EventClickArg) {
              this.status = "OCCUPE";
              this.backgroundColor = "red";
          }
-         else {
+         else if(result.selected === 3) {
              this.status = "FERMER";
              this.backgroundColor = "gray"
          }
@@ -374,6 +374,7 @@ handleEventClick(clickInfo: EventClickArg) {
            number_adulte:result.number_adulte,
            number_persons:this.nbp,
            number_days:result.nb_days,
+           number_phone:result.number_phone,
            comment: result.comment,
            extra:  result.extra,
            price : result.price,
