@@ -115,10 +115,8 @@ deleteSingleRow(row) {
   }).then((result) => {
     console.log(result)
     if (result.value) {
-      this.service.deleteReservation(row._id).subscribe((data:any) => {
+      this.service.deletePersoMenuReservation(row._id).subscribe((data:any) => {
         console.log('delete >>>', data);
-        
-
         this.showNotification(
           'snackbar-danger',
            "la réservation a été supprimée avec succès",
@@ -147,7 +145,7 @@ showNotification(colorName, text, placementFrom, placementAlign) {
 
 openEditModal(row){
 
-  console.log('row from edit perso page>>>', row);
+  console.log('row from edit perso page>>>', row.listmenuID[0]._id);
   const dialogRef = this.dialog.open(EditFormDialogComponent, {
 
      width:'1000px',
@@ -161,13 +159,49 @@ openEditModal(row){
        comment: row.listmenuID[0].comment,
        price: row.listmenuID[0].price,
        menuList: row.listmenuID[0].menuList,
-       BoissonMenuList:[]
+       menuListTosent: [],
+       menuID:row.listmenuID[0]._id
 
     }
   });
 
    dialogRef.afterClosed().subscribe(result => {
-     console.log('ezqult from edit>>>', result);
+    console.log('result from edit>>>', result);
+
+      if(result != undefined){
+          console.log('result from edit>>>', result);
+          const datatosent = {
+                menuList:result.menuListTosent,
+                comment:result.comment,
+                isPersonalize:true,
+                price:result.price,
+                entrePerso:result.repasType
+          }
+          this.service.updatePersoReservationMenu(result.menuID,datatosent).subscribe(perso => {
+            console.log('perso updated>>>>', perso);
+            
+            this.showNotification(
+              'snackbar-success',
+              "la réservation a été modifier avec succès",
+              'top',
+              'end'
+            );
+             this.getlisPersoReervationMenus();
+          }, err => {
+              
+            if(err != 'Not Found'){
+              console.log('err>>>',err);
+                this.showNotification(
+                'snackbar-danger',
+                  err,
+                'top',
+                'end'
+              );
+           }
+                })
+        
+      }
+    
    })
     
     

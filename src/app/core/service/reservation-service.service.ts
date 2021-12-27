@@ -74,6 +74,16 @@ export class ReservationServiceService {
   updateStandReservationMenu(id , data){
     return this.http.put(this.ApiPath + 'reservations/menusta/' + id , data)
   }
+  
+  /*update perso menu reservation */
+  updatePersoReservationMenu(id , data){
+    return this.http.put(this.ApiPath + 'reservations/menuperso/' + id , data)
+  }
 
+  /*delete perso reservation from room */
+  
+  deletePersoMenuReservation(id){
+    return this.http.delete(this.ApiPath + 'reservations/menu/' + id)
+  }
 
 }

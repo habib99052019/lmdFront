@@ -1,332 +1,277 @@
-<div class="row">
+<div>
+    <form class="row" [formGroup]="this.reservationMenuForm" >
+
+    
+        <div class="col">
+          
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>selectionner un utilisateur</mat-label>
+                    <input matInput type="text" 
+                        [matAutocomplete]="auto"
+                            #query
+                            (keyup)="search(query.value)"
+                           
+                            [value]='this.user'
+                        >
+                        <mat-icon matSuffix>face</mat-icon>
+    
+                    <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayFn" >
+                        <mat-option *ngFor="let user of searchuser" [value]="user">
+                            {{user.clientID.first_name}}
+                            {{user.clientID.number_phone}}
+                        </mat-option>
+    
+                    </mat-autocomplete>
+                </mat-form-field>
+                
+           
+        
+        </div>
+        <div class="col">
+               <form>
+                   <mat-form-field class="example-full-width mb-1" appearance="outline">
+                    <mat-label>chambre</mat-label>
+                    <input matInput  type="text"  [(ngModel)]="data.roomName" name="roomName">
+                </mat-form-field>
+               </form>
+                 
+            
+           
+        </div>
+        <div class="col">
+          
+                <mat-form-field  class="example-full-width mb-1"   appearance="outline">
+                <mat-select placeholder="Entrées froides" formControlName="entree_froides"  (selectionChange)="calculTarifPersoMenu($event)"      multiple>
+                  <mat-option *ngFor="let feroids of EntreeFeroidsList" [value]="feroids">
+                      {{feroids.name}} : {{feroids.price}}DT
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>
+          
+            
+        </div>
+        <div class="col">
+          
+                 <mat-form-field  class="example-full-width mb-1"   appearance="outline">
+                <mat-select placeholder="Entrées chaudes" formControlName="entree_chaudes"  (selectionChange)="calculTarifPersoMenu($event)"    multiple >
+                  <mat-option *ngFor="let chaudes of EntreeChaudesList" [value]="chaudes">
+                      {{chaudes.name}} : {{chaudes.price}}DT
+                </mat-option>
+                </mat-select>
+              </mat-form-field>
+           
+           
+       
+        </div>
+    
+    
+      
+        <!-------------->
+    
+    <div class="row">
+        <div class="col">
+            
+                <mat-form-field  class="example-full-width mb-1"    appearance="outline">
+                <mat-select placeholder="Nos spécialités" formControlName="nos_specialite"   (selectionChange)="calculTarifPersoMenu($event)"          multiple >
+                  <mat-option *ngFor="let specialistes of NosSpecialistesList" [value]="specialistes">
+                      {{specialistes.name}}: {{specialistes.price}}DT
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+           
+            
+        </div>
+       
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+            
+                <mat-form-field  class="example-full-width mb-1"     appearance="outline">
+                <mat-select placeholder="Pàtes" formControlName="pates" multiple  (selectionChange)="calculTarifPersoMenu($event)"   >
+                  <mat-option *ngFor="let pates of  PatesList" [value]="pates">
+                      {{pates.name}} : {{pates.price}}DT
+                 </mat-option>
+                </mat-select>
+              </mat-form-field>
+         
+            
+        </div>
+    
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+          
+                <mat-form-field   class="example-full-width mb-1"     appearance="outline">
+                <mat-select placeholder="Boissons" formControlName="boissons" multiple  (selectionChange)="calculTarifPersoMenu($event)" >
+                  <mat-option *ngFor="let boissons of BoissonsList" [value]="boissons">
+                      {{boissons.name}} : {{boissons.price}}DT
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+    
+          
+            
+        </div>
+      
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+         
+                <mat-form-field  class="example-full-width mb-1"    appearance="outline">
+                <mat-select placeholder="Desserts" formControlName="desserts" multiple  (selectionChange)="calculTarifPersoMenu($event)"    >
+                  <mat-option *ngFor="let desserts of DessertsList" [value]="desserts">
+                      {{desserts.name}} : {{desserts.price}}DT
+                 </mat-option>
+                </mat-select>
+              </mat-form-field>
+           
+            
+        </div>
+      
+    
+    </div>
+    
+    
+    <div class="row">
+    
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+              <form>
+                   <mat-form-field class="example-full-width mb-1" appearance="outline">
+                    <mat-label>Type de repas</mat-label>
+                    <mat-select [(ngModel)]="data.repasType" name="repasType"  required>
+                       
+                        <mat-option [value]="'petit déjeuner'">
+                            Petit déjeune
+                        </mat-option>
+                        <mat-option [value]="'déjeuner'">
+                            Déjeuner
+                        </mat-option>
+                        <mat-option [value]="'diner'">
+                            Diner
+                        </mat-option>
+                       
+                    </mat-select>
+    
+                </mat-form-field>
+              </form>
+               
+           
+           
+        </div>
+    
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" style="font-size: 8px">
+            <form>
+                <mat-form-field class="example-full-width"  appearance="outline">
+                    <mat-label style="font-size: 12px;">Commentaire</mat-label>
+                    <textarea matInput [(ngModel)]="data.comment" name="comment"></textarea>
+               </mat-form-field>
+            </form>
+            
+       </div>
+    </div>
+       
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+    
+    
+                <div class="row">
+    
+                    <mat-accordion>
+                    
+                     <mat-expansion-panel (opened)="panelOpenState = true"
+                                          (closed)="panelOpenState = false">
+                       <mat-expansion-panel-header>
+                         <mat-panel-title>
+                           L'information sur les tarifs
+                         </mat-panel-title>
+                         <mat-panel-description>
+                           
+                         </mat-panel-description>
+                       </mat-expansion-panel-header>
+                        <!--start expansion-->
+                       
+                        <div   *ngIf="showMenuDetails"    class="card-body bg-gray text-white text-capitalize">
+    
+                            <div class="row">
+                                
+                                <div class="col">
+                                    <div class="col-8">
+                                         <div>
+                                           <mat-card class="bg-gray text-white">
+                                             <mat-card-header>
+                                                <mat-card-title style="margin-left: -22px;">Menu :</mat-card-title>
+                                             </mat-card-header>
+                                             <mat-card-content>
+                                                <mat-list class="inline-list">
+                                                   <mat-list-item style="padding:0px;" *ngFor="let menu of listOfTarifNames1"> 
+                                                      <p style="color:rgb(255, 255, 255);
+                                                      margin-top: 5px; margin-bottom: 8px;
+                                                      width: 100%;background-color:rgb(255, 172, 49);font-family:system-ui;border-radius: 10px;padding-left:15px;">
+                                                            {{menu}}
+                                                   </p> 
+                                                    </mat-list-item>
+                                                 </mat-list>
+                                              </mat-card-content>
+                                            </mat-card>
+                                        </div>
+                                        <p>Old Total :  {{this.price}} Dt </p>
+                                    </div>
+                                 </div>
+                                 <div *ngIf="showNew" class="col">
+                                    <div class="col-8">
+                                         <div>
+                                           <mat-card class="bg-gray text-white">
+                                             <mat-card-header>
+                                                <mat-card-title style="margin-left: -22px;">Menu :</mat-card-title>
+                                             </mat-card-header>
+                                             <mat-card-content>
+                                                <mat-list class="inline-list">
+                                                   <mat-list-item style="padding: 0px;" *ngFor="let menu of listOfTarifNames2"> 
+                                                      <p style="color:rgb(255, 255, 255);
+                                                      margin-top: 5px; margin-bottom: 5px;
+                                                      width: 100%;background-color:rgb(255, 172, 49);font-family:system-ui;border-radius: 10px;padding-left:15px;">
+                                                            {{menu}}
+                                                   </p> 
+                                                    </mat-list-item>
+                                                 </mat-list>
+                                              </mat-card-content>
+                                            </mat-card>
+                                        </div>
+                                        <p>Total :  {{this.totalePersoMenuPrice2}} Dt </p>
+                                    </div>
+                                 </div>
+                
+                                
+                            </div>
+                        </div>
+    
+    
+                        <!--end expansion---->
+    
+                     </mat-expansion-panel>
+                   </mat-accordion>
+                   </div>
+    
+    
+    
+              
+    
+    
+            </div>
+        </div>
+    </div>
+    
+    
+        <div style="display: flex; flex-direction:row; justify-content:end;">
+            <div>
+                <mat-dialog-actions align="end">
+                        <!---[disabled]="!reservationMenuForm.valid"-->
+                    <button  mat-raised-button color="warn"     mat-dialog-close >Cancel</button>
+                    <button  style="margin-left:10px"   mat-raised-button color="primary"  [mat-dialog-close]="data" cdkFocusInitial  >Confirmer</button>
+                </mat-dialog-actions>
+               
+            </div>
+        </div>
+
+    </form>
+</div>
                 
     <!---------------------------->
 
-     
-    <div class="col">
-        <form>
-
-            <mat-form-field appearance="outline">
-                <mat-label>selectionner un utilisateur</mat-label>
-                <input matInput type="text" 
-                    [matAutocomplete]="auto"
-                        #query
-                        (keyup)="search(query.value)"
-                       
-                        [value]='this.user'
-                    >
-                    <mat-icon matSuffix>face</mat-icon>
-
-                <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayFn" (optionSelected)="selected($event)">
-                    <mat-option *ngFor="let user of searchuser" [value]="user">
-                        {{user.clientID.first_name}}
-                        {{user.clientID.number_phone}}
-                    </mat-option>
-
-                </mat-autocomplete>
-            </mat-form-field>
-            
-        </form>
-    
-    </div>
-    <div class="col">
-        <form>
-             <mat-form-field class="example-full-width mb-1" appearance="outline">
-                <mat-label>chambre</mat-label>
-                <input matInput  type="text"  [(ngModel)]="data.roomName" name="roomName">
-            </mat-form-field>
-        </form>
-       
-    </div>
-    <div class="col">
-        <form>
-            <mat-form-field  class="example-full-width mb-1"   appearance="outline">
-            <mat-select placeholder="Entrées froides" [(ngModel)]="this.froidsMenuList" name="feroids"  (selectionChange)="calculTarifPersoMenu($event)"      multiple>
-                <mat-option [value]="'Salade tunisienne'">
-                    Salade tunisienne : 12DT
-                </mat-option>
-                <mat-option [value]="'Salade de capese'">
-                    Salade de capese : 18DT
-                </mat-option>
-                <mat-option [value]="'Salade méchouia'">
-                    Salade méchouia : 13DT
-                </mat-option>
-                <mat-option [value]="'Salade niçoise'">
-                    Salade niçoise : 14DT
-                </mat-option>
-               
-                <mat-option [value]="'Salade César'">
-                    Salade César : 18DT
-                </mat-option>
-                <mat-option [value]="'Salade Dar ichkeul'">
-                    Salade Dar ichkeul : 14DT
-                </mat-option>
-                <mat-option [value]="'Salade de saumon fumé'">
-                    Salade de saumon fumé : 25DT
-                </mat-option>
-               
-            </mat-select>
-          </mat-form-field>
-        </form>
-
-    </div>
-    <div class="col">
-        <form>
-            <mat-form-field  class="example-full-width mb-1"   appearance="outline">
-            <mat-select placeholder="Entrées chaudes" [(ngModel)]="this.chaudsMenuList" name="chaudes"  (selectionChange)="calculTarifPersoMenu($event)"    multiple >
-                <mat-option [value]="'Soupe à agneau'">
-                    Soupe à agneau : 16DT
-                </mat-option>
-                <mat-option [value]="'Brik au thion'">
-                    Brik au thion : 6DT
-                </mat-option>
-                <mat-option [value]="'Brik à la viande'">
-                    Brik à la viande : 7DT
-                </mat-option>
-                
-            </mat-select>
-          </mat-form-field>
-        </form>
-        
-    
-    </div>
-
-
-  
-    <!-------------->
-</div>
-<div class="row">
-    <div class="col">
-        <form>
-             <mat-form-field  class="example-full-width mb-1"    appearance="outline">
-            <mat-select placeholder="Nos spécialités" [(ngModel)]="this.specialistMenuList" name="specialistes"   (selectionChange)="calculTarifPersoMenu($event)"          multiple >
-                <mat-option [value]="'Agneau à la gargoulette'">
-                    Agneau à la gargoulette : 35DT
-                </mat-option>
-                <mat-option [value]="'Cotelette agneau grillée'">
-                    Cotelette agneau grillée : 32DT
-                </mat-option>
-                <mat-option [value]="'Entrecote grillée beurre maitre hotel'">
-                    Entrecote grillée beurre maitre hotel : 40DT
-                </mat-option>
-                <mat-option [value]="'Filet de boeuf'">
-                    Filet de boeuf : 45DT
-                </mat-option>
-               
-                <mat-option [value]="'Grillades mixtes'">
-                    Cailles grillées : 28DT
-                </mat-option>
-                <mat-option [value]="'Escalope de poulet à la crème'">
-                    Escalope de poulet à la crème : 28DT
-                </mat-option>
-                <mat-option [value]="'Excalope de poulet panné'">
-                    Excalope de poulet panné : 25DT
-                </mat-option>
-                <mat-option [value]="'Ojja Merguez'">
-                    Ojja Merguez : 18DT
-                </mat-option>
-                <mat-option [value]="'Ojja chevrettes'">
-                    Ojja chevrettes : 28DT
-                </mat-option>
-                
-            </mat-select>
-          </mat-form-field>
-        </form>
-       
-    </div>
-   
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-           <form>
-                  <mat-form-field  class="example-full-width mb-1"     appearance="outline">
-                    <mat-select placeholder="Pàtes" [(ngModel)]="this.PatsMenuList" name="pates" multiple  (selectionChange)="calculTarifPersoMenu($event)"    >
-                        <mat-option [value]="'Nwasser au poulet fermier'">
-                            Nwasser au poulet fermier : 20DT
-                        </mat-option>
-                        <mat-option [value]="'Spaghettis Bolognaises'">
-                            Spaghettis Bolognaises : 32DT
-                        </mat-option>
-                        
-                    </mat-select>
-                  </mat-form-field>
-           </form>
-       
-    </div>
-
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-          <form>
-               <mat-form-field   class="example-full-width mb-1"     appearance="outline">
-                <mat-select placeholder="Boissons" [(ngModel)]="this.BoissonMenuList" name="boissons" multiple  (selectionChange)="calculTarifPersoMenu($event)"     >
-                    <mat-option [value]="'Eau minérale 1L'">
-                        Eau minérale 1L : 3DT
-                    </mat-option>
-                    <mat-option [value]="'Eau gazeuse 1L'">
-                        Eau gazeuse 1L : 3DT
-                    </mat-option>
-                    <mat-option [value]="'Soda'">
-                        Soda 1L : 4DT
-                    </mat-option>
-                    <mat-option [value]="'Jus Orange'">
-                        Jus d'Orange 1L : 6DT
-                    </mat-option>
-                   
-                    <mat-option [value]="'Jus de Fraise'">
-                        Jus de Fraise : 6DT
-                    </mat-option>
-                    <mat-option [value]="'Citronade'">
-                        Citronade : 4DT
-                    </mat-option>
-                    <mat-option [value]="'Boissons énergétiques'">
-                        Citronade : 8DT
-                    </mat-option>
-                    <mat-option [value]="'Nepresso'">
-                        Nepresso : 4.5DT
-                    </mat-option>
-               
-                </mat-select>
-              </mat-form-field>
-          </form>
-           
-      <!--
-          
-      -->
-        
-    </div>
-  
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-         <form>
-              <mat-form-field  class="example-full-width mb-1"    appearance="outline">
-                <mat-select placeholder="Desserts" [(ngModel)]="this.DessertMenuList" name="desserts"  (selectionChange)="calculTarifPersoMenu($event)"     multiple>
-               
-                <mat-option [value]="'Sorbet'">
-                    Sorbet : 4DT
-                </mat-option>
-                <mat-option [value]="'Assiette de fruits(1pax)'">
-                    Assiette de fruits(1pax) : 8DT
-                </mat-option>
-
-              </mat-select>
-          </mat-form-field>
-         </form>
-       
-    </div>
-  
-
-</div>
-
-
-<div class="row">
-
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-        <form>
-            <mat-form-field class="example-full-width mb-1" appearance="outline">
-                <mat-label>Type de repas</mat-label>
-                <mat-select [(ngModel)]="data.repasType" name="repasType"  required>
-                   
-                    <mat-option [value]="'petit déjeuner'">
-                        Petit déjeune
-                    </mat-option>
-                    <mat-option [value]="'déjeuner'">
-                        Déjeuner
-                    </mat-option>
-                    <mat-option [value]="'diner'">
-                        Diner
-                    </mat-option>
-                   
-                </mat-select>
-
-            </mat-form-field>
-        </form>
-        
-    </div>
-
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" style="font-size: 8px">
-        <form>
-            <mat-form-field class="example-full-width"  appearance="outline">
-                <mat-label style="font-size: 12px;">Commentaire</mat-label>
-                <textarea matInput [(ngModel)]="data.comment" name="comment"></textarea>
-           </mat-form-field>
-        </form>
-        
-   </div>
-</div>
-   
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-
-
-            <div class="row">
-
-                <mat-accordion>
-                
-                 <mat-expansion-panel (opened)="panelOpenState = true"
-                                      (closed)="panelOpenState = false">
-                   <mat-expansion-panel-header>
-                     <mat-panel-title>
-                       L'information sur les tarifs
-                     </mat-panel-title>
-                     <mat-panel-description>
-                       
-                     </mat-panel-description>
-                   </mat-expansion-panel-header>
-                    <!--start expansion-->
-                   
-                    <div   *ngIf="showMenuDetails"    class="card-body bg-gray text-white text-capitalize">
-
-                        <div class="row">
-                            
-                            <div class="row">
-                                <div class="col-8">
-                                     <div>
-                                       <mat-card class="bg-gray text-white">
-                                         <mat-card-header>
-                                            <mat-card-title style="margin-left: -22px;">Menu :</mat-card-title>
-                                         </mat-card-header>
-                                         <mat-card-content>
-                                            <mat-list class="inline-list">
-                                               <mat-list-item *ngFor="let menu of listOfTarifNames"> 
-                                                  <span style="color:rgb(255, 255, 255);
-                                                  margin-top: 20px; margin-bottom: 20px;
-                                                  width: 190px;">{{menu}} </span> 
-                                                </mat-list-item>
-                                             </mat-list>
-                                          </mat-card-content>
-                                        </mat-card>
-                                    </div>
-                                </div>
-                             </div>
-            
-                            <div class="col-md-12 mt-3">
-                                <p>Total :  {{this.totalePersoMenuPrice}} Dt </p>
-                                <p>Old Total :  {{this.price}} Dt </p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!--end expansion---->
-
-                 </mat-expansion-panel>
-               </mat-accordion>
-               </div>
-
-
-
-          
-
-
-        </div>
-    </div>
-</div>
-
-
-    <div style="display: flex; flex-direction:row; justify-content:end;">
-        <div>
-            <mat-dialog-actions align="end">
-                    <!---[disabled]="!reservationMenuForm.valid"-->
-                <button  mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
-                <button  style="margin-left:10px"    mat-raised-button color="primary" [type]="submit"  [mat-dialog-close]="data" cdkFocusInitial    (click)="confirmAdd()">Confirmer</button>
-            </mat-dialog-actions>
-           
-        </div>
-    </div>
+ 
