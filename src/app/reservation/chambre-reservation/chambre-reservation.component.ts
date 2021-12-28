@@ -147,7 +147,7 @@ initfullcalendar = () => {
                 <div style="display:flex;flex-direction:row ;">
                     <span  style="margin-top:16px;color:white;font-size:12px"    class="material-icons">person</span>
                     <p style="margin-top:16px; color:white;font-size:10px;font-family: Roboto">${arg.event._def.extendedProps.number_persons}</p>
-                    <span  style="margin-top:17px;color:white;font-size:11px;margin-left:2px"    class="material-icons">brightness_3</span>
+                    <span  style="margin-top:17px;color:white;font-size:11px;margin-left:2px;"    class="material-icons">brightness_3</span>
                     <p style="margin-top:16px; color:white;font-size:10px;font-family: Roboto">${arg.event._def.extendedProps.number_days}</p>
                 </div>
               
@@ -429,30 +429,30 @@ numberPersons(nba: number, nbc:number){
 
 verifyRoomColor(roomName:any){
   if (roomName === 'Ruppia'){
-    this.roombackgroundColor = '#6D363A';
+    this.roombackgroundColor = '#deaa89';
 }
 else if(roomName === 'Marabou'){
-    this.roombackgroundColor = '#7D4F52';
+    this.roombackgroundColor = '#d29e6d';
 }
 else if(roomName === 'Colony'){
-     this.roombackgroundColor = '#9B6F71';
+     this.roombackgroundColor = '#2896bc';
 }
 else if (roomName === 'Ciconia'){
-     this.roombackgroundColor = '#B88E8F';
+     this.roombackgroundColor = '#ce711a';
 }
 else if (roomName === 'Cicogne'){
-  this.roombackgroundColor = '#D57C7D';
+  this.roombackgroundColor = '#dcc379';
 }
 else if (roomName === 'Brecon'){
-  this.roombackgroundColor = '#628F93';
+  this.roombackgroundColor = '#246880';
 }
 else if (roomName === 'Bonnelli'){
-  this.roombackgroundColor = '#415F62';
+  this.roombackgroundColor = '#997259';
 }
 else if (roomName === 'Amorpha'){
-  this.roombackgroundColor = '#739296';
+  this.roombackgroundColor = '#79c296';
 }else{
-  this.roombackgroundColor = '#B98166'
+  this.roombackgroundColor = '#7aa0b8'
 }
 
 }

@@ -48,6 +48,7 @@ export class EditPersoMenuComponent implements OnInit {
   }
 
   
+
   ngAfterViewInit() {
 
     
@@ -81,8 +82,6 @@ search(term: string) {
     )
 }
   
-
-
 
 
  getlisPersoReervationMenus(){
@@ -145,66 +144,212 @@ showNotification(colorName, text, placementFrom, placementAlign) {
 
 openEditModal(row){
 
-  console.log('row from edit perso page>>>', row.listmenuID[0]._id);
-  const dialogRef = this.dialog.open(EditFormDialogComponent, {
-
-     width:'1000px',
-     height:'800px',
-    
-    data:{
-       first_name: row.clientID.first_name,
-       last_name: row.clientID.last_name,
-       roomName: row.roomName,
-       repasType: row.listmenuID[0].typeRepas,
-       comment: row.listmenuID[0].comment,
-       price: row.listmenuID[0].price,
-       menuList: row.listmenuID[0].menuList,
-       menuListTosent: [],
-       menuID:row.listmenuID[0]._id
-
-    }
-  });
-
-   dialogRef.afterClosed().subscribe(result => {
-    console.log('result from edit>>>', result);
-
-      if(result != undefined){
-          console.log('result from edit>>>', result);
-          const datatosent = {
-                menuList:result.menuListTosent,
-                comment:result.comment,
-                isPersonalize:true,
-                price:result.price,
-                entrePerso:result.repasType
-          }
-          this.service.updatePersoReservationMenu(result.menuID,datatosent).subscribe(perso => {
-            console.log('perso updated>>>>', perso);
-            
-            this.showNotification(
-              'snackbar-success',
-              "la réservation a été modifier avec succès",
-              'top',
-              'end'
-            );
-             this.getlisPersoReervationMenus();
-          }, err => {
-              
-            if(err != 'Not Found'){
-              console.log('err>>>',err);
-                this.showNotification(
-                'snackbar-danger',
-                  err,
-                'top',
-                'end'
-              );
-           }
-                })
+  console.log('row from edit perso page>>>', row);
+  if(row.listmenuID[1] && row.listmenuID[0] ){
         
-      }
+    const dialogRef = this.dialog.open(EditFormDialogComponent, {
+
+      width:'1000px',
+      height:'800px',
+     
+      
+     data:{
+        first_name: row.clientID.first_name,
+        last_name: row.clientID.last_name,
+        roomName: row.roomName,
+        repasType: row.listmenuID[0].typeRepas,
+        comment: row.listmenuID[0].comment,
+        price: row.listmenuID[0].price,
+        menuList: row.listmenuID[0].menuList,
+        menuListTosent: [],
+        menuID:row.listmenuID[0]._id,
+ 
+        menu2ListTosent:[],
+        repasType2: row.listmenuID[1].typeRepas,
+        comment2: row.listmenuID[1].comment,
+        price2: row.listmenuID[1].price,
+        menu2List: row.listmenuID[1].menuList,
+        menuID2:row.listmenuID[1]._id
+     }
+   });
+ 
+    dialogRef.afterClosed().subscribe(result => {
+     console.log('lenght>>>', result.menuListTosent.length);
+ 
+       if((result.menuListTosent.length != 0 ) && (result != undefined)){
+           console.log('result from edit>>>', result);
+           const datatosent = {
+                 menuList:result.menuList,
+                 comment:result.comment,
+                 isPersonalize:true,
+                 price:result.price,
+                 entrePerso:result.repasType
+           }
+           this.service.updatePersoReservationMenu(result.menuID,datatosent).subscribe(perso => {
+             console.log('perso updated>>>>', perso);
+             
+             this.showNotification(
+               'snackbar-success',
+               "la réservation a été modifier avec succès",
+               'top',
+               'end'
+             );
+              this.getlisPersoReervationMenus();
+           }, err => {
+               
+             if(err != 'Not Found'){
+               console.log('err>>>',err);
+                 this.showNotification(
+                 'snackbar-danger',
+                   err,
+                 'top',
+                 'end'
+               );
+            }
+                 })
+         
+       }else{
+         console.log('result from edit>>>', result);
+         const datatosent = {
+               menuList:result.menu2List,
+               comment:result.comment2,
+               isPersonalize:true,
+               price:result.price2,
+               entrePerso:result.repasType2
+         }
+         this.service.updatePersoReservationMenu(result.menuID2,datatosent).subscribe(perso => {
+           console.log('perso updated>>>>', perso);
+           
+           this.showNotification(
+             'snackbar-success',
+             "la réservation a été modifier avec succès",
+             'top',
+             'end'
+           );
+            this.getlisPersoReervationMenus();
+         }, err => {
+             
+           if(err != 'Not Found'){
+             console.log('err>>>',err);
+               this.showNotification(
+               'snackbar-danger',
+                 err,
+               'top',
+               'end'
+             );
+          }
+               })
+       }
+     
+    })
+     
+  }else{
+    const dialogRef = this.dialog.open(EditFormDialogComponent, {
+
+      width:'1000px',
+      height:'800px',
+     
+      
+     data:{
+        first_name: row.clientID.first_name,
+        last_name: row.clientID.last_name,
+        roomName: row.roomName,
+        repasType: row.listmenuID[0].typeRepas,
+        comment: row.listmenuID[0].comment,
+        price: row.listmenuID[0].price,
+        menuList: row.listmenuID[0].menuList,
+        menuListTosent: [],
+        menuID:row.listmenuID[0]._id,
+        
+      /*  menu2ListTosent:[],
+        repasType2: row.listmenuID[1].typeRepas,
+        comment2: row.listmenuID[1].comment,
+        price2: row.listmenuID[1].price,
+        menu2List: row.listmenuID[1].menuList,
+        menuID2:row.listmenuID[1]._id*/
+     }
+   });
+ 
+    dialogRef.afterClosed().subscribe(result => {
+     console.log('lenght>>>', result.menuListTosent.length);
+ 
+       if((result.menuListTosent.length != 0 ) && (result != undefined)){
+           console.log('result from edit>>>', result);
+           const datatosent = {
+                 menuList:result.menuList,
+                 comment:result.comment,
+                 isPersonalize:true,
+                 price:result.price,
+                 entrePerso:result.repasType
+           }
+           this.service.updatePersoReservationMenu(result.menuID,datatosent).subscribe(perso => {
+             console.log('perso updated>>>>', perso);
+             
+             this.showNotification(
+               'snackbar-success',
+               "la réservation a été modifier avec succès",
+               'top',
+               'end'
+             );
+              this.getlisPersoReervationMenus();
+           }, err => {
+               
+             if(err != 'Not Found'){
+               console.log('err>>>',err);
+                 this.showNotification(
+                 'snackbar-danger',
+                   err,
+                 'top',
+                 'end'
+               );
+            }
+                 })
+         
+       }else{
+         console.log('result from edit>>>', result);
+         const datatosent = {
+               menuList:result.menu2List,
+               comment:result.comment2,
+               isPersonalize:true,
+               price:result.price2,
+               entrePerso:result.repasType2
+         }
+         this.service.updatePersoReservationMenu(result.menuID2,datatosent).subscribe(perso => {
+           console.log('perso updated>>>>', perso);
+           
+           this.showNotification(
+             'snackbar-success',
+             "la réservation a été modifier avec succès",
+             'top',
+             'end'
+           );
+            this.getlisPersoReervationMenus();
+         }, err => {
+             
+           if(err != 'Not Found'){
+             console.log('err>>>',err);
+               this.showNotification(
+               'snackbar-danger',
+                 err,
+               'top',
+               'end'
+             );
+          }
+               })
+       }
+     
+    })
+  }
+  
     
-   })
-    
-    
+
+
+
+
+
+
+
+
 }
 
 }

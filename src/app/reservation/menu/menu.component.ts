@@ -64,7 +64,7 @@ export class MenuComponent implements OnInit {
   number_geuste:any;
   isUnderline = true;
   showview = true;
-  dummyComponent:any;
+  editPersoMenuComponent:any;
   menuID:any;
 
 ////////////Start perso menus variables //////////////////
@@ -180,7 +180,7 @@ assignComponent(component){
   if(component === 'cow'){
     this.isUnderline = false;
     this.showview = false
-      this.dummyComponent = EditPersoMenuComponent
+      this.editPersoMenuComponent = EditPersoMenuComponent
       
   }
 }
@@ -196,7 +196,7 @@ changePersoView(){
 changeStandardView(){
   this.showview = true
   this.isUnderline = true;
-  this.dummyComponent = ''
+  this.editPersoMenuComponent = ''
   console.log('showview',this.showview);
  // window.location.reload();
  console.log('paginator>>>',this.paginator);

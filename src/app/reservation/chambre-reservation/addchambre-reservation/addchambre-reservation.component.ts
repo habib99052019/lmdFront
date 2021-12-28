@@ -721,32 +721,32 @@ showMenu(event : MatSelectChange){
 verifyRoomColor(roomName:any){
   console.log('roomname verify>>>', roomName);
   
-    if (roomName === 'Ruppia'){
-        this.roombackgroundColor = '#6D363A';
-    }
-    else if(roomName === 'Marabou'){
-        this.roombackgroundColor = '#7D4F52';
-    }
-    else if(roomName === 'Colony'){
-         this.roombackgroundColor = '#9B6F71';
-    }
-    else if (roomName === 'Ciconia'){
-         this.roombackgroundColor = '#B88E8F';
-    }
-    else if (roomName === 'Cicogne'){
-      this.roombackgroundColor = '#D57C7D';
-    }
-    else if (roomName === 'Brecon'){
-      this.roombackgroundColor = '#628F93';
-    }
-    else if (roomName === 'Bonnelli'){
-      this.roombackgroundColor = '#415F62';
-    }
-    else if (roomName === 'Amorpha'){
-      this.roombackgroundColor = '#739296';
-    }else{
-      this.roombackgroundColor = '#B98166'
-    }
+  if (roomName === 'Ruppia'){
+    this.roombackgroundColor = '#deaa89';
+}
+else if(roomName === 'Marabou'){
+    this.roombackgroundColor = '#d29e6d';
+}
+else if(roomName === 'Colony'){
+     this.roombackgroundColor = '#2896bc';
+}
+else if (roomName === 'Ciconia'){
+     this.roombackgroundColor = '#ce711a';
+}
+else if (roomName === 'Cicogne'){
+  this.roombackgroundColor = '#dcc379';
+}
+else if (roomName === 'Brecon'){
+  this.roombackgroundColor = '#246880';
+}
+else if (roomName === 'Bonnelli'){
+  this.roombackgroundColor = '#997259';
+}
+else if (roomName === 'Amorpha'){
+  this.roombackgroundColor = '#79c296';
+}else{
+  this.roombackgroundColor = '#7aa0b8'
+}
 
    
   

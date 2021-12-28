@@ -56,7 +56,7 @@
            <!--------------->
 
         <div>
-             <h1><ng-container *ngComponentOutlet="dummyComponent"></ng-container></h1>
+             <h1><ng-container *ngComponentOutlet="editPersoMenuComponent"></ng-container></h1>
         </div>
         <div class="col-md-12 mb-5"  *ngIf="showview">
             <div class="tabbable-line">
@@ -304,8 +304,8 @@
                 <div>
                     <button mat-icon-button color="warn" (click)="removeFromTotal('Soda')" [disabled]="this.sodaPrice === 0">
                         <mat-icon>remove</mat-icon>
-                      </button> Soda
-                    <button mat-icon-button color="primary" (click)="addToTotal('Soda')" [disabled]="this.MenuPrice ===0">
+                      </button> Soda  
+                    <button mat-icon-button color="primary" (click)="addToTotal('Soda')" [disabled]="this.MenuPrice === 0">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
@@ -313,7 +313,7 @@
                     <button mat-icon-button color="warn" (click)="removeFromTotal('Eau')" [disabled]="this.EauPrice === 0">
                         <mat-icon>remove</mat-icon>
                       </button> Eau
-                    <button mat-icon-button color="primary" (click)="addToTotal('Eau')" [disabled]="this.MenuPrice ===0">
+                    <button mat-icon-button color="primary" (click)="addToTotal('Eau')" [disabled]="this.MenuPrice === 0">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>

@@ -721,7 +721,7 @@ if(event.source.ngControl.name == 'nos_specialite'){
  });
  this.arrayChaud= names;
 // this.listOfTarifNames = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayBoisson || ""),(this.arrayFeroids || ""))
- let filterList = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayBoisson || ""),(this.arrayFeroids || ""))
+ let filterList = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""),(this.arrayFeroids || ""),(this.arrayPate || ""))
 
  this.listOfTarifNames = filterList.filter(function(e){return e});
 
@@ -766,7 +766,7 @@ if(event.source.ngControl.name == 'entree_froides'){
 
   confirmAdd(): void {
     
-    console.log('toppings>>>',this.reservationMenuForm);
+    console.log('entre perso>>>',this.reservationMenuForm.get('entrePerso').value);
  
   if(this.clientID){
         

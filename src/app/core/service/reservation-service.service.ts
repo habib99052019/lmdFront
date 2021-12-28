@@ -86,4 +86,8 @@ export class ReservationServiceService {
     return this.http.delete(this.ApiPath + 'reservations/menu/' + id)
   }
 
+  /* delete menu */
+  deleteMenu(id){
+    return this.http.delete(this.ApiPath + '/menus/' + id)
+  }
 }
