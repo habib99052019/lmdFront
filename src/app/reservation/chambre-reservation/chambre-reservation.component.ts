@@ -162,7 +162,7 @@ initfullcalendar = () => {
 
 
                 <div style="display:flex;flex-direction:column">
-                    <p style="margin-top:5px; margin-right:1px;font-family: Roboto;font-size:9px;color:white">${arg.event._def.extendedProps.clientID.first_name} <br> ${arg.event._def.extendedProps.clientID.last_name} </p>
+                    <p style="margin-top:5px; margin-right:2px;font-family: Roboto;font-size:9px;color:white">${arg.event._def.extendedProps.clientID.first_name} <br> ${arg.event._def.extendedProps.clientID.last_name} </p>
                    
                  </div>
            
@@ -504,7 +504,9 @@ searchDateRange(){
 }
 
 
-
+Reload(){
+  window.location.reload();
+}
 
 
 

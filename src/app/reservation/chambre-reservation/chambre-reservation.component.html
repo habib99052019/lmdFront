@@ -35,6 +35,11 @@
                                     
                                    <!-- <button  id="updateHeader" (click)="gotoReservation()"    mat-flat-button style="background-color:#1c4587ff;color:white">Réserver</button>  --> 
                                 </div>
+                                <div class="cercle">
+                                    <mat-icon style="color:white;font-size:29px; cursor: pointer;margin-left: 2px;margin-top: 2px;"    (click)="Reload()">replay</mat-icon>
+
+                                </div>
+
                                 <div style="font-size: 8px; margin-left:'31.5%';">
                                      <mat-form-field  style="margin-right: 20px;"  appearance="outline">
                                         <input formControlName="date1" matInput placeholder="A partir de" required [matDatepicker]="picker1">

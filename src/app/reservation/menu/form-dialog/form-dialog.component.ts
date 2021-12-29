@@ -345,7 +345,7 @@ BoissonsList: any[] = [
      "déjeuner"  
   ]
   RepasPersoTypeList: any[] = [
-    "petit déjeune",
+    "petit déjeuner",
     "déjeuner",
     "diner"
   ]
@@ -769,6 +769,7 @@ if(event.source.ngControl.name == 'entree_froides'){
     console.log('entre perso>>>',this.reservationMenuForm.get('entrePerso').value);
  
   if(this.clientID){
+        console.log('clientid>>>>', this.clientID);
         
     const reservationPersoForm  = {
       comment : this.reservationMenuForm.get('comment').value,

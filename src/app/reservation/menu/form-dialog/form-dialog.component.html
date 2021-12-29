@@ -163,7 +163,7 @@
 
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
-                        <mat-label>Choix entrées</mat-label>
+                        <mat-label>Type de repas</mat-label>
                         <mat-select formControlName="entreSta" (selectionChange)="showMenuStandard($event)">
                             <mat-option *ngFor="let menu of this.RepasStandardTypeList" [value]="menu">
                                 {{menu}}
@@ -383,10 +383,12 @@
                                                  </mat-card-header>
                                                  <mat-card-content>
                                                     <mat-list class="inline-list">
-                                                       <mat-list-item *ngFor="let menu of listOfTarifNames"> 
-                                                          <span style="color:rgb(255, 255, 255);
-                                                          margin-top: 20px; margin-bottom: 20px;
-                                                          width: 190px;">{{menu}} </span> 
+                                                       <mat-list-item  style="padding: 0px;"     *ngFor="let menu of listOfTarifNames"> 
+                                                          <p style="color:rgb(255, 255, 255);
+                                                          margin-top: 5px; margin-bottom: 5px;
+                                                          width: 50%;background-color:rgb(255, 172, 49);font-family:system-ui;border-radius: 10px;padding-left:15px;">
+                                                            {{menu}} 
+                                                        </p> 
                                                         </mat-list-item>
                                                      </mat-list>
                                                   </mat-card-content>
@@ -395,11 +397,6 @@
                                         </div>
                                      </div>
                                     
-                                    
-                            
-                                    
-                                  
-                    
                                     <div class="col-md-12 mt-3">
                                         <p>Total : {{totalePersoMenuPrice}} Dt </p>
                                     </div>

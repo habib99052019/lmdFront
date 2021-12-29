@@ -92,7 +92,7 @@ RepasStandardTypeList: any[] = [
    "déjeuner"  
 ]
 RepasPersoTypeList: any[] = [
-  "petit déjeune",
+  "petit déjeuner",
   "déjeuner",
   "diner"
 ]
