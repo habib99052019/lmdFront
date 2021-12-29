@@ -11,12 +11,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: '/authentication/signin', pathMatch: 'full' },
+
       {
         path: 'dashboard',
         canActivate: [AuthGuard],
         loadChildren: () =>
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
+      
       {
         path: 'reservation',
         loadChildren: () =>

@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="col">
                                         <mat-form-field class="example-full-width" appearance="outline">
-                                            <mat-label>Prenom</mat-label>
+                                            <mat-label>Prénom</mat-label>
                                             <input matInput formControlName="last_name" required>
                                             <mat-icon matSuffix>face</mat-icon>
                                         </mat-form-field>
@@ -74,21 +74,21 @@
                                     </div>
                                     <div class="col">
                                         <mat-form-field class="example-full-width mb-3" appearance="outline">
-                                            <mat-label>numéro de téléphone</mat-label>
+                                            <mat-label>Numéro de téléphone</mat-label>
                                             <input matInput formControlName="number_phone" name="number_phone" type="number" [min]="8"  required>
                                 
                                         </mat-form-field>
                                     </div>
                                     <div class="col">
                                         <mat-form-field class="example-full-width mb-3" appearance="outline">
-                                            <mat-label>nombre d’adulte</mat-label>
+                                            <mat-label>Nombre d’adulte</mat-label>
                                             <input matInput formControlName="number_children" type="number" [min]="1" (change)="re_calculTotal($event)">
                                             <mat-icon matSuffix>group</mat-icon>
                                         </mat-form-field>
                                     </div>
                                     <div class="col">
                                         <mat-form-field class="example-full-width mb-3" appearance="outline">
-                                            <mat-label>nombre d’enfant</mat-label>
+                                            <mat-label>Nombre d’enfant</mat-label>
                                             <input matInput formControlName="number_adulte" type="number" [min]="1" (change)="re_calculTotal($event)">
                                             <mat-icon matSuffix>group</mat-icon>
                                         </mat-form-field>
@@ -97,7 +97,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <mat-form-field class="example-full-width" appearance="outline">
-                                            <mat-label>taarif</mat-label>
+                                            <mat-label>Tarifs</mat-label>
                                             <mat-select formControlName="taarifType" required (selectionChange)="selectTaarifType($event)"   (selectionChange)="showMenu($event)"      >
                                                 <mat-option [value]="'bas de saison'">
                                                     Bas de saison
@@ -137,7 +137,7 @@
                                       *ngIf="showMenuDetails" >
                                        
                                         <div class="col-6 mb-4 mt-2">
-                                            taarif: {{taarifType}}
+                                            tarif: {{taarifType}}
                                         </div>
                                         <div class="col-6 mb-4">
                                             type: {{roomType}}
@@ -184,7 +184,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-lg-6">
                                         <mat-form-field class="example-full-width" appearance="outline">
-                                            <mat-label>Remarque</mat-label>
+                                            <mat-label>Réclamation </mat-label>
                                             <textarea matInput formControlName="remarque"></textarea>
                                         </mat-form-field>
                                     </div>

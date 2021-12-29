@@ -102,7 +102,7 @@
                           <div class="col">
                             <form>
                                <mat-form-field class="example-full-width" appearance="outline">
-                                  <mat-label>Tarif</mat-label>
+                                  <mat-label>Tarifs</mat-label>
                                   <mat-select   [(ngModel)]="data.tarifType" name="tarifType"     required (selectionChange)="selectTaarifType($event)"   (selectionChange)="showMenu($event)"      >
                                       <mat-option [value]="'bas de saison'">
                                           Bas de saison
@@ -164,7 +164,7 @@
                           *ngIf="showMenuDetails" >
                           
                                 <div class="col-6 mb-4 mt-2">
-                                    taarif: {{tarifType}}
+                                    tarif: {{tarifType}}
                                 </div>
                                 <div class="col-6 mb-4">
                                     type: {{roomName}}
@@ -242,7 +242,7 @@
                         <div class="col-md-6 col-lg-6">
                           <form>
                               <mat-form-field class="example-full-width" appearance="outline">
-                                <mat-label>Remarque</mat-label>
+                                <mat-label>Réclamation</mat-label>
                                 <textarea matInput [(ngModel)]="data.remark" name="remark" ></textarea>
                               </mat-form-field>
                           </form>
@@ -254,7 +254,7 @@
                        <div style="display: flex; justify-content: space-between;">
                            <div>
                               <mat-dialog-actions align="end">
-                                  <button mat-stroked-button color="accent" mat-dialog-close (click)="gotoReservation()">Reserver</button>
+                                  
                                   <button mat-stroked-button color="warn" mat-dialog-close (click)="deleteReservation(data)">Supprimer</button>
   
                               </mat-dialog-actions>
@@ -262,6 +262,7 @@
                            <div>
                             <mat-dialog-actions align="end">
                                 <button mat-raised-button color="warn" mat-dialog-close  >Annuler</button>
+                                <button mat-stroked-button color="accent" mat-dialog-close (click)="gotoReservation()">Reserver</button>
                                 <button  style="margin-left:10px" mat-raised-button color="primary"  [mat-dialog-close]="data" cdkFocusInitial   >Confirmer</button>    
                             </mat-dialog-actions>
                            </div>

@@ -350,6 +350,8 @@ BoissonsList: any[] = [
     "diner"
   ]
 
+  soda = 0;
+  eau = 0;
 
   arrayOfeventValue=[];
 
@@ -453,7 +455,7 @@ this.service.getReservationList().subscribe((users:any[]) => {
     this.service.getMenuList().subscribe((data : any)=>{
       console.log('menus from get menus>>>',data);
       
-     this.Menus = data
+     this.Menus = data.reverse();
     })
   }
 
@@ -536,10 +538,13 @@ showMenu(event : MatSelectChange){
      if(type === "Soda") {
        this.sodaPrice = this.sodaPrice + 2
        this.PriceTotal = this.PriceTotal + 2
+       this.soda = this.soda + 1;
+
      }
      else if (type === "Eau") {
       this.EauPrice = this.EauPrice + 1
       this.PriceTotal = this.PriceTotal + 1
+      this.eau = this.eau + 1 ;
     }
    }
  }
@@ -550,11 +555,12 @@ showMenu(event : MatSelectChange){
     if(type === "Soda") {
       this.PriceTotal = this.PriceTotal - 2
       this.sodaPrice = this.sodaPrice - 2
-      
+      this.soda = this.soda - 1;
     }
     else if (type === "Eau") {
      this.PriceTotal = this.PriceTotal - 1
-     this.EauPrice = this.EauPrice - 1
+     this.EauPrice = this.EauPrice - 1;
+     this.eau = this.eau - 1 ;
    }
   }
 }
@@ -572,8 +578,8 @@ showMenu(event : MatSelectChange){
       first:['' , Validators.required],
       number_phone:['',Validators.required],
       number_heure:['',Validators.required],
-      entreSta:[''],
-      entrePerso:[''],
+      entreSta:['déjeuner'],
+      entrePerso:['déjeuner'],
       roomName:[],
       entree_froides:[],
       entree_chaudes:[],
@@ -588,7 +594,7 @@ showMenu(event : MatSelectChange){
       client_ID : ['',Validators.required],
       number_identity_document : this.randomKey,
       comment : [''],
-      status : [''],
+      status : ['COMMANDE'],
       extra : [''],
       price : [''],
     });

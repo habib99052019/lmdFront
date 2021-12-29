@@ -106,7 +106,7 @@ deleteSingleRow(row) {
 
   console.log('delete menu',row);
   Swal.fire({
-    title: "Es-tu sûr?",
+    title: "êtes vous sure?",
     showCancelButton: true,
     cancelButtonText: "Annuler",
     confirmButtonColor: "#f44336",

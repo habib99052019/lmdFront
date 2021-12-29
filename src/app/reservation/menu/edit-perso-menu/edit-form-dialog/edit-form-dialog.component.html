@@ -275,17 +275,25 @@
         </div>
         
         
-            <div style="display: flex; flex-direction:row; justify-content:end;">
+        
+             
+            <div style="display: flex; justify-content: space-between;">
                 <div>
-                    <mat-dialog-actions align="end">
-                            <!---[disabled]="!reservationMenuForm.valid"-->
-                            <button mat-stroked-button color="warn" mat-dialog-close (click)="deleteReservation1(data)">Supprimer</button>
-                        <button  mat-raised-button color="warn"     mat-dialog-close >Cancel</button>
-                        <button  style="margin-left:10px"   mat-raised-button color="primary"    [mat-dialog-close]="data" cdkFocusInitial  >Confirmer</button>
-                    </mat-dialog-actions>
-                   
+                   <mat-dialog-actions align="end">
+                       
+                    <button mat-stroked-button color="warn" mat-dialog-close (click)="deleteReservation1(data)">Supprimer</button>
+
+                   </mat-dialog-actions>
                 </div>
-            </div>
+                <div>
+                 <mat-dialog-actions align="end">
+                     <button mat-raised-button color="warn" mat-dialog-close  >Annuler</button>
+                     <button  style="margin-left:10px"   mat-raised-button color="primary"    [mat-dialog-close]="data" cdkFocusInitial  >Confirmer</button>    
+                 </mat-dialog-actions>
+                </div>
+           </div>
+
+          
     
          </div>
          
@@ -545,19 +553,25 @@
           </div>
       </div>
       
-      
-          <div style="display: flex; flex-direction:row; justify-content:end;">
-              <div>
-                  <mat-dialog-actions align="end">
-                          <!---[disabled]="!reservationMenuForm.valid"-->
-                     <button mat-stroked-button color="warn" mat-dialog-close (click)="deleteReservation2(data)">Supprimer</button>
 
-                      <button  mat-raised-button color="warn"     mat-dialog-close >Cancel</button>
-                      <button  style="margin-left:10px"   mat-raised-button color="primary"  [mat-dialog-close]="data" cdkFocusInitial  >Confirmer</button>
-                  </mat-dialog-actions>
-                 
-              </div>
-          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <div>
+               <mat-dialog-actions align="end">
+                   
+                <button mat-stroked-button color="warn" mat-dialog-close (click)="deleteReservation2(data)">Supprimer</button>
+
+               </mat-dialog-actions>
+            </div>
+            <div>
+             <mat-dialog-actions align="end">
+                 <button mat-raised-button color="warn" mat-dialog-close  >Annuler</button>
+                 <button  style="margin-left:10px" mat-raised-button color="primary"  [mat-dialog-close]="data" cdkFocusInitial   >Confirmer</button>    
+             </mat-dialog-actions>
+            </div>
+       </div>
+
+
+
          </ng-template>
          
     </form>

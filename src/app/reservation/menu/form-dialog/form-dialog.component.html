@@ -91,7 +91,7 @@
                
                 <div class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
-                        <mat-label>nombre de personnes</mat-label>
+                        <mat-label>Nombre de personnes</mat-label>
                         <input matInput formControlName="number_guests" type="number" [min]="1" (change)="re_calculTotal($event)">
                         <mat-icon matSuffix>group</mat-icon>
                     </mat-form-field>
@@ -99,7 +99,7 @@
 
                 <div class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
-                        <mat-label>date prevue</mat-label>
+                        <mat-label>Date prevue</mat-label>
                         <input matInput [matDatepicker]="picker" formControlName="startDate" [min]="today">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
@@ -111,7 +111,7 @@
               
                 <div class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
-                        <mat-label>l'heure</mat-label>
+                        <mat-label>L'heure</mat-label>
                         <input matInput formControlName="number_heure" type="time" >
                         
                     </mat-form-field>
@@ -209,10 +209,10 @@
                                     <p>prix Menu : {{this.MenuPrice}} * {{this.reservationMenuForm.get('number_guests').value}}</p>
                                 </div>
                                 <div *ngIf="this.EauPrice !== 0" class="col-md-12">
-                                    <p>Eau : {{this.EauPrice }} Dt</p>
+                                    <p>Eau : {{this.EauPrice }} Dt          Eau: {{eau}}</p>
                                 </div>
                                 <div *ngIf="this.sodaPrice !== 0" class="col-md-12">
-                                    <p>Soda : {{this.sodaPrice }} Dt</p>
+                                    <p>Soda : {{this.sodaPrice }} Dt        Soda: {{soda}} </p>
                                 </div>
                                 <div class="col-md-12">
                                     <p>Total : {{this.PriceTotal}} Dt </p>
@@ -246,7 +246,7 @@
                         <form>
 
                             <mat-form-field appearance="outline">
-                                <mat-label>selectionner un utilisateur</mat-label>
+                                <mat-label>Selectionner un utilisateur</mat-label>
                                 <input matInput type="text" 
                                     [matAutocomplete]="auto"
                                         #query
@@ -270,7 +270,7 @@
                     </div>
                     <div class="col">
                         <mat-form-field class="example-full-width mb-1" appearance="outline">
-                            <mat-label>chambre</mat-label>
+                            <mat-label>Chambre</mat-label>
                             <input matInput  type="text"  [value]='roomName'>
                              
                     

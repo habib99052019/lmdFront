@@ -73,8 +73,8 @@ initfullcalendar = () => {
        locale: 'fr',//enable change language
       // editable: true,//enable editing
        headerToolbar: {//set headerToolbar setting
-         left: 'prev,dayGridWeek,next',
-         center: '',
+         left: 'prev,next',
+         center: 'title',
          right: '',
        },
        titleFormat: { // will produce something like "Tuesday, September 18, 2018"
