@@ -66,6 +66,8 @@ export class MenuComponent implements OnInit {
   showview = true;
   editPersoMenuComponent:any;
   menuID:any;
+  soda = 0;
+  eau = 0;
 
 ////////////Start perso menus variables //////////////////
 
@@ -473,15 +475,15 @@ editCall(row) {
    if (this.PriceTotal){
      if(type === "Soda") {
         this.sodaPrice = this.sodaPrice + 2
-        
-        
         this.PriceTotal = this.PriceTotal + 2
+        this.soda = this.soda + 1;
+        
         console.log('price totale>>>',this.PriceTotal);
         }
      else if (type === "Eau") {
       this.EauPrice = this.EauPrice + 1
       this.PriceTotal = this.PriceTotal + 1
-    
+      this.eau = this.eau + 1;
    }
  }
  }
@@ -493,12 +495,13 @@ editCall(row) {
       this.PriceTotal = this.PriceTotal - 2
 
       this.sodaPrice = this.sodaPrice - 2
-      
+      this.soda = this.soda - 1;
     }
     else if (type === "Eau") {
     this.PriceTotal = this.PriceTotal - 1
  
      this.EauPrice = this.EauPrice - 1
+     this.eau = this.eau - 1;
    }
   }
 }
