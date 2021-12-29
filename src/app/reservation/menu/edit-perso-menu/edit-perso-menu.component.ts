@@ -103,6 +103,7 @@ search(term: string) {
 
 
 deleteSingleRow(row) {
+
   console.log('delete menu',row);
   Swal.fire({
     title: "Es-tu sûr?",

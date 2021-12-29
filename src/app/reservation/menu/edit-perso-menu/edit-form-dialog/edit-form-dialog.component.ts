@@ -805,11 +805,11 @@ if(event.source.ngControl.name == 'entree_froides'){
 
 
 
-deleteReservation(data:any){
-   console.log('delete reservation>>>', data);
+deleteReservation1(data:any){
+   console.log('delete reservation>>>1', data);
 
    
-     /* this.service.deleteMenu(data.menuID2).subscribe((data:any) => {
+     this.service.deleteMenu(data.menuID).subscribe((data:any) => {
         console.log('delete >>>', data);
         this.showNotification(
           'snackbar-danger',
@@ -819,9 +819,28 @@ deleteReservation(data:any){
         );
         window.location.reload();
         
-      })*/
+      })
     }
 
+
+    deleteReservation2(data:any){
+      console.log('delete reservation 2>>>', data);
+   
+        if(data.menuID2){
+          this.service.deleteMenu(data.menuID2).subscribe((data:any) => {
+           console.log('delete >>>', data);
+           this.showNotification(
+             'snackbar-danger',
+              "la réservation a été supprimée avec succès",
+             'top',
+             'end'
+           );
+           window.location.reload();
+           
+         })
+        }
+        
+       }
 
     
 showNotification(colorName, text, placementFrom, placementAlign) {
