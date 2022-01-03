@@ -135,18 +135,6 @@ border-color: var(--fc-button-border-color,#1c4587ff) !important;
         font-family: Lato;
       }
 
-/*
-.card {
-background-color: #fff;
-border-radius: 10px;
-position: relative;
-margin-bottom: 30px;
-border: 1px solid #deebfd;
-box-shadow: -8px 12px 18px 0 #dadee8;
-
-
-}*/
-
 .fullscreen-dialog {
     position: fixed;
   }
@@ -166,3 +154,81 @@ box-shadow: -8px 12px 18px 0 #dadee8;
   margin-top: 2px;
 }
 
+
+/////////// Creation des buttons pressoir///////////////////////////////////////////
+
+
+/* Création de l'effet : au clic, le bouton descend. Il faut donc le déplacer vers le bas ET REDUIRE L'OMBRE */
+.Bouton{
+    bottom: 2px;
+    background-color:#d8d8d8 !important;
+    color:white; 
+    width: 90px;
+    margin-bottom: 5px;
+   // box-shadow: -1px -1px -1px -1px#003b60;
+ 
+}
+
+.ruppia{
+  background-color:#deaa89;
+  color:white;
+   width: 90px;
+   margin-bottom: 5px;
+}
+
+.ciconia{
+  background-color:#ce711a;
+  color:white;
+   width: 90px;
+   margin-bottom: 5px;
+}
+
+.amorpha{
+  background-color:#79c296;
+  color:white;
+   width: 90px;
+   margin-bottom: 5px;
+}
+
+.marabou{
+  background-color:#d29e6d;
+  color:white;
+   width: 90px;
+   margin-bottom: 5px;
+}
+
+.brecon{
+  background-color:#246880;
+  color:white;
+   width: 90px;
+   margin-bottom: 5px;
+}
+
+.colony{
+background-color:#2896bc;
+color:white;
+width: 90px;
+margin-bottom: 5px;
+
+}
+
+.cicogne{
+background-color:#dcc379;
+color:white;
+width: 90px;
+margin-bottom: 5px;
+}
+
+.bonnelli{
+background-color:#997259;
+color:white;
+width: 90px;
+margin-bottom: 5px;
+}
+
+.villa{
+  background-color:#7aa0b8;
+  color:white;
+  width: 90px;
+  margin-bottom: 5px;
+}

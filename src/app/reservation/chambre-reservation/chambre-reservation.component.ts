@@ -33,6 +33,31 @@ export class ChambreReservationComponent implements OnInit {
   roomType:any;
   roombackgroundColor : any;
   nbp:number;
+  isClicked = false;
+  isClicked2 = false;
+  isClicked3 = false;
+  isClicked4 = false;
+  isClicked5 = false;
+  isClicked6 = false;
+  isClicked7 = false;
+  isClicked8 = false;
+  isClicked9 = false;
+  count=1;
+  count2=1;
+  count3=1;
+  count4=1;
+  count5=1;
+  count6=1;
+  count7=1;
+  count8=1;
+  count9=1;
+  roomName:any;
+
+
+
+
+
+
    //used for fulcalandar
    @ViewChild('itemcont') itemcont: ElementRef;
    // references the #calendar in the template
@@ -238,6 +263,30 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
 
       }))
      }
+     else if( this.roomName == 'Ruppia' || this.roomName == 'Ciconia' || this.roomName == 'Amorpha' || this.roomName == 'Marabou' || this.roomName == 'Brecon' || this.roomName == 'Colony' || this.roomName == 'Cicogne' || this.roomName == 'Bonnelli' || this.roomName == 'Toute la villa'){
+      return    ( req.get('http://localhost:3000/reservations/rooms?name='+this.roomName)
+      .type('json')
+      .query({
+        start: info.start.valueOf(),
+        end: info.end.valueOf()
+      })
+      .end(function(err:any, res:any) {
+        
+        console.log('response>>>', res)
+        if (err) {
+          failureCallback(err);
+        } else {
+
+          successCallback(
+
+            res.body
+            
+          
+          )
+        }
+
+      }))
+     }
      
      else  {
 
@@ -285,7 +334,7 @@ handleEventClick(clickInfo: EventClickArg) {
       console.log('roomType>>>',this.roomType);
       
       const dialogRef = this.dialog.open(DialogreservationnInfosComponent, {
- 
+        disableClose: true,
         panelClass: 'custom-dialog-container',
          // width:'1000px',
          // height:'800px',
@@ -503,17 +552,236 @@ searchDateRange(){
   calendarApi.prev();
 }
 
-
 Reload(){
   window.location.reload();
 }
 
+getRuppiaRooms(event:any){
+ console.log('ruppia romms',console.count() );
+// this.count = console.count(event);
+ 
+ if(event){
+   this.count++
+   console.log('event count>>>', this.count);
+   
+   if(this.count % 2 == 0){
+       this.isClicked = true;
+       this.roomName = 'Ruppia';
+       const calendarApi = this.calendarComponent.getApi();
+       calendarApi.next(); // call a method on the Calendar object
+       calendarApi.prev();
+   }else{
+      this.isClicked = false;
+      this.roomName = '';
+      const calendarApi = this.calendarComponent.getApi();
+      calendarApi.next(); 
+      calendarApi.prev();
+   }
+ }
+
+}
+
+getCiconiaRooms(event:any){
+  if(event){
+    this.count2++
+
+   if(this.count2 % 2 == 0){
+
+    this.isClicked2 = true;
+    this.roomName = 'Ciconia';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); // call a method on the Calendar object
+    calendarApi.prev();
 
 
+   }else{
+    this.isClicked2 = false;
+    this.roomName = '';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); 
+    calendarApi.prev();
+   }
+
+  }
+}
+
+getAmorphaRooms(event:any){
+  if(event){
+    this.count3++
+
+   if(this.count3 % 2 == 0){
+
+    this.isClicked3 = true;
+    this.roomName = 'Amorpha';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); // call a method on the Calendar object
+    calendarApi.prev();
 
 
+   }else{
+    this.isClicked3 = false;
+    this.roomName = '';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); 
+    calendarApi.prev();
+   }
 
+  }
+  
+}
+
+getMarabouRooms(event:any){
+  if(event){
+    this.count4++
+
+   if(this.count4 % 2 == 0){
+
+    this.isClicked4 = true;
+    this.roomName = 'Marabou';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); // call a method on the Calendar object
+    calendarApi.prev();
+
+
+   }else{
+    this.isClicked4 = false;
+    this.roomName = '';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); 
+    calendarApi.prev();
+   }
+
+  }
+}
+
+
+getBreconRooms(event:any){
+  if(event){
+    this.count5++
+
+   if(this.count5 % 2 == 0){
+
+    this.isClicked5 = true;
+    this.roomName = 'Brecon';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); // call a method on the Calendar object
+    calendarApi.prev();
+
+
+   }else{
+    this.isClicked5 = false;
+    this.roomName = '';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); 
+    calendarApi.prev();
+   }
+
+  }
+}
+
+
+getColonyRooms(event:any){
+  if(event){
+    this.count6++
+
+   if(this.count6 % 2 == 0){
+
+    this.isClicked6 = true;
+    this.roomName = 'Colony';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); // call a method on the Calendar object
+    calendarApi.prev();
+
+
+   }else{
+    this.isClicked6 = false;
+    this.roomName = '';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); 
+    calendarApi.prev();
+   }
+
+  }
+}
+
+getCicogneRooms(event:any){
+  if(event){
+    this.count7++
+
+   if(this.count7 % 2 == 0){
+
+    this.isClicked7 = true;
+    this.roomName = 'Cicogne';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); // call a method on the Calendar object
+    calendarApi.prev();
+
+
+   }else{
+    this.isClicked7 = false;
+    this.roomName = '';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); 
+    calendarApi.prev();
+   }
+
+  }
+}
+
+
+getBonnelliRooms(event:any){
+
+  if(event){
+    this.count8++
+
+   if(this.count8 % 2 == 0){
+
+    this.isClicked8 = true;
+    this.roomName = 'Bonnelli';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); // call a method on the Calendar object
+    calendarApi.prev();
+
+
+   }else{
+    this.isClicked8 = false;
+    this.roomName = '';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); 
+    calendarApi.prev();
+   }
+
+  }
+
+}
+
+
+getVillaRooms(event:any){
+  if(event){
+    this.count9++
+
+   if(this.count9 % 2 == 0){
+
+    this.isClicked9 = true;
+    this.roomName = 'Toute la villa';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); // call a method on the Calendar object
+    calendarApi.prev();
+
+
+   }else{
+    this.isClicked9 = false;
+    this.roomName = '';
+    const calendarApi = this.calendarComponent.getApi();
+    calendarApi.next(); 
+    calendarApi.prev();
+   }
+
+  }
+}
 
 
 
 }
+
+

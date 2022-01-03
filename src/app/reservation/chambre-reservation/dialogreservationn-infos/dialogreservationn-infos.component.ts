@@ -249,7 +249,7 @@ constructor(
           this.roomName = 'double'
           }
           
-          
+          //dialogRef.disableClose = true;
       }
 
 ngOnInit(): void {
@@ -1368,13 +1368,22 @@ selectedValue(event:any){
 }
 
 
+/* close the dialog after confirmation */
+onCancelClick(){
+  this.dialogRef.close();
+}
+
+
+
+
+
 deleteReservation(data:any){
   console.log('reservationid>>>', data.reservation_ID);
 /////////////
 //delete with confirmation
-/*
+
 Swal.fire({
-  title: "Es-tu sûr?",
+  title: "êtes vous sure?",
   showCancelButton: true,
   cancelButtonText: "Annuler",
   confirmButtonColor: "#f44336",
@@ -1393,17 +1402,20 @@ Swal.fire({
      })
   }
 });
-*/
+
  
-this._reservationService.deleteReservation(data.reservation_ID).subscribe((resp:any) => {
+/*this._reservationService.deleteReservation(data.reservation_ID).subscribe((resp:any) => {
   this.showNotification(
-    'snackbar-success',
+    'snackbar-danger',
     resp.message,
     'top',
     'end'
   )
- })
+ })*/
+
+
 }
+
 
 showNotification(colorName, text, placementFrom, placementAlign) {
   this.snackBar.open(text, '', {

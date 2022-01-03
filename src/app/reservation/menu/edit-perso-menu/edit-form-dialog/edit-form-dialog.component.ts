@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReservationServiceService } from 'src/app/core/service/reservation-service.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -803,44 +804,71 @@ if(event.source.ngControl.name == 'entree_froides'){
 }
 
 
-
+/* close the dialog after confirmation */
+onCancelClick(){
+  this.dialogRef.close();
+}
 
 deleteReservation1(data:any){
    console.log('delete reservation>>>1', data);
+      Swal.fire({
+        title: "êtes vous sure?",
+        showCancelButton: true,
+        cancelButtonText: "Annuler",
+        confirmButtonColor: "#f44336",
+        cancelButtonColor: "#96a2b4",
+        confirmButtonText: "Oui",
+      }).then((result) => {
+        console.log(result)
+        if (result.value) {
+          this.service.deleteMenu(data.menuID).subscribe((resp:any) => {
+            console.log('delete >>>', data);
+            this.showNotification(
+              'snackbar-success',
+              "la réservation a été supprimée avec succès",
+              'top',
+              'end'
+            );
+            window.location.reload();
+           })
+        }
+      });
 
-   
-     this.service.deleteMenu(data.menuID).subscribe((data:any) => {
-        console.log('delete >>>', data);
-        this.showNotification(
-          'snackbar-danger',
-           "la réservation a été supprimée avec succès",
-          'top',
-          'end'
-        );
-        window.location.reload();
-        
-      })
-    }
+}
 
 
-    deleteReservation2(data:any){
+  deleteReservation2(data:any){
       console.log('delete reservation 2>>>', data);
    
-        if(data.menuID2){
-          this.service.deleteMenu(data.menuID2).subscribe((data:any) => {
-           console.log('delete >>>', data);
-           this.showNotification(
-             'snackbar-danger',
-              "la réservation a été supprimée avec succès",
-             'top',
-             'end'
-           );
-           window.location.reload();
+        Swal.fire({
+          title: "êtes vous sure?",
+          showCancelButton: true,
+          cancelButtonText: "Annuler",
+          confirmButtonColor: "#f44336",
+          cancelButtonColor: "#96a2b4",
+          confirmButtonText: "Oui",
+        }).then((result) => {
+          console.log(result)
+          if (result.value) {
            
-         })
-        }
-        
-       }
+              if(data.menuID2){
+                this.service.deleteMenu(data.menuID2).subscribe((data:any) => {
+                console.log('delete >>>', data);
+                this.showNotification(
+                  'snackbar-danger',
+                  "la réservation a été supprimée avec succès",
+                  'top',
+                  'end'
+                );
+                window.location.reload();
+                
+              })
+              }
+
+          }
+        });
+      
+}
 
     
 showNotification(colorName, text, placementFrom, placementAlign) {

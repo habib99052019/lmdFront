@@ -149,7 +149,7 @@ openEditModal(row){
   if(row.listmenuID[1] && row.listmenuID[0] ){
         
     const dialogRef = this.dialog.open(EditFormDialogComponent, {
-
+      disableClose: true, 
       width:'1000px',
       height:'800px',
      
