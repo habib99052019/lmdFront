@@ -23,6 +23,7 @@ import {
 } from 'ngx-perfect-scrollbar';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -61,6 +62,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider,
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
   ],
   entryComponents: [],
   bootstrap: [AppComponent],
