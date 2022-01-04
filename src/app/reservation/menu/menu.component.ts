@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, TemplateRef, ViewChild, ViewChildren } from "@angular/core";
+import { ChangeDetectorRef, Component, ElementRef, Injector, OnInit, QueryList, TemplateRef, ViewChild, ViewChildren } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { reservationMenu } from "./menu.model";
@@ -96,7 +96,8 @@ export class MenuComponent implements OnInit {
   reservationMenuEditForm: FormGroup;
   modalData: any;
   Chambres: any;
-
+  dataSource:any;
+  
   constructor(
     private fb: FormBuilder, 
     public dialog: MatDialog , 
@@ -104,10 +105,9 @@ export class MenuComponent implements OnInit {
      private snackBar : MatSnackBar,
     private modalService : NgbModal,
     private changeDetectorRefs: ChangeDetectorRef,
-    private dialogRef: MatDialog) {
-      //this.dataSource1 = new MatTableDataSource<any>();
-     // this.dataSource2 = new MatTableDataSource<any>();
-    }
+    private dialogRef: MatDialog,
+    private inj: Injector
+    ) {}
 
 
   onSubmit() {}
@@ -125,6 +125,12 @@ export class MenuComponent implements OnInit {
     //////////////start init perso menus /////////////
 
   }
+
+
+  
+
+
+
 
 
   //////////////////////// Start Menu Standar Task///////////////////////////////////
@@ -206,7 +212,7 @@ changeStandardView(){
 
 
 
-
+/* get list of menu standard */
 getMenuReservations(){
  
 
@@ -221,7 +227,25 @@ getMenuReservations(){
     
  }
 
+ /* get list of perso menu */
 
+ getlisPersoReervationMenus(){
+  
+  this.service.getReservationList().subscribe((persoMenus:any) => {
+    //this.filterData = persoMenus 
+    
+    console.log('list of perso menus >>>',persoMenus );
+   
+    const persoMenusActive = persoMenus.filter(list => {
+       return list.listmenuID.length > 0 ;
+    })
+    this.dataSource = persoMenusActive;
+   /* this.DataPersoMenu.data= persoMenusActive;
+    console.log('persoMenusActive>>>', persoMenusActive);
+    this.filterData = persoMenusActive*/
+    
+  })
+} 
 
 
 
@@ -247,8 +271,10 @@ addNew() {
         console.log('resultata from add new>>>', result);
         
       if (result === 1) {
-         window.location.reload();
+         //window.location.reload();
+         this.getMenuReservations();
       }
+
     });
  }
 

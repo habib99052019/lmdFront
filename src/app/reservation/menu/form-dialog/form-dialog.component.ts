@@ -369,13 +369,8 @@ BoissonsList: any[] = [
 
   ngOnInit() {
 
-     console.log('topping>>>',this.selectedd);
-     
-
-    
      if(this.user == undefined){
         this.user = '';
-        // this.showview = true
      }else{
         //this.showview = false;
      }
@@ -410,7 +405,7 @@ this.service.getReservationList().subscribe((users:any[]) => {
 }
 
   
-  search(query:string)
+search(query:string)
   {
     console.log('query>>>',query);
     if(query == ''){
@@ -424,8 +419,7 @@ this.service.getReservationList().subscribe((users:any[]) => {
   }
   
 
-
-  selected(event: MatAutocompleteSelectedEvent): void {
+selected(event: MatAutocompleteSelectedEvent): void {
     console.log('event selected>>>',event.option.value);
      
       this.user = event.option.value.clientID.first_name;
@@ -440,18 +434,14 @@ this.service.getReservationList().subscribe((users:any[]) => {
      
   }
 
-  ////////
 
-  displayFn(subject:any)
+displayFn(subject:any)
   {
      return subject ? subject.clientID.first_name : undefined;
   }
   
 
-
-  /////////////
-
-  getMenus(){
+getMenus(){
     this.service.getMenuList().subscribe((data : any)=>{
       console.log('menus from get menus>>>',data);
       

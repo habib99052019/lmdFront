@@ -385,9 +385,6 @@ listDynamiqueMenu2:any;
 
 
 
-
-
-
  initLitsMenuPrice(){
   this.chaudsMenuList.forEach(item => {
     console.log('item boissons>>>>',item)
@@ -457,10 +454,6 @@ listDynamiqueMenu2:any;
  console.log('totale persomenu boissons',this.totalePersoMenuPrice1);
  }
   
-
-
-
-
 
 //calcul all perso tarifs
 calculTarifPersoMenu(event : MatSelectChange){
@@ -632,10 +625,6 @@ if(event.source.ngControl.name == 'entree_froides'){
 
 
 }
-
-
-
-
 
 //calcul all perso tarifs
 calculTarifPersoMenu2(event : MatSelectChange){
@@ -880,11 +869,6 @@ showNotification(colorName, text, placementFrom, placementAlign) {
   });
 }
 
-   
-
-
-
-
 changeFirstView(){
   this.showview = true
   this.isUnderline = true;
@@ -899,11 +883,7 @@ changeSecondView(){
 }
 
 
-
-
-
-
-  search(query:string)
+search(query:string)
   {
     /*
     console.log('query>>>',query);
@@ -915,7 +895,7 @@ changeSecondView(){
        users.clientID.last_name.toLowerCase().includes(query.toLowerCase()) 
        ) 
        : this.users;*/
-  }
+}
   
 
   displayFn(subject:any)

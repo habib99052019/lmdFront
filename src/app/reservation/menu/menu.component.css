@@ -25,3 +25,7 @@
     max-height: 500px;
   }
   
+
+  app-edit-perso-menu{
+    visibility: hidden;
+  }

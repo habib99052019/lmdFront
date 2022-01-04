@@ -45,11 +45,14 @@
                        </div>
 
                 </div>
-                <div style="margin-bottom:6px;margin-right:20px;">
+                <!--
+                    <div style="margin-bottom:6px;margin-right:20px;">
                     <mat-icon style="color:#1c4587ff;font-size:40px; cursor: pointer;"    (click)="addNew()">add_circle</mat-icon>
-                     <!-- 12/10<button mat-raised-button  style="background-color:#1c4587ff ;color:white;"  (click)="addNew()">Réserver</button> --> 
+                     12/10<button mat-raised-button  style="background-color:#1c4587ff ;color:white;"  (click)="addNew()">Réserver</button> 
                     
                 </div>
+                -->
+                
                 
 
             </div>
@@ -57,8 +60,11 @@
            <!--------------->
 
         <div>
-             <h1><ng-container *ngComponentOutlet="editPersoMenuComponent"></ng-container></h1>
+             <ng-container *ngComponentOutlet="editPersoMenuComponent"></ng-container>
         </div>
+         
+       
+
         <div class="col-md-12 mb-5"  *ngIf="showview">
             <div class="tabbable-line">
                 <div class="row">
@@ -67,26 +73,24 @@
                             <div class="body">
                                 <div class="table-responsive">
                                     <div class="materialTableHeader">
-                                        <div class="row w-100">
+                                
+                                        <div class="header-buttons-left" style="display: flex;flex-direction:row; justify-content: space-between;width: 90%;">
+                                          
+                                           <div class="dropdown m-l-20 m-r-20">
+                                               <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                                               <input style="cursor: pointer;" placeholder="Search" type="text" class="browser-default search-field" aria-label="Search box" (keyup)='search($event.target.value)'>
+                                          
+                                           </div>
+                                          
+                                           <div>
+                                               <mat-icon style="color:#1c4587ff;font-size:40px; cursor: pointer;" (click)="addNew()"  >add_circle</mat-icon>
+                                               
+                                           </div>
 
-                                            <div class="col-md-10">
-                                                <ul class="header-buttons-left ">
-                                                    <!--
-                                                      <li>
-                                                        <button mat-raised-button color="primary" (click)="addNew()">Réserver</button>
-                                                    </li>  
-                                                    -->
+                                       </div>
+
                                                     
-                                                    <li class="dropdown m-l-20 m-r-20">
-                                                        <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                                                        <input  style="cursor: pointer;"   placeholder="Search" type="text" class="browser-default search-field" aria-label="Search box" (keyup)='search($event.target.value)'>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                   </div>
                                     <mat-table #table [dataSource]="this.TableSourceData" matSort class="mat-cell" >
                                         <!-- Checkbox Column -->
 
@@ -355,3 +359,5 @@
     
 </ng-template>
 <!-----End Teplate to edit menu standard table------>
+
+

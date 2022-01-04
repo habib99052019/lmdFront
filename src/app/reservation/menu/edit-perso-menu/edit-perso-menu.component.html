@@ -6,26 +6,26 @@
                     <div class="body">
                         <div class="table-responsive">
                             <div class="materialTableHeader">
-                                <div class="row w-100">
-
-                                    <div class="col-md-10">
-                                        <ul class="header-buttons-left ">
-                                            <!--
-                                              <li>
-                                                <button mat-raised-button color="primary" (click)="addNew()">Réserver</button>
-                                            </li>  
-                                            -->
-                                            
-                                            <li class="dropdown m-l-20 m-r-20">
+                                
+                                         <div class="header-buttons-left" style="display: flex;flex-direction:row; justify-content: space-between;width: 90%;">
+                                           
+                                            <div class="dropdown m-l-20 m-r-20">
                                                 <label for="search-input"><i class="material-icons search-icon">search</i></label>
                                                 <input style="cursor: pointer;" placeholder="Search" type="text" class="browser-default search-field" aria-label="Search box" (keyup)='search($event.target.value)'>
-                                            </li>
+                                           
+                                            </div>
+                                           
+                                            <div>
+                                                <mat-icon style="color:#1c4587ff;font-size:40px; cursor: pointer;" (click)="addPersoMenu()"  >add_circle</mat-icon>
+                                                
+                                            </div>
 
-                                        </ul>
-                                    </div>
+                                        </div>
 
-                                </div>
-                            </div>
+                                                     
+                          </div>
+
+                            
                             <mat-table #table [dataSource]="this.DataPersoMenu" matSort class="mat-cell" >
                                 <!-- Checkbox Column -->
 

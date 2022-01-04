@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -6,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { ReservationServiceService } from 'src/app/core/service/reservation-service.service';
 import Swal from 'sweetalert2';
+import { AddPersoMenuComponent } from '../add-perso-menu/add-perso-menu.component';
 import { EditFormDialogComponent } from './edit-form-dialog/edit-form-dialog.component';
 
 @Component({
@@ -41,10 +43,13 @@ export class EditPersoMenuComponent implements OnInit {
     public dialog: MatDialog , 
     private service : ReservationServiceService ,
      private snackBar : MatSnackBar,
+  
   ) { }
 
   ngOnInit(): void {
     this.getlisPersoReervationMenus()
+   
+    
   }
 
   
@@ -137,10 +142,6 @@ showNotification(colorName, text, placementFrom, placementAlign) {
     panelClass: colorName,
   });
 }
-
-
-
-
 
 
 openEditModal(row){
@@ -351,6 +352,41 @@ openEditModal(row){
 
 
 
+}
+
+
+
+addPersoMenu(){
+
+  let tempDirection;
+  if (localStorage.getItem("isRtl") === "true") {
+    tempDirection = "rtl";
+  } else {
+    tempDirection = "ltr";
+  }
+  const dialogRef = this.dialog.open(AddPersoMenuComponent, {
+    disableClose: false,
+    
+     width:'1000px',
+     height:'600px',
+     data: {
+      reservationMenu: null,
+      action: "add",
+    },
+    direction: tempDirection,
+  
+  })
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('result from add>>>', result);
+    this.getlisPersoReervationMenus();
+    if (result === 1) {
+      //window.location.reload();
+      this.getlisPersoReervationMenus();
+   }
+      
+  })
+  
 }
 
 }
