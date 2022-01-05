@@ -8,6 +8,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { ConfigService } from 'src/app/config/config.service';
+import { AuthService } from 'src/app/core/service/auth.service';
 import { RightSidebarService } from 'src/app/core/service/rightsidebar.service';
 const document: any = window.document;
 
@@ -25,7 +26,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     public elementRef: ElementRef,
     private rightSidebarService: RightSidebarService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private authService:AuthService
   ) {}
   notifications: any[] = [
     {
@@ -177,4 +179,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       (this.isOpenSidebar = !this.isOpenSidebar)
     );
   }
+
+  logOut(){
+    this.authService.logout()
+  }
+
 }

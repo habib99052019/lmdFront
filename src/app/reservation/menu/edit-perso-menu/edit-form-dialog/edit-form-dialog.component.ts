@@ -457,11 +457,12 @@ listDynamiqueMenu2:any;
 
 //calcul all perso tarifs
 calculTarifPersoMenu(event : MatSelectChange){
-  console.log('event value>>>', event.value);
+  
   
     if(event.value){
       this.showNew = true;
     }
+   
   //////
   if(event.source.ngControl.name == 'boissons'){
     
@@ -622,7 +623,11 @@ if(event.source.ngControl.name == 'entree_froides'){
    this.data['menuList'] = this.listOfTarifNames2;
    this.data['menuListTosent'] = this.listOfTarifNames2;
   }
-
+ 
+  console.log('event value>>>',this.totalePersoMenuPrice2);
+  if(this.totalePersoMenuPrice2 == 0){
+    this.showNew = false;
+ }
 
 }
 
@@ -789,6 +794,10 @@ if(event.source.ngControl.name == 'entree_froides'){
    this.data['menu2List'] = this.listDynamiqueMenu2;
   }
 
+  console.log('event value>>>',this.totalePersoMenu2Price);
+  if(this.totalePersoMenu2Price == 0){
+    this.showNew = false;
+ }
 
 }
 

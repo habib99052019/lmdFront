@@ -19,14 +19,16 @@ export class SigninComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['admin', Validators.required],
-      password: ['admin', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
   get f() {
     return this.loginForm.controls;
   }
   onSubmit() {
+    console.log('login credientials>>>',this.f.username.value, this.f.password.value);
+    
     this.submitted = true;
     this.error = '';
     if (this.loginForm.invalid) {

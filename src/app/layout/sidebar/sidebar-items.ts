@@ -2,7 +2,7 @@ import { RouteInfo } from './sidebar.metadata';
 export const ROUTES: RouteInfo[] = [
  {
     path: '',
-    title: '-- Main',
+    title: '',//Afficher avant l'icon Accueil -- Main
     moduleName: '',
     iconType: '',
     icon: '',
@@ -14,7 +14,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '/dashboard/main',
-    title: 'Home',
+    title: 'Accueil',
     moduleName: 'dashboard',
     iconType: 'material-icons-two-tone',
     icon: 'home',
@@ -59,9 +59,9 @@ export const ROUTES: RouteInfo[] = [
         badgeClass: '',
         submenu: [],
       },
-      {
+     /* {
         path: '/reservation/test',
-        title: 'Test',
+        title: '',//new future 
         moduleName: 'reservation',
         iconType: '',
         icon: '',
@@ -70,7 +70,7 @@ export const ROUTES: RouteInfo[] = [
         badge: '',
         badgeClass: '',
         submenu: [],
-      },
+      },*/
     ],
   },
   

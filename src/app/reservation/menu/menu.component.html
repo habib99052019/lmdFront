@@ -103,7 +103,7 @@
                                         <ng-container matColumnDef="startDate">
                                             <mat-header-cell mat-header-cell *matHeaderCellDef>date prévue
                                             </mat-header-cell>
-                                            <mat-cell *matCellDef="let row">{{row.start}}</mat-cell>
+                                            <mat-cell *matCellDef="let row">{{row.start | date: 'dd/MM/yyyy' }}</mat-cell>
                                         </ng-container>
                                         <ng-container matColumnDef="name">
                                             <mat-header-cell *matHeaderCellDef>Menu

@@ -172,7 +172,13 @@ initfullcalendar = () => {
                 <div style="display:flex;flex-direction:row ;">
                     <span  style="margin-top:16px;color:white;font-size:12px"    class="material-icons">person</span>
                     <p style="margin-top:16px; color:white;font-size:10px;font-family: Roboto">${arg.event._def.extendedProps.number_persons}</p>
-                    <span  style="margin-top:17px;color:white;font-size:11px;margin-left:2px;"    class="material-icons">brightness_3</span>
+
+                    <span  style="margin-top:18px;color:white;font-size:11px;margin-left:2px;-moz-transform: scaleX(-1); -o-transform: scaleX(-1);
+                    -webkit-transform: scaleX(-1);
+                    transform: scaleX(-1);
+                    filter: FlipH;
+                    -ms-filter: "FlipH";    class="material-icons">brightness_3</span>
+
                     <p style="margin-top:16px; color:white;font-size:10px;font-family: Roboto">${arg.event._def.extendedProps.number_days}</p>
                 </div>
               
