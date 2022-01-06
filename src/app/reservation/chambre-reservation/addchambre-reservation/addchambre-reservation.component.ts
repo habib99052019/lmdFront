@@ -681,6 +681,8 @@ selectRoomType(event: any){
 selectExtraType(event:any){
     
   if(event.value != undefined){
+    console.log('extra name >>>',event.value);
+    
      this.extraPrice = true
      this.extraType = event.value;
      this.calculTotal(this.Days,this.RoomPrice)
@@ -696,10 +698,23 @@ selectExtraType(event:any){
 calculTotal(days : any , roomPrice : any){
   console.log('room price>>>',roomPrice);
   console.log('extraprice>>>',this.extraPrice);
-  if(this.extraPrice){
+
+ /* if(this.extraPrice){
     console.log('days>>>',days);
      this.priceTotal = (roomPrice * days) + 90;
   }else{
+    this.priceTotal = roomPrice * days;
+  }*/
+
+
+  if(this.extraPrice && this.extraType === "lit adulte" || this.extraType === "lit enfant"){
+    console.log('days>>>',days);
+     this.priceTotal = (roomPrice * days) + 90;
+  }else if(this.extraPrice && this.extraType === "Deux lit adulte" || this.extraType === "Deux lit enfant"){
+    this.priceTotal = (roomPrice * days) + 180;
+  }
+  
+  else{
     this.priceTotal = roomPrice * days;
   }
  

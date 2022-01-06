@@ -694,36 +694,47 @@ checkDates(event : any ){
 
 
 initcalculTotal(days : any , roomPrice : any){
-  console.log('room price>>>',roomPrice);
-  console.log('extraprice>>>',this.extra);
-  if(this.extra){
+ console.log('init extra >>>', this.extra);
+ console.log('init extra price >>>', this.extraPrice);
+
+  if(this.extra === "lit adulte" || this.extra === "lit enfant"){
     console.log('days>>>',days);
      this.priceTotal = (roomPrice * days) + 90;
-  }else{
+  }else if(this.extra === "Deux lit adulte" || this.extra === "Deux lit enfant"){
+    this.priceTotal = (roomPrice * days) + 180;
+  }
+  
+  else{
     this.priceTotal = roomPrice * days;
   }
  
  // this.priceTotal += this.extraPrice;
   console.log("price", this.priceTotal)
- // this.reservationChambreForm.get('price').setValue(this.priceTotal);
- this.price = this.priceTotal
+  //this.reservationChambreForm.get('price').setValue(this.priceTotal);
+  this.price = this.priceTotal
 }
 
 
 calculTotal(days : any , roomPrice : any){
-  console.log('room price>>>',roomPrice);
   console.log('extraprice>>>',this.extra);
-  if(this.extra){
+ 
+   console.log('room price>>>',roomPrice);
+
+  if(this.extraPrice && this.extra === "lit adulte" || this.extra === "lit enfant"){
     console.log('days>>>',days);
      this.priceTotal = (roomPrice * days) + 90;
-  }else{
+  }else if(this.extraPrice && this.extra === "Deux lit adulte" || this.extra === "Deux lit enfant"){
+    this.priceTotal = (roomPrice * days) + 180;
+  }
+  
+  else{
     this.priceTotal = roomPrice * days;
   }
  
- // this.priceTotal += this.extraPrice;
   console.log("price", this.priceTotal)
- // this.reservationChambreForm.get('price').setValue(this.priceTotal);
- this.price = this.priceTotal
+  this.price = this.priceTotal
+
+
 }
 
 
@@ -1436,10 +1447,6 @@ re_calculTotal(event:any){
 
 
 
-addNewReservation(){
-
-}
-
 
 
 
@@ -1464,8 +1471,29 @@ selectExtraType(event:any){
  }
 }
 
+/*
+
+calculTotal(days : any , roomPrice : any){
+  console.log('room price>>>',roomPrice);
+  console.log('extraprice>>>',this.extraPrice);
 
 
+  if(this.extraPrice && this.extraType === "lit adulte" || this.extraType === "lit enfant"){
+    console.log('days>>>',days);
+     this.priceTotal = (roomPrice * days) + 90;
+  }else if(this.extraPrice && this.extraType === "Deux lit adulte" || this.extraType === "Deux lit enfant"){
+    this.priceTotal = (roomPrice * days) + 180;
+  }
+  
+  else{
+    this.priceTotal = roomPrice * days;
+  }
+ 
+ // this.priceTotal += this.extraPrice;
+  console.log("price", this.priceTotal)
+  this.reservationChambreForm.get('price').setValue(this.priceTotal);
+}
+*/
 
 
 
