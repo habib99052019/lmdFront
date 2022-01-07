@@ -143,6 +143,7 @@ initfullcalendar = () => {
        timeFormat: 'H(:mm)',
       eventClick: this.handleEventClick.bind(this),
       validRange: this.validRangeClick.bind(this),
+  
      eventContent: function(arg:any) {
       let italicEl = document.createElement('i')
        console.log('eventcontent>>>',arg.event)
@@ -546,17 +547,19 @@ if(this.startDate && this.endDate){
     end: endfiltre
   };
 }
-//add find function in the database
+
 }
 
 searchDateRange(){
   console.log('search date range',this.cal.value.date1);
   this.startDate = this.cal.value.date1;
-  this.endDate = this.cal.value.date2;
+  this.endDate = this.cal.value.date2;   
   const calendarApi = this.calendarComponent.getApi();
   calendarApi.next(); // call a method on the Calendar object
   calendarApi.prev();
 }
+
+
 
 Reload(){
   window.location.reload();

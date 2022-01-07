@@ -41,3 +41,11 @@
      .fc-toolbar {
        // text-transform: uppercase !important;
     }
+
+
+
+fc .fc-cell-shaded, .fc .fc-day-disabled {
+        // background: hsl(0deg 80% 47% / 30%); */
+       //  background: var(--fc-neutral-bg-color,white) !important; 
+       display:none!important;
+    }
