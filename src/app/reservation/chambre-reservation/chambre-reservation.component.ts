@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, FormGroup } from '@angular/forms';
 const req = require('superagent');
 import { formatDate } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-chambre-reservation',
@@ -63,6 +64,8 @@ export class ChambreReservationComponent implements OnInit {
    // references the #calendar in the template
    @ViewChild('calendar') calendarComponent: FullCalendarComponent;
    @ViewChild('external') external: ElementRef;
+   
+   ApiPath = environment.API 
 
 
    cal = new FormGroup({
@@ -222,7 +225,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
     console.log('info', this.statusReservation);
 
      if(this.statusReservation == 'yellow' || this.statusReservation == 'red' || this.statusReservation == 'gray'){
-       return    ( req.get('http://localhost:3000/reservations/filter?color='+this.statusReservation)
+       return    ( req.get(this.ApiPath + 'reservations/filter?color='+this.statusReservation)
                 .type('json')
                 .query({
                   start: info.start.valueOf(),
@@ -247,7 +250,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
                 
      }
      else if( this.statusReservation == 'all'){
-      return    ( req.get('http://localhost:3000/reservations/filter?color=')
+      return    ( req.get(this.ApiPath + 'reservations/filter?color=')
       .type('json')
       .query({
         start: info.start.valueOf(),
@@ -271,7 +274,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
       }))
      }
      else if( this.roomName == 'Ruppia' || this.roomName == 'Ciconia' || this.roomName == 'Amorpha' || this.roomName == 'Marabou' || this.roomName == 'Brecon' || this.roomName == 'Colony' || this.roomName == 'Cicogne' || this.roomName == 'Bonnelli' || this.roomName == 'Toute la villa'){
-      return    ( req.get('http://localhost:3000/reservations/rooms?name='+this.roomName)
+      return    ( req.get(this.ApiPath + 'reservations/rooms?name='+this.roomName)
       .type('json')
       .query({
         start: info.start.valueOf(),
@@ -297,7 +300,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
      
      else  {
 
-      return    ( req.get('http://localhost:3000/reservations/filter?color=')
+      return    ( req.get(this.ApiPath + 'reservations/filter?color=')
       .type('json')
       .query({
         start: info.start.valueOf(),

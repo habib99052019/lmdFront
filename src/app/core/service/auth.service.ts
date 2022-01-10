@@ -43,7 +43,7 @@ export class AuthService {
 
   logout() {
     // remove user from local storage to log user out
-    console.log('test');
+
     
     localStorage.removeItem('currentUser');
     localStorage.removeItem('isRtl');

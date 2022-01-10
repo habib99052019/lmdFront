@@ -78,6 +78,7 @@
                             <mat-option *ngFor="let menu of this.Menus" [value]="menu">
                                 {{menu.name}} : {{menu.price}} Dt
                             </mat-option>
+                            
                         </mat-select>
 
                     </mat-form-field>
@@ -206,7 +207,13 @@
                         <div class="card-body bg-gray text-white text-capitalize">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p>prix Menu : {{this.MenuPrice}} * {{this.reservationMenuForm.get('number_guests').value}}</p>
+                                    <div *ngIf="MenuPrice1">
+                                         <p>prix Menu : {{this.MenuPrice}} * {{this.reservationMenuForm.get('number_guests').value}}</p> 
+                                    </div>
+                                    <div *ngIf="MenuPrice2" >
+                                      <p>prix Menu : 20 * {{this.reservationMenuForm.get('number_guests').value}}</p>
+                                    </div>
+                               
                                 </div>
                                 <div *ngIf="this.EauPrice !== 0" class="col-md-12">
                                     <p>Eau : {{this.EauPrice }} Dt          Eau: {{eau}}</p>
@@ -222,6 +229,14 @@
                     </div>
                 </div>
             </div>
+
+
+            
+
+
+
+
+
 
            
                 <div style="display: flex; flex-direction:row; justify-content:end;">

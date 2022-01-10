@@ -82,7 +82,7 @@
                                           
                                            </div>
                                           
-                                           <div>
+                                           <div class="btn-mobile">
                                                <mat-icon style="color:#1c4587ff;font-size:40px; cursor: pointer;" (click)="addNew()"  >add_circle</mat-icon>
                                                
                                            </div>
@@ -105,10 +105,10 @@
                                             </mat-header-cell>
                                             <mat-cell *matCellDef="let row">{{row.start | date: 'dd/MM/yyyy' }}</mat-cell>
                                         </ng-container>
-                                        <ng-container matColumnDef="name">
+                                        <ng-container      matColumnDef="name">
                                             <mat-header-cell *matHeaderCellDef>Menu
                                             </mat-header-cell>
-                                            <mat-cell *matCellDef="let row">{{row.menuID.name}}</mat-cell>
+                                            <mat-cell  *matCellDef="let row">{{row.menuID.name}}</mat-cell>
                                         </ng-container>
                                         <ng-container matColumnDef="RoomName">
                                             <mat-header-cell *matHeaderCellDef>Type de repas
@@ -202,13 +202,14 @@
 
 
 
-                <div class="col">
+                <div  [ngClass]="{'disable': isDisabled}"  class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
                         <mat-label>Menu</mat-label>
                         <mat-select formControlName="menuID" (selectionChange)="showMenu($event)">
-                            <mat-option *ngFor="let menu of this.Menus" [value]="menu.name">
+                            <mat-option     *ngFor="let menu of this.Menus" [value]="menu.name">
                                 {{menu.name}} : {{menu.price}} Dt
                             </mat-option>
+                           
                         </mat-select>
 
                     </mat-form-field>
@@ -328,9 +329,15 @@
                     <div class="card">
                         <div class="card-body bg-gray text-white text-capitalize">
                             <div class="row">
-                                <div class="col-md-12" *ngIf="this.MenuPrice !== 0">
+                                <!--<div class="col-md-12" *ngIf="this.MenuPrice !== 0">
                                     <p>prix Menu : {{this.MenuPrice}} * {{this.number_geuste}}</p>
-                                </div>
+                                </div>-->
+                                <div *ngIf="MenuPrice1">
+                                    <p>prix Menu : {{this.MenuPrice}} * {{this.number_geuste}}</p> 
+                               </div>
+                               <div *ngIf="MenuPrice2" >
+                                 <p>prix Menu : 20 * {{this.number_geuste}}</p>
+                               </div>
                                 <div *ngIf="this.EauPrice !== 0" class="col-md-12">
                                     <p>Eau :{{this.EauPrice }} Dt              Eau: {{eau}}</p>
                                 </div>

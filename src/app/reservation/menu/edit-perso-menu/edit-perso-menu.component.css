@@ -1,0 +1,13 @@
+
+  /* Mobile & Tablet Rules */
+  @media (max-width: 767px) { 
+
+    .btn-mobile mat-icon {
+       
+         margin-right: 30px !important;
+         
+      
+       
+    }
+  
+  }

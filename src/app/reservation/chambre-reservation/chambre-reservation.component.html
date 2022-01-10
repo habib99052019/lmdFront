@@ -36,7 +36,7 @@
 
                                 </div>
 
-                                <div style="font-size: 8px; margin-left:'31.5%';">
+                                <div   class="cal" style="font-size: 8px; margin-left:'31.5%';">
                                      <mat-form-field  style="margin-right: 20px;"  appearance="outline">
                                         <input formControlName="date1" matInput placeholder="A partir de" required [matDatepicker]="picker1">
                                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -92,8 +92,8 @@
                       
                         
                         <div class="row">
-                            <div class="col-md-2 col-sm-12 p-l-30 col-lg-2">
-                                <div class="filter-container">
+                            <div class="col-md-12 col-sm-12 p-l-30 col-lg-2">
+                                <div   class="filter-container">
                                     <!-- <ul>
                                         <li>
                                             <mat-checkbox [checked]="this.toutLesChambre" color="primary" (change)="reset($event)">
@@ -109,7 +109,8 @@
                                     </div> -->
 
 
-                                        <ul style="margin-top: 5px;height: 20vh; width: 0px;" >
+                                        <ul  
+                                                style="margin-top: 5px;height: 20vh; width: 0px;" >
                                           <!--
                                               <li *ngFor="let room of roomsList">
                                             <mat-checkbox [checked]="room.checked" [value]="room.name" color="primary" (change)="changeCategory($event, room)">
@@ -120,7 +121,7 @@
 
                                           <li>
                                              <div>
-                                                <button    [ngClass]="{'Bouton':isClicked, '': false}"     class="ruppia"  (click)="getRuppiaRooms($event)"   mat-flat-button    >
+                                                <button  [ngClass]="{'Bouton':isClicked, '': false}"     class="ruppia"  (click)="getRuppiaRooms($event)"   mat-flat-button    >
                                                     Ruppia
                                                 </button>
                                             
@@ -176,7 +177,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-10" style="padding:8px;">
+                            <div  class="col-10" style="padding:8px;">
                                 <full-calendar 
                                 #calendar
                                 [options]="calendarOptions"

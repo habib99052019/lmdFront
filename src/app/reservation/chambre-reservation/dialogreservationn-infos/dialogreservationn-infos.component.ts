@@ -1386,8 +1386,6 @@ onCancelClick(){
 
 
 
-
-
 deleteReservation(data:any){
   console.log('reservationid>>>', data.reservation_ID);
 /////////////
@@ -1438,16 +1436,9 @@ showNotification(colorName, text, placementFrom, placementAlign) {
 }
 
 
-
-
 re_calculTotal(event:any){
 
 }
-
-
-
-
-
 
 
 showMenu(event : MatSelectChange){
@@ -1470,30 +1461,6 @@ selectExtraType(event:any){
      this.calculTotal(this.Days,this.RoomPrice)
  }
 }
-
-/*
-
-calculTotal(days : any , roomPrice : any){
-  console.log('room price>>>',roomPrice);
-  console.log('extraprice>>>',this.extraPrice);
-
-
-  if(this.extraPrice && this.extraType === "lit adulte" || this.extraType === "lit enfant"){
-    console.log('days>>>',days);
-     this.priceTotal = (roomPrice * days) + 90;
-  }else if(this.extraPrice && this.extraType === "Deux lit adulte" || this.extraType === "Deux lit enfant"){
-    this.priceTotal = (roomPrice * days) + 180;
-  }
-  
-  else{
-    this.priceTotal = roomPrice * days;
-  }
- 
- // this.priceTotal += this.extraPrice;
-  console.log("price", this.priceTotal)
-  this.reservationChambreForm.get('price').setValue(this.priceTotal);
-}
-*/
 
 
 

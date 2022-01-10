@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { take } from 'rxjs/operators';
 import { ReservationServiceService } from 'src/app/core/service/reservation-service.service';
 import Swal from 'sweetalert2';
 import { AddPersoMenuComponent } from '../add-perso-menu/add-perso-menu.component';
@@ -13,7 +14,7 @@ import { EditFormDialogComponent } from './edit-form-dialog/edit-form-dialog.com
 @Component({
   selector: 'app-edit-perso-menu',
   templateUrl: './edit-perso-menu.component.html',
-  styleUrls: ['./edit-perso-menu.component.sass']
+  styleUrls: ['./edit-perso-menu.component.css']
 })
 export class EditPersoMenuComponent implements OnInit {
 
@@ -91,7 +92,7 @@ search(term: string) {
 
  getlisPersoReervationMenus(){
   
-    this.service.getReservationList().subscribe((persoMenus:any) => {
+    this.service.getReservationList().pipe(take(1)).subscribe((persoMenus:any) => {
       //this.filterData = persoMenus 
       
       console.log('list of perso menus >>>',persoMenus );

@@ -29,3 +29,21 @@
   app-edit-perso-menu{
     visibility: hidden;
   }
+
+  /* Mobile & Tablet Rules */
+@media (max-width: 767px) { 
+
+  .btn-mobile mat-icon {
+     
+       margin-right: 30px !important;
+       
+    
+     
+  }
+
+}
+
+.disable{
+  pointer-events:none;
+  display: none;
+}

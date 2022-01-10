@@ -4,6 +4,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { take } from 'rxjs/operators';
 import { ReservationServiceService } from 'src/app/core/service/reservation-service.service';
 
 @Component({
@@ -176,7 +177,7 @@ BoissonsList: any[] = [
 
   
 getUserList(){
-this.service.getReservationList().subscribe((users:any[]) => {
+this.service.getReservationList().pipe(take(1)).subscribe((users:any[]) => {
   console.log('users>>>>',users);
   this.users = users;
   this.searchuser = this.users = users;

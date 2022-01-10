@@ -699,13 +699,6 @@ calculTotal(days : any , roomPrice : any){
   console.log('room price>>>',roomPrice);
   console.log('extraprice>>>',this.extraPrice);
 
- /* if(this.extraPrice){
-    console.log('days>>>',days);
-     this.priceTotal = (roomPrice * days) + 90;
-  }else{
-    this.priceTotal = roomPrice * days;
-  }*/
-
 
   if(this.extraPrice && this.extraType === "lit adulte" || this.extraType === "lit enfant"){
     console.log('days>>>',days);

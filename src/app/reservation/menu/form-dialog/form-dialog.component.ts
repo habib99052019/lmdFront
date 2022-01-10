@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, take } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { formatDate } from '@angular/common';
 import { ThirdPartyDraggable } from '@fullcalendar/interaction';
@@ -36,6 +36,10 @@ export class FormDialogComponent implements OnInit {
   Menus : any;
   //Chambres : any = []
   MenuPrice = 0;
+  MenuPrice1 = true;
+  MenuPriceValue = 0;
+  MenuPrice2 = false;
+
   PriceTotal = 0 ;
   entree : any;
   dessert : any;
@@ -216,46 +220,6 @@ export class FormDialogComponent implements OnInit {
 
 ]
 
-/*
-  Menus = [
-    {
-          dessert: "Assiette de fruits de saison",
-          entrée: "Trio de salade",
-          name: "Menu 1",
-          price: 150,
-          suite: "Agneau à la gargoulette",
-          tarif: "simple",
-          _id: "615de00b5f8924312bf7b297",
-    },
-    {
-      dessert: "Assiette de fruits de saison",
-      entrée: "Trio de salade",
-      name: "Menu 2",
-      price: 80,
-      suite: "grillade mixte",
-      tarif: "simple",
-      _id: "615de0b75f8924312bf7b298"
-    },
-    {
-      dessert: "Assiette de fruits de saison",
-      entrée: "Trio de salade",
-      name: "Menu 3",
-      price: 90,
-      suite: "Poisson grillé",
-      tarif: "simple",
-      _id: "615de0f55f8924312bf7b299"
-    },
-    {
-      dessert: "Assiette de fruits de saison",
-      entrée: "Trio de salade",
-      name: "Menu 4",
-      price: 120,
-      suite: "couscous à l'agneau",
-      tarif: "simple",
-      _id: "615de1365f8924312bf7b29a"
-    },
-    
-  ]*/
 
  // List des tarifs personaliser
   EntreeFeroidsList: any[] = [
@@ -352,8 +316,10 @@ BoissonsList: any[] = [
 
   soda = 0;
   eau = 0;
-
+  ptDejPrice = 20;
   arrayOfeventValue=[];
+  menuPdj = false;
+  menuSta = false;
 
   constructor(
     private service : ReservationServiceService,
@@ -369,7 +335,7 @@ BoissonsList: any[] = [
 
   ngOnInit() {
 
-     if(this.user == undefined){
+     /*if(this.user == undefined){
         this.user = '';
      }else{
         //this.showview = false;
@@ -377,34 +343,33 @@ BoissonsList: any[] = [
 
      if(this.roomName == undefined){
         this.roomName = '';
-     }
+     }*/
     
-    this.getUserList();
-    this.getRooms()
+   // this.getUserList();
     this.getMenus();
   }
 
 
 
-
+/*
 getUserList(){
   /*
   this.service.getUserList().subscribe((users:any[]) => {
     console.log('users>>>>',users);
     //this.users = users;
     this.searchuser = this.users = users;
-})*/
+})
 
-this.service.getReservationList().subscribe((users:any[]) => {
+this.service.getReservationList().pipe(take(1)).subscribe((users:any[]) => {
   console.log('users>>>>',users);
   this.users = users;
   this.searchuser = this.users = users;
 })
 
 
-}
+}*/
 
-  
+  /*
 search(query:string)
   {
     console.log('query>>>',query);
@@ -416,44 +381,44 @@ search(query:string)
        users.clientID.last_name.toLowerCase().includes(query.toLowerCase()) 
        ) 
        : this.users;
-  }
+  }*/
   
-
+/*
 selected(event: MatAutocompleteSelectedEvent): void {
     console.log('event selected>>>',event.option.value);
      
       this.user = event.option.value.clientID.first_name;
       this.clientID = event.option.value.clientID._id;
-      /*
-      if(this.user != undefined){
-        this.showview = false
-      }*/
+      
+      //if(this.user != undefined){
+       // this.showview = false
+     // }
       this.roomName = event.option.value.roomID.name;
       console.log('roomName>>>',this.roomName);
       
      
-  }
+  }*/
 
-
+/*
 displayFn(subject:any)
   {
      return subject ? subject.clientID.first_name : undefined;
   }
-  
+  */
 
 getMenus(){
-    this.service.getMenuList().subscribe((data : any)=>{
+    this.service.getMenuList().pipe(take(1)).subscribe((data : any)=>{
       console.log('menus from get menus>>>',data);
       
      this.Menus = data.reverse();
     })
   }
 
-getRooms(){
+/*getRooms(){
     this.service.getRoomList().subscribe((data : any)=>{
      // this.Chambres = data ;
     })
-}
+}*/
 
 
 changePersoView(){
@@ -484,6 +449,18 @@ getErrorMessage() {
   
 
 showMenuStandard(event:MatSelectChange){
+  console.log('menu standard value>>>', event.value);
+
+  if(event.value === 'petit déjeuner'){
+    this.MenuPrice2 = true;
+    this.MenuPrice1 = false;
+    this.menuPdj = true;
+    this.menuSta = false;
+  //  let price = this.reservationMenuForm.get('number_guests').value * 20;
+  //  this.MenuPriceValue = price;
+    console.log('menuPrice2>>>', this.MenuPrice2);
+    this.PriceTotal =  this.reservationMenuForm.get('number_guests').value * this.ptDejPrice 
+  }
   
 }
 
@@ -498,6 +475,8 @@ showMenu(event : MatSelectChange){
     this.dessert = event.value.dessert;
     this.suite = event.value.suite;
     this.showMenuDetails = true ; 
+    this.menuPdj = false;
+    this.menuSta = true;
     if (event.value.price){
       this.MenuPrice = event.value.price
     }
@@ -515,12 +494,21 @@ showMenu(event : MatSelectChange){
 
  calculTotal(nombre_personnes : any , menuPrice : any ){
   this.PriceTotal = (menuPrice * nombre_personnes) 
+  console.log('price totale from calcule >>>', menuPrice);
+  console.log('nombre totale from calcule >>>', nombre_personnes );
   this.reservationMenuForm.get('price').setValue(this.PriceTotal);
  }
 
 
  re_calculTotal(event: any){
- this.calculTotal(event.target.value  , this.MenuPrice );
+   console.log('event.target.value>>>',event.target.value );
+   if(this.menuSta){
+      this.calculTotal(event.target.value  , this.MenuPrice);
+   }else{
+      this.calculTotal(event.target.value  , this.ptDejPrice);
+   }
+
+
  }
  
  addToTotal(type :any){
@@ -764,22 +752,29 @@ if(event.source.ngControl.name == 'entree_froides'){
     
     console.log('entre perso>>>',this.reservationMenuForm.get('entrePerso').value);
  
-  if(this.clientID){
+  if(this.menuPdj){
         console.log('clientid>>>>', this.clientID);
         
     const reservationPersoForm  = {
+      type : 'menu',
+      status : this.reservationMenuForm.get('status').value,
       comment : this.reservationMenuForm.get('comment').value,
-      price : this.totalePersoMenuPrice,
-      clientID:this.clientID,
-      menuList: this.listOfTarifNames,
-      isPersonalize:true,
-      entrePerso:this.reservationMenuForm.get('entrePerso').value
-      
+      price : this.PriceTotal,
+      number_guests : this.reservationMenuForm.get('number_guests').value,
+      startDate  : formatDate(this.reservationMenuForm.get('startDate').value, 'yyyy-MM-dd', 'en') ,
+      first_name : this.reservationMenuForm.get('first_name').value,
+      last_name : this.reservationMenuForm.get('last_name').value,
+      number_phone : this.reservationMenuForm.get('number_phone').value,
+      menuID : '61dc2a61f84f650b20574076',
+      number_heure: this.reservationMenuForm.get('number_heure').value,
+      entreSta:this.reservationMenuForm.get('entreSta').value,
+    
+     
      }
      
      console.log('reservationForm>>>', reservationPersoForm);
      
-     this.service.addPersoReservationMenu(reservationPersoForm).subscribe((data : any) => {
+     this.service.addMenuReservation(reservationPersoForm).subscribe((data : any) => {
        console.log('new perso reservation',data)
        this.showNotification(
            'snackbar-success',

@@ -15,6 +15,7 @@ import { MatSelectChange } from "@angular/material/select";
 import { MatSort } from "@angular/material/sort";
 import { EditPersoMenuComponent } from "./edit-perso-menu/edit-perso-menu.component";
 import { formatDate } from "@angular/common";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-menu",
@@ -61,6 +62,8 @@ export class MenuComponent implements OnInit {
     "diner"
   ]
 
+  defaultValue ="petit déjeune"
+
   number_geuste:any;
   isUnderline = true;
   showview = true;
@@ -97,7 +100,17 @@ export class MenuComponent implements OnInit {
   modalData: any;
   Chambres: any;
   dataSource:any;
+
   
+  MenuPrice1 = true;
+  MenuPriceValue = 0;
+  MenuPrice2 = false;
+  menuPdj = false;
+  menuSta = false;
+  ptDejPrice = 20
+  
+  showStaMenu = false;
+  isDisabled = false;
   constructor(
     private fb: FormBuilder, 
     public dialog: MatDialog , 
@@ -115,22 +128,8 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.getMenuReservations()
     this.getMenus();
-    this.getRooms();
-    //console.log('list reserbation menus>>>',this.TableSourceData.data);
-
-
-    //////////////start init perso menus /////////////
-   //  this.getlisPersoReervationMenus()
-   
-    //////////////start init perso menus /////////////
 
   }
-
-
-  
-
-
-
 
 
   //////////////////////// Start Menu Standar Task///////////////////////////////////
@@ -155,18 +154,18 @@ export class MenuComponent implements OnInit {
   
 
   getMenus(){
-    this.service.getMenuList().subscribe((data : any)=>{
+    this.service.getMenuList().pipe(take(1)).subscribe((data : any)=>{
       console.log('menus from get menus>>>',data);
       
-     this.Menus = data
+     this.Menus = data.reverse();
     })
   }
   
-  getRooms(){
+ /* getRooms(){
     this.service.getRoomList().subscribe((data : any)=>{
       this.Chambres = data ;
     })
-  }
+  }*/
 
 
 search(term: string) {
@@ -216,7 +215,7 @@ changeStandardView(){
 getMenuReservations(){
  
 
-    this.service.getListOfMenusReservation().subscribe((menusReservation:any) => {
+    this.service.getListOfMenusReservation().pipe(take(1)).subscribe((menusReservation:any) => {
         console.log('menuReservation>>>', menusReservation);
              this.filterData = menusReservation
             this.TableSourceData.data = menusReservation
@@ -227,11 +226,10 @@ getMenuReservations(){
     
  }
 
- /* get list of perso menu */
-
+/*
  getlisPersoReervationMenus(){
   
-  this.service.getReservationList().subscribe((persoMenus:any) => {
+  this.service.getReservationList().pipe(take(1)).subscribe((persoMenus:any) => {
     //this.filterData = persoMenus 
     
     console.log('list of perso menus >>>',persoMenus );
@@ -240,14 +238,12 @@ getMenuReservations(){
        return list.listmenuID.length > 0 ;
     })
     this.dataSource = persoMenusActive;
-   /* this.DataPersoMenu.data= persoMenusActive;
-    console.log('persoMenusActive>>>', persoMenusActive);
-    this.filterData = persoMenusActive*/
+   //this.DataPersoMenu.data= persoMenusActive;
+   // console.log('persoMenusActive>>>', persoMenusActive);
+   // this.filterData = persoMenusActive
     
   })
-} 
-
-
+} */
 
 
 
@@ -368,10 +364,12 @@ editCall(row) {
        // this.showMenuDetails = true ; 
         this.MenuPrice = 90
         //this.calculTotal(this.number_geuste , this.MenuPrice );
-    }else{
+    }else if(this.modalData.menuID.name == 'Menu 4'){
        // this.showMenuDetails = true ; 
         this.MenuPrice = 120
        // this.calculTotal(this.number_geuste , this.MenuPrice );
+    }else{
+       this.MenuPrice = 20;
     }
 
 
@@ -426,6 +424,7 @@ editCall(row) {
          this.suite = "Agneau à la gargoulette";
          this.showMenuDetails = true ; 
          this.MenuPrice = 150
+         this.MenuPrice2 = false;
          this.calculTotal(this.number_geuste , this.MenuPrice );
     }else if(event.value == 'Menu 2'){
         this.entree = "Trio de salade";
@@ -433,6 +432,7 @@ editCall(row) {
         this.suite = "grillade mixte";
         this.showMenuDetails = true ; 
         this.MenuPrice = 80
+        this.MenuPrice2 = false;
         this.calculTotal(this.number_geuste , this.MenuPrice );
     }else if(event.value == 'Menu 3'){
         this.entree = "Trio de salade";
@@ -440,14 +440,19 @@ editCall(row) {
         this.suite = "Poisson grillé";
         this.showMenuDetails = true ; 
         this.MenuPrice = 90
+        this.MenuPrice2 = false;
         this.calculTotal(this.number_geuste , this.MenuPrice );
-    }else{
+    }else if(event.value == 'Menu 4')  {
         this.entree = "Trio de salade";
         this.dessert = "Assiette de fruits de saison";
         this.suite = "couscous à l'agneau";
         this.showMenuDetails = true ; 
         this.MenuPrice = 120
+        this.MenuPrice2 = false;
         this.calculTotal(this.number_geuste , this.MenuPrice );
+    }else{
+      this.showMenuDetails = false ;
+      this.MenuPrice2 = true;
     }
 
 
@@ -464,6 +469,39 @@ editCall(row) {
     this.calculTotal(this.reservationMenuEditForm.get('number_guests').value  , this.MenuPrice );
     */
   }
+
+
+
+  showMenuStandard(event:MatSelectChange){
+    console.log('menu standard value>>>', this.number_geuste);
+  
+    if(event.value === 'petit déjeuner'){
+      this.MenuPrice2 = true;
+      this.MenuPrice1 = false;
+      this.menuPdj = true;
+      this.menuSta = false;
+      this.isDisabled= true;
+      this.showMenuDetails = false;
+    //  let price = this.reservationMenuForm.get('number_guests').value * 20;
+    //  this.MenuPriceValue = price;
+      console.log('menuPrice2>>>', this.MenuPrice2);
+      this.PriceTotal =  this.number_geuste * this.ptDejPrice 
+    }else{
+      this.isDisabled= false;
+      this.MenuPrice1 = true;
+      this.MenuPrice2 = false;
+      this.PriceTotal =  this.number_geuste * this.MenuPrice
+      this.menuPdj = false;
+      this.menuSta = true;
+      this.showMenuDetails = true;
+    }
+    
+  }
+
+
+
+
+
 
   resetChambre(event : MatSelectChange){
     if (event.value = "null") {
@@ -482,7 +520,16 @@ editCall(row) {
  re_calculTotal(event: any){
    this.number_geuste = event.target.value;
    console.log('number of personne>>>',event.target.value);
-   this.calculTotal(event.target.value  , this.MenuPrice );
+  // this.calculTotal(event.target.value  , this.MenuPrice );
+
+   if(this.menuSta){
+    this.calculTotal(event.target.value  , this.MenuPrice);
+ }else if (this.menuPdj){
+    this.calculTotal(event.target.value  , this.ptDejPrice);
+ }else{
+  this.calculTotal(event.target.value  , this.MenuPrice);
+ }
+
   /*
    if (this.MenuPrice){
     this.calculTotal(event.target.value  , this.MenuPrice );
@@ -545,39 +592,78 @@ verifyMenuID(menuName:string){
 }
 
 updateReservation(){
-  this.verifyMenuID(this.reservationMenuEditForm.get('menuID').value);
-  const ObjectToEdit = {
-    _id : this.modalData._id ,
-    type:"menu",
-    first_name :  this.reservationMenuEditForm.get('first_name').value,
-    last_name : this.reservationMenuEditForm.get('last_name').value ,
-    menuID :this.menuID ,
-    number_phone: this.reservationMenuEditForm.get('number_phone').value ,
-    number_heure: this.reservationMenuEditForm.get('number_heure').value ,
-    startDate : formatDate(this.reservationMenuEditForm.get('startDate').value, 'yyyy-MM-dd', 'en'),
-    number_guests : this.reservationMenuEditForm.get('number_guests').value ,
-    comment : this.reservationMenuEditForm.get('comment').value ,
-    status : this.reservationMenuEditForm.get('status').value ,
-    price : this.PriceTotal,
-    typeRepas:this.reservationMenuEditForm.get('entreSta').value
+
+  console.log('menuId>>>', this.reservationMenuEditForm.get('menuID').value);
+  if(this.reservationMenuEditForm.get('menuID').value === 'Petit déjeuner'){
+    const ObjectToEdit = {
+      _id : this.modalData._id ,
+      type:"menu",
+      first_name :  this.reservationMenuEditForm.get('first_name').value,
+      last_name : this.reservationMenuEditForm.get('last_name').value ,
+      menuID :'61dc2a61f84f650b20574076' ,
+      number_phone: this.reservationMenuEditForm.get('number_phone').value ,
+      number_heure: this.reservationMenuEditForm.get('number_heure').value ,
+      startDate : formatDate(this.reservationMenuEditForm.get('startDate').value, 'yyyy-MM-dd', 'en'),
+      number_guests : this.reservationMenuEditForm.get('number_guests').value ,
+      comment : this.reservationMenuEditForm.get('comment').value ,
+      status : this.reservationMenuEditForm.get('status').value ,
+      price : this.PriceTotal,
+      typeRepas:this.reservationMenuEditForm.get('entreSta').value
+    }
+  
+    console.log('object to edit>>>',ObjectToEdit);
+    
+    
+    this.service.updateStandReservationMenu(this.modalData._id , ObjectToEdit).subscribe((data : any)=> {
+      console.log(data)
+      this.showNotification(
+        'snackbar-success',
+         "la réservation a été modifiée avec succès",
+        'top',
+        'end'
+      );
+      //this.dialog.closeAll()
+      this.dialogRef.closeAll()
+      this.getMenuReservations();
+  
+    } )
+  }else{
+      
+    this.verifyMenuID(this.reservationMenuEditForm.get('menuID').value);
+    const ObjectToEdit = {
+      _id : this.modalData._id ,
+      type:"menu",
+      first_name :  this.reservationMenuEditForm.get('first_name').value,
+      last_name : this.reservationMenuEditForm.get('last_name').value ,
+      menuID :this.menuID ,
+      number_phone: this.reservationMenuEditForm.get('number_phone').value ,
+      number_heure: this.reservationMenuEditForm.get('number_heure').value ,
+      startDate : formatDate(this.reservationMenuEditForm.get('startDate').value, 'yyyy-MM-dd', 'en'),
+      number_guests : this.reservationMenuEditForm.get('number_guests').value ,
+      comment : this.reservationMenuEditForm.get('comment').value ,
+      status : this.reservationMenuEditForm.get('status').value ,
+      price : this.PriceTotal,
+      typeRepas:this.reservationMenuEditForm.get('entreSta').value
+    }
+  
+    console.log('object to edit>>>',ObjectToEdit);
+    
+    
+    this.service.updateStandReservationMenu(this.modalData._id , ObjectToEdit).subscribe((data : any)=> {
+      console.log(data)
+      this.showNotification(
+        'snackbar-success',
+         "la réservation a été modifiée avec succès",
+        'top',
+        'end'
+      );
+      //this.dialog.closeAll()
+      this.dialogRef.closeAll()
+      this.getMenuReservations();
+  
+    } );
   }
 
-  console.log('object to edit>>>',ObjectToEdit);
-  
-  
-  this.service.updateStandReservationMenu(this.modalData._id , ObjectToEdit).subscribe((data : any)=> {
-    console.log(data)
-    this.showNotification(
-      'snackbar-success',
-       "la réservation a été modifiée avec succès",
-      'top',
-      'end'
-    );
-    //this.dialog.closeAll()
-    this.dialogRef.closeAll()
-    this.getMenuReservations();
-
-  } );
 
   
 }

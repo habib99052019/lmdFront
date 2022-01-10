@@ -43,9 +43,26 @@
     }
 
 
-
+// effacer les colones en gray (valid Range)
 fc .fc-cell-shaded, .fc .fc-day-disabled {
         // background: hsl(0deg 80% 47% / 30%); */
        //  background: var(--fc-neutral-bg-color,white) !important; 
        display:none!important;
     }
+
+
+/* Mobile & Tablet Rules */
+@media (max-width: 767px) { 
+    .fc .fc-toolbar-title {
+        font-size: 1.75em;
+        position: absolute;
+       // margin-top: 60px;
+       // margin-right: 20px;
+       left:199px;
+       top:160px;
+        width: 250px;
+       // margin-left: 110px !important;
+       color:rgb(105, 105, 105)
+    }
+
+ }
