@@ -106,7 +106,7 @@ BoissonsList: any[] = [
      "déjeuner"  
   ]
   RepasPersoTypeList: any[] = [
-    "petit déjeuner",
+   
     "déjeuner",
     "diner"
   ]

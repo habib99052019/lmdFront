@@ -321,6 +321,8 @@ BoissonsList: any[] = [
   menuPdj = false;
   menuSta = false;
 
+  addTwoMenu = false;
+  addTwoMenu2 = false;
   constructor(
     private service : ReservationServiceService,
     public dialogRef: MatDialogRef<FormDialogComponent>,
@@ -456,6 +458,7 @@ showMenuStandard(event:MatSelectChange){
     this.MenuPrice1 = false;
     this.menuPdj = true;
     this.menuSta = false;
+    
   //  let price = this.reservationMenuForm.get('number_guests').value * 20;
   //  this.MenuPriceValue = price;
     console.log('menuPrice2>>>', this.MenuPrice2);
@@ -477,6 +480,7 @@ showMenu(event : MatSelectChange){
     this.showMenuDetails = true ; 
     this.menuPdj = false;
     this.menuSta = true;
+  
     if (event.value.price){
       this.MenuPrice = event.value.price
     }

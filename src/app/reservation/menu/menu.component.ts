@@ -108,6 +108,8 @@ export class MenuComponent implements OnInit {
   menuPdj = false;
   menuSta = false;
   ptDejPrice = 20
+  counter = 0;
+  counter2 = 0;
   
   showStaMenu = false;
   isDisabled = false;
@@ -377,7 +379,7 @@ editCall(row) {
      
 
    
-    this.PriceTotal = this.modalData.price;
+    this.PriceTotal = +this.modalData.price;
     this.reservationMenuEditForm = this.fb.group({
       _id : [this.modalData._id ],
       first_name : [this.modalData.clientID.first_name , Validators.required],
@@ -403,6 +405,7 @@ editCall(row) {
 
   closeModal(){
     this.dialog.closeAll()
+    this.getMenuReservations()
   }
 
   showNotification(colorName, text, placementFrom, placementAlign) {
@@ -485,15 +488,15 @@ editCall(row) {
     //  let price = this.reservationMenuForm.get('number_guests').value * 20;
     //  this.MenuPriceValue = price;
       console.log('menuPrice2>>>', this.MenuPrice2);
-      this.PriceTotal =  this.number_geuste * this.ptDejPrice 
+      this.PriceTotal =  +this.number_geuste * +this.ptDejPrice 
     }else{
       this.isDisabled= false;
       this.MenuPrice1 = true;
       this.MenuPrice2 = false;
-      this.PriceTotal =  this.number_geuste * this.MenuPrice
+      this.PriceTotal =  +this.number_geuste * +this.MenuPrice
       this.menuPdj = false;
       this.menuSta = true;
-      this.showMenuDetails = true;
+     // this.showMenuDetails = true;
     }
     
   }
@@ -513,7 +516,7 @@ editCall(row) {
  calculTotal(nombre_personnes : any , menuPrice : any ){
 
   this.PriceTotal = (menuPrice * nombre_personnes) 
-  this.reservationMenuEditForm.get('price').setValue(this.PriceTotal);
+  this.reservationMenuEditForm.get('price').setValue(+this.PriceTotal);
  }
 
 
@@ -545,33 +548,52 @@ editCall(row) {
  }
  
  addToTotal(type :any){
-   if (this.PriceTotal){
+  
      if(type === "Soda") {
+      // this.calculTotal(this.number_geuste , this.MenuPrice)
+        console.log('price tt>>>', this.PriceTotal);
         this.sodaPrice = this.sodaPrice + 2
-        this.PriceTotal = this.PriceTotal + 2
+      //  this.counter = this.counter + 2;
+      console.log(this.PriceTotal);
+      console.log(this.sodaPrice);
+
+        this.PriceTotal = +this.PriceTotal + 2
+        console.log(+this.PriceTotal);
+
+        //this.number_geuste = this.number_geuste + 0;
         this.soda = this.soda + 1;
+        console.log(this.sodaPrice);
         
+       console.log(this.soda);
+       
         console.log('price totale>>>',this.PriceTotal);
         }
      else if (type === "Eau") {
+    // this.calculTotal(this.number_geuste , this.MenuPrice );
+     // this.counter2 = this.counter2 + 1;
       this.EauPrice = this.EauPrice + 1
-      this.PriceTotal = this.PriceTotal + 1
+      this.PriceTotal = +this.PriceTotal + 1
       this.eau = this.eau + 1;
+    
+     // this.calculTotal(this.number_geuste , this.MenuPrice );
    }
- }
+   
  }
 
 
  removeFromTotal(type :any){
   if (this.PriceTotal){
     if(type === "Soda") {
-      this.PriceTotal = this.PriceTotal - 2
+      this.PriceTotal = +this.PriceTotal - 2
 
       this.sodaPrice = this.sodaPrice - 2
       this.soda = this.soda - 1;
+      console.log(this.sodaPrice);
+        
+      console.log(this.soda);
     }
     else if (type === "Eau") {
-    this.PriceTotal = this.PriceTotal - 1
+    this.PriceTotal = +this.PriceTotal - 1
  
      this.EauPrice = this.EauPrice - 1
      this.eau = this.eau - 1;
@@ -593,21 +615,21 @@ verifyMenuID(menuName:string){
 
 updateReservation(){
 
-  console.log('menuId>>>', this.reservationMenuEditForm.get('menuID').value);
-  if(this.reservationMenuEditForm.get('menuID').value === 'Petit déjeuner'){
+  console.log('menuId>>>', this.reservationMenuEditForm.get('entreSta').value);
+  if(this.reservationMenuEditForm.get('entreSta').value === 'petit déjeuner'){
     const ObjectToEdit = {
       _id : this.modalData._id ,
       type:"menu",
       first_name :  this.reservationMenuEditForm.get('first_name').value,
       last_name : this.reservationMenuEditForm.get('last_name').value ,
-      menuID :'61dc2a61f84f650b20574076' ,
+      menuID :'61dc2a61f84f650b20574076',
       number_phone: this.reservationMenuEditForm.get('number_phone').value ,
       number_heure: this.reservationMenuEditForm.get('number_heure').value ,
       startDate : formatDate(this.reservationMenuEditForm.get('startDate').value, 'yyyy-MM-dd', 'en'),
       number_guests : this.reservationMenuEditForm.get('number_guests').value ,
       comment : this.reservationMenuEditForm.get('comment').value ,
       status : this.reservationMenuEditForm.get('status').value ,
-      price : this.PriceTotal,
+      price : +this.PriceTotal,
       typeRepas:this.reservationMenuEditForm.get('entreSta').value
     }
   
@@ -642,7 +664,7 @@ updateReservation(){
       number_guests : this.reservationMenuEditForm.get('number_guests').value ,
       comment : this.reservationMenuEditForm.get('comment').value ,
       status : this.reservationMenuEditForm.get('status').value ,
-      price : this.PriceTotal,
+      price : +this.PriceTotal,
       typeRepas:this.reservationMenuEditForm.get('entreSta').value
     }
   
