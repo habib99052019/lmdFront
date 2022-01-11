@@ -822,12 +822,12 @@ deleteReservation1(data:any){
           this.service.deleteMenu(data.menuID).subscribe((resp:any) => {
             console.log('delete >>>', data);
             this.showNotification(
-              'snackbar-success',
+              'snackbar-danger',
               "la réservation a été supprimée avec succès",
               'top',
               'end'
             );
-            window.location.reload();
+           // window.location.reload();
            })
         }
       });
@@ -858,7 +858,7 @@ deleteReservation1(data:any){
                   'top',
                   'end'
                 );
-                window.location.reload();
+               // window.location.reload();
                 
               })
               }

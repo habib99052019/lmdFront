@@ -177,6 +177,7 @@ openEditModal(row){
    });
  
     dialogRef.afterClosed().subscribe(result => {
+      this.getlisPersoReervationMenus();
      console.log('lenght>>>', result.menuListTosent.length);
  
        if((result.menuListTosent.length != 0 ) && (result != undefined)){
@@ -274,6 +275,7 @@ openEditModal(row){
    });
  
     dialogRef.afterClosed().subscribe(result => {
+      this.getlisPersoReervationMenus();
      console.log('lenght>>>', result.menuListTosent.length);
  
        if((result.menuListTosent.length != 0 ) && (result != undefined)){

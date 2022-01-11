@@ -30,7 +30,9 @@ export class MenuComponent implements OnInit {
   displayedColumns = [
     "startDate",
     "name",
+    "heure",
     "Client",
+    "numberPhone",
     "RoomName",
     "price",
     "status",
@@ -175,8 +177,10 @@ search(term: string) {
   this.TableSourceData.data = this.filterData.filter(reservation => 
     reservation.clientID.first_name.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
     reservation.clientID.last_name.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
+    reservation.number_heure.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
     reservation.clientID.number_phone.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
     reservation.price.includes(term) ||  
+    reservation.start.includes(term) || 
     reservation.typeRepas.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
     reservation.status_reservation.trim().toLowerCase().includes(term.trim().toLowerCase()) ||
     reservation.menuID.name.trim().toLowerCase().includes(term.trim().toLowerCase()) 
@@ -267,7 +271,7 @@ addNew() {
     });
     dialogRef.afterClosed().subscribe((result) => {
         console.log('resultata from add new>>>', result);
-        
+        this.getMenuReservations();
       if (result === 1) {
          //window.location.reload();
          this.getMenuReservations();

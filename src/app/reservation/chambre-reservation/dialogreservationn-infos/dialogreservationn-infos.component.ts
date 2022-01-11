@@ -1403,8 +1403,8 @@ Swal.fire({
   if (result.value) {
     this._reservationService.deleteReservation(data.reservation_ID).subscribe((resp:any) => {
       this.showNotification(
-        'snackbar-success',
-        resp.message,
+        'snackbar-danger',
+        "la réservation a été supprimée avec succès",
         'top',
         'end'
       )

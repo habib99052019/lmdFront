@@ -47,7 +47,7 @@ export class FormDialogComponent implements OnInit {
   showMenuDetails = false
   sodaPrice = 0; 
   EauPrice = 0;
-  
+  pricePdjMenu = 0;
 
   user:any;
   myControl = new FormControl();

@@ -100,6 +100,17 @@
                                             </mat-header-cell>
                                             <mat-cell *matCellDef="let row">{{row.clientID.first_name}} {{row.clientID.last_name}}</mat-cell>
                                         </ng-container>
+                                        <ng-container matColumnDef="numberPhone">
+                                            <mat-header-cell *matHeaderCellDef>N°téléphone
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row">{{row.clientID.number_phone}}</mat-cell>
+                                        </ng-container>
+                                        <ng-container matColumnDef="heure">
+                                            <mat-header-cell *matHeaderCellDef>Heure
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row">{{row.number_heure}}</mat-cell>
+                                        </ng-container>
+
                                         <ng-container matColumnDef="startDate">
                                             <mat-header-cell mat-header-cell *matHeaderCellDef>date prévue
                                             </mat-header-cell>
@@ -219,7 +230,7 @@
                
                 <div class="col">
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>nombre de personnes</mat-label>
+                        <mat-label>Nombre de personnes</mat-label>
                         <input matInput formControlName="number_guests" type="number" [min]="1" (change)="re_calculTotal($event)">
                         <mat-icon matSuffix>group</mat-icon>
                     </mat-form-field>
@@ -228,7 +239,7 @@
             
                 <div class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
-                        <mat-label>date prevue</mat-label>
+                        <mat-label>Date prevue</mat-label>
                         <input matInput [matDatepicker]="picker" formControlName="startDate" [min]="today">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
@@ -237,7 +248,7 @@
                 </div>
                 <div class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
-                        <mat-label>l'heure</mat-label>
+                        <mat-label>L'heure</mat-label>
                         <input matInput formControlName="number_heure" type="time" >
                         
                     </mat-form-field>
