@@ -356,6 +356,10 @@ editCall(row) {
     this.modalData = row;
     if(this.modalData){
        this.number_geuste = this.modalData.number_guests;
+       this.eau = this.modalData.nb_eau;
+       this.soda = this.modalData.nb_soda;
+       this.EauPrice = this.eau
+       this.sodaPrice = this.soda * 2 ;
     }
 
     if(this.modalData.menuID.name == 'Menu 1'){
@@ -397,7 +401,8 @@ editCall(row) {
       comment : [this.modalData.comment ],
       status : [this.modalData.status_reservation],
       price : [this.modalData.price , Validators.required],
-      entreSta : [this.modalData.typeRepas]
+      entreSta : [this.modalData.typeRepas],
+    
     });
 
     this.dialog.open( this.editModal, {
@@ -634,7 +639,9 @@ updateReservation(){
       comment : this.reservationMenuEditForm.get('comment').value ,
       status : this.reservationMenuEditForm.get('status').value ,
       price : +this.PriceTotal,
-      typeRepas:this.reservationMenuEditForm.get('entreSta').value
+      typeRepas:this.reservationMenuEditForm.get('entreSta').value,
+      nb_eau : this.eau,
+      nb_soda: this.soda
     }
   
     console.log('object to edit>>>',ObjectToEdit);
@@ -669,7 +676,9 @@ updateReservation(){
       comment : this.reservationMenuEditForm.get('comment').value ,
       status : this.reservationMenuEditForm.get('status').value ,
       price : +this.PriceTotal,
-      typeRepas:this.reservationMenuEditForm.get('entreSta').value
+      typeRepas:this.reservationMenuEditForm.get('entreSta').value,
+      nb_eau : this.eau,
+      nb_soda: this.soda
     }
   
     console.log('object to edit>>>',ObjectToEdit);

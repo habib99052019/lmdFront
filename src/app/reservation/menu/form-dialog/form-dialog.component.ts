@@ -521,7 +521,8 @@ showMenu(event : MatSelectChange){
        this.sodaPrice = this.sodaPrice + 2
        this.PriceTotal = this.PriceTotal + 2
        this.soda = this.soda + 1;
-
+       console.log('soda>>>', this.soda);
+       
      }
      else if (type === "Eau") {
       this.EauPrice = this.EauPrice + 1
@@ -772,7 +773,8 @@ if(event.source.ngControl.name == 'entree_froides'){
       menuID : '61dc2a61f84f650b20574076',
       number_heure: this.reservationMenuForm.get('number_heure').value,
       entreSta:this.reservationMenuForm.get('entreSta').value,
-    
+      nb_eau : this.eau,
+      nb_soda: this.soda
      
      }
      
@@ -817,6 +819,8 @@ if(event.source.ngControl.name == 'entree_froides'){
       menuID : this.reservationMenuForm.get('menuID').value,
       number_heure: this.reservationMenuForm.get('number_heure').value,
       entreSta:this.reservationMenuForm.get('entreSta').value,
+      nb_eau : this.eau,
+      nb_soda: this.soda
      }
      
      console.log('reservationForm>>>', reservationForm);

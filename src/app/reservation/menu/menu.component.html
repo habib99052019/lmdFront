@@ -319,18 +319,18 @@
             </div>
             <div style="display: flex; flex-direction:row; justify-content:end;">
                 <div>
-                    <button mat-icon-button color="warn" (click)="removeFromTotal('Soda')" [disabled]="this.sodaPrice === 0">
+                    <button mat-icon-button color="warn" (click)="removeFromTotal('Soda')" >
                         <mat-icon>remove</mat-icon>
                       </button> Soda  
-                    <button mat-icon-button color="primary" (click)="addToTotal('Soda')" [disabled]="this.MenuPrice === 0">
+                    <button mat-icon-button color="primary" (click)="addToTotal('Soda')" >
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
                 <div>
-                    <button mat-icon-button color="warn" (click)="removeFromTotal('Eau')" [disabled]="this.EauPrice === 0">
+                    <button mat-icon-button color="warn" (click)="removeFromTotal('Eau')" >
                         <mat-icon>remove</mat-icon>
                       </button> Eau
-                    <button mat-icon-button color="primary" (click)="addToTotal('Eau')" [disabled]="this.MenuPrice === 0">
+                    <button mat-icon-button color="primary" (click)="addToTotal('Eau')" >
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
@@ -349,10 +349,10 @@
                                <div *ngIf="MenuPrice2" >
                                  <p>prix Menu : 20 * {{this.number_geuste}}</p>
                                </div>
-                                <div *ngIf="this.EauPrice !== 0" class="col-md-12">
+                                <div  class="col-md-12">
                                     <p>Eau :{{this.EauPrice }} Dt              Eau: {{eau}}</p>
                                 </div>
-                                <div *ngIf="this.sodaPrice !== 0" class="col-md-12">
+                                <div class="col-md-12">
                                     <p>Soda : {{this.sodaPrice }} Dt          Soda: {{soda}}</p>
                                 </div>
                                 <div class="col-md-12">
