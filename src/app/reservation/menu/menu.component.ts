@@ -443,6 +443,11 @@ editCall(row) {
           this.eau = 0;
           this.EauPrice = 0 ;
           this.sodaPrice = 0;
+          this.service.getMenuByName(event.value).pipe(take(1)).subscribe((menu :any) => {
+    
+            this.menuID = menu._id;
+            
+        })
     }else if(event.value == 'Menu 2'){
         this.entree = "Trio de salade";
         this.dessert = "Assiette de fruits de saison";
@@ -452,9 +457,14 @@ editCall(row) {
         this.MenuPrice2 = false;
         this.calculTotal(this.number_geuste , this.MenuPrice );
         this.soda = 0;
-      this.eau = 0;
-      this.EauPrice = 0 ;
-      this.sodaPrice = 0;
+        this.eau = 0;
+        this.EauPrice = 0 ;
+        this.sodaPrice = 0;
+      this.service.getMenuByName(event.value).pipe(take(1)).subscribe((menu :any) => {
+    
+        this.menuID = menu._id;
+        
+    })
     }else if(event.value == 'Menu 3'){
         this.entree = "Trio de salade";
         this.dessert = "Assiette de fruits de saison";
@@ -464,9 +474,14 @@ editCall(row) {
         this.MenuPrice2 = false;
         this.calculTotal(this.number_geuste , this.MenuPrice );
         this.soda = 0;
-      this.eau = 0;
-      this.EauPrice = 0 ;
-      this.sodaPrice = 0;
+        this.eau = 0;
+        this.EauPrice = 0 ;
+        this.sodaPrice = 0;
+      this.service.getMenuByName(event.value).pipe(take(1)).subscribe((menu :any) => {
+    
+        this.menuID = menu._id;
+        
+    })
     }else if(event.value == 'Menu 4')  {
         this.entree = "Trio de salade";
         this.dessert = "Assiette de fruits de saison";
@@ -476,9 +491,14 @@ editCall(row) {
         this.MenuPrice2 = false;
         this.calculTotal(this.number_geuste , this.MenuPrice );
         this.soda = 0;
-      this.eau = 0;
-      this.EauPrice = 0 ;
-      this.sodaPrice = 0;
+        this.eau = 0;
+        this.EauPrice = 0 ;
+        this.sodaPrice = 0;
+      this.service.getMenuByName(event.value).pipe(take(1)).subscribe((menu :any) => {
+    
+        this.menuID = menu._id;
+        
+    })
     }else{
       this.showMenuDetails = false ;
       this.MenuPrice2 = true;
@@ -519,6 +539,12 @@ editCall(row) {
       this.eau = 0;
       this.EauPrice = 0 ;
       this.sodaPrice = 0;
+      const value = 'Petit déjeuner';
+      this.service.getMenuByName(value).pipe(take(1)).subscribe((menu :any) => {
+    
+        this.menuID = menu._id;
+        
+    })
     }else{
       this.isDisabled= false;
       this.MenuPrice1 = true;
@@ -656,7 +682,7 @@ updateReservation(){
       type:"menu",
       first_name :  this.reservationMenuEditForm.get('first_name').value,
       last_name : this.reservationMenuEditForm.get('last_name').value ,
-      menuID :'61dc2a61f84f650b20574076',
+      menuID :`${this.menuID }`,
       number_phone: this.reservationMenuEditForm.get('number_phone').value ,
       number_heure: this.reservationMenuEditForm.get('number_heure').value ,
       startDate : formatDate(this.reservationMenuEditForm.get('startDate').value, 'yyyy-MM-dd', 'en'),
@@ -693,7 +719,7 @@ updateReservation(){
       type:"menu",
       first_name :  this.reservationMenuEditForm.get('first_name').value,
       last_name : this.reservationMenuEditForm.get('last_name').value ,
-      menuID :this.menuID ,
+      menuID :`${this.menuID }` ,
       number_phone: this.reservationMenuEditForm.get('number_phone').value ,
       number_heure: this.reservationMenuEditForm.get('number_heure').value ,
       startDate : formatDate(this.reservationMenuEditForm.get('startDate').value, 'yyyy-MM-dd', 'en'),

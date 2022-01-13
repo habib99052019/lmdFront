@@ -90,4 +90,9 @@ export class ReservationServiceService {
   deleteMenu(id){
     return this.http.delete(this.ApiPath + '/menus/' + id)
   }
+
+   /* get menu by name */
+   getMenuByName(name){
+    return this.http.get(this.ApiPath + '/menus/name?name=' + name)
+  }
 }

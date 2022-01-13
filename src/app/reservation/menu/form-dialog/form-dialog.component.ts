@@ -323,6 +323,8 @@ BoissonsList: any[] = [
 
   addTwoMenu = false;
   addTwoMenu2 = false;
+  menuID:any;
+
   constructor(
     private service : ReservationServiceService,
     public dialogRef: MatDialogRef<FormDialogComponent>,
@@ -462,7 +464,13 @@ showMenuStandard(event:MatSelectChange){
   //  let price = this.reservationMenuForm.get('number_guests').value * 20;
   //  this.MenuPriceValue = price;
     console.log('menuPrice2>>>', this.MenuPrice2);
-    this.PriceTotal =  this.reservationMenuForm.get('number_guests').value * this.ptDejPrice 
+    this.PriceTotal =  this.reservationMenuForm.get('number_guests').value * this.ptDejPrice ;
+    const value = 'Petit déjeuner';
+    this.service.getMenuByName(value).pipe(take(1)).subscribe((menu :any) => {
+  
+      this.menuID = menu._id;
+      
+  })
   }
   
 }
@@ -770,7 +778,7 @@ if(event.source.ngControl.name == 'entree_froides'){
       first_name : this.reservationMenuForm.get('first_name').value,
       last_name : this.reservationMenuForm.get('last_name').value,
       number_phone : this.reservationMenuForm.get('number_phone').value,
-      menuID : '61dc2a61f84f650b20574076',
+      menuID : `${this.menuID }`,
       number_heure: this.reservationMenuForm.get('number_heure').value,
       entreSta:this.reservationMenuForm.get('entreSta').value,
       nb_eau : this.eau,
