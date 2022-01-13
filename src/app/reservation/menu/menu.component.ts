@@ -16,6 +16,7 @@ import { MatSort } from "@angular/material/sort";
 import { EditPersoMenuComponent } from "./edit-perso-menu/edit-perso-menu.component";
 import { formatDate } from "@angular/common";
 import { take } from "rxjs/operators";
+import { RightSidebarComponent } from "src/app/layout/right-sidebar/right-sidebar.component";
 
 @Component({
   selector: "app-menu",
@@ -438,6 +439,10 @@ editCall(row) {
          this.MenuPrice = 150
          this.MenuPrice2 = false;
          this.calculTotal(this.number_geuste , this.MenuPrice );
+         this.soda = 0;
+          this.eau = 0;
+          this.EauPrice = 0 ;
+          this.sodaPrice = 0;
     }else if(event.value == 'Menu 2'){
         this.entree = "Trio de salade";
         this.dessert = "Assiette de fruits de saison";
@@ -446,6 +451,10 @@ editCall(row) {
         this.MenuPrice = 80
         this.MenuPrice2 = false;
         this.calculTotal(this.number_geuste , this.MenuPrice );
+        this.soda = 0;
+      this.eau = 0;
+      this.EauPrice = 0 ;
+      this.sodaPrice = 0;
     }else if(event.value == 'Menu 3'){
         this.entree = "Trio de salade";
         this.dessert = "Assiette de fruits de saison";
@@ -454,6 +463,10 @@ editCall(row) {
         this.MenuPrice = 90
         this.MenuPrice2 = false;
         this.calculTotal(this.number_geuste , this.MenuPrice );
+        this.soda = 0;
+      this.eau = 0;
+      this.EauPrice = 0 ;
+      this.sodaPrice = 0;
     }else if(event.value == 'Menu 4')  {
         this.entree = "Trio de salade";
         this.dessert = "Assiette de fruits de saison";
@@ -462,6 +475,10 @@ editCall(row) {
         this.MenuPrice = 120
         this.MenuPrice2 = false;
         this.calculTotal(this.number_geuste , this.MenuPrice );
+        this.soda = 0;
+      this.eau = 0;
+      this.EauPrice = 0 ;
+      this.sodaPrice = 0;
     }else{
       this.showMenuDetails = false ;
       this.MenuPrice2 = true;
@@ -498,6 +515,10 @@ editCall(row) {
     //  this.MenuPriceValue = price;
       console.log('menuPrice2>>>', this.MenuPrice2);
       this.PriceTotal =  +this.number_geuste * +this.ptDejPrice 
+      this.soda = 0;
+      this.eau = 0;
+      this.EauPrice = 0 ;
+      this.sodaPrice = 0;
     }else{
       this.isDisabled= false;
       this.MenuPrice1 = true;
@@ -505,6 +526,10 @@ editCall(row) {
       this.PriceTotal =  +this.number_geuste * +this.MenuPrice
       this.menuPdj = false;
       this.menuSta = true;
+      this.soda = 0;
+      this.eau = 0;
+      this.EauPrice = 0 ;
+      this.sodaPrice = 0;
      // this.showMenuDetails = true;
     }
     

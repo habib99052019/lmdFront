@@ -205,7 +205,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body bg-gray text-white text-capitalize">
-                            <div class="row">
+                           <!--<div class="row">
                                 <div class="col-md-12">
                                     <div *ngIf="MenuPrice1">
                                          <p>prix Menu : {{this.MenuPrice}} * {{this.reservationMenuForm.get('number_guests').value}}</p> 
@@ -224,7 +224,38 @@
                                 <div class="col-md-12">
                                     <p>Total : {{this.PriceTotal}} Dt </p>
                                 </div>
+                            </div>-->
+
+
+                            <div  style="background-color: white; border-radius: 7px; width: 40%;margin-top: 1px;margin-left: 5px;"   class="row">
+                                <!--<div class="col-md-12" *ngIf="this.MenuPrice !== 0">
+                                    <p>prix Menu : {{this.MenuPrice}} * {{this.number_geuste}}</p>
+                                </div>-->
+                                <div  *ngIf="MenuPrice1">
+                                    <p style="color:rgb(83, 83, 83);margin-top: 8px;font-weight: bold;" >prix Menu : <span style="color:orange">{{this.MenuPrice}} Dt </span> * <span style="color:orange">{{this.reservationMenuForm.get('number_guests').value}}</span></p> 
+                               </div>
+                               <div *ngIf="MenuPrice2" >
+                                 <p style="color:rgb(83, 83, 83);font-weight: bold;margin-top: 8px" > <span style="color:orange">20</span> *  <sapn style="color:orange">{{this.reservationMenuForm.get('number_guests').value}}</sapn></p>
+                               </div>
+                                <div  *ngIf="this.EauPrice !== 0"   style="display: flex; justify-content: space-between;">
+                                          
+                                          <p style="margin-right: 90px; color:rgb(83, 83, 83);font-weight: bold;">Eau : <span style="color:orange">{{this.EauPrice }} Dt</span> </p> 
+                                          <p style="color:rgb(83, 83, 83);font-weight: bold;"> Eau: <span style="color:orange" >{{eau}}</span></p>
+                                </div>
+                                <div  *ngIf="this.sodaPrice !== 0"    style="display: flex;justify-content: space-between;">
+                                     
+                                    <p style="margin-right: 79px;color:rgb(83, 83, 83);font-weight: bold;">Soda : <span style="color:orange">{{this.sodaPrice }} Dt </span> </p> 
+                                    <p style="color:rgb(83, 83, 83);font-weight: bold;"> Soda: <span style="color:orange" >{{soda}}</span></p>
+                               </div>
+                              
+                                <div class="col-md-12">
+                                    <p style="color:rgb(83, 83, 83);font-weight: bold;" >Prix total : <span style="color:orange">{{this.PriceTotal}} Dt </span></p>
+                                </div>
                             </div>
+
+
+
+
                         </div>
                     </div>
                 </div>
