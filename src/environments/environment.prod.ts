@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
   apiUrl: 'http://localhost:4200',
-  API: 'https://lmd-back.herokuapp.com/',
+  //API: 'https://lmdapisnodejs.herokuapp.com/',//host
+  API: 'http://localhost:3000/',//local
 };

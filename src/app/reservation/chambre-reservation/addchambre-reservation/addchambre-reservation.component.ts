@@ -227,27 +227,26 @@ startDate:any;
       console.log("date >>>>",params.object)
        if(params.object === "#"){
          this.end = "";
-         console.log("date >>>>",this.end)
+         
        }else{
         const date =  params.object.slice(0, 11);
         this.datetosent = params.object.slice(0, 10)
         this.endfiltreSearsh = params.object.slice(0, 10);
         this.end = date +'13:00:00'
-        console.log("date >>>>",this.end)
+      
        }
         
      })
     
      this.reservationChambreForm = this.createContactForm();
-     //console.log('reservationChambreForm>>>', this.reservationChambreForm);
-    // console.log('startdate >>>', this.date.value);
+    
      
    }
 
 
 
 ngOnInit(): void {
-    console.log('this.datetosent>>>', this.datetosent);
+   
     
     if(this.datetosent != undefined){
       this.date = new FormControl(new Date(String(this.datetosent)))
@@ -282,17 +281,9 @@ createContactForm(): FormGroup {
   }
 
 checkDates(event : any ){
-   console.log('checkDates>>>', event.value)
+
    this.startDate = event.value;
-   /*
-    const temporryDate = this.reservationChambreForm.get('startDate').value.getTime() + (1000 * 60 * 60 * 24)
-    this.minDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
-    if (this.reservationChambreForm.get('endDate').value){
-      var Time = this.reservationChambreForm.get('endDate').value.getTime() - event.value.getTime() ; 
-      var Days = Time / (1000 * 3600 * 24);
-      this.Days = Days
-      this.calculTotal(this.Days , this.RoomPrice);
-    }*/
+ 
     if(this.datetosent != undefined){
       const temporryDate = this.date.value.getTime() + (1000 * 60 * 60 * 24)
       this.minDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
@@ -308,7 +299,7 @@ checkDates(event : any ){
     else{ 
       
       const temporryDate = event.value.getTime() + (1000 * 60 * 60 * 24)
-      console.log('temporryDate>>>',event.value);
+     
       
       this.minDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
      
@@ -327,19 +318,9 @@ checkDates(event : any ){
 }
 
  calculDateDays(event : any ){
-  /*
-  const temporryDate = this.reservationChambreForm.get('endDate').value.getTime() - (1000 * 60 * 60 * 24)
-  this.maxDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
-  if (this.reservationChambreForm.get('startDate').value){
-    var Time = event.value.getTime() - this.reservationChambreForm.get('startDate').value.getTime() ; 
-    var Days = Time / (1000 * 3600 * 24);
-    this.Days = Days
-    this.calculTotal(this.Days , this.RoomPrice);
-  }*/
-
+ 
   if(this.datetosent != undefined){
-    console.log('this.date>>>>', this.date.value);
-    console.log('end date reservatonform>>>',this.reservationChambreForm.get('endDate').value);
+   
     
     
     const temporryDate = this.reservationChambreForm.get('endDate').value.getTime() - (1000 * 60 * 60 * 24)
@@ -347,20 +328,20 @@ checkDates(event : any ){
     if (this.date.value){
       var Time = event.value.getTime() - this.date.value.getTime() ; 
       var Days = Time / (1000 * 3600 * 24);
-      console.log('days>>>',Math.ceil(Days));
+     
       
       this.Days = Math.ceil(Days)
       this.calculTotal(this.Days , this.RoomPrice);
     }
   }else{
-    console.log('teeeeeeeeee');
+    
     
     const temporryDate = this.reservationChambreForm.get('endDate').value.getTime() - (1000 * 60 * 60 * 24)
     this.maxDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
     if (this.startDate){
       var Time = event.value.getTime() - this.startDate.getTime() ; 
       var Days = Time / (1000 * 3600 * 24);
-      console.log('days>>>',Days);
+     
       this.Days = Days
       this.calculTotal(this.Days , this.RoomPrice);
     }
@@ -371,8 +352,8 @@ checkDates(event : any ){
 
 selectTaarifType(event: any){
   this.taarifType = event.value;
-  console.log("tarif type>>>", this.taarifType);
-  console.log('roomName tarif type>>>', this.reservationChambreForm.value.roomID);
+ 
+
   if(this.reservationChambreForm.value.roomID){
       if(this.reservationChambreForm.value.roomID === 'Toute la villa' && this.taarifType === 'bas de saison'){
           this.RoomPrice = 2100;
@@ -389,7 +370,7 @@ selectTaarifType(event: any){
 
 selectRoomType(event: any){
   this.roomType = event.value;    
-  console.log('roomName>>>', this.reservationChambreForm.value.roomID);
+  
 
   if (this.reservationChambreForm.value.roomID){
 
@@ -681,7 +662,7 @@ selectRoomType(event: any){
 selectExtraType(event:any){
     
   if(event.value != undefined){
-    console.log('extra name >>>',event.value);
+    
     
      this.extraPrice = true
      this.extraType = event.value;
@@ -696,12 +677,11 @@ selectExtraType(event:any){
 
 
 calculTotal(days : any , roomPrice : any){
-  console.log('room price>>>',roomPrice);
-  console.log('extraprice>>>',this.extraPrice);
+ 
 
 
   if(this.extraPrice && this.extraType === "lit adulte" || this.extraType === "lit enfant"){
-    console.log('days>>>',days);
+   
      this.priceTotal = (roomPrice * days) + 90;
   }else if(this.extraPrice && this.extraType === "Deux lit adulte" || this.extraType === "Deux lit enfant"){
     this.priceTotal = (roomPrice * days) + 180;
@@ -711,23 +691,20 @@ calculTotal(days : any , roomPrice : any){
     this.priceTotal = roomPrice * days;
   }
  
- // this.priceTotal += this.extraPrice;
-  console.log("price", this.priceTotal)
+ 
   this.reservationChambreForm.get('price').setValue(this.priceTotal);
 }
 
 
 showMenu(event : MatSelectChange){
- // this.extraType = event.value;
-  console.log('event extra type>>>', event.value);
-  
+ 
   this.showMenuDetails = true ; 
   
 }
 
 
 verifyRoomColor(roomName:any){
-  console.log('roomname verify>>>', roomName);
+  
   
   if (roomName === 'Ruppia'){
     this.roombackgroundColor = '#deaa89';
@@ -761,7 +738,7 @@ else if (roomName === 'Amorpha'){
 }
 
 re_calculTotal(event: any){
-  console.log('event nombre enfant>>>', event.target.value);
+  //console.log('event nombre enfant>>>', event.target.value);
   
   //this.calculTotal(event.target.value  , this.MenuPrice );
 }
@@ -774,17 +751,8 @@ numberPersons(nba: number, nbc:number){
 
 addNewReservation(){
 
-  //console.log('new date start >>>', formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00' )
-  
-  console.log('single bas de saison>>>', this.SINGLE_BAS_SAISON);
-  console.log('double bas de saison>>>', this.DOUBLE_BAS_SAISON);
-  console.log('single bas de saison>>>', this.SINGLE_HAUTE_SAISON);
-  console.log('double bas de saison>>>', this.DOUBLE_HAUTE_SAISON);
-  console.log('numbre adulte>>>',this.reservationChambreForm.get('number_children').value);
-  console.log('number children>>>',this.reservationChambreForm.get('number_adulte').value);
   
   
- // const realStart = formatDate(this.reservationChambreForm.get('startDate').value, 'yyyy-MM-dd', 'en')+'T13:00:00';
  if(this.datetosent != undefined){
   this.realStartTosent = formatDate(this.date.value, 'yyyy-MM-dd', 'en')+'T13:00:00';
   this.startFiltre = formatDate(this.date.value, 'yyyy-MM-dd', 'en');
@@ -795,8 +763,7 @@ addNewReservation(){
  
 
  const realEnd = formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en')+'T11:00:00';
-  //console.log('realstart>>>', realStart);
- //console.log('realend>>>', realEnd);
+  
   
   
   if (this.end == ''){

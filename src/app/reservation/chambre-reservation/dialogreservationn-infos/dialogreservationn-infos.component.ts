@@ -249,12 +249,11 @@ constructor(
           this.roomName = 'double'
           }
           
-          //dialogRef.disableClose = true;
+          
       }
 
 ngOnInit(): void {
-  console.log('selected>>>', this.selected)
-    console.log('data>>>', this.data['status_room'])
+ 
     this.firstName = this.data['firstName'];
     this.lastName= this.data['lastName'];        
     this.title = this.data['title']
@@ -276,7 +275,7 @@ ngOnInit(): void {
     this.tarifType = this.data['tarifType']
     this.remark = this.data['remark']
     this.number_phone = this.data['number_phone']
-    console.log('status room>>>',this.data['status_room']);
+  
     
     
 
@@ -290,11 +289,7 @@ ngOnInit(): void {
       else if(this.data['status_room'] === "FERMER"){
            this.selected = 3 ;
        }
-        console.log('roomtypeselected>>>',this.roomTypeSelected );
-        console.log('this.tarifType>>>',this.tarifType );
-        console.log('title>>>',this.title);
-        
-        console.log('auxtarif type>>>', this.auxTarifType);
+       
 
        //////////
       
@@ -312,8 +307,7 @@ ngOnInit(): void {
 
 initTarifType(){
   
-  console.log('title>>>>>',this.title );
-  console.log('tarif type>>>>>',this.tarifType );
+ 
   
   if (true){
 
@@ -646,17 +640,17 @@ this.calculTotal(this.Days , this.RoomPrice);
 
 
 initcheckDates(){
-   console.log('checkDates>>>', this.startFiltre)
+  
      const dateStart = new Date(this.startFiltre).toISOString();
      const temporryDate = new Date(dateStart).getTime() + (1000 * 60 * 60 * 24)
-     console.log('tomporrary date >>>', temporryDate);
+    
      this.minDate = formatDate(temporryDate , 'yyyy-MM-dd' , 'en');
      if (this.endFiltre){
       const dateEnd = new Date(this.endFiltre).toISOString();
 
      var Time = new Date(dateEnd).getTime() - new Date(dateStart).getTime() ; 
      var Days = Time / (1000 * 3600 * 24);
-     console.log('Days from check dates >>>', Days);
+     
      
      this.Days = Days
      this.calculTotal(this.Days , this.RoomPrice);
@@ -670,22 +664,21 @@ initcheckDates(){
 
 
 checkDates(event : any ){
-  console.log('checkDates>>>', event.value)
+ 
   this.startFiltre = event.value;
     this.startchekdate = formatDate(this.startFiltre , 'yyyy-MM-dd' , 'en');
-    console.log('startfilter  checkdate>>>',this.startchekdate);
+    
 
-    console.log('endfiltre checkdate >>>',this.endFiltre);
+   
      this.minDate = this.startchekdate;
      if (this.endFiltre){
     var start = moment(this.startchekdate);
     var end = moment(this.endFiltre);
-    console.log('start >>>',start);
-    console.log('end >>>',end);
+   
      const Days = end.diff(start, "days")
-     console.log('Days from check dates >>>',Days);
+     
      this.Days =  Days
-    // this.Days = Days
+    
      this.calculTotal(this.Days , this.RoomPrice);
    }
    return
@@ -694,11 +687,10 @@ checkDates(event : any ){
 
 
 initcalculTotal(days : any , roomPrice : any){
- console.log('init extra >>>', this.extra);
- console.log('init extra price >>>', this.extraPrice);
+ 
 
   if(this.extra === "lit adulte" || this.extra === "lit enfant"){
-    console.log('days>>>',days);
+   
      this.priceTotal = (roomPrice * days) + 90;
   }else if(this.extra === "Deux lit adulte" || this.extra === "Deux lit enfant"){
     this.priceTotal = (roomPrice * days) + 180;
@@ -708,20 +700,16 @@ initcalculTotal(days : any , roomPrice : any){
     this.priceTotal = roomPrice * days;
   }
  
- // this.priceTotal += this.extraPrice;
-  console.log("price", this.priceTotal)
-  //this.reservationChambreForm.get('price').setValue(this.priceTotal);
+ 
   this.price = this.priceTotal
 }
 
 
 calculTotal(days : any , roomPrice : any){
-  console.log('extraprice>>>',this.extra);
  
-   console.log('room price>>>',roomPrice);
 
   if(this.extraPrice && this.extra === "lit adulte" || this.extra === "lit enfant"){
-    console.log('days>>>',days);
+    
      this.priceTotal = (roomPrice * days) + 90;
   }else if(this.extraPrice && this.extra === "Deux lit adulte" || this.extra === "Deux lit enfant"){
     this.priceTotal = (roomPrice * days) + 180;
@@ -731,7 +719,7 @@ calculTotal(days : any , roomPrice : any){
     this.priceTotal = roomPrice * days;
   }
  
-  console.log("price", this.priceTotal)
+ 
   this.price = this.priceTotal
 
 
@@ -741,18 +729,17 @@ calculTotal(days : any , roomPrice : any){
 calculDateDays(event : any ){
 
    this.gstartfiltre = formatDate(this.startFiltre , 'yyyy-MM-dd' , 'en');
-   console.log('startfilter >>>',this.gstartfiltre);
+ 
    this.gendfiltre = formatDate(event.value , 'yyyy-MM-dd' , 'en');
-   console.log('endfiltre >>>',this.gendfiltre);
+  
  
     this.maxDate = this.endFiltre;
     if (this.endFiltre){
    var start = moment(this.gstartfiltre);
    var end = moment(this.gendfiltre);
-   console.log('start >>>',start);
-   console.log('end >>>',end);
+  
     const Days = end.diff(start, "days")
-    console.log('Days from check dates >>>',Days);
+   
     this.Days =  Days
     this.calculTotal(this.Days , this.RoomPrice);
   }
@@ -764,10 +751,7 @@ calculDateDays(event : any ){
 selectTaarifType(event: any){
   
  this.tarifType = event.value;
-// this.auxTarifType = event.value;
- //this.roomType = this.roomType;
- console.log('tarif type>>>', this.tarifType);
- console.log('room type>>>', this.roomType);
+
 
  if (true){
 
@@ -1075,8 +1059,7 @@ selectRoomType(event: any){
   }
    
 
-  //console.log('roomName>>>', event.value);
- console.log('tarifType from select room type >>>', this.tarifType);
+  
   
   if (this.roomType){
 
@@ -1374,7 +1357,7 @@ gotoReservation(){
 
 selectedValue(event:any){
   this.selected = event.value;
-  console.log("selected value>>>",event.value);
+ 
   this.data['selected'] = this.selected ;
 }
 
@@ -1387,7 +1370,7 @@ onCancelClick(){
 
 
 deleteReservation(data:any){
-  console.log('reservationid>>>', data.reservation_ID);
+  
 /////////////
 //delete with confirmation
 
@@ -1399,7 +1382,7 @@ Swal.fire({
   cancelButtonColor: "#96a2b4",
   confirmButtonText: "Oui",
 }).then((result) => {
-  console.log(result)
+ 
   if (result.value) {
     this._reservationService.deleteReservation(data.reservation_ID).subscribe((resp:any) => {
       this.showNotification(
@@ -1413,14 +1396,7 @@ Swal.fire({
 });
 
  
-/*this._reservationService.deleteReservation(data.reservation_ID).subscribe((resp:any) => {
-  this.showNotification(
-    'snackbar-danger',
-    resp.message,
-    'top',
-    'end'
-  )
- })*/
+
 
 
 }
@@ -1443,7 +1419,7 @@ re_calculTotal(event:any){
 
 showMenu(event : MatSelectChange){
   // this.extraType = event.value;
-   console.log('event extra type>>>', event.value);
+   
    
   // this.showMenuDetails = true ; 
    

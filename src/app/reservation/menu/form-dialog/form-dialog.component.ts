@@ -339,103 +339,31 @@ BoissonsList: any[] = [
 
   ngOnInit() {
 
-     /*if(this.user == undefined){
-        this.user = '';
-     }else{
-        //this.showview = false;
-     }
-
-     if(this.roomName == undefined){
-        this.roomName = '';
-     }*/
-    
-   // this.getUserList();
     this.getMenus();
   }
 
 
 
-/*
-getUserList(){
-  /*
-  this.service.getUserList().subscribe((users:any[]) => {
-    console.log('users>>>>',users);
-    //this.users = users;
-    this.searchuser = this.users = users;
-})
-
-this.service.getReservationList().pipe(take(1)).subscribe((users:any[]) => {
-  console.log('users>>>>',users);
-  this.users = users;
-  this.searchuser = this.users = users;
-})
-
-
-}*/
-
-  /*
-search(query:string)
-  {
-    console.log('query>>>',query);
-    if(query == ''){
-      // this.showview = true
-    }
-     this.searchuser = (query) ? this.users.filter( users =>
-       users.clientID.first_name.toLowerCase().includes(query.toLowerCase()) ||
-       users.clientID.last_name.toLowerCase().includes(query.toLowerCase()) 
-       ) 
-       : this.users;
-  }*/
-  
-/*
-selected(event: MatAutocompleteSelectedEvent): void {
-    console.log('event selected>>>',event.option.value);
-     
-      this.user = event.option.value.clientID.first_name;
-      this.clientID = event.option.value.clientID._id;
-      
-      //if(this.user != undefined){
-       // this.showview = false
-     // }
-      this.roomName = event.option.value.roomID.name;
-      console.log('roomName>>>',this.roomName);
-      
-     
-  }*/
-
-/*
-displayFn(subject:any)
-  {
-     return subject ? subject.clientID.first_name : undefined;
-  }
-  */
-
 getMenus(){
     this.service.getMenuList().pipe(take(1)).subscribe((data : any)=>{
-      console.log('menus from get menus>>>',data);
+      
       
      this.Menus = data.reverse();
     })
   }
 
-/*getRooms(){
-    this.service.getRoomList().subscribe((data : any)=>{
-     // this.Chambres = data ;
-    })
-}*/
-
 
 changePersoView(){
   this.showview = false
   this.isUnderline = false;
-  console.log('showview',this.showview);
+
   
 }
 
 changeStandardView(){
   this.showview = true
   this.isUnderline = true;
-  console.log('showview',this.showview);
+  
   
 }
 
@@ -453,7 +381,7 @@ getErrorMessage() {
   
 
 showMenuStandard(event:MatSelectChange){
-  console.log('menu standard value>>>', event.value);
+
 
   if(event.value === 'petit déjeuner'){
     this.MenuPrice2 = true;
@@ -461,9 +389,7 @@ showMenuStandard(event:MatSelectChange){
     this.menuPdj = true;
     this.menuSta = false;
     
-  //  let price = this.reservationMenuForm.get('number_guests').value * 20;
-  //  this.MenuPriceValue = price;
-    console.log('menuPrice2>>>', this.MenuPrice2);
+
     this.PriceTotal =  this.reservationMenuForm.get('number_guests').value * this.ptDejPrice ;
     const value = 'Petit déjeuner';
     this.service.getMenuByName(value).pipe(take(1)).subscribe((menu :any) => {
@@ -506,14 +432,12 @@ showMenu(event : MatSelectChange){
 
  calculTotal(nombre_personnes : any , menuPrice : any ){
   this.PriceTotal = (menuPrice * nombre_personnes) 
-  console.log('price totale from calcule >>>', menuPrice);
-  console.log('nombre totale from calcule >>>', nombre_personnes );
   this.reservationMenuForm.get('price').setValue(this.PriceTotal);
  }
 
 
  re_calculTotal(event: any){
-   console.log('event.target.value>>>',event.target.value );
+ 
    if(this.menuSta){
       this.calculTotal(event.target.value  , this.MenuPrice);
    }else{
@@ -529,7 +453,7 @@ showMenu(event : MatSelectChange){
        this.sodaPrice = this.sodaPrice + 2
        this.PriceTotal = this.PriceTotal + 2
        this.soda = this.soda + 1;
-       console.log('soda>>>', this.soda);
+      
        
      }
      else if (type === "Eau") {
@@ -558,9 +482,8 @@ showMenu(event : MatSelectChange){
 
 
 
-
   createContactForm(): FormGroup {
-    console.log('this user from form>>>',this.user);
+  
     
     return this.fb.group({
       type : [ 'menu' ],
@@ -594,10 +517,9 @@ showMenu(event : MatSelectChange){
    
   
   showRoom(event : MatSelectChange){
-    console.log(event.value)
-   
+
     this.reservationMenuForm.get('roomID').setValue(event.value) 
-    console.log(this.reservationMenuForm.get('roomID').value )
+   
   }
 
   submit() {
@@ -622,7 +544,6 @@ calculTarifPersoMenu(event : MatSelectChange){
       });
    
      this.arrayBoisson = names;
-    // this.listOfTarifNames = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || "")); 
         let filterList = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""));
             this.listOfTarifNames = filterList.filter(function(e){return e});
 
@@ -634,7 +555,7 @@ calculTarifPersoMenu(event : MatSelectChange){
     
     this.totalTarifBoissons = totalTarifBoissons;
     this.totalePersoMenuPrice = this.totalTarifBoissons + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
-   console.log('totale persomenu boissons',this.listOfTarifNames);
+  
    
   }
 
@@ -646,7 +567,6 @@ if(event.source.ngControl.name == 'desserts'){
     return v.name;
  });
  this.arrayDessert= names;
- //this.listOfTarifNames = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList =  this.arrayDessert.concat((this.arrayBoisson || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  this.listOfTarifNames = filterList.filter(function(e){return e});
 ///
@@ -656,7 +576,7 @@ if(event.source.ngControl.name == 'desserts'){
   
    this.totalTarifDesserts = totalTarifDesserts;
    this.totalePersoMenuPrice = this.totalTarifDesserts + (this.totalTarifBoissons || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
-   console.log('totale persomenu dessert',this.listOfTarifNames);
+  
 }
 
 
@@ -669,7 +589,6 @@ if(event.source.ngControl.name == 'pates'){
     return v.name;
  });
  this.arrayPate= names;
- //this.listOfTarifNames = this.arrayPate.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList = this.arrayPate.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  this.listOfTarifNames = filterList.filter(function(e){return e});
 
@@ -677,10 +596,10 @@ if(event.source.ngControl.name == 'pates'){
    const totalTarifPates = this.pates.reduce((acc,cur) => {
    return acc + cur.price;
   },0)
- console.log('tarif pates price >>>', totalTarifPates);
+ 
  this.totalTarifPates = totalTarifPates;
  this.totalePersoMenuPrice =  this.totalTarifPates + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
- console.log('totale persomenu pates',this.listOfTarifNames);
+
 
 }
 
@@ -692,7 +611,6 @@ if(event.source.ngControl.name == 'nos_specialite'){
     return v.name;
  });
  this.arraySpeciale= names;
- //this.listOfTarifNames = this.arraySpeciale.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arrayPate || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList = this.arraySpeciale.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arrayPate || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
 
  this.listOfTarifNames = filterList.filter(function(e){return e});
@@ -701,10 +619,9 @@ if(event.source.ngControl.name == 'nos_specialite'){
      const totalTarifSpecialists = this.specialists.reduce((acc,cur) => {
      return acc + cur.price;
   },0)
-  console.log('tarif specialiste price >>>', totalTarifSpecialists);
+  
   this.totalTarifSpecialists = totalTarifSpecialists;
   this.totalePersoMenuPrice =  this.totalTarifSpecialists + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
-  console.log('totale persomenu specialiste',this.listOfTarifNames);
 
 }
 
@@ -717,7 +634,6 @@ if(event.source.ngControl.name == 'nos_specialite'){
     return v.name;
  });
  this.arrayChaud= names;
-// this.listOfTarifNames = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayBoisson || ""),(this.arrayFeroids || ""))
  let filterList = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""),(this.arrayFeroids || ""),(this.arrayPate || ""))
 
  this.listOfTarifNames = filterList.filter(function(e){return e});
@@ -726,10 +642,9 @@ if(event.source.ngControl.name == 'nos_specialite'){
     const totalTarifChaudes = this.chaudes.reduce((acc,cur) => {
     return acc + cur.price;
    },0)
-   console.log('tarif chaudes price >>>', totalTarifChaudes);
    this.totalTarifChaudes = totalTarifChaudes;
    this.totalePersoMenuPrice =  this.totalTarifChaudes + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifFeroids || 0);
-   console.log('totale persomenu chaud',this.listOfTarifNames);
+   
   }
  
 /////
@@ -740,7 +655,6 @@ if(event.source.ngControl.name == 'entree_froides'){
     return v.name;
  });
  this.arrayFeroids= names;
- //this.listOfTarifNames = this.arrayFeroids.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayPate || ""))
  let filterList = this.arrayFeroids.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayPate || ""))
 
  this.listOfTarifNames = filterList.filter(function(e){return e});
@@ -749,11 +663,11 @@ if(event.source.ngControl.name == 'entree_froides'){
   const totalTarifFeroids = this.froides.reduce((acc,cur) => {
   return acc + cur.price;
   },0)
-  console.log('tarif feroids price >>>', totalTarifFeroids);
+  
    this.totalTarifFeroids = totalTarifFeroids;
    this.totalePersoMenuPrice = this.totalTarifFeroids + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0);
 
-   console.log('totale persomenu froids',this.listOfTarifNames);
+   
   }
 
 
@@ -763,10 +677,10 @@ if(event.source.ngControl.name == 'entree_froides'){
 
   confirmAdd(): void {
     
-    console.log('entre perso>>>',this.reservationMenuForm.get('entrePerso').value);
+   
  
   if(this.menuPdj){
-        console.log('clientid>>>>', this.clientID);
+        
         
     const reservationPersoForm  = {
       type : 'menu',
@@ -789,7 +703,7 @@ if(event.source.ngControl.name == 'entree_froides'){
      console.log('reservationForm>>>', reservationPersoForm);
      
      this.service.addMenuReservation(reservationPersoForm).subscribe((data : any) => {
-       console.log('new perso reservation',data)
+      
        this.showNotification(
            'snackbar-success',
             data.message,
@@ -812,7 +726,7 @@ if(event.source.ngControl.name == 'entree_froides'){
 
   }else{
 
-    console.log('typede repas>>>', this.reservationMenuForm.get('menuID').value);
+    
     
     const reservationForm  = {
       type : 'menu',
@@ -831,10 +745,10 @@ if(event.source.ngControl.name == 'entree_froides'){
       nb_soda: this.soda
      }
      
-     console.log('reservationForm>>>', reservationForm);
+  
      
      this.service.addMenuReservation(reservationForm).subscribe((data : any) => {
-       console.log(data)
+    
        this.showNotification(
            'snackbar-success',
             data.message,

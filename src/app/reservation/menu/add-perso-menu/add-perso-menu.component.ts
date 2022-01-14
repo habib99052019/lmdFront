@@ -141,7 +141,7 @@ BoissonsList: any[] = [
 
 
   createContactForm(): FormGroup {
-    console.log('this user from form>>>',this.user);
+    
     
     return this.fb.group({
       type : [ 'menu' ],
@@ -178,7 +178,7 @@ BoissonsList: any[] = [
   
 getUserList(){
 this.service.getReservationList().pipe(take(1)).subscribe((users:any[]) => {
-  console.log('users>>>>',users);
+ 
   this.users = users;
   this.searchuser = this.users = users;
 })
@@ -188,7 +188,7 @@ this.service.getReservationList().pipe(take(1)).subscribe((users:any[]) => {
 
   search(query:string)
   {
-    console.log('query>>>',query);
+   
     if(query == ''){
       // this.showview = true
     }
@@ -206,16 +206,13 @@ this.service.getReservationList().pipe(take(1)).subscribe((users:any[]) => {
 
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    console.log('event selected>>>',event.option.value);
+   
      
       this.user = event.option.value.clientID.first_name;
       this.clientID = event.option.value.clientID._id;
-      /*
-      if(this.user != undefined){
-        this.showview = false
-      }*/
+     
       this.roomName = event.option.value.roomID.name;
-      console.log('roomName>>>',this.roomName);
+  
       
      
   }
@@ -234,7 +231,6 @@ calculTarifPersoMenu(event : MatSelectChange){
       });
    
      this.arrayBoisson = names;
-    // this.listOfTarifNames = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || "")); 
         let filterList = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""));
             this.listOfTarifNames = filterList.filter(function(e){return e});
 
@@ -246,7 +242,7 @@ calculTarifPersoMenu(event : MatSelectChange){
     
     this.totalTarifBoissons = totalTarifBoissons;
     this.totalePersoMenuPrice = this.totalTarifBoissons + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
-   console.log('totale persomenu boissons',this.listOfTarifNames);
+ 
    
   }
 
@@ -258,7 +254,6 @@ if(event.source.ngControl.name == 'desserts'){
     return v.name;
  });
  this.arrayDessert= names;
- //this.listOfTarifNames = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList =  this.arrayDessert.concat((this.arrayBoisson || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  this.listOfTarifNames = filterList.filter(function(e){return e});
 ///
@@ -268,7 +263,7 @@ if(event.source.ngControl.name == 'desserts'){
   
    this.totalTarifDesserts = totalTarifDesserts;
    this.totalePersoMenuPrice = this.totalTarifDesserts + (this.totalTarifBoissons || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
-   console.log('totale persomenu dessert',this.listOfTarifNames);
+   
 }
 
 
@@ -281,7 +276,6 @@ if(event.source.ngControl.name == 'pates'){
     return v.name;
  });
  this.arrayPate= names;
- //this.listOfTarifNames = this.arrayPate.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList = this.arrayPate.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  this.listOfTarifNames = filterList.filter(function(e){return e});
 
@@ -289,10 +283,10 @@ if(event.source.ngControl.name == 'pates'){
    const totalTarifPates = this.pates.reduce((acc,cur) => {
    return acc + cur.price;
   },0)
- console.log('tarif pates price >>>', totalTarifPates);
+ 
  this.totalTarifPates = totalTarifPates;
  this.totalePersoMenuPrice =  this.totalTarifPates + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
- console.log('totale persomenu pates',this.listOfTarifNames);
+ 
 
 }
 
@@ -304,7 +298,6 @@ if(event.source.ngControl.name == 'nos_specialite'){
     return v.name;
  });
  this.arraySpeciale= names;
- //this.listOfTarifNames = this.arraySpeciale.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arrayPate || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList = this.arraySpeciale.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arrayPate || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
 
  this.listOfTarifNames = filterList.filter(function(e){return e});
@@ -313,10 +306,10 @@ if(event.source.ngControl.name == 'nos_specialite'){
      const totalTarifSpecialists = this.specialists.reduce((acc,cur) => {
      return acc + cur.price;
   },0)
-  console.log('tarif specialiste price >>>', totalTarifSpecialists);
+ 
   this.totalTarifSpecialists = totalTarifSpecialists;
   this.totalePersoMenuPrice =  this.totalTarifSpecialists + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
-  console.log('totale persomenu specialiste',this.listOfTarifNames);
+ 
 
 }
 
@@ -329,7 +322,6 @@ if(event.source.ngControl.name == 'nos_specialite'){
     return v.name;
  });
  this.arrayChaud= names;
-// this.listOfTarifNames = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayBoisson || ""),(this.arrayFeroids || ""))
  let filterList = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""),(this.arrayFeroids || ""),(this.arrayPate || ""))
 
  this.listOfTarifNames = filterList.filter(function(e){return e});
@@ -338,10 +330,10 @@ if(event.source.ngControl.name == 'nos_specialite'){
     const totalTarifChaudes = this.chaudes.reduce((acc,cur) => {
     return acc + cur.price;
    },0)
-   console.log('tarif chaudes price >>>', totalTarifChaudes);
+
    this.totalTarifChaudes = totalTarifChaudes;
    this.totalePersoMenuPrice =  this.totalTarifChaudes + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifFeroids || 0);
-   console.log('totale persomenu chaud',this.listOfTarifNames);
+   
   }
  
 /////
@@ -352,7 +344,6 @@ if(event.source.ngControl.name == 'entree_froides'){
     return v.name;
  });
  this.arrayFeroids= names;
- //this.listOfTarifNames = this.arrayFeroids.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayPate || ""))
  let filterList = this.arrayFeroids.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayPate || ""))
 
  this.listOfTarifNames = filterList.filter(function(e){return e});
@@ -361,11 +352,11 @@ if(event.source.ngControl.name == 'entree_froides'){
   const totalTarifFeroids = this.froides.reduce((acc,cur) => {
   return acc + cur.price;
   },0)
-  console.log('tarif feroids price >>>', totalTarifFeroids);
+ 
    this.totalTarifFeroids = totalTarifFeroids;
    this.totalePersoMenuPrice = this.totalTarifFeroids + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0);
 
-   console.log('totale persomenu froids',this.listOfTarifNames);
+ 
   }
 
 
@@ -375,10 +366,10 @@ if(event.source.ngControl.name == 'entree_froides'){
 
 confirmAdd(): void {
     
-  console.log('entre perso>>>',this.reservationMenuForm.get('entrePerso').value);
+ 
 
 if(this.clientID){
-      console.log('clientid>>>>', this.clientID);
+  
       
   const reservationPersoForm  = {
     comment : this.reservationMenuForm.get('comment').value,
@@ -390,10 +381,10 @@ if(this.clientID){
     
    }
    
-   console.log('reservationForm>>>', reservationPersoForm);
+  
    
    this.service.addPersoReservationMenu(reservationPersoForm).subscribe((data : any) => {
-     console.log('new perso reservation',data)
+   
      this.showNotification(
          'snackbar-success',
           data.message,
@@ -403,7 +394,7 @@ if(this.clientID){
 
        
   },err => {
-    console.log('err>>>',err);
+    
     this.showNotification(
      'snackbar-danger',
       err,

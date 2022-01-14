@@ -75,30 +75,19 @@ export class MenuComponent implements OnInit {
   soda = 0;
   eau = 0;
 
-////////////Start perso menus variables //////////////////
-
-
-
-
-////////////end perso menus variables //////////////////
-
-
 
 
 
 
     TableSourceData : MatTableDataSource<any> =  new MatTableDataSource;
-  //  TablePersoSourceData : MatTableDataSource<any> =  new MatTableDataSource
- // dataSource : MatTableDataSource<any> =  new MatTableDataSource;
- // dataSource2 : MatTableDataSource<any> =  new MatTableDataSource
+  
 
    @ViewChild(MatPaginator) paginator: MatPaginator;
    @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
     this.setDataSourceAttributes();
 }
-  //@ViewChild('paginator') paginator: MatPaginator;
- // @ViewChild('paginator2') paginator2: MatPaginator;
+ 
   reservationMenuEditForm: FormGroup;
   modalData: any;
   Chambres: any;
@@ -160,17 +149,12 @@ export class MenuComponent implements OnInit {
 
   getMenus(){
     this.service.getMenuList().pipe(take(1)).subscribe((data : any)=>{
-      console.log('menus from get menus>>>',data);
+     
       
      this.Menus = data.reverse();
     })
   }
   
- /* getRooms(){
-    this.service.getRoomList().subscribe((data : any)=>{
-      this.Chambres = data ;
-    })
-  }*/
 
 
 search(term: string) {
@@ -200,20 +184,16 @@ assignComponent(component){
 }
 
 changePersoView(){
- // this.showview = false
+ 
   this.isUnderline = false;
-  console.log('showview',this.showview);
-  //window.location.reload();
-  console.log('paginator>>>',this.paginator);
+ 
 }
 
 changeStandardView(){
   this.showview = true
   this.isUnderline = true;
   this.editPersoMenuComponent = ''
-  console.log('showview',this.showview);
- // window.location.reload();
- console.log('paginator>>>',this.paginator);
+ 
 }
 
 
@@ -223,34 +203,14 @@ getMenuReservations(){
  
 
     this.service.getListOfMenusReservation().pipe(take(1)).subscribe((menusReservation:any) => {
-        console.log('menuReservation>>>', menusReservation);
+       
              this.filterData = menusReservation
             this.TableSourceData.data = menusReservation
-           //this.dataSource = menusReservation;
-           // this.getMenuReservations()
-          // this.changeDetectorRefs.detectChanges();
+          
     })
     
  }
 
-/*
- getlisPersoReervationMenus(){
-  
-  this.service.getReservationList().pipe(take(1)).subscribe((persoMenus:any) => {
-    //this.filterData = persoMenus 
-    
-    console.log('list of perso menus >>>',persoMenus );
-   
-    const persoMenusActive = persoMenus.filter(list => {
-       return list.listmenuID.length > 0 ;
-    })
-    this.dataSource = persoMenusActive;
-   //this.DataPersoMenu.data= persoMenusActive;
-   // console.log('persoMenusActive>>>', persoMenusActive);
-   // this.filterData = persoMenusActive
-    
-  })
-} */
 
 
 
@@ -271,10 +231,10 @@ addNew() {
       direction: tempDirection,
     });
     dialogRef.afterClosed().subscribe((result) => {
-        console.log('resultata from add new>>>', result);
+      
         this.getMenuReservations();
       if (result === 1) {
-         //window.location.reload();
+        
          this.getMenuReservations();
       }
 
@@ -284,7 +244,7 @@ addNew() {
 
 
 deleteSingleRow(row) {
-  console.log('delete menu',row);
+  
   Swal.fire({
     title: "êtes vous sure?",
     showCancelButton: true,
@@ -293,10 +253,10 @@ deleteSingleRow(row) {
     cancelButtonColor: "#96a2b4",
     confirmButtonText: "Oui",
   }).then((result) => {
-    console.log(result)
+   
     if (result.value) {
       this.service.deleteReservation(row._id).subscribe((data:any) => {
-        console.log('delete >>>', data);
+       
         
 
         this.showNotification(
@@ -351,7 +311,7 @@ editCall(row) {
 
   openEditModal(row){
 
-    console.log('row from edit modal>>>', row);
+
     
      
     this.modalData = row;
@@ -364,27 +324,32 @@ editCall(row) {
     }
 
     if(this.modalData.menuID.name == 'Menu 1'){
-     // this.showMenuDetails = true ; 
+    
       this.MenuPrice = 150
-     // this.calculTotal(this.number_geuste , this.MenuPrice );
+    
     }else if(this.modalData.menuID.name == 'Menu 2'){
-      //  this.showMenuDetails = true ; 
+     
         this.MenuPrice = 80
-        //this.calculTotal(this.number_geuste , this.MenuPrice );
+   
     }else if(this.modalData.menuID.name == 'Menu 3'){
-       // this.showMenuDetails = true ; 
+       
         this.MenuPrice = 90
-        //this.calculTotal(this.number_geuste , this.MenuPrice );
+       
     }else if(this.modalData.menuID.name == 'Menu 4'){
-       // this.showMenuDetails = true ; 
+       
         this.MenuPrice = 120
-       // this.calculTotal(this.number_geuste , this.MenuPrice );
+       
     }else{
        this.MenuPrice = 20;
     }
+    this.service.getMenuByName(this.modalData.menuID.name).subscribe((menu :any) => {
+    
+      this.menuID = menu._id;
+      
+  })
 
 
-     console.log('mdale price >>>', this.modalData.price);
+   
      
 
    
@@ -430,7 +395,7 @@ editCall(row) {
 
 
   showMenu(event : MatSelectChange){
-    console.log('event from show menu >>>>', event.value);
+   
     if(event.value == 'Menu 1'){
          this.entree = "Trio de salade";
          this.dessert = "Assiette de fruits de saison";
@@ -506,23 +471,13 @@ editCall(row) {
 
 
 
-    /*
-    this.entree = event.value.entree;
-    this.dessert = event.value.dessert;
-    this.suite = event.value.suite;
-    this.showMenuDetails = true ; 
-    if (event.value.price){
-      this.MenuPrice = event.value.price
-    }
-    this.reservationMenuEditForm.get('menuID').setValue(event.value._id) 
-    this.calculTotal(this.reservationMenuEditForm.get('number_guests').value  , this.MenuPrice );
-    */
+   
   }
 
 
 
   showMenuStandard(event:MatSelectChange){
-    console.log('menu standard value>>>', this.number_geuste);
+  
   
     if(event.value === 'petit déjeuner'){
       this.MenuPrice2 = true;
@@ -531,9 +486,8 @@ editCall(row) {
       this.menuSta = false;
       this.isDisabled= true;
       this.showMenuDetails = false;
-    //  let price = this.reservationMenuForm.get('number_guests').value * 20;
-    //  this.MenuPriceValue = price;
-      console.log('menuPrice2>>>', this.MenuPrice2);
+   
+    
       this.PriceTotal =  +this.number_geuste * +this.ptDejPrice 
       this.soda = 0;
       this.eau = 0;
@@ -556,7 +510,7 @@ editCall(row) {
       this.eau = 0;
       this.EauPrice = 0 ;
       this.sodaPrice = 0;
-     // this.showMenuDetails = true;
+
     }
     
   }
@@ -582,8 +536,7 @@ editCall(row) {
 
  re_calculTotal(event: any){
    this.number_geuste = event.target.value;
-   console.log('number of personne>>>',event.target.value);
-  // this.calculTotal(event.target.value  , this.MenuPrice );
+  
 
    if(this.menuSta){
     this.calculTotal(event.target.value  , this.MenuPrice);
@@ -593,49 +546,29 @@ editCall(row) {
   this.calculTotal(event.target.value  , this.MenuPrice);
  }
 
-  /*
-   if (this.MenuPrice){
-    this.calculTotal(event.target.value  , this.MenuPrice );
-   }
-   else {
-     //get list of menus from backend
-    this.service.getMenuById(this.reservationMenuEditForm.get("menuID").value).subscribe((data : any)=>{
-        this.PriceTotal = data.price * event.target.value
-    })
-   }
-    */
+  
    
  }
  
  addToTotal(type :any){
   
      if(type === "Soda") {
-      // this.calculTotal(this.number_geuste , this.MenuPrice)
-        console.log('price tt>>>', this.PriceTotal);
-        this.sodaPrice = this.sodaPrice + 2
-      //  this.counter = this.counter + 2;
-      console.log(this.PriceTotal);
-      console.log(this.sodaPrice);
-
-        this.PriceTotal = +this.PriceTotal + 2
-        console.log(+this.PriceTotal);
-
-        //this.number_geuste = this.number_geuste + 0;
-        this.soda = this.soda + 1;
-        console.log(this.sodaPrice);
+     
         
-       console.log(this.soda);
-       
-        console.log('price totale>>>',this.PriceTotal);
+        this.sodaPrice = this.sodaPrice + 2
+     
+        this.PriceTotal = +this.PriceTotal + 2
+      
+        this.soda = this.soda + 1;
+      
         }
      else if (type === "Eau") {
-    // this.calculTotal(this.number_geuste , this.MenuPrice );
-     // this.counter2 = this.counter2 + 1;
+  
       this.EauPrice = this.EauPrice + 1
       this.PriceTotal = +this.PriceTotal + 1
       this.eau = this.eau + 1;
     
-     // this.calculTotal(this.number_geuste , this.MenuPrice );
+    
    }
    
  }
@@ -648,9 +581,7 @@ editCall(row) {
 
       this.sodaPrice = this.sodaPrice - 2
       this.soda = this.soda - 1;
-      console.log(this.sodaPrice);
-        
-      console.log(this.soda);
+     
     }
     else if (type === "Eau") {
     this.PriceTotal = +this.PriceTotal - 1
@@ -661,21 +592,11 @@ editCall(row) {
   }
 }
 
-verifyMenuID(menuName:string){
-  if(menuName == "Menu 1"){
-      this.menuID = "61c3178da5277719d47cfc13";
-  }else if(menuName == "Menu 2"){
-      this.menuID = "61c3175937bead3524b19243";
-  }else if( menuName == "Menu 3"){
-     this.menuID = "61c3170a86695a371c246c08";
-  }else{
-    this.menuID = "61c3169d00e12d508cf590a7";
-  }
-}
+
 
 updateReservation(){
 
-  console.log('menuId>>>', this.reservationMenuEditForm.get('entreSta').value);
+
   if(this.reservationMenuEditForm.get('entreSta').value === 'petit déjeuner'){
     const ObjectToEdit = {
       _id : this.modalData._id ,
@@ -695,11 +616,11 @@ updateReservation(){
       nb_soda: this.soda
     }
   
-    console.log('object to edit>>>',ObjectToEdit);
+    
     
     
     this.service.updateStandReservationMenu(this.modalData._id , ObjectToEdit).subscribe((data : any)=> {
-      console.log(data)
+   
       this.showNotification(
         'snackbar-success',
          "la réservation a été modifiée avec succès",
@@ -713,7 +634,7 @@ updateReservation(){
     } )
   }else{
       
-    this.verifyMenuID(this.reservationMenuEditForm.get('menuID').value);
+  
     const ObjectToEdit = {
       _id : this.modalData._id ,
       type:"menu",
@@ -732,11 +653,11 @@ updateReservation(){
       nb_soda: this.soda
     }
   
-    console.log('object to edit>>>',ObjectToEdit);
+
     
     
     this.service.updateStandReservationMenu(this.modalData._id , ObjectToEdit).subscribe((data : any)=> {
-      console.log(data)
+ 
       this.showNotification(
         'snackbar-success',
          "la réservation a été modifiée avec succès",

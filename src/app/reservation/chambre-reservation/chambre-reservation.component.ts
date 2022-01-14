@@ -149,7 +149,7 @@ initfullcalendar = () => {
   
      eventContent: function(arg:any) {
       let italicEl = document.createElement('i')
-       console.log('eventcontent>>>',arg.event)
+     
        
       if (arg.event) {
         italicEl.innerHTML = `
@@ -222,7 +222,7 @@ initfullcalendar = () => {
 
 getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
  
-    console.log('info', this.statusReservation);
+   
 
      if(this.statusReservation == 'yellow' || this.statusReservation == 'red' || this.statusReservation == 'gray'){
        return    ( req.get(this.ApiPath + 'reservations/filter?color='+this.statusReservation)
@@ -234,7 +234,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
                 .end(function(err:any, res:any) {
                   // console.log("src>>>",src);
                    
-                  console.log('response>>>', res)
+                 
                   if (err) {
                     failureCallback(err);
                   } else {
@@ -258,7 +258,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
       })
       .end(function(err:any, res:any) {
         
-        console.log('response>>>', res)
+      
         if (err) {
           failureCallback(err);
         } else {
@@ -282,7 +282,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
       })
       .end(function(err:any, res:any) {
         
-        console.log('response>>>', res)
+       
         if (err) {
           failureCallback(err);
         } else {
@@ -308,7 +308,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
       })
       .end(function(err:any, res:any) {
         
-        console.log('response>>>', res)
+        
         if (err) {
           failureCallback(err);
         } else {
@@ -328,7 +328,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
 
 
 handleEventClick(clickInfo: EventClickArg) {
-      console.log('item>>>', clickInfo.event.extendedProps)
+     
       if(clickInfo.event.extendedProps.roomID.DOUBLE_BAS_SAISON_PRICE){
           this.roomType = "double"
       }
@@ -341,7 +341,7 @@ handleEventClick(clickInfo: EventClickArg) {
       else {
           this.roomType = "single"
       }
-      console.log('roomType>>>',this.roomType);
+     
       
       const dialogRef = this.dialog.open(DialogreservationnInfosComponent, {
         disableClose: true,
@@ -388,7 +388,7 @@ handleEventClick(clickInfo: EventClickArg) {
           const calendarApi = this.calendarComponent.getApi();
           calendarApi.next(); // call a method on the Calendar object
           calendarApi.prev();
-          console.log("data from dialog add chambre >>>", result )
+          
           const id = result.reservation_ID;
 
     
@@ -526,9 +526,9 @@ showNotification(colorName, text, placementFrom, placementAlign) {
 }
   
 setColorEvents(color:string){
-  console.log('color events >>>', color);
+  
   this.statusReservation= color;
-  console.log('color yellow', this.statusReservation);
+ 
   const calendarApi = this.calendarComponent.getApi();
   calendarApi.next(); // call a method on the Calendar object
   calendarApi.prev();
@@ -540,11 +540,11 @@ gotoReservation(){
 }
 
 validRangeClick(nowDate:any){
-console.log('end date <>>>>>', this.endDate);
+
 if(this.startDate && this.endDate){
   const startfiltre = formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00';
   const endfiltre = formatDate(this.endDate, 'yyyy-MM-dd', 'en')+'T11:00:00';
-  console.log('info valid range >>>', formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00');
+ 
   return {
     start: startfiltre,
     end: endfiltre
@@ -554,7 +554,7 @@ if(this.startDate && this.endDate){
 }
 
 searchDateRange(){
-  console.log('search date range',this.cal.value.date1);
+ 
   this.startDate = this.cal.value.date1;
   this.endDate = this.cal.value.date2;   
   const calendarApi = this.calendarComponent.getApi();
@@ -569,12 +569,11 @@ Reload(){
 }
 
 getRuppiaRooms(event:any){
- console.log('ruppia romms',console.count() );
-// this.count = console.count(event);
+
  
  if(event){
    this.count++
-   console.log('event count>>>', this.count);
+   
    
    if(this.count % 2 == 0){
        this.isClicked = true;

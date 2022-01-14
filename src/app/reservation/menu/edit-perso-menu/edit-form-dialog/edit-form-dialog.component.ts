@@ -147,7 +147,7 @@ panelOpenState = false;
 ///////////Update solution //////////
 
 
- // List des tarifs personaliser
+ 
  // List des tarifs personaliser
  EntreeFeroidsList: any[] = [
   {name:'Salade tunisienne', price:12},
@@ -314,7 +314,7 @@ listDynamiqueMenu2:any;
 
   ngOnInit(): void {
 
-    console.log('data edit form dialog >>>',this.data);
+   
     
     this.first_name = this.data['first_name'];
     this.user = this.data['first_name'];
@@ -322,27 +322,21 @@ listDynamiqueMenu2:any;
     this.repasType = this.data['repasType'];
     this.comment = this.data['comment'];
     this.price = this.data['price'];
-    //this.froidsMenuList = this.data['menuList']
-    //this.BoissonMenuList = this.data['menuList'];
     this.listOfTarifNames2 = this.data['menuList'];
     this.listOfStaticRarifNames = this.data['menuList'];
-   // this.DessertMenuList = this.data['menuList'];
-   // this.PatsMenuList = this.data['menuList'];
-  //  this.specialistMenuList  = this.data['menuListTosent'];
     this.menuID = this.data['menuID']
-    console.log('this.menuList>>>',this.BoissonMenuList);
+    
 
 
     this.ListStaticOfNamesmenu2 = this.data['menu2List'];
     this.listDynamiqueMenu2 = this.data['menu2List'];
-    console.log('list menu 2>>>',this.ListStaticOfNamesmenu2);
+   
     
     this.price2 = this.data['price2'];
     this.repasType2 = this.data['repasType2'];
     this.comment2 = this.data['comment2'];
    
-    //this.initLitsMenuPrice()
-  //  this.data['menu2ListTosent']
+ 
 
 
 
@@ -353,7 +347,7 @@ listDynamiqueMenu2:any;
 
 
   createContactForm(): FormGroup {
-    console.log('this user from form>>>',this.user);
+   
     
     return this.fb.group({
       type : [ 'menu' ],
@@ -387,18 +381,18 @@ listDynamiqueMenu2:any;
 
  initLitsMenuPrice(){
   this.chaudsMenuList.forEach(item => {
-    console.log('item boissons>>>>',item)
+ 
     
     const resultat = this.globalLisMenus.find( menu => {
       if(menu.name === item){
         if(this.globalMenu.includes(menu)){
             this.globalMenu.splice(menu)
            
-            console.log('boissons include>>>', this.globalMenu);
+        
             
         }
         this.globalMenu.push(menu)
-        console.log('list of item>>>', menu)
+      
       }
 
     })
@@ -415,7 +409,7 @@ listDynamiqueMenu2:any;
   
   this.totalTarifGlobal = totalTarifglobal;
   this.totalePersoMenuPrice1 = this.totalTarifGlobal + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
- console.log('totale persomenu boissons',this.totalePersoMenuPrice1);
+
  }
   
 
@@ -423,18 +417,18 @@ listDynamiqueMenu2:any;
 
  initLitsMenu2Price(){
   this.chaudsMenuList2.forEach(item => {
-    console.log('item boissons>>>>',item)
+
     
     const resultat = this.globalLisMenus.find( menu => {
       if(menu.name === item){
         if(this.globalMenu2.includes(menu)){
             this.globalMenu2.splice(menu)
            
-            console.log('boissons include>>>', this.globalMenu2);
+            
             
         }
         this.globalMenu2.push(menu)
-        console.log('list of item>>>', menu)
+       
       }
 
     })
@@ -451,7 +445,7 @@ listDynamiqueMenu2:any;
   
   this.totalTarifGlobal2 = totalTarifglobal;
   this.totalePersoMenuPrice1 = this.totalTarifGlobal + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
- console.log('totale persomenu boissons',this.totalePersoMenuPrice1);
+
  }
   
 
@@ -472,7 +466,6 @@ calculTarifPersoMenu(event : MatSelectChange){
       });
    
      this.arrayBoisson = names;
-    // this.listOfTarifNames = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || "")); 
         let filterList = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""));
             this.listOfTarifNames2 = filterList.filter(function(e){return e});
 
@@ -485,7 +478,7 @@ calculTarifPersoMenu(event : MatSelectChange){
     this.totalTarifBoissons = totalTarifBoissons;
     this.totalePersoMenuPrice2 = this.totalTarifBoissons + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
     this.data['price'] = this.totalePersoMenuPrice2;
-    console.log('totale persomenu boissons',this.listOfTarifNames2);
+ 
     
      this.data['menuList'] = this.listOfTarifNames2;
      this.data['menuListTosent'] = this.listOfTarifNames2;
@@ -500,7 +493,6 @@ if(event.source.ngControl.name == 'desserts'){
     return v.name;
  });
  this.arrayDessert= names;
- //this.listOfTarifNames = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList =  this.arrayDessert.concat((this.arrayBoisson || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  this.listOfTarifNames2 = filterList.filter(function(e){return e});
 ///
@@ -511,7 +503,7 @@ if(event.source.ngControl.name == 'desserts'){
    this.totalTarifDesserts = totalTarifDesserts;
    this.totalePersoMenuPrice2 = this.totalTarifDesserts + (this.totalTarifBoissons || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
    this.data['price'] = this.totalePersoMenuPrice2;
-   console.log('totale persomenu dessert',this.listOfTarifNames2);
+  
    this.data['menuList'] = this.listOfTarifNames2;
    this.data['menuListTosent'] = this.listOfTarifNames2;
 }
@@ -526,7 +518,6 @@ if(event.source.ngControl.name == 'pates'){
     return v.name;
  });
  this.arrayPate= names;
- //this.listOfTarifNames = this.arrayPate.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList = this.arrayPate.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  this.listOfTarifNames2 = filterList.filter(function(e){return e});
 
@@ -534,11 +525,11 @@ if(event.source.ngControl.name == 'pates'){
    const totalTarifPates = this.pates.reduce((acc,cur) => {
    return acc + cur.price;
   },0)
- console.log('tarif pates price >>>', totalTarifPates);
+
  this.totalTarifPates = totalTarifPates;
  this.totalePersoMenuPrice2 =  this.totalTarifPates + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
  this.data['price'] = this.totalePersoMenuPrice2;
- console.log('totale persomenu pates',this.listOfTarifNames2);
+
  this.data['menuList'] = this.listOfTarifNames2;
  this.data['menuListTosent'] = this.listOfTarifNames2;
 
@@ -552,7 +543,6 @@ if(event.source.ngControl.name == 'nos_specialite'){
     return v.name;
  });
  this.arraySpeciale= names;
- //this.listOfTarifNames = this.arraySpeciale.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arrayPate || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList = this.arraySpeciale.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arrayPate || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
 
  this.listOfTarifNames2 = filterList.filter(function(e){return e});
@@ -561,11 +551,11 @@ if(event.source.ngControl.name == 'nos_specialite'){
      const totalTarifSpecialists = this.specialists.reduce((acc,cur) => {
      return acc + cur.price;
   },0)
-  console.log('tarif specialiste price >>>', totalTarifSpecialists);
+  
   this.totalTarifSpecialists = totalTarifSpecialists;
   this.totalePersoMenuPrice2 =  this.totalTarifSpecialists + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
   this.data['price'] = this.totalePersoMenuPrice2;
-  console.log('totale persomenu specialiste',this.listOfTarifNames2);
+
   this.data['menuList'] = this.listOfTarifNames2;
   this.data['menuListTosent'] = this.listOfTarifNames2;
 
@@ -580,7 +570,6 @@ if(event.source.ngControl.name == 'nos_specialite'){
     return v.name;
  });
  this.arrayChaud= names;
-// this.listOfTarifNames = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayBoisson || ""),(this.arrayFeroids || ""))
  let filterList = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayPate || ""),(this.arrayFeroids || ""))
 
  this.listOfTarifNames2 = filterList.filter(function(e){return e});
@@ -589,11 +578,11 @@ if(event.source.ngControl.name == 'nos_specialite'){
     const totalTarifChaudes = this.chaudes.reduce((acc,cur) => {
     return acc + cur.price;
    },0)
-   console.log('tarif chaudes price >>>', totalTarifChaudes);
+  
    this.totalTarifChaudes = totalTarifChaudes;
    this.totalePersoMenuPrice2 =  this.totalTarifChaudes + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifFeroids || 0);
    this.data['price'] = this.totalePersoMenuPrice2;
-   console.log('totale persomenu chaud',this.listOfTarifNames2);
+  
    this.data['menuList'] = this.listOfTarifNames2;
    this.data['menuListTosent'] = this.listOfTarifNames2;
   }
@@ -606,7 +595,6 @@ if(event.source.ngControl.name == 'entree_froides'){
     return v.name;
  });
  this.arrayFeroids= names;
- //this.listOfTarifNames = this.arrayFeroids.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayPate || ""))
  let filterList = this.arrayFeroids.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayPate || ""))
 
  this.listOfTarifNames2 = filterList.filter(function(e){return e});
@@ -615,16 +603,16 @@ if(event.source.ngControl.name == 'entree_froides'){
   const totalTarifFeroids = this.froides.reduce((acc,cur) => {
   return acc + cur.price;
   },0)
-  console.log('tarif feroids price >>>', totalTarifFeroids);
+ 
    this.totalTarifFeroids = totalTarifFeroids;
    this.totalePersoMenuPrice2 = this.totalTarifFeroids + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0);
    this.data['price'] = this.totalePersoMenuPrice2;
-   console.log('totale persomenu froids',this.listOfTarifNames2);
+  
    this.data['menuList'] = this.listOfTarifNames2;
    this.data['menuListTosent'] = this.listOfTarifNames2;
   }
  
-  console.log('event value>>>',this.totalePersoMenuPrice2);
+ 
   if(this.totalePersoMenuPrice2 == 0){
     this.showNew = false;
  }
@@ -633,7 +621,7 @@ if(event.source.ngControl.name == 'entree_froides'){
 
 //calcul all perso tarifs
 calculTarifPersoMenu2(event : MatSelectChange){
-  console.log('event value>>>', event.value);
+ 
   
     if(event.value){
       this.showNew = true;
@@ -647,7 +635,6 @@ calculTarifPersoMenu2(event : MatSelectChange){
       });
    
      this.arrayBoisson2 = names;
-    // this.listOfTarifNames = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || "")); 
         let filterList = this.arrayBoisson2.concat((this.arrayDessert2 || ""),(this.arrayPate2 || ""), (this.arraySpeciale2 || ""), (this.arrayChaud2 || ""),(this.arrayFeroids2 || ""));
             this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
 
@@ -660,7 +647,7 @@ calculTarifPersoMenu2(event : MatSelectChange){
     this.totalTarifBoissons2 = totalTarifBoissons;
     this.totalePersoMenu2Price = this.totalTarifBoissons2 + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
     this.data['price2'] = this.totalePersoMenu2Price;
-    console.log('totale persomenu boissons',this.listDynamiqueMenu2);
+    
     
      this.data['menu2List'] = this.listDynamiqueMenu2;
   
@@ -675,7 +662,6 @@ if(event.source.ngControl.name == 'desserts'){
     return v.name;
  });
  this.arrayDessert2 = names;
- //this.listOfTarifNames = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList =  this.arrayDessert2.concat((this.arrayBoisson2 || ""),(this.arrayPate2 || ""), (this.arraySpeciale2 || ""), (this.arrayChaud2 || ""),(this.arrayFeroids2 || ""))
  this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
 ///
@@ -686,7 +672,7 @@ if(event.source.ngControl.name == 'desserts'){
    this.totalTarifDesserts2 = totalTarifDesserts;
    this.totalePersoMenu2Price = this.totalTarifDesserts2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
    this.data['price2'] = this.totalePersoMenu2Price;
-   console.log('totale persomenu dessert',this.listDynamiqueMenu2);
+   
    this.data['menu2List'] = this.listDynamiqueMenu2;
 }
 
@@ -700,7 +686,6 @@ if(event.source.ngControl.name == 'pates'){
     return v.name;
  });
  this.arrayPate2 = names;
- //this.listOfTarifNames = this.arrayPate.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList = this.arrayPate2.concat((this.arrayDessert2 || ""),(this.arrayBoisson2 || ""), (this.arraySpeciale2 || ""), (this.arrayChaud2 || ""),(this.arrayFeroids2 || ""))
  this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
 
@@ -708,11 +693,10 @@ if(event.source.ngControl.name == 'pates'){
    const totalTarifPates = this.pates2.reduce((acc,cur) => {
    return acc + cur.price;
   },0)
- console.log('tarif pates price >>>', totalTarifPates);
+
  this.totalTarifPates2 = totalTarifPates;
  this.totalePersoMenu2Price =  this.totalTarifPates2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
  this.data['price2'] = this.totalePersoMenu2Price;
- console.log('totale persomenu pates',this.listDynamiqueMenu2);
  this.data['menu2List'] = this.listDynamiqueMenu2;
 
 }
@@ -725,7 +709,6 @@ if(event.source.ngControl.name == 'nos_specialite'){
     return v.name;
  });
  this.arraySpeciale2 = names;
- //this.listOfTarifNames = this.arraySpeciale.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arrayPate || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
  let filterList = this.arraySpeciale2.concat((this.arrayDessert2 || ""),(this.arrayBoisson2 || ""), (this.arrayPate2 || ""), (this.arrayChaud2 || ""),(this.arrayFeroids2 || ""))
 
  this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
@@ -734,11 +717,11 @@ if(event.source.ngControl.name == 'nos_specialite'){
      const totalTarifSpecialists = this.specialists2.reduce((acc,cur) => {
      return acc + cur.price;
   },0)
-  console.log('tarif specialiste price >>>', totalTarifSpecialists);
+  
   this.totalTarifSpecialists2 = totalTarifSpecialists;
   this.totalePersoMenu2Price =  this.totalTarifSpecialists2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
   this.data['price2'] = this.totalePersoMenu2Price;
-  console.log('totale persomenu specialiste',this.listDynamiqueMenu2);
+ 
   this.data['menu2List'] = this.listDynamiqueMenu2;
 
 }
@@ -752,7 +735,6 @@ if(event.source.ngControl.name == 'nos_specialite'){
     return v.name;
  });
  this.arrayChaud2 = names;
-// this.listOfTarifNames = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayBoisson || ""),(this.arrayFeroids || ""))
  let filterList = this.arrayChaud2.concat((this.arrayDessert2 || ""),(this.arrayBoisson2 || ""), (this.arraySpeciale2 || ""), (this.arrayPate2 || ""),(this.arrayFeroids2 || ""))
 
  this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
@@ -761,11 +743,11 @@ if(event.source.ngControl.name == 'nos_specialite'){
     const totalTarifChaudes = this.chaudes2.reduce((acc,cur) => {
     return acc + cur.price;
    },0)
-   console.log('tarif chaudes price >>>', totalTarifChaudes);
+  
    this.totalTarifChaudes2 = totalTarifChaudes;
    this.totalePersoMenu2Price =  this.totalTarifChaudes2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifFeroids2 || 0);
    this.data['price2'] = this.totalePersoMenu2Price;
-   console.log('totale persomenu chaud',this.listDynamiqueMenu2);
+   
    this.data['menu2List'] = this.listDynamiqueMenu2;
   }
  
@@ -777,7 +759,6 @@ if(event.source.ngControl.name == 'entree_froides'){
     return v.name;
  });
  this.arrayFeroids2 = names;
- //this.listOfTarifNames = this.arrayFeroids.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayPate || ""))
  let filterList = this.arrayFeroids2.concat((this.arrayDessert2 || ""),(this.arrayBoisson2 || ""), (this.arraySpeciale2 || ""), (this.arrayChaud2 || ""),(this.arrayPate2 || ""))
 
  this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
@@ -786,15 +767,15 @@ if(event.source.ngControl.name == 'entree_froides'){
   const totalTarifFeroids = this.froides2.reduce((acc,cur) => {
   return acc + cur.price;
   },0)
-  console.log('tarif feroids price >>>', totalTarifFeroids);
+  
    this.totalTarifFeroids2 = totalTarifFeroids;
    this.totalePersoMenu2Price = this.totalTarifFeroids2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0);
    this.data['price2'] = this.totalePersoMenu2Price;
-   console.log('totale persomenu froids',this.listDynamiqueMenu2);
+   
    this.data['menu2List'] = this.listDynamiqueMenu2;
   }
 
-  console.log('event value>>>',this.totalePersoMenu2Price);
+
   if(this.totalePersoMenu2Price == 0){
     this.showNew = false;
  }
@@ -808,7 +789,7 @@ onCancelClick(){
 }
 
 deleteReservation1(data:any){
-   console.log('delete reservation>>>1', data);
+  
       Swal.fire({
         title: "êtes vous sure?",
         showCancelButton: true,
@@ -817,17 +798,17 @@ deleteReservation1(data:any){
         cancelButtonColor: "#96a2b4",
         confirmButtonText: "Oui",
       }).then((result) => {
-        console.log(result)
+       
         if (result.value) {
           this.service.deleteMenu(data.menuID).subscribe((resp:any) => {
-            console.log('delete >>>', data);
+            
             this.showNotification(
               'snackbar-danger',
               "la réservation a été supprimée avec succès",
               'top',
               'end'
             );
-           // window.location.reload();
+           
            })
         }
       });
@@ -836,7 +817,7 @@ deleteReservation1(data:any){
 
 
   deleteReservation2(data:any){
-      console.log('delete reservation 2>>>', data);
+   
    
         Swal.fire({
           title: "êtes vous sure?",
@@ -846,19 +827,19 @@ deleteReservation1(data:any){
           cancelButtonColor: "#96a2b4",
           confirmButtonText: "Oui",
         }).then((result) => {
-          console.log(result)
+          
           if (result.value) {
            
               if(data.menuID2){
                 this.service.deleteMenu(data.menuID2).subscribe((data:any) => {
-                console.log('delete >>>', data);
+              
                 this.showNotification(
                   'snackbar-danger',
                   "la réservation a été supprimée avec succès",
                   'top',
                   'end'
                 );
-               // window.location.reload();
+              
                 
               })
               }
@@ -881,29 +862,20 @@ showNotification(colorName, text, placementFrom, placementAlign) {
 changeFirstView(){
   this.showview = true
   this.isUnderline = true;
-  console.log('showview',this.showview);
+ 
   
 }
 changeSecondView(){
   this.showview = false
   this.isUnderline = false;
-  console.log('showview',this.showview);
+  
   
 }
 
 
 search(query:string)
   {
-    /*
-    console.log('query>>>',query);
-    if(query == ''){
-      // this.showview = true
-    }
-     this.searchuser = (query) ? this.users.filter( users =>
-       users.clientID.first_name.toLowerCase().includes(query.toLowerCase()) ||
-       users.clientID.last_name.toLowerCase().includes(query.toLowerCase()) 
-       ) 
-       : this.users;*/
+    
 }
   
 
@@ -913,12 +885,12 @@ search(query:string)
   }
   
   BoissonsMenu(event:any){
-      console.log('event from boisssonMenu>>>', event);
+      
       
   }
 
   onChange(event : MatSelectChange){
-    console.log('on change>>>', event);
+   
   }
 
 

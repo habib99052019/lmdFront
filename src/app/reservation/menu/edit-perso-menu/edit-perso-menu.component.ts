@@ -93,15 +93,15 @@ search(term: string) {
  getlisPersoReervationMenus(){
   
     this.service.getReservationList().pipe(take(1)).subscribe((persoMenus:any) => {
-      //this.filterData = persoMenus 
+     
       
-      console.log('list of perso menus >>>',persoMenus );
+      
      
       const persoMenusActive = persoMenus.filter(list => {
          return list.listmenuID.length > 0 ;
       })
       this.DataPersoMenu.data= persoMenusActive;
-      console.log('persoMenusActive>>>', persoMenusActive);
+      
       this.filterData = persoMenusActive
       
     })
@@ -110,7 +110,7 @@ search(term: string) {
 
 deleteSingleRow(row) {
 
-  console.log('delete menu',row);
+  
   Swal.fire({
     title: "êtes vous sure?",
     showCancelButton: true,
@@ -119,10 +119,10 @@ deleteSingleRow(row) {
     cancelButtonColor: "#96a2b4",
     confirmButtonText: "Oui",
   }).then((result) => {
-    console.log(result)
+   
     if (result.value) {
       this.service.deletePersoMenuReservation(row._id).subscribe((data:any) => {
-        console.log('delete >>>', data);
+        
         this.showNotification(
           'snackbar-danger',
            "la réservation a été supprimée avec succès",
@@ -147,7 +147,7 @@ showNotification(colorName, text, placementFrom, placementAlign) {
 
 openEditModal(row){
 
-  console.log('row from edit perso page>>>', row);
+  
   if(row.listmenuID[1] && row.listmenuID[0] ){
         
     const dialogRef = this.dialog.open(EditFormDialogComponent, {
@@ -178,10 +178,10 @@ openEditModal(row){
  
     dialogRef.afterClosed().subscribe(result => {
       this.getlisPersoReervationMenus();
-     console.log('lenght>>>', result.menuListTosent.length);
+    
  
        if((result.menuListTosent.length != 0 ) && (result != undefined)){
-           console.log('result from edit>>>', result);
+           
            const datatosent = {
                  menuList:result.menuList,
                  comment:result.comment,
@@ -190,7 +190,7 @@ openEditModal(row){
                  entrePerso:result.repasType
            }
            this.service.updatePersoReservationMenu(result.menuID,datatosent).subscribe(perso => {
-             console.log('perso updated>>>>', perso);
+            
              
              this.showNotification(
                'snackbar-success',
@@ -202,7 +202,7 @@ openEditModal(row){
            }, err => {
                
              if(err != 'Not Found'){
-               console.log('err>>>',err);
+             
                  this.showNotification(
                  'snackbar-danger',
                    err,
@@ -213,7 +213,7 @@ openEditModal(row){
                  })
          
        }else{
-         console.log('result from edit>>>', result);
+       
          const datatosent = {
                menuList:result.menu2List,
                comment:result.comment2,
@@ -222,7 +222,7 @@ openEditModal(row){
                entrePerso:result.repasType2
          }
          this.service.updatePersoReservationMenu(result.menuID2,datatosent).subscribe(perso => {
-           console.log('perso updated>>>>', perso);
+         
            
            this.showNotification(
              'snackbar-success',
@@ -234,7 +234,7 @@ openEditModal(row){
          }, err => {
              
            if(err != 'Not Found'){
-             console.log('err>>>',err);
+          
                this.showNotification(
                'snackbar-danger',
                  err,
@@ -265,21 +265,16 @@ openEditModal(row){
         menuListTosent: [],
         menuID:row.listmenuID[0]._id,
         
-      /*  menu2ListTosent:[],
-        repasType2: row.listmenuID[1].typeRepas,
-        comment2: row.listmenuID[1].comment,
-        price2: row.listmenuID[1].price,
-        menu2List: row.listmenuID[1].menuList,
-        menuID2:row.listmenuID[1]._id*/
+      
      }
    });
  
     dialogRef.afterClosed().subscribe(result => {
       this.getlisPersoReervationMenus();
-     console.log('lenght>>>', result.menuListTosent.length);
+  
  
        if((result.menuListTosent.length != 0 ) && (result != undefined)){
-           console.log('result from edit>>>', result);
+          
            const datatosent = {
                  menuList:result.menuList,
                  comment:result.comment,
@@ -288,7 +283,7 @@ openEditModal(row){
                  entrePerso:result.repasType
            }
            this.service.updatePersoReservationMenu(result.menuID,datatosent).subscribe(perso => {
-             console.log('perso updated>>>>', perso);
+           
              
              this.showNotification(
                'snackbar-success',
@@ -300,7 +295,7 @@ openEditModal(row){
            }, err => {
                
              if(err != 'Not Found'){
-               console.log('err>>>',err);
+             
                  this.showNotification(
                  'snackbar-danger',
                    err,
@@ -311,7 +306,7 @@ openEditModal(row){
                  })
          
        }else{
-         console.log('result from edit>>>', result);
+         
          const datatosent = {
                menuList:result.menu2List,
                comment:result.comment2,
@@ -320,7 +315,7 @@ openEditModal(row){
                entrePerso:result.repasType2
          }
          this.service.updatePersoReservationMenu(result.menuID2,datatosent).subscribe(perso => {
-           console.log('perso updated>>>>', perso);
+           
            
            this.showNotification(
              'snackbar-success',
@@ -332,7 +327,7 @@ openEditModal(row){
          }, err => {
              
            if(err != 'Not Found'){
-             console.log('err>>>',err);
+          
                this.showNotification(
                'snackbar-danger',
                  err,
@@ -381,10 +376,10 @@ addPersoMenu(){
   })
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('result from add>>>', result);
+  
     this.getlisPersoReervationMenus();
     if (result === 1) {
-      //window.location.reload();
+    
       this.getlisPersoReervationMenus();
    }
       
