@@ -151,7 +151,7 @@ openEditModal(row){
   console.log('row open esit model>>>',row.listmenuID[0]);
   
   if(row.listmenuID[1] && row.listmenuID[0]){
-    console.log('row open esit model>>>',row.listmenuID[0]);
+   
     const dialogRef = this.dialog.open(EditFormDialogComponent, {
       disableClose: true, 
       width:'1000px',
@@ -184,20 +184,20 @@ openEditModal(row){
  
     dialogRef.afterClosed().subscribe(result => {
       this.getlisPersoReervationMenus();
-    
+      console.log('result from after close>>>',result);
  
-       if((result.menuListTosent.length != 0) && (result != undefined)){
+       if((result[2] == 1) && (result != undefined)){
            console.log('result>>>',result);
            
            const datatosent = {
-                 menuList:result.menuList,
-                 comment:result.comment,
+                 menuList:result[5],
+                 comment:result[0],
                  isPersonalize:true,
-                 price:result.price,
-                 entrePerso:result.repasType,
-                 number_heure:result.number_heure,
+                 price:result[6],
+                 entrePerso:result[1],
+                 number_heure:result[3],
            }
-           this.service.updatePersoReservationMenu(result.menuID,datatosent).subscribe(perso => {
+           this.service.updatePersoReservationMenu(result[7],datatosent).subscribe(perso => {
             
              
              this.showNotification(
@@ -226,14 +226,14 @@ openEditModal(row){
        else{
        
          const datatosent = {
-               menuList:result.menu2List,
-               comment:result.comment2,
-               isPersonalize:true,
-               price:result.price2,
-               entrePerso:result.repasType2,
-               number_heure:result.number_heure2,
+          menuList:result[5],
+          comment:result[0],
+          isPersonalize:true,
+          price:result[6],
+          entrePerso:result[1],
+          number_heure:result[3],
          }
-         this.service.updatePersoReservationMenu(result.menuID2,datatosent).subscribe(perso => {
+         this.service.updatePersoReservationMenu(result[7],datatosent).subscribe(perso => {
           console.log('result3>>>',result);
            
            this.showNotification(
@@ -285,17 +285,17 @@ openEditModal(row){
       this.getlisPersoReervationMenus();
   
  
-       if((result.menuListTosent.length != 0 ) && (result != undefined)){
+       if((result[2] == 1) && (result != undefined)){
           
            const datatosent = {
-                 menuList:result.menuList,
-                 comment:result.comment,
-                 isPersonalize:true,
-                 price:result.price,
-                 entrePerso:result.repasType,
-                 number_heure:result.number_heure,
+            menuList:result[5],
+            comment:result[0],
+            isPersonalize:true,
+            price:result[6],
+            entrePerso:result[1],
+            number_heure:result[3],
            }
-           this.service.updatePersoReservationMenu(result.menuID,datatosent).subscribe(perso => {
+           this.service.updatePersoReservationMenu(result[7],datatosent).subscribe(perso => {
            
              
              this.showNotification(
@@ -321,14 +321,14 @@ openEditModal(row){
        }else{
          
          const datatosent = {
-               menuList:result.menu2List,
-               comment:result.comment2,
-               isPersonalize:true,
-               price:result.price2,
-               entrePerso:result.repasType2,
-               number_heure:result.number_heure2,
+          menuList:result[5],
+          comment:result[0],
+          isPersonalize:true,
+          price:result[6],
+          entrePerso:result[1],
+          number_heure:result[3],
          }
-         this.service.updatePersoReservationMenu(result.menuID2,datatosent).subscribe(perso => {
+         this.service.updatePersoReservationMenu(result[7],datatosent).subscribe(perso => {
            
            
            this.showNotification(
