@@ -491,7 +491,7 @@ showMenu(event : MatSelectChange){
       last_name : ['' , Validators.required],
       first:['' , Validators.required],
       number_phone:['',Validators.required],
-      number_heure:['',Validators.required],
+      number_heure:['13:00',Validators.required],
       entreSta:['déjeuner'],
       entrePerso:['déjeuner'],
       roomName:[],

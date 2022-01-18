@@ -222,6 +222,7 @@ initfullcalendar = () => {
 
 getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
  
+  // console.log('info from event api >>>', info);
    
 
      if(this.statusReservation == 'yellow' || this.statusReservation == 'red' || this.statusReservation == 'gray'){
@@ -328,7 +329,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
 
 
 handleEventClick(clickInfo: EventClickArg) {
-     
+  console.log('clickInfo from event api >>>', clickInfo.event);
       if(clickInfo.event.extendedProps.roomID.DOUBLE_BAS_SAISON_PRICE){
           this.roomType = "double"
       }

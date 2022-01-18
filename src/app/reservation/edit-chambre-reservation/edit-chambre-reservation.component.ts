@@ -49,7 +49,7 @@ export class EditChambreReservationComponent implements OnInit {
   }
 
   ngOnInit(){
-   this.getReservation();
+ //  this.getReservation();
    
   }
   

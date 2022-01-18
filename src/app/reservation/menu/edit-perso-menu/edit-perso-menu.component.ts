@@ -22,6 +22,7 @@ export class EditPersoMenuComponent implements OnInit {
   displayedColumns = [
     "startDate",
     "name",
+    "Heure",
     "Client",
     "RoomName",
     "price",
@@ -147,9 +148,10 @@ showNotification(colorName, text, placementFrom, placementAlign) {
 
 openEditModal(row){
 
+  console.log('row open esit model>>>',row.listmenuID[0]);
   
-  if(row.listmenuID[1] && row.listmenuID[0] ){
-        
+  if(row.listmenuID[1] && row.listmenuID[0]){
+    console.log('row open esit model>>>',row.listmenuID[0]);
     const dialogRef = this.dialog.open(EditFormDialogComponent, {
       disableClose: true, 
       width:'1000px',
@@ -166,13 +168,17 @@ openEditModal(row){
         menuList: row.listmenuID[0].menuList,
         menuListTosent: [],
         menuID:row.listmenuID[0]._id,
- 
+        number_heure: row.listmenuID[0].number_heure,
+
         menu2ListTosent:[],
         repasType2: row.listmenuID[1].typeRepas,
         comment2: row.listmenuID[1].comment,
         price2: row.listmenuID[1].price,
         menu2List: row.listmenuID[1].menuList,
-        menuID2:row.listmenuID[1]._id
+        menuID2:row.listmenuID[1]._id,
+        number_heure2: row.listmenuID[1].number_heure,
+
+        check: 0
      }
    });
  
@@ -180,14 +186,16 @@ openEditModal(row){
       this.getlisPersoReervationMenus();
     
  
-       if((result.menuListTosent.length != 0 ) && (result != undefined)){
+       if((result.menuListTosent.length != 0) && (result != undefined)){
+           console.log('result>>>',result);
            
            const datatosent = {
                  menuList:result.menuList,
                  comment:result.comment,
                  isPersonalize:true,
                  price:result.price,
-                 entrePerso:result.repasType
+                 entrePerso:result.repasType,
+                 number_heure:result.number_heure,
            }
            this.service.updatePersoReservationMenu(result.menuID,datatosent).subscribe(perso => {
             
@@ -212,17 +220,21 @@ openEditModal(row){
             }
                  })
          
-       }else{
+       }
+       
+       
+       else{
        
          const datatosent = {
                menuList:result.menu2List,
                comment:result.comment2,
                isPersonalize:true,
                price:result.price2,
-               entrePerso:result.repasType2
+               entrePerso:result.repasType2,
+               number_heure:result.number_heure2,
          }
          this.service.updatePersoReservationMenu(result.menuID2,datatosent).subscribe(perso => {
-         
+          console.log('result3>>>',result);
            
            this.showNotification(
              'snackbar-success',
@@ -264,7 +276,7 @@ openEditModal(row){
         menuList: row.listmenuID[0].menuList,
         menuListTosent: [],
         menuID:row.listmenuID[0]._id,
-        
+        number_heure: row.listmenuID[0].number_heure,
       
      }
    });
@@ -280,7 +292,8 @@ openEditModal(row){
                  comment:result.comment,
                  isPersonalize:true,
                  price:result.price,
-                 entrePerso:result.repasType
+                 entrePerso:result.repasType,
+                 number_heure:result.number_heure,
            }
            this.service.updatePersoReservationMenu(result.menuID,datatosent).subscribe(perso => {
            
@@ -312,7 +325,8 @@ openEditModal(row){
                comment:result.comment2,
                isPersonalize:true,
                price:result.price2,
-               entrePerso:result.repasType2
+               entrePerso:result.repasType2,
+               number_heure:result.number_heure2,
          }
          this.service.updatePersoReservationMenu(result.menuID2,datatosent).subscribe(perso => {
            

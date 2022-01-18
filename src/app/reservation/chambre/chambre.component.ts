@@ -88,8 +88,8 @@ export class ChambreComponent implements OnInit {
   refresh= new Subject<void>();
 
   ngOnInit() { 
-    this.getRoomReservations();
-    this.getRoomsList();
+   // this.getRoomReservations();
+   // this.getRoomsList();
  
      
      

@@ -40,6 +40,11 @@
                                     </mat-header-cell>
                                     <mat-cell *matCellDef="let row">{{row.startFiltre | date: 'dd/MM/yyyy'}}</mat-cell>
                                 </ng-container>
+                                <ng-container matColumnDef="Heure">
+                                    <mat-header-cell mat-header-cell *matHeaderCellDef>Heure
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.listmenuID[0].number_heure}}</mat-cell>
+                                </ng-container>
                                 <ng-container matColumnDef="name">
                                     <mat-header-cell *matHeaderCellDef>Menu
                                     </mat-header-cell>

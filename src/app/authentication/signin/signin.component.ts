@@ -27,7 +27,7 @@ export class SigninComponent implements OnInit {
     return this.loginForm.controls;
   }
   onSubmit() {
-    console.log('login credientials>>>',this.f.username.value, this.f.password.value);
+    //console.log('login credientials>>>',this.f.username.value, this.f.password.value);
     
     this.submitted = true;
     this.error = '';

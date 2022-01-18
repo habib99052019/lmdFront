@@ -208,6 +208,7 @@ BoissonsList: any[] = [
  reservationMenuForm: FormGroup;
  showNew = false;
  menuID:any;
+ number_heure:any;
 /////////////////////
 
 //////////Menu2////////////
@@ -300,8 +301,11 @@ menu2List:any;
 menuID2:any;
 ListOfNamesmenu2:any
 listDynamiqueMenu2:any;
+number_heure2:any;
 ////////////////////
 
+
+menu1=1;
 
 
   constructor( public dialogRef: MatDialogRef<EditFormDialogComponent>,
@@ -324,8 +328,8 @@ listDynamiqueMenu2:any;
     this.price = this.data['price'];
     this.listOfTarifNames2 = this.data['menuList'];
     this.listOfStaticRarifNames = this.data['menuList'];
-    this.menuID = this.data['menuID']
-    
+    this.menuID = this.data['menuID'];
+    this.number_heure = this.data['number_heure'];
 
 
     this.ListStaticOfNamesmenu2 = this.data['menu2List'];
@@ -335,9 +339,9 @@ listDynamiqueMenu2:any;
     this.price2 = this.data['price2'];
     this.repasType2 = this.data['repasType2'];
     this.comment2 = this.data['comment2'];
-   
+    this.number_heure2 = this.data['number_heure2'];
  
-
+ console.log('numbre heure>>', this.data['number_heure'])
 
 
   

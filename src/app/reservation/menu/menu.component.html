@@ -319,7 +319,7 @@
             </div>
             <div style="display: flex; flex-direction:row; justify-content:end;">
                 <div>
-                    <button mat-icon-button color="warn" (click)="removeFromTotal('Soda')" >
+                    <button [disabled]="soda === 0"    mat-icon-button color="warn" (click)="removeFromTotal('Soda')" >
                         <mat-icon>remove</mat-icon>
                       </button> Soda  
                     <button mat-icon-button color="primary" (click)="addToTotal('Soda')" >
@@ -327,7 +327,7 @@
                     </button>
                 </div>
                 <div>
-                    <button mat-icon-button color="warn" (click)="removeFromTotal('Eau')" >
+                    <button  [disabled]="eau === 0"     mat-icon-button color="warn" (click)="removeFromTotal('Eau')" >
                         <mat-icon>remove</mat-icon>
                       </button> Eau
                     <button mat-icon-button color="primary" (click)="addToTotal('Eau')" >

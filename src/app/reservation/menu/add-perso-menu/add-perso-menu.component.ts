@@ -377,8 +377,8 @@ if(this.clientID){
     clientID:this.clientID,
     menuList: this.listOfTarifNames,
     isPersonalize:true,
-    entrePerso:this.reservationMenuForm.get('entrePerso').value
-    
+    entrePerso:this.reservationMenuForm.get('entrePerso').value,
+    number_heure:this.reservationMenuForm.get('number_heure').value
    }
    
   

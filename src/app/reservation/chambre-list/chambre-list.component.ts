@@ -77,7 +77,7 @@ export class ChambreListComponent implements OnInit {
   }
   ngOnInit() {
   
-    this.getRoomReservations();
+  ///  this.getRoomReservations();
     
   }
   ngAfterViewInit() {
