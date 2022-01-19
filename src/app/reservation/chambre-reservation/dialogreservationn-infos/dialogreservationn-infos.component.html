@@ -193,10 +193,32 @@
                                                 <div class="col-md-12">
                                                     <p>nuits : {{this.Days}} </p>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <p>Total : {{this.priceTotal}} DT</p>
-                                                </div>
+                                                <!--<div class="col-md-12">
+                                                    <p>Total sans remise : {{this.priceTotal}} DT</p>
+                                                </div>-->
+
+                                                <div style="display: flex; background-color: white; width: 20%; border-radius: 8px; margin-left: 5px;">
+                                                  <button mat-icon-button color="warn" (click)="removeFromTotal()" [disabled]="this.sodaPrice === 0">
+                                                      <mat-icon>remove</mat-icon>
+                                                    </button> 
+                                                      <div style="display: flex; margin-top: 10px;">
+                                                        <p style="color: rgb(49, 49, 49);">Total : </p> 
+                                                        <p style="color: rgb(49, 49, 49); margin-left: 2px;">  {{this.priceTotal}} DT</p>
+                                                      </div>
+                                                       
+                                                  <button mat-icon-button color="primary" (click)="addToTotal()">
+                                                      <mat-icon>add</mat-icon>
+                                                  </button>
+                                                  
+                                              </div>
+                                             
+
+                                             
                                             </div>
+                                            <div class="col-md-12 mt-3">
+                                                    <p>Total avec remise : {{this.priceWithRemise}} DT</p>
+                                                </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -220,25 +242,28 @@
                              </form>
                              
                           </div>
-                       
-                            <div class="col-md-6 col-lg-6  text-center">
-                              <form>
-                                <mat-radio-group labelPosition="after"  [(ngModel)]="selected"  name="selected"  color="primary">
-      
-                                  <mat-radio-button  (change)="selectedValue($event)"    [value]="1">Reserver</mat-radio-button>
-                                 
-                                  <mat-radio-button style="margin-left:10px; margin-right: 10px;" 
-                                  (change)="selectedValue($event)"     [value]="2">Occuper</mat-radio-button>
-                              
-                                  <mat-radio-button   (change)="selectedValue($event)"    [value]="3">Fermer</mat-radio-button>
-                                 
-                                </mat-radio-group>
-                              </form>
-                              
-                            </div>
-                        
 
-
+                          <div class="col">
+                            <form>
+                               <mat-form-field class="example-full-width" appearance="outline">
+                                 <mat-label>Menu1</mat-label>
+                                 <input matInput [(ngModel)]="menu1" name="menu1" required>
+                                 <mat-icon matSuffix> restaurant_menu</mat-icon>
+                               </mat-form-field>
+                            </form>
+                            
+                         </div>
+                         
+                         <div class="col">
+                          <form>
+                             <mat-form-field class="example-full-width" appearance="outline">
+                               <mat-label>Menu2</mat-label>
+                               <input matInput [(ngModel)]="menu2" name="menu2" required>
+                               <mat-icon matSuffix> restaurant_menu</mat-icon>
+                             </mat-form-field>
+                          </form>
+                          
+                          </div>
 
 
                       </div>
@@ -251,6 +276,22 @@
                                 <mat-label>Réclamation</mat-label>
                                 <textarea matInput [(ngModel)]="data.remark" name="remark" ></textarea>
                               </mat-form-field>
+                          </form>
+                          
+                        </div>
+                        
+                        <div class="col text-start">
+                          <form>
+                            <mat-radio-group labelPosition="after"  [(ngModel)]="selected"  name="selected"  color="primary">
+  
+                              <mat-radio-button  (change)="selectedValue($event)"    [value]="1">Reserver</mat-radio-button>
+                             
+                              <mat-radio-button style="margin-left:10px; margin-right: 10px;" 
+                              (change)="selectedValue($event)"     [value]="2">Occuper</mat-radio-button>
+                          
+                              <mat-radio-button   (change)="selectedValue($event)"    [value]="3">Fermer</mat-radio-button>
+                             
+                            </mat-radio-group>
                           </form>
                           
                         </div>

@@ -30,7 +30,7 @@ export class ReservationServiceService {
     return this.http.get(this.ApiPath + 'users' )
   }
 
-  getReservation(id ){
+  getReservation(id){
     return this.http.get(this.ApiPath + 'reservations/' + id)
   }
 

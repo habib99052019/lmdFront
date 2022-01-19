@@ -892,4 +892,16 @@ showNotification(colorName, text, placementFrom, placementAlign) {
 }
 
 
+addToTotal(type :any){
+  
+      this.priceTotal= this.priceTotal + 10
+}
+
+
+removeFromTotal(type :any){
+ 
+     this.priceTotal= this.priceTotal - 10
+
+}
+
 }

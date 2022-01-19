@@ -9,7 +9,7 @@ import { ThirdPartyDraggable } from '@fullcalendar/interaction';
 import * as moment from 'moment';
 import { ReservationServiceService } from 'src/app/core/service/reservation-service.service';
 import Swal from 'sweetalert2';
-
+import { take } from "rxjs/operators";
 @Component({
   selector: 'app-dialogreservationn-infos',
   templateUrl: './dialogreservationn-infos.component.html',
@@ -234,6 +234,9 @@ export class DialogreservationnInfosComponent implements OnInit {
   endchekdate:any;
   panelOpenState = false;
 
+  menu1:any;
+  menu2:any;
+  priceWithRemise = 0;
 constructor(
     public dialogRef: MatDialogRef<DialogreservationnInfosComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
@@ -275,7 +278,9 @@ ngOnInit(): void {
     this.tarifType = this.data['tarifType']
     this.remark = this.data['remark']
     this.number_phone = this.data['number_phone']
+    this.priceWithRemise =  this.data['price'] ;
   
+   
     
     
 
@@ -300,8 +305,22 @@ ngOnInit(): void {
         this.data['selected'] = this.selected ;
 
        /////////
+       this.getRoomReservationById()
+    
+}
+
+
+
+getRoomReservationById(){
+    this._reservationService.getReservation(this.reservation_ID).pipe(take(1)).subscribe(data => {
+      console.log("reservation >>>", data[0].listmenuID[0].typeRepas);
+       
+        this.menu1 = data[0].listmenuID[0].typeRepas,
+        this.menu2 = data[0].listmenuID[1].typeRepas
       
-   
+
+    
+    })
 }
 
 
@@ -1438,6 +1457,20 @@ selectExtraType(event:any){
  }
 }
 
+
+
+addToTotal(type :any){
+  
+  this.priceTotal = this.priceTotal + 10;
+  this.data['price'] = this.priceTotal;
+}
+
+
+removeFromTotal(type :any){
+
+ this.priceTotal = this.priceTotal - 10
+ this.data['price'] = this.priceTotal;
+}
 
 
 }

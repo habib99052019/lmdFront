@@ -166,8 +166,23 @@
                                                     <div class="col-md-12">
                                                         <p>nuits : {{this.Days}} </p>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                   <!--
+                                                       <div class="col-md-12">
                                                         <p>Total : {{this.priceTotal}} DT</p>
+                                                       </div>
+                                                   --> 
+                                                    <div style="display: flex; background-color: white; width: 15%; border-radius: 8px; margin-left: 5px;">
+                                                        <button mat-icon-button color="warn" (click)="removeFromTotal()" [disabled]="this.sodaPrice === 0">
+                                                            <mat-icon>remove</mat-icon>
+                                                          </button> 
+                                                            <div style="display: flex; margin-top: 10px;">
+                                                              <p style="color: rgb(49, 49, 49);">Total : </p> 
+                                                              <p style="color: rgb(49, 49, 49); margin-left: 2px;"> {{this.priceTotal}} DT</p>
+                                                            </div>
+                                                             
+                                                        <button mat-icon-button color="primary" (click)="addToTotal()">
+                                                            <mat-icon>add</mat-icon>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>

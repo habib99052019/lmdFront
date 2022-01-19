@@ -346,9 +346,9 @@ handleEventClick(clickInfo: EventClickArg) {
       
       const dialogRef = this.dialog.open(DialogreservationnInfosComponent, {
         disableClose: true,
-        panelClass: 'custom-dialog-container',
-         // width:'1000px',
-         // height:'800px',
+       // panelClass: 'custom-dialog-container',
+          width:'1400px',
+          height:'900px',
          
        
         data:{
@@ -378,7 +378,9 @@ handleEventClick(clickInfo: EventClickArg) {
           tarifType: clickInfo.event.extendedProps.tarifType,
           roomType:this.roomType,
           remark:clickInfo.event.extendedProps.remark,
-          number_phone:clickInfo.event.extendedProps.clientID.number_phone
+          number_phone:clickInfo.event.extendedProps.clientID.number_phone,
+        //  menu1:clickInfo.event.extendedProps.listmenuID[0].typeRepas,
+         // menu2:clickInfo.event.extendedProps.listmenuID[1].typeRepas
         }
       });
     
@@ -446,6 +448,8 @@ handleEventClick(clickInfo: EventClickArg) {
 
          }
        
+         console.log('data to sent>>>',datatosent );
+         
          this._reservationService.updateReservation(id,datatosent).subscribe((data :any) => {
          
                 this.showNotification(
