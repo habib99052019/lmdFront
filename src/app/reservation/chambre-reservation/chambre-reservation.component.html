@@ -26,7 +26,7 @@
                             
                             <form class="min-calendar" [formGroup]="cal">
                                 
-                                <div>
+                                <div class="add_circle">
                                     <mat-icon style="color:#1c4587ff;font-size:40px; cursor: pointer;"    (click)="gotoReservation()">add_circle</mat-icon>
                                     
                                    <!-- <button  id="updateHeader" (click)="gotoReservation()"    mat-flat-button style="background-color:#1c4587ff;color:white">Réserver</button>  --> 
@@ -51,8 +51,8 @@
                                                    
                                    
                                 </div>
-                                <div>
-                                    <button style="background-color: #1c4587ff;margin-top: 3px;height: 34px;"  mat-button (click)="searchDateRange()">
+                                <div class="search">
+                                    <button    style="background-color: #1c4587ff;margin-top: 3px;height: 34px;"  mat-button (click)="searchDateRange()">
                                        <mat-icon style="color:white">search</mat-icon>
                                  
                                     </button>
@@ -86,18 +86,19 @@
                       
                         
                         <div class="row">
-                            <div class="col-md-12 col-sm-12 p-l-30 col-lg-2">
-                                <div   class="filter-container">
+                            <div    class="col-md-12 col-sm-12 p-l-30 col-lg-2">
+                                <div  class="filter-container">
                                     
 
 
-                                        <ul  
-                                                style="margin-top: 5px;height: 20vh; width: 0px;" >
+                                        <ul    style="margin-top: 5px;height: 20vh; width: 0px;" >
                                          
 
-                                          <li>
+                                        
+
+                                          
                                              <div>
-                                                <button  [ngClass]="{'Bouton':isClicked, '': false}"     class="ruppia"  (click)="getRuppiaRooms($event)"   mat-flat-button    >
+                                                <button  [ngClass]="{'Bouton':isClicked, '': false}"   class="rooms"    class="ruppia"  (click)="getRuppiaRooms($event)"   mat-flat-button    >
                                                     Ruppia
                                                 </button>
                                             
@@ -147,8 +148,8 @@
                                                 </button>
                                                 
                                             </div>
-                                          </li>
-                                        
+                                       
+                                      
                                        </ul>
                                 </div>
                             </div>

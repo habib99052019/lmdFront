@@ -347,7 +347,7 @@ handleEventClick(clickInfo: EventClickArg) {
       const dialogRef = this.dialog.open(DialogreservationnInfosComponent, {
         disableClose: true,
        // panelClass: 'custom-dialog-container',
-          width:'1400px',
+          width:'1500px',
           height:'900px',
          
        

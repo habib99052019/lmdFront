@@ -7,8 +7,8 @@
           <div class="card-body">
               <div class="row flex">
                  
-                      <div class="row row-cols-4">
-                          <div class="col">
+                      <div class="row">
+                          <div class="col-md-3">
                               <form>
                                  <mat-form-field class="example-full-width" appearance="outline">
                                   <mat-label>Nom</mat-label>
@@ -18,7 +18,7 @@
                               </form>
                              
                           </div>
-                          <div class="col">
+                          <div class="col-md-3">
                              <form>
                                 <mat-form-field class="example-full-width" appearance="outline">
                                   <mat-label>Prenom</mat-label>
@@ -29,7 +29,7 @@
                              
                           </div>
 
-                           <div class="col">
+                           <div class="col-md-3">
                              <form>
                                <mat-form-field class="example-full-width" appearance="outline">
                                   <mat-label>Date d’arrivée</mat-label>
@@ -40,7 +40,7 @@
                              </form>
                               
                           </div>
-                          <div class="col">
+                          <div class="col-md-3">
                             <form>
                                <mat-form-field class="example-full-width" appearance="outline">
                                   <mat-label>Date de départ</mat-label>
@@ -116,7 +116,7 @@
                              
                           </div>
                            
-                          <div class="col text-center mt-3">
+                          <div class="col-md-3 col-sm-6 text-center mt-3">
                                <mat-radio-group   labelPosition="after"    [(ngModel)]="roomTypeSelected" name="roomTypeSelected"    color="primary">
                                   <mat-radio-button [value]="1"  (change)="selectRoomType($event)" >Single</mat-radio-button>
                                   <mat-radio-button [value]="2"  (change)="selectRoomType($event)"   >Double</mat-radio-button>
@@ -197,7 +197,7 @@
                                                     <p>Total sans remise : {{this.priceTotal}} DT</p>
                                                 </div>-->
 
-                                                <div style="display: flex; background-color: white; width: 20%; border-radius: 8px; margin-left: 5px;">
+                                                <div style="display: flex; background-color: white; width: 23%; border-radius: 8px; margin-left: 5px;">
                                                   <button mat-icon-button color="warn" (click)="removeFromTotal()" [disabled]="this.sodaPrice === 0">
                                                       <mat-icon>remove</mat-icon>
                                                     </button> 
@@ -243,7 +243,7 @@
                              
                           </div>
 
-                          <div class="col">
+                          <div class="col-md-3">
                             <form>
                                <mat-form-field class="example-full-width" appearance="outline">
                                  <mat-label>Menu1</mat-label>
@@ -254,7 +254,7 @@
                             
                          </div>
                          
-                         <div class="col">
+                         <div class="col-md-3">
                           <form>
                              <mat-form-field class="example-full-width" appearance="outline">
                                <mat-label>Menu2</mat-label>

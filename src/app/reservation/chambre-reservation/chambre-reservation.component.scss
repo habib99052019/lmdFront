@@ -143,12 +143,44 @@ margin-bottom: 5px;
 /* Mobile xs */ 
 @media (max-width: 420px) {
 
-
-  .cal{
-    font-size: 8px;
-    margin-left:'80%';
-    background-color: red;
+  .cercle{
+   
+  
   }
+  .cal{
+    .mat-form-field{
+      width:150px !important;
+    }
+    
+  }
+
+  .searsh{
+    margin-top: 40px;
+  }
+  .add_circle{
+  
+  }
+
+  .fc .fc-scrollgrid, .fc .fc-scrollgrid table {
+    width: 100%;
+    table-layout: fixed;
+    margin-left: -14px;
+}
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+  color: #3f51b5;
+  margin-top: 100px;
+}
+
+
+.filter-container{
+    
+  margin: auto;
+position: absolute;
+top: 90px;
+left: 10px;
+
+}
 
 }
 
@@ -190,5 +222,8 @@ full-calendar{
    top: 122px;
    background-color: red;
 }
+
+
+
 
 }
