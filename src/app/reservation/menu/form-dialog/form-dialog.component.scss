@@ -19,3 +19,29 @@
    box-shadow: unset;
    margin-left: -11px;
 }
+.details{
+    background-color: rgb(255, 255, 255) !important;
+    border-radius: 7px;
+    width: 40%;
+    margin-top: 1px;
+    margin-left: 5px;
+    padding:12px;
+}
+
+
+
+/* Mobile xs */ 
+@media (max-width: 420px) {
+
+    .details{
+        background-color: rgb(255, 255, 255) !important;
+        border-radius: 7px;
+        width: 100%;
+        margin-top: 1px;
+        margin-left: 1px;
+        padding:6px
+    }
+  
+  
+    }
+    

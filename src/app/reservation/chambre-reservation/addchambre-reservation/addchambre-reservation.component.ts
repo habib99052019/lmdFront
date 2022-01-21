@@ -12,7 +12,7 @@ const moment = _moment;
 @Component({
   selector: 'app-addchambre-reservation',
   templateUrl: './addchambre-reservation.component.html',
-  styleUrls: ['./addchambre-reservation.component.sass']
+  styleUrls: ['./addchambre-reservation.component.scss']
 })
 export class AddchambreReservationComponent implements OnInit {
 

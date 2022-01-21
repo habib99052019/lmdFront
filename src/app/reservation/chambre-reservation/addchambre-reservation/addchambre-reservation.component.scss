@@ -1,0 +1,24 @@
+
+
+.remise{
+    display: flex;
+     background-color: white;
+     width: 18%;
+     border-radius: 8px;
+    margin-left: 5px;
+}
+
+
+
+/* Mobile xs */ 
+@media (max-width: 420px) {
+
+    
+.remise{
+    display: flex;
+     background-color: white;
+     width: 70%;
+     border-radius: 8px;
+    margin-left: 5px;
+}
+}

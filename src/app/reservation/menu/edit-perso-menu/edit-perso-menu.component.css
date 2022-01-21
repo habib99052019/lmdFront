@@ -1,4 +1,37 @@
 
+
+
+
+
+/* Mobile xs */ 
+@media (max-width: 420px) {
+
+  .materialTableHeader {
+    padding:  10px  5px;
+   
+    align-items: center;
+    border-color: #e6e9ed;
+    background-color: #ebebee;
+    height: 70px;
+    min-width: 800px;
+}
+
+
+.m-r-20 {
+  margin-right: 10px !important;
+}
+
+.m-l-20 {
+ margin-left: 0px !important; 
+}
+
+
+  }
+
+
+
+
+
   /* Mobile & Tablet Rules */
   @media (max-width: 767px) { 
 

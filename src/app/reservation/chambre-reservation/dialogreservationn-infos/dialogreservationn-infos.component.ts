@@ -237,6 +237,10 @@ export class DialogreservationnInfosComponent implements OnInit {
   menu1:any;
   menu2:any;
   priceWithRemise = 0;
+  listOfTarifNames:any;
+  listOfTarifNames2:any;
+
+
 constructor(
     public dialogRef: MatDialogRef<DialogreservationnInfosComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
@@ -313,12 +317,16 @@ ngOnInit(): void {
 
 getRoomReservationById(){
     this._reservationService.getReservation(this.reservation_ID).pipe(take(1)).subscribe(data => {
-      console.log("reservation >>>", data[0].listmenuID[0].typeRepas);
+      console.log("reservation >>>", data);
+      if(data[0].listmenuID[0].typeRepas != undefined){
+        this.menu1 = data[0].listmenuID[0].typeRepas;
+        this.listOfTarifNames = data[0].listmenuID[0].menuList;
+      }
+      if(data[0].listmenuID[1].typeRepas != undefined){
+         this.menu2 = data[0].listmenuID[1].typeRepas;
+         this.listOfTarifNames2 = data[0].listmenuID[1].menuList;
+      }
        
-        this.menu1 = data[0].listmenuID[0].typeRepas,
-        this.menu2 = data[0].listmenuID[1].typeRepas
-      
-
     
     })
 }
