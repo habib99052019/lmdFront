@@ -95,4 +95,9 @@ export class ReservationServiceService {
    getMenuByName(name){
     return this.http.get(this.ApiPath + '/menus/name?name=' + name)
   }
+
+  /* get plats list by category */
+  getPlatListByCategory(){
+    return this.http.get(this.ApiPath + 'plats')
+  }
 }

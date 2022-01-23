@@ -58,7 +58,7 @@ PatesList: any[] = [
    {name:"Spaghettis Bolognaises", price:32},
  ]
 
-BoissonsList: any[] = [
+/*BoissonsList: any[] = [
    {name:"Eau minérale 1L", price:3},
    {name:"Eau gazeuse 1L", price:3},
    {name:"Soda", price:4},
@@ -67,14 +67,16 @@ BoissonsList: any[] = [
    {name:"Citronade", price:4},
    {name:"Boissons énergétiques", price:8},
    {name:"Nepresso", price:4.5},
- ]
+ ]*/
 
- DessertsList: any[] = [
+ /*DessertsList: any[] = [
    {name:"Sorbet", price:4},
    {name:"Assiette de fruits(1pax)", price:8},
    
- ]
+ ]*/
 
+ DessertsList: any[];
+ BoissonsList: any[];
    //list of personalize tarifs variable 
  boissons:any;
  desserts:any;
@@ -136,6 +138,7 @@ BoissonsList: any[] = [
     }
    
     this.getUserList();
+    this.getPlatList();
   }
 
 
@@ -172,6 +175,16 @@ BoissonsList: any[] = [
   
   }
    
+
+
+getPlatList(){
+  this.service.getPlatListByCategory().pipe(take(1)).subscribe((plats:any[]) => {
+        console.log('plats>>>', plats);
+        this.DessertsList = plats[0];
+        this.BoissonsList = plats[1];
+        
+  })
+}
 
 
 
