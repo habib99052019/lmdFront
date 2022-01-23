@@ -197,16 +197,16 @@
                                                     <p>Total sans remise : {{this.priceTotal}} DT</p>
                                                 </div>-->
 
-                                                <div style="display: flex; background-color: white; width: 23%; border-radius: 8px; margin-left: 5px;">
-                                                  <button mat-icon-button color="warn" (click)="removeFromTotal()" [disabled]="this.sodaPrice === 0">
+                                                <div   class="tarif_details">
+                                                  <button   mat-icon-button color="warn" (click)="removeFromTotal()" [disabled]="this.sodaPrice === 0">
                                                       <mat-icon>remove</mat-icon>
                                                     </button> 
                                                       <div style="display: flex; margin-top: 10px;">
-                                                        <p style="color: rgb(49, 49, 49);">Total : </p> 
-                                                        <p style="color: rgb(49, 49, 49); margin-left: 2px;">  {{this.priceTotal}} DT</p>
+                                                        <p class="total" >Total : </p> 
+                                                        <p class="price">  {{this.priceTotal}} DT</p>
                                                       </div>
                                                        
-                                                  <button mat-icon-button color="primary" (click)="addToTotal()">
+                                                  <button  class="remove"   mat-icon-button color="primary" (click)="addToTotal()">
                                                       <mat-icon>add</mat-icon>
                                                   </button>
                                                   
@@ -345,15 +345,15 @@
                            <div>
                               <mat-dialog-actions align="end">
                                   
-                                  <button mat-stroked-button color="warn"  (click)="deleteReservation(data)">Supprimer</button>
+                                  <button   class="supp_mobile-xs"    mat-stroked-button color="warn"  (click)="deleteReservation(data)">Supprimer</button>
   
                               </mat-dialog-actions>
                            </div>
                            <div>
                             <mat-dialog-actions align="end">
-                                <button mat-raised-button color="warn" mat-dialog-close  (click)="onCancelClick()" >Annuler</button>
-                                <button mat-stroked-button color="accent" mat-dialog-close (click)="gotoReservation()">Reserver</button>
-                                <button  style="margin-left:10px" mat-raised-button color="primary"  [mat-dialog-close]="data" cdkFocusInitial   >Confirmer</button>    
+                                <button  class="annuler_mobile-xs"   mat-raised-button color="warn" mat-dialog-close  (click)="onCancelClick()" >Annuler</button>
+                                <button   class="annuler_mobile-xs"   mat-stroked-button color="accent" mat-dialog-close (click)="gotoReservation()">Reserver</button>
+                                <button    class="confirm_mobile-xs" style="margin-left:10px" mat-raised-button color="primary"  [mat-dialog-close]="data" cdkFocusInitial   >Confirmer</button>    
                             </mat-dialog-actions>
                            </div>
                       </div>

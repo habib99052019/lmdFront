@@ -28,19 +28,21 @@
             <div style="display: flex;flex-direction:row; justify-content: space-between;">
                 <div class="row">
                      <div style="display: flex;margin-left: 20px; align-self: center;">
-                        <h1 style="font-size: 15px; color: rgb(75, 74, 77);cursor: pointer ;"
-                          
-                           [ngClass]="{'underline':isUnderline, '': false}"
-                           (click)="changeStandardView()"
-                           >Menu Standard
-                       </h1>
+                       
              
              
                         <h1 style="font-size: 15px; color: rgb(75, 74, 77);
-                          margin-bottom: 15px; margin-left: 35px; cursor: pointer;"
+                          margin-bottom: 15px;  cursor: pointer; margin-right: 16px;"
                           [ngClass]="{'underline':!isUnderline, '': false}"
                            (click)="assignComponent('cow')"
                           >Menu Personnalisé</h1>
+
+                          <h1 style="font-size: 15px; color: rgb(75, 74, 77);cursor: pointer ;"
+                          
+                          [ngClass]="{'underline':isUnderline, '': false}"
+                          (click)="changeStandardView()"
+                          >Menu Standard
+                      </h1>
 
                        </div>
 
@@ -339,7 +341,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body bg-gray text-white text-capitalize">
-                            <div  style="background-color: white; border-radius: 7px; width: 40%;margin-top: 1px;margin-left: 5px;"   class="row">
+                            <div  class="price_details">
                                 <!--<div class="col-md-12" *ngIf="this.MenuPrice !== 0">
                                     <p>prix Menu : {{this.MenuPrice}} * {{this.number_geuste}}</p>
                                 </div>-->

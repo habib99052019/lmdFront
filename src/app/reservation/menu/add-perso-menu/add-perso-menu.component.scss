@@ -19,3 +19,40 @@
  border-radius: 10px;
  padding-left:15px;
 }
+
+
+/* Mobile xs */ 
+@media (max-width: 420px) {
+    .mat-list .mat-list-item {
+        width: 200px !important;
+        margin-right: 25px;
+      }
+    .lisOfmenu{
+        color:rgb(255, 255, 255);
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 100% !important;
+        background-color:rgb(255, 172, 49);
+        font-family:system-ui;
+        border-radius: 5px;
+        padding:5px;
+        font-size: 8px;
+       
+       }
+
+
+       .mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+        display: block;
+        height: 48px;
+        -webkit-tap-highlight-color: transparent;
+        width: 100%;
+        padding: 0;
+        margin-left: -20px;
+    }
+
+    mat-card-title{
+       
+        width: 120px !important;
+    }
+      
+}

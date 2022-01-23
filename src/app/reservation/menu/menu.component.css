@@ -30,7 +30,14 @@
     visibility: hidden;
   }
 
-
+.price_details{
+  background-color: white; 
+  border-radius: 7px; 
+  width: 40%;
+  margin-top: 1px;
+  margin-left: 5px;
+  padding: 10px;
+}
 
 /* Mobile xs */ 
 @media (max-width: 420px) {
@@ -55,7 +62,18 @@
 }
 
 
-  }
+.price_details{
+  background-color: white; 
+  border-radius: 7px; 
+  width: 100%;
+  margin-top: 1px;
+  margin-left: 5px;
+  padding: 10px;
+}
+
+
+
+}
   
 
 

@@ -248,11 +248,9 @@
                                                  <mat-card-content>
                                                     <mat-list class="inline-list">
                                                        <mat-list-item style="padding: 0px;" *ngFor="let menu of this.listOfTarifNames2"> 
-                                                          <p style="color:rgb(255, 255, 255);
-                                                          margin-top: 5px; margin-bottom: 5px;
-                                                          width: 100%;background-color:rgb(255, 172, 49);font-family:system-ui;border-radius: 10px;padding-left:15px;">
+                                                          <p  class="menu2">
                                                                 {{menu}}
-                                                       </p> 
+                                                          </p> 
                                                         </mat-list-item>
                                                      </mat-list>
                                                   </mat-card-content>
@@ -289,13 +287,13 @@
                 <div>
                    <mat-dialog-actions align="end">
                        
-                    <button mat-stroked-button color="warn" (click)="deleteReservation1(data)">Supprimer</button>
+                    <button   class="supp_mobile-xs"    mat-stroked-button color="warn" (click)="deleteReservation1(data)">Supprimer</button>
 
                    </mat-dialog-actions>
                 </div>
                 <div>
                  <mat-dialog-actions align="end">
-                     <button mat-raised-button color="warn" mat-dialog-close  >Annuler</button>
+                     <button  class="annuler_mobile-xs"   mat-raised-button color="warn" mat-dialog-close  >Annuler</button>
                      <button  style="margin-left:10px"   mat-raised-button color="primary"      [mat-dialog-close]="[data.comment, data.repasType, 1 ,data.number_heure, data.roomName, data.menuList, data.price, data.menuID]" cdkFocusInitial  >Confirmer</button>    
                  </mat-dialog-actions>
                 </div>
@@ -533,9 +531,7 @@
                                                <mat-card-content>
                                                   <mat-list class="inline-list">
                                                      <mat-list-item style="padding: 0px;" *ngFor="let menu of this.listDynamiqueMenu2"> 
-                                                        <p style="color:rgb(255, 255, 255);
-                                                        margin-top: 5px; margin-bottom: 5px;
-                                                        width: 100%;background-color:rgb(255, 172, 49);font-family:system-ui;border-radius: 10px;padding-left:15px;">
+                                                        <p class="menu2">
                                                               {{menu}}
                                                      </p> 
                                                       </mat-list-item>
@@ -572,13 +568,13 @@
             <div>
                <mat-dialog-actions align="end">
                    
-                <button mat-stroked-button color="warn"  (click)="deleteReservation2(data)">Supprimer</button>
+                <button   class="supp_mobile-xs"  mat-stroked-button color="warn"  (click)="deleteReservation2(data)">Supprimer</button>
 
                </mat-dialog-actions>
             </div>
             <div>
              <mat-dialog-actions align="end">
-                 <button mat-raised-button color="warn" mat-dialog-close >Annuler</button>
+                 <button  class="annuler_mobile-xs" mat-raised-button color="warn" mat-dialog-close >Annuler</button>
                  <button  style="margin-left:10px" mat-raised-button color="primary"    [mat-dialog-close]="[data.comment2, data.repasType2, 2 ,data.number_heure2, data.roomName, data.menu2List, data.price2, data.menuID2]" cdkFocusInitial   >Confirmer</button>    
              </mat-dialog-actions>
             </div>

@@ -68,3 +68,79 @@
     border-radius: 10px;
     padding-left:15px;
    }
+
+
+
+.tarif_details{
+display: flex; 
+background-color: white; 
+width: 23%; 
+border-radius: 8px; 
+margin-left: 5px;
+}
+
+
+.total{
+    color: rgb(49, 49, 49);
+    
+}
+
+.price{
+  color: rgb(49, 49, 49);
+   margin-left: 2px;
+}
+
+/* Mobile xs */ 
+@media (max-width: 420px) {
+
+
+    .tarif_details{
+        display: flex; 
+        background-color: white; 
+        width: 100%; 
+        border-radius: 8px; 
+        margin-left: 0px;
+        }
+    
+.total{
+    color: rgb(49, 49, 49);
+    font-size: 12px;
+}
+
+.remove{
+   
+    margin-left: -16px !important;
+    
+}
+
+.price{
+    color: rgb(49, 49, 49);
+     margin-left: 2px;
+     font-size: 12px;
+     margin-right: 6px;
+
+  }
+
+  .row > * {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+     padding-right: unset !important; 
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+}
+
+.annuler_mobile-xs{
+     
+    margin-bottom:8px !important;
+  }
+
+
+  .confirm_mobile-xs{
+      margin-bottom: 20px;
+  }
+
+  .supp_mobile-xs{
+    margin-bottom:12px !important;
+  }
+}

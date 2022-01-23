@@ -122,6 +122,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.getMenuReservations()
     this.getMenus();
+    this.assignComponent('cow');
 
   }
 
