@@ -25,7 +25,7 @@ export class AddPersoMenuComponent implements OnInit {
 
   
  // List des tarifs personaliser
- EntreeFeroidsList: any[] = [
+ /*EntreeFeroidsList: any[] = [
   {name:'Salade tunisienne', price:12},
   {name:'Salade de capese', price:18},
   {name:'Salade méchouia', price:13},
@@ -33,14 +33,14 @@ export class AddPersoMenuComponent implements OnInit {
   {name:'Salade César', price:18},
   {name:'Salade Dar ichkeul', price:14},
   {name:'Salade de saumon fumé', price:25},
- ];
- EntreeChaudesList: any[] = [
+ ];*/
+ /*EntreeChaudesList: any[] = [
    {name:"Soupe à agneau", price:16},
    {name:'Brik au thion', price:6},
    {name:'Brik à la viande', price:7}   
- ]
+ ]*/
 
- NosSpecialistesList: any[] = [
+ /*NosSpecialistesList: any[] = [
    {name:"Agneau à la gargoulette", price:35},
    {name:"Cotelette agneau grillée", price:32},
    {name:"Entrecote grillée beurre maitre hotel", price:40},
@@ -51,12 +51,12 @@ export class AddPersoMenuComponent implements OnInit {
    {name:"Excalope de poulet panné", price:25},
    {name:"Ojja Merguez", price:18},
    {name:"Ojja chevrettes", price:28}    
- ]
-
+ ]*/
+/*
 PatesList: any[] = [
    {name:"Nwasser au poulet fermier", price:20},
    {name:"Spaghettis Bolognaises", price:32},
- ]
+ ]*
 
 /*BoissonsList: any[] = [
    {name:"Eau minérale 1L", price:3},
@@ -77,6 +77,10 @@ PatesList: any[] = [
 
  DessertsList: any[];
  BoissonsList: any[];
+ PatesList:any[];
+ NosSpecialistesList:any[];
+ EntreeChaudesList:any[];
+ EntreeFeroidsList:any[];
    //list of personalize tarifs variable 
  boissons:any;
  desserts:any;
@@ -182,6 +186,11 @@ getPlatList(){
         console.log('plats>>>', plats);
         this.DessertsList = plats[0];
         this.BoissonsList = plats[1];
+        this.PatesList = plats[2];
+        this.NosSpecialistesList = plats[3];
+        this.EntreeChaudesList = plats[4];
+        this.EntreeFeroidsList = plats[5];
+
         
   })
 }

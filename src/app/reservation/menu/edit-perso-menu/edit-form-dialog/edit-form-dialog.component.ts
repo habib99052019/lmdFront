@@ -5,7 +5,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReservationServiceService } from 'src/app/core/service/reservation-service.service';
 import Swal from 'sweetalert2';
-
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-form-dialog',
@@ -149,6 +149,7 @@ panelOpenState = false;
 
  
  // List des tarifs personaliser
+ /*
  EntreeFeroidsList: any[] = [
   {name:'Salade tunisienne', price:12},
   {name:'Salade de capese', price:18},
@@ -197,7 +198,7 @@ BoissonsList: any[] = [
    {name:"Sorbet", price:4},
    {name:"Assiette de fruits(1pax)", price:8},
    
- ]
+ ]*/
 
  specialists:any;
  chaudes:any;
@@ -214,7 +215,7 @@ BoissonsList: any[] = [
 //////////Menu2////////////
 showview = true;
 isUnderline = true;
-
+/*
 EntreeFeroidsList2: any[] = [
   {name:'Salade tunisienne', price:12},
   {name:'Salade de capese', price:18},
@@ -263,7 +264,7 @@ BoissonsList2: any[] = [
    {name:"Sorbet", price:4},
    {name:"Assiette de fruits(1pax)", price:8},
    
- ]
+ ]*/
 
  boissons2:any;
  specialists2:any;
@@ -304,8 +305,25 @@ listDynamiqueMenu2:any;
 number_heure2:any;
 ////////////////////
 
-
 menu1=1;
+
+/////////////////
+
+DessertsList: any[];
+BoissonsList: any[];
+PatesList:any[];
+NosSpecialistesList:any[];
+EntreeChaudesList:any[];
+EntreeFeroidsList:any[];
+
+DessertsList2: any[];
+BoissonsList2: any[];
+PatesList2:any[];
+NosSpecialistesList2:any[];
+EntreeChaudesList2:any[];
+EntreeFeroidsList2:any[];
+
+////////////////
 
 
   constructor( public dialogRef: MatDialogRef<EditFormDialogComponent>,
@@ -343,7 +361,7 @@ menu1=1;
  
  console.log('numbre heure>>', this.data['number_heure'])
 
-
+   this.getPlatList();
   
    
   }
@@ -380,6 +398,32 @@ menu1=1;
     });
   
   }
+
+
+
+  getPlatList(){
+    this.service.getPlatListByCategory().pipe(take(1)).subscribe((plats:any[]) => {
+          console.log('plats>>>', plats);
+          this.DessertsList = plats[0];
+          this.DessertsList2 = plats[0];
+          this.BoissonsList = plats[1];
+          this.BoissonsList2 = plats[1];
+          this.PatesList = plats[2];
+          this.PatesList2 = plats[2];
+          this.NosSpecialistesList = plats[3];
+          this.NosSpecialistesList2 = plats[3];
+          this.EntreeChaudesList = plats[4];
+          this.EntreeChaudesList2 = plats[4];
+          this.EntreeFeroidsList = plats[5];
+          this.EntreeFeroidsList2 = plats[5];
+  
+          
+    })
+  }
+
+
+
+
 
 
 
