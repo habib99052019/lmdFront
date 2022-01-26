@@ -100,4 +100,8 @@ export class ReservationServiceService {
   getPlatListByCategory(){
     return this.http.get(this.ApiPath + 'plats')
   }
+
+  getRoomTotalPrice(id){
+    return this.http.get(this.ApiPath + 'reservations/total/' + id);
+  }
 }

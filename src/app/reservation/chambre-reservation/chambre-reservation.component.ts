@@ -392,7 +392,8 @@ handleEventClick(clickInfo: EventClickArg) {
     
         
        dialogRef.afterClosed().subscribe(result => {
-
+          console.log('result>>>', result);
+          
           const calendarApi = this.calendarComponent.getApi();
           calendarApi.next(); // call a method on the Calendar object
           calendarApi.prev();
@@ -447,8 +448,8 @@ handleEventClick(clickInfo: EventClickArg) {
            price : result.price,
            tarifType:result.tarifType,
            remark :result.remark,
-           number_cin:result.number_cin
-           
+           number_cin:result.number_cin,
+           remiseTotal:result.remiseTotal
 
 
          }

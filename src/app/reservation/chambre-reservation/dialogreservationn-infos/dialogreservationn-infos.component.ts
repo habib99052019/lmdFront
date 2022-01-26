@@ -240,7 +240,7 @@ export class DialogreservationnInfosComponent implements OnInit {
   listOfTarifNames:any;
   listOfTarifNames2:any;
   roomPriceTotal:any;
-
+  roomRemiseTotal:any;
 constructor(
     public dialogRef: MatDialogRef<DialogreservationnInfosComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
@@ -283,12 +283,13 @@ ngOnInit(): void {
     this.remark = this.data['remark']
     this.number_phone = this.data['number_phone']
     this.priceWithRemise =  this.data['price'] ;
-  
+    this.roomRemiseTotal = this.data['remiseTotal']
    // this.roomPriceTotal = +this.data['priceTotal'] + +this.data['price'] 
     
-   this.roomPriceTotal = 2000
-   this.data['priceTotal'] = this.roomPriceTotal;
-     
+  // this.roomPriceTotal = 2000
+  // this.data['priceTotal'] = this.roomPriceTotal;
+ // this.data['priceTotal'] = this.roomPriceTotal;
+
      if(this.data['status_room'] === "RESERVE"){
            this.selected = 1 ;
        }
@@ -310,6 +311,7 @@ ngOnInit(): void {
 
        /////////
        this.getRoomReservationById()
+       this.getRoomTotalPrice()
     
 }
 
@@ -331,6 +333,16 @@ getRoomReservationById(){
     })
 }
 
+getRoomTotalPrice(){
+
+  this._reservationService.getRoomTotalPrice(this.reservation_ID).pipe(take(1)).subscribe(data => {
+      console.log('data>>>', data);
+      
+    this.roomPriceTotal = data
+   // this.data['remiseTotal'] = this.roomPriceTotal;
+  
+  })
+}
 
 selectTotalPrice($event:any){
   console.log('select totale price >>>', $event);
