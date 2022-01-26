@@ -120,6 +120,8 @@ PatesList: any[] = [
   soda = 0;
   eau = 0;
 
+  remisePrice:any;
+
   constructor(
     private service : ReservationServiceService,
     public dialogRef: MatDialogRef<AddPersoMenuComponent>,
@@ -183,7 +185,7 @@ PatesList: any[] = [
 
 getPlatList(){
   this.service.getPlatListByCategory().pipe(take(1)).subscribe((plats:any[]) => {
-        console.log('plats>>>', plats);
+  
         this.DessertsList = plats[0];
         this.BoissonsList = plats[1];
         this.PatesList = plats[2];
@@ -264,7 +266,7 @@ calculTarifPersoMenu(event : MatSelectChange){
     
     this.totalTarifBoissons = totalTarifBoissons;
     this.totalePersoMenuPrice = this.totalTarifBoissons + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
- 
+    this.remisePrice = this.totalePersoMenuPrice ;
    
   }
 
@@ -285,7 +287,7 @@ if(event.source.ngControl.name == 'desserts'){
   
    this.totalTarifDesserts = totalTarifDesserts;
    this.totalePersoMenuPrice = this.totalTarifDesserts + (this.totalTarifBoissons || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
-   
+   this.remisePrice = this.totalePersoMenuPrice ;
 }
 
 
@@ -308,7 +310,7 @@ if(event.source.ngControl.name == 'pates'){
  
  this.totalTarifPates = totalTarifPates;
  this.totalePersoMenuPrice =  this.totalTarifPates + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
- 
+ this.remisePrice = this.totalePersoMenuPrice ;
 
 }
 
@@ -331,7 +333,7 @@ if(event.source.ngControl.name == 'nos_specialite'){
  
   this.totalTarifSpecialists = totalTarifSpecialists;
   this.totalePersoMenuPrice =  this.totalTarifSpecialists + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
- 
+  this.remisePrice = this.totalePersoMenuPrice ;
 
 }
 
@@ -355,7 +357,7 @@ if(event.source.ngControl.name == 'nos_specialite'){
 
    this.totalTarifChaudes = totalTarifChaudes;
    this.totalePersoMenuPrice =  this.totalTarifChaudes + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifFeroids || 0);
-   
+   this.remisePrice = this.totalePersoMenuPrice ;
   }
  
 /////
@@ -377,7 +379,7 @@ if(event.source.ngControl.name == 'entree_froides'){
  
    this.totalTarifFeroids = totalTarifFeroids;
    this.totalePersoMenuPrice = this.totalTarifFeroids + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0);
-
+   this.remisePrice = this.totalePersoMenuPrice ;
  
   }
 
@@ -400,7 +402,8 @@ if(this.clientID){
     menuList: this.listOfTarifNames,
     isPersonalize:true,
     entrePerso:this.reservationMenuForm.get('entrePerso').value,
-    number_heure:this.reservationMenuForm.get('number_heure').value
+    number_heure:this.reservationMenuForm.get('number_heure').value,
+    remise: this.remisePrice
    }
    
   

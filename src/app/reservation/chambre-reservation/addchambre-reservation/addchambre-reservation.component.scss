@@ -2,10 +2,13 @@
 
 .remise{
     display: flex;
+    flex-direction: column;
      background-color: white;
      width: 18%;
      border-radius: 8px;
     margin-left: 5px;
+    color: rgb(31, 31, 31);
+
 }
 
 
@@ -21,4 +24,20 @@
      border-radius: 8px;
     margin-left: 5px;
 }
+}
+
+
+
+@media (max-width: 767px) { 
+
+
+    .remise{
+        display: flex; 
+        background-color: white; 
+        width: 40% !important; 
+        border-radius: 8px; 
+        margin-left: 0px;
+        }
+    
+
 }

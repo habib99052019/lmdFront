@@ -135,7 +135,7 @@ totalTarifFeroids:any;
 listBoissons:any;
 listDesserts:any;
 listPates:any;
-
+remise:any;
 globalMenu  = [{name:'', price:0}];
 arrayglobalMenu:any;
 totalTarifGlobal:any;
@@ -303,6 +303,7 @@ menuID2:any;
 ListOfNamesmenu2:any
 listDynamiqueMenu2:any;
 number_heure2:any;
+remise2:any;
 ////////////////////
 
 menu1=1;
@@ -348,7 +349,7 @@ EntreeFeroidsList2:any[];
     this.listOfStaticRarifNames = this.data['menuList'];
     this.menuID = this.data['menuID'];
     this.number_heure = this.data['number_heure'];
-
+    this.remise = this.data['remise']
 
     this.ListStaticOfNamesmenu2 = this.data['menu2List'];
     this.listDynamiqueMenu2 = this.data['menu2List'];
@@ -358,8 +359,8 @@ EntreeFeroidsList2:any[];
     this.repasType2 = this.data['repasType2'];
     this.comment2 = this.data['comment2'];
     this.number_heure2 = this.data['number_heure2'];
+    this.remise2 = this.data['remise2']
  
- console.log('numbre heure>>', this.data['number_heure'])
 
    this.getPlatList();
   
@@ -403,7 +404,7 @@ EntreeFeroidsList2:any[];
 
   getPlatList(){
     this.service.getPlatListByCategory().pipe(take(1)).subscribe((plats:any[]) => {
-          console.log('plats>>>', plats);
+          
           this.DessertsList = plats[0];
           this.DessertsList2 = plats[0];
           this.BoissonsList = plats[1];
@@ -526,7 +527,7 @@ calculTarifPersoMenu(event : MatSelectChange){
     this.totalTarifBoissons = totalTarifBoissons;
     this.totalePersoMenuPrice2 = this.totalTarifBoissons + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
     this.data['price'] = this.totalePersoMenuPrice2;
- 
+    this.data['remise'] = this.totalePersoMenuPrice2;
     
      this.data['menuList'] = this.listOfTarifNames2;
      this.data['menuListTosent'] = this.listOfTarifNames2;
@@ -551,7 +552,7 @@ if(event.source.ngControl.name == 'desserts'){
    this.totalTarifDesserts = totalTarifDesserts;
    this.totalePersoMenuPrice2 = this.totalTarifDesserts + (this.totalTarifBoissons || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
    this.data['price'] = this.totalePersoMenuPrice2;
-  
+   this.data['remise'] = this.totalePersoMenuPrice2;
    this.data['menuList'] = this.listOfTarifNames2;
    this.data['menuListTosent'] = this.listOfTarifNames2;
 }
@@ -577,7 +578,7 @@ if(event.source.ngControl.name == 'pates'){
  this.totalTarifPates = totalTarifPates;
  this.totalePersoMenuPrice2 =  this.totalTarifPates + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
  this.data['price'] = this.totalePersoMenuPrice2;
-
+ this.data['remise'] = this.totalePersoMenuPrice2;
  this.data['menuList'] = this.listOfTarifNames2;
  this.data['menuListTosent'] = this.listOfTarifNames2;
 
@@ -603,7 +604,7 @@ if(event.source.ngControl.name == 'nos_specialite'){
   this.totalTarifSpecialists = totalTarifSpecialists;
   this.totalePersoMenuPrice2 =  this.totalTarifSpecialists + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
   this.data['price'] = this.totalePersoMenuPrice2;
-
+  this.data['remise'] = this.totalePersoMenuPrice2;
   this.data['menuList'] = this.listOfTarifNames2;
   this.data['menuListTosent'] = this.listOfTarifNames2;
 
@@ -630,7 +631,7 @@ if(event.source.ngControl.name == 'nos_specialite'){
    this.totalTarifChaudes = totalTarifChaudes;
    this.totalePersoMenuPrice2 =  this.totalTarifChaudes + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifFeroids || 0);
    this.data['price'] = this.totalePersoMenuPrice2;
-  
+   this.data['remise'] = this.totalePersoMenuPrice2;
    this.data['menuList'] = this.listOfTarifNames2;
    this.data['menuListTosent'] = this.listOfTarifNames2;
   }
@@ -655,7 +656,7 @@ if(event.source.ngControl.name == 'entree_froides'){
    this.totalTarifFeroids = totalTarifFeroids;
    this.totalePersoMenuPrice2 = this.totalTarifFeroids + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0);
    this.data['price'] = this.totalePersoMenuPrice2;
-  
+   this.data['remise'] = this.totalePersoMenuPrice2;
    this.data['menuList'] = this.listOfTarifNames2;
    this.data['menuListTosent'] = this.listOfTarifNames2;
   }
@@ -695,6 +696,7 @@ calculTarifPersoMenu2(event : MatSelectChange){
     this.totalTarifBoissons2 = totalTarifBoissons;
     this.totalePersoMenu2Price = this.totalTarifBoissons2 + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
     this.data['price2'] = this.totalePersoMenu2Price;
+    this.data['remise2'] = this.totalePersoMenu2Price;
     
     
      this.data['menu2List'] = this.listDynamiqueMenu2;
@@ -720,7 +722,7 @@ if(event.source.ngControl.name == 'desserts'){
    this.totalTarifDesserts2 = totalTarifDesserts;
    this.totalePersoMenu2Price = this.totalTarifDesserts2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
    this.data['price2'] = this.totalePersoMenu2Price;
-   
+   this.data['remise2'] = this.totalePersoMenu2Price;
    this.data['menu2List'] = this.listDynamiqueMenu2;
 }
 
@@ -745,6 +747,7 @@ if(event.source.ngControl.name == 'pates'){
  this.totalTarifPates2 = totalTarifPates;
  this.totalePersoMenu2Price =  this.totalTarifPates2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
  this.data['price2'] = this.totalePersoMenu2Price;
+ this.data['remise2'] = this.totalePersoMenu2Price;
  this.data['menu2List'] = this.listDynamiqueMenu2;
 
 }
@@ -769,6 +772,7 @@ if(event.source.ngControl.name == 'nos_specialite'){
   this.totalTarifSpecialists2 = totalTarifSpecialists;
   this.totalePersoMenu2Price =  this.totalTarifSpecialists2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
   this.data['price2'] = this.totalePersoMenu2Price;
+  this.data['remise2'] = this.totalePersoMenu2Price;
  
   this.data['menu2List'] = this.listDynamiqueMenu2;
 
@@ -795,6 +799,7 @@ if(event.source.ngControl.name == 'nos_specialite'){
    this.totalTarifChaudes2 = totalTarifChaudes;
    this.totalePersoMenu2Price =  this.totalTarifChaudes2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifFeroids2 || 0);
    this.data['price2'] = this.totalePersoMenu2Price;
+   this.data['remise2'] = this.totalePersoMenu2Price;
    
    this.data['menu2List'] = this.listDynamiqueMenu2;
   }
@@ -819,6 +824,7 @@ if(event.source.ngControl.name == 'entree_froides'){
    this.totalTarifFeroids2 = totalTarifFeroids;
    this.totalePersoMenu2Price = this.totalTarifFeroids2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0);
    this.data['price2'] = this.totalePersoMenu2Price;
+   this.data['remise2'] = this.totalePersoMenu2Price;
    
    this.data['menu2List'] = this.listDynamiqueMenu2;
   }

@@ -213,7 +213,7 @@ startFiltre:any;
 dates: moment.Moment[] = []
 date:any;
 startDate:any;
-
+remisePrice:any;
 
   constructor(
     public routerActivated: ActivatedRoute,
@@ -224,7 +224,7 @@ startDate:any;
   ) {
 
     this.routerActivated.params.subscribe(params => {
-      console.log("date >>>>",params.object)
+    
        if(params.object === "#"){
          this.end = "";
          
@@ -271,6 +271,7 @@ createContactForm(): FormGroup {
       number_guests : [2 ],
       number_children: [0, Validators.required],
       number_phone:[,Validators.required],
+      remise:[this.priceTotal,Validators.required],
       number_adulte:[0, Validators.required],
       comment : [''],
       remarque : [''],
@@ -683,12 +684,15 @@ calculTotal(days : any , roomPrice : any){
   if(this.extraPrice && this.extraType === "lit adulte" || this.extraType === "lit enfant"){
    
      this.priceTotal = (roomPrice * days) + 90;
+     this.remisePrice =  this.priceTotal ;
   }else if(this.extraPrice && this.extraType === "Deux lit adulte" || this.extraType === "Deux lit enfant"){
     this.priceTotal = (roomPrice * days) + 180;
+    this.remisePrice =  this.priceTotal ;
   }
   
   else{
     this.priceTotal = roomPrice * days;
+    this.remisePrice =  this.priceTotal ;
   }
  
  
@@ -749,8 +753,17 @@ numberPersons(nba: number, nbc:number){
 }
 
 
+verifyPriceTosent(){
+  if(this.priceTotal != this.remisePrice){
+     this.priceTotal = this.remisePrice;
+  }else{
+     this.priceTotal = this.priceTotal;
+  }
+}
+
 addNewReservation(){
 
+  console.log('remise>>>',this.reservationChambreForm.get('remise').value);
   
   
  if(this.datetosent != undefined){
@@ -769,8 +782,7 @@ addNewReservation(){
   if (this.end == ''){
     this.numberPersons(this.reservationChambreForm.get('number_adulte').value,this.reservationChambreForm.get('number_children').value)
     this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
-    console.log('this.end egal vide >>>', this.end);
-    console.log('this.npb >>>', this.nbp);
+    this.verifyPriceTosent()
     const reservation = {
     roomType: 'room' ,
     first_name : this.reservationChambreForm.get('first_name').value,
@@ -803,7 +815,7 @@ addNewReservation(){
   }
 
   this._reservationService.addReservation(reservation).subscribe((data : any) => {
-   console.log('data from server >>>',data);
+  
     
     this.showNotification(
       'snackbar-success',
@@ -813,7 +825,7 @@ addNewReservation(){
     );
     this.router.navigate(['/reservation/calendrier'])
   }, err => {
-     console.log('err>>>',err);
+    
      this.showNotification(
       'snackbar-danger',
        err,
@@ -825,7 +837,7 @@ addNewReservation(){
   }else {
     this.numberPersons(this.reservationChambreForm.get('number_adulte').value,this.reservationChambreForm.get('number_children').value)
     this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
-    console.log('this.end different vide >>>', this.end);
+    this.verifyPriceTosent()
     const reservation = {
       roomType: 'room' ,
       first_name : this.reservationChambreForm.get('first_name').value,
@@ -858,7 +870,7 @@ addNewReservation(){
     }
 
     this._reservationService.addReservation(reservation).subscribe((data : any) => {
-    // console.log('data from server >>>',data);
+ 
       
       this.showNotification(
         'snackbar-success',
@@ -868,7 +880,7 @@ addNewReservation(){
       );
       this.router.navigate(['/reservation/calendrier'])
     }, err => {
-      console.log('err>>>',err);
+      
       this.showNotification(
        'snackbar-danger',
         err,

@@ -21,6 +21,18 @@
 }
 
 
+
+.remise{
+    display: flex;
+    flex-direction: column;
+     background-color: white;
+     width: 40%;
+     border-radius: 8px;
+    margin-left: 5px;
+    color: rgb(31, 31, 31);
+
+}
+
 /* Mobile xs */ 
 @media (max-width: 420px) {
     .mat-list .mat-list-item {
@@ -56,3 +68,42 @@
     }
       
 }
+
+
+
+@media (max-width: 767px) { 
+
+    .mat-list .mat-list-item {
+        width: 200px !important;
+        margin-right: 25px;
+      }
+    .lisOfmenu{
+        color:rgb(255, 255, 255);
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 100% !important;
+        background-color:rgb(255, 172, 49);
+        font-family:system-ui;
+        border-radius: 5px;
+        padding:5px;
+        font-size: 11px;
+       
+       }
+
+
+       .mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+        display: block;
+        height: 48px;
+        -webkit-tap-highlight-color: transparent;
+        width: 100%;
+        padding: 0;
+        margin-left: -20px;
+    }
+
+    mat-card-title{
+       
+        width: 120px !important;
+    }
+    
+ 
+ }

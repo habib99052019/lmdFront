@@ -39,6 +39,10 @@
   padding: 10px;
 }
 
+.tarif_details{
+   color:rgb(43, 43, 43)
+}
+
 /* Mobile xs */ 
 @media (max-width: 420px) {
 

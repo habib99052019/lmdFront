@@ -218,7 +218,7 @@
                                     <p style="color:rgb(83, 83, 83);margin-top: 8px;font-weight: bold;" >prix Menu : <span style="color:orange">{{this.MenuPrice}} Dt </span> * <span style="color:orange">{{this.reservationMenuForm.get('number_guests').value}}</span></p> 
                                </div>
                                <div *ngIf="MenuPrice2" >
-                                 <p style="color:rgb(83, 83, 83);font-weight: bold;margin-top: 8px" > <span style="color:orange">20</span> *  <sapn style="color:orange">{{this.reservationMenuForm.get('number_guests').value}}</sapn></p>
+                                 <p style="color:rgb(83, 83, 83);font-weight: bold;margin-top: 8px" > prix Menu : <span style="color:orange">20</span> *  <sapn style="color:orange">{{this.reservationMenuForm.get('number_guests').value}}</sapn></p>
                                </div>
                                 <div  *ngIf="this.EauPrice !== 0"   style="display: flex; justify-content: space-between;">
                                           
@@ -231,8 +231,24 @@
                                     <p style="color:rgb(83, 83, 83);font-weight: bold;"> Soda: <span style="color:orange" >{{soda}}</span></p>
                                </div>
                               
-                                <div class="col-md-12">
+                                <!--<div class="col-md-12">
                                     <p style="color:rgb(83, 83, 83);font-weight: bold;" >Prix total : <span style="color:orange">{{this.PriceTotal}} Dt </span></p>
+                                </div>-->
+
+                                <div  class="remise">
+                                    
+                                    <div style="display: flex; margin-top: 10px;">
+                                        <p style="color:rgb(83, 83, 83);font-weight: bold;">Prix total : </p> 
+                                        <p style="color:orange;font-weight: bold;margin-left: 2px;"> {{this.PriceTotal}} DT</p>
+                                      </div>
+                                      <form>
+                                           <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                                <mat-label>Total avec remise</mat-label>
+                                                <input matInput [(ngModel)]="this.remisePrice" name="remise" type="number">
+                            
+                                          </mat-form-field>
+                                      </form>
+                                   
                                 </div>
                             </div>
 

@@ -21,6 +21,20 @@
 }
 
 
+
+
+.tarif_details{
+   display: flex; 
+   flex-direction: column;
+   background-color: white; 
+   width: 70%; 
+   border-radius: 8px; 
+   margin-left: 5px;
+   color: rgb(31, 31, 31);
+   padding: 6px;
+   }
+
+
 .menu1{
 color:rgb(255, 255, 255);
 margin-top: 5px;
@@ -131,3 +145,68 @@ padding-left:15px;
     }
       
 }
+
+
+@media (max-width: 767px) { 
+
+   .mat-list .mat-list-item {
+      width: 200px !important;
+      margin-right: 25px;
+    }
+  
+   .menu1{
+      color:rgb(255, 255, 255);
+      margin-top: 5px;
+       margin-bottom: 8px;
+      width: 83% !important;
+      background-color:rgb(255, 172, 49);
+      font-family:system-ui;
+      border-radius: 5px;
+      padding:1px;
+       font-size: 11px !important;
+      }
+      
+      
+      .hiddenMenu1{
+         color:rgb(255, 255, 255);
+         margin-top: 5px;
+          margin-bottom: 8px;
+         width: 83% !important;
+         background-color:rgb(190, 190, 190);
+         font-family:system-ui;
+         border-radius: 5px;
+         padding:1px;
+          font-size: 11px !important;
+         }
+      
+      .menu2{
+       color:rgb(255, 255, 255);
+       margin-top: 5px; margin-bottom: 5px;
+       width: 83%;
+       background-color:rgb(255, 172, 49);
+       font-family:system-ui;
+       border-radius: 5px;
+       padding:1px;
+       font-size: 11px !important;
+      }
+
+
+
+    .mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+     display: block;
+     height: 48px;
+     -webkit-tap-highlight-color: transparent;
+     width: 100%;
+     padding: 0;
+     margin-left: -30px;
+ }
+
+ mat-card-title{
+       
+   width: 120px !important;
+}
+   
+
+}
+
+

@@ -193,31 +193,30 @@
                                                 <div class="col-md-12">
                                                     <p>nuits : {{this.Days}} </p>
                                                 </div>
-                                                <!--<div class="col-md-12">
-                                                    <p>Total sans remise : {{this.priceTotal}} DT</p>
-                                                </div>-->
+                                                
 
-                                                <div   class="tarif_details">
-                                                  <button   mat-icon-button color="warn" (click)="removeFromTotal()" [disabled]="this.sodaPrice === 0">
-                                                      <mat-icon>remove</mat-icon>
-                                                    </button> 
-                                                      <div style="display: flex; margin-top: 10px;">
-                                                        <p class="total" >Total : </p> 
-                                                        <p class="price">  {{this.priceTotal}} DT</p>
-                                                      </div>
-                                                       
-                                                  <button  class="remove"   mat-icon-button color="primary" (click)="addToTotal()">
-                                                      <mat-icon>add</mat-icon>
-                                                  </button>
-                                                  
-                                              </div>
+                                              <div  class="tarif_details">
+                                               
+                                                <div style="display: flex; margin-top: 10px;">
+                                                    <p style="color: rgb(49, 49, 49);">Total : </p> 
+                                                    <p style="color: rgb(49, 49, 49); margin-left: 2px;"> {{this.priceTotal}} DT</p>
+                                                  </div>
+                                                  <form class="col">
+                                                     <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                                        <mat-label>Total avec remise</mat-label>
+                                                        <input matInput [(ngModel)]="data.price"  name="remise" type="number">
+                                        
+                                                     </mat-form-field>
+                                                  </form>
+                                               
+                                            </div>
                                              
 
                                              
                                             </div>
-                                            <div class="col-md-12 mt-3">
+                                            <!--<div class="col-md-12 mt-3">
                                                     <p>Total avec remise : {{this.priceWithRemise}} DT</p>
-                                                </div>
+                                                </div>-->
                                             
                                         </div>
                                     </div>
@@ -338,6 +337,22 @@
                           </form>
                           
                         </div>
+
+                        <div style="background-color: rgb(227, 242, 255); border-radius: 10px;"    class="col-md-3 col-lg-3 mb-5" >
+                                               
+                          <div style="display: flex; margin-top: 10px;">
+                              <p style="color: rgb(49, 49, 49);">Total : </p> 
+                              <p style="color: rgb(49, 49, 49); margin-left: 2px;"> {{this.roomPriceTotal}} DT</p>
+                            </div>
+                            <form class="col">
+                               <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                  <mat-label>Total avec remise</mat-label>
+                                  <input matInput [(ngModel)]="data.remiseTotal"  name="remise"  (selectionChange)="selectTotalPrice($event)"    type="number">
+                  
+                               </mat-form-field>
+                            </form>
+                         
+                      </div>
                     </div>
 
                    

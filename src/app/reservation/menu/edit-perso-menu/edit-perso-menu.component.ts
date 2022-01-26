@@ -77,15 +77,17 @@ export class EditPersoMenuComponent implements OnInit {
 search(term: string) {
 
   this.DataPersoMenu.data = this.filterData.filter(reservation => 
-  
+ 
     
+   
     reservation.clientID.first_name.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
     reservation.clientID.last_name.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
     reservation.clientID.number_phone.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
+    reservation.listmenuID[0].number_heure.trim().toLowerCase().includes(term.trim().toLowerCase()) || 
     reservation.listmenuID[0].typeRepas.trim().toLowerCase().includes(term.trim().toLowerCase()) ||
     reservation.status_reservation.trim().toLowerCase().includes(term.trim().toLowerCase()) ||
     reservation.roomName.trim().toLowerCase().includes(term.trim().toLowerCase()) 
-  
+
     )
 }
   
@@ -148,10 +150,11 @@ showNotification(colorName, text, placementFrom, placementAlign) {
 
 openEditModal(row){
 
-  console.log('row open esit model>>>',row.listmenuID[0]);
+  console.log('row>>>',row);
+  
   
   if(row.listmenuID[1] && row.listmenuID[0]){
-   
+    console.log('row1>>>',row);
     const dialogRef = this.dialog.open(EditFormDialogComponent, {
       disableClose: true, 
       width:'1000px',
@@ -166,6 +169,7 @@ openEditModal(row){
         comment: row.listmenuID[0].comment,
         price: row.listmenuID[0].price,
         menuList: row.listmenuID[0].menuList,
+        remise: row.listmenuID[0].remise,
         menuListTosent: [],
         menuID:row.listmenuID[0]._id,
         number_heure: row.listmenuID[0].number_heure,
@@ -177,17 +181,21 @@ openEditModal(row){
         menu2List: row.listmenuID[1].menuList,
         menuID2:row.listmenuID[1]._id,
         number_heure2: row.listmenuID[1].number_heure,
-
+        remise2: row.listmenuID[1].remise,
         check: 0
      }
    });
  
     dialogRef.afterClosed().subscribe(result => {
       this.getlisPersoReervationMenus();
-      console.log('result from after close>>>',result);
+   
+      if(result == ""){
+        return -1 ;
+      }
+
  
        if((result[2] == 1) && (result != undefined)){
-           console.log('result>>>',result);
+         
            
            const datatosent = {
                  menuList:result[5],
@@ -196,6 +204,7 @@ openEditModal(row){
                  price:result[6],
                  entrePerso:result[1],
                  number_heure:result[3],
+                 remise:result[8]
            }
            this.service.updatePersoReservationMenu(result[7],datatosent).subscribe(perso => {
             
@@ -232,9 +241,10 @@ openEditModal(row){
           price:result[6],
           entrePerso:result[1],
           number_heure:result[3],
+          remise:result[8]
          }
          this.service.updatePersoReservationMenu(result[7],datatosent).subscribe(perso => {
-          console.log('result3>>>',result);
+      
            
            this.showNotification(
              'snackbar-success',
@@ -260,6 +270,7 @@ openEditModal(row){
     })
      
   }else{
+    console.log('row2>>>',row);
     const dialogRef = this.dialog.open(EditFormDialogComponent, {
 
       width:'1000px',
@@ -273,19 +284,23 @@ openEditModal(row){
         repasType: row.listmenuID[0].typeRepas,
         comment: row.listmenuID[0].comment,
         price: row.listmenuID[0].price,
+        remise: row.listmenuID[0].remise,
         menuList: row.listmenuID[0].menuList,
         menuListTosent: [],
         menuID:row.listmenuID[0]._id,
         number_heure: row.listmenuID[0].number_heure,
-      
+       
      }
    });
  
     dialogRef.afterClosed().subscribe(result => {
       this.getlisPersoReervationMenus();
-  
+      
+      if(result == ""){
+        return -1 ;
+      }
  
-       if((result[2] == 1) && (result != undefined)){
+       if((result[2] == 1) && (result != undefined) ){
           
            const datatosent = {
             menuList:result[5],
@@ -294,6 +309,7 @@ openEditModal(row){
             price:result[6],
             entrePerso:result[1],
             number_heure:result[3],
+            remise:result[8]
            }
            this.service.updatePersoReservationMenu(result[7],datatosent).subscribe(perso => {
            
@@ -327,6 +343,7 @@ openEditModal(row){
           price:result[6],
           entrePerso:result[1],
           number_heure:result[3],
+          remise:result[8]
          }
          this.service.updatePersoReservationMenu(result[7],datatosent).subscribe(perso => {
            

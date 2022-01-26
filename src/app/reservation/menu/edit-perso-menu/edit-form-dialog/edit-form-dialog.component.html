@@ -235,7 +235,22 @@
                                                   </mat-card-content>
                                                 </mat-card>
                                             </div>
-                                            <p>Total :  {{this.price}} Dt </p>
+                                         
+                                            <div  class="tarif_details">
+                                               
+                                                <div style="display: flex; margin-top: 10px;">
+                                                    <p style="color: rgb(49, 49, 49);">Total : </p> 
+                                                    <p style="color: rgb(49, 49, 49); margin-left: 2px;"> {{this.price}} DT</p>
+                                                  </div>
+                                                  <form class="col">
+                                                     <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                                        <mat-label>Total avec remise</mat-label>
+                                                        <input matInput  [(ngModel)]="data.remise"  name="remise" type="number">
+                                        
+                                                     </mat-form-field>
+                                                  </form>
+                                               
+                                            </div>
                                         </div>
                                      </div>
                                      <div *ngIf="showNew" class="col">
@@ -256,7 +271,22 @@
                                                   </mat-card-content>
                                                 </mat-card>
                                             </div>
-                                            <p>Total :  {{this.totalePersoMenuPrice2}} Dt </p>
+                                       
+                                            <div  class="tarif_details">
+                                               
+                                                <div style="display: flex; margin-top: 10px;">
+                                                    <p style="color: rgb(49, 49, 49);">Total : </p> 
+                                                    <p style="color: rgb(49, 49, 49); margin-left: 2px;"> {{this.totalePersoMenuPrice2}} DT</p>
+                                                  </div>
+                                                  <form class="col">
+                                                     <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                                        <mat-label>Total avec remise</mat-label>
+                                                        <input matInput [(ngModel)]="data.remise"  name="remise" type="number">
+                                        
+                                                     </mat-form-field>
+                                                  </form>
+                                               
+                                            </div>
                                         </div>
                                      </div>
                     
@@ -294,7 +324,7 @@
                 <div>
                  <mat-dialog-actions align="end">
                      <button  class="annuler_mobile-xs"   mat-raised-button color="warn" mat-dialog-close  >Annuler</button>
-                     <button  style="margin-left:10px"   mat-raised-button color="primary"      [mat-dialog-close]="[data.comment, data.repasType, 1 ,data.number_heure, data.roomName, data.menuList, data.price, data.menuID]" cdkFocusInitial  >Confirmer</button>    
+                     <button  style="margin-left:10px"   mat-raised-button color="primary"      [mat-dialog-close]="[data.comment, data.repasType, 1 ,data.number_heure, data.roomName, data.menuList, data.price, data.menuID,data.remise]" cdkFocusInitial  >Confirmer</button>    
                  </mat-dialog-actions>
                 </div>
            </div>
@@ -518,7 +548,22 @@
                                                 </mat-card-content>
                                               </mat-card>
                                           </div>
-                                          <p>Total :  {{this.price2}} Dt </p>
+                                      
+                                          <div  class="tarif_details">
+                                               
+                                            <div style="display: flex; margin-top: 10px;">
+                                                <p style="color: rgb(49, 49, 49);">Total : </p> 
+                                                <p style="color: rgb(49, 49, 49); margin-left: 2px;"> {{this.price2}} DT</p>
+                                              </div>
+                                              <form class="col">
+                                                 <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                                    <mat-label>Total avec remise</mat-label>
+                                                    <input matInput [(ngModel)]="data.remise2"  name="remise" type="number">
+                                    
+                                                 </mat-form-field>
+                                              </form>
+                                           
+                                        </div>
                                       </div>
                                    </div>
                                    <div *ngIf="showNew" class="col">
@@ -539,7 +584,22 @@
                                                 </mat-card-content>
                                               </mat-card>
                                           </div>
-                                          <p>Total :  {{this.totalePersoMenu2Price}} Dt </p>
+                                         
+                                          <div  class="tarif_details">
+                                               
+                                            <div style="display: flex; margin-top: 10px;">
+                                                <p style="color: rgb(49, 49, 49);">Total : </p> 
+                                                <p style="color: rgb(49, 49, 49); margin-left: 2px;"> {{this.totalePersoMenu2Price}} DT</p>
+                                              </div>
+                                              <form class="col">
+                                                 <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                                    <mat-label>Total avec remise</mat-label>
+                                                    <input matInput [(ngModel)]="data.remise2"  name="remise" type="number">
+                                    
+                                                 </mat-form-field>
+                                              </form>
+                                           
+                                        </div>
                                       </div>
                                    </div>
                   
@@ -575,7 +635,7 @@
             <div>
              <mat-dialog-actions align="end">
                  <button  class="annuler_mobile-xs" mat-raised-button color="warn" mat-dialog-close >Annuler</button>
-                 <button  style="margin-left:10px" mat-raised-button color="primary"    [mat-dialog-close]="[data.comment2, data.repasType2, 2 ,data.number_heure2, data.roomName, data.menu2List, data.price2, data.menuID2]" cdkFocusInitial   >Confirmer</button>    
+                 <button  style="margin-left:10px" mat-raised-button color="primary"    [mat-dialog-close]="[data.comment2, data.repasType2, 2 ,data.number_heure2, data.roomName, data.menu2List, data.price2, data.menuID2, data.remise2]" cdkFocusInitial   >Confirmer</button>    
              </mat-dialog-actions>
             </div>
        </div>

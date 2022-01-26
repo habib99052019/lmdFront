@@ -324,6 +324,8 @@ BoissonsList: any[] = [
   addTwoMenu = false;
   addTwoMenu2 = false;
   menuID:any;
+  remisePrice:any;
+
 
   constructor(
     private service : ReservationServiceService,
@@ -391,6 +393,7 @@ showMenuStandard(event:MatSelectChange){
     
 
     this.PriceTotal =  this.reservationMenuForm.get('number_guests').value * this.ptDejPrice ;
+    this.remisePrice = this.PriceTotal;
     const value = 'Petit déjeuner';
     this.service.getMenuByName(value).pipe(take(1)).subscribe((menu :any) => {
   
@@ -432,6 +435,7 @@ showMenu(event : MatSelectChange){
 
  calculTotal(nombre_personnes : any , menuPrice : any ){
   this.PriceTotal = (menuPrice * nombre_personnes) 
+  this.remisePrice = this.PriceTotal;
   this.reservationMenuForm.get('price').setValue(this.PriceTotal);
  }
 
@@ -452,6 +456,7 @@ showMenu(event : MatSelectChange){
      if(type === "Soda") {
        this.sodaPrice = this.sodaPrice + 2
        this.PriceTotal = this.PriceTotal + 2
+       this.remisePrice = this.PriceTotal;
        this.soda = this.soda + 1;
       
        
@@ -459,6 +464,7 @@ showMenu(event : MatSelectChange){
      else if (type === "Eau") {
       this.EauPrice = this.EauPrice + 1
       this.PriceTotal = this.PriceTotal + 1
+      this.remisePrice = this.PriceTotal;
       this.eau = this.eau + 1 ;
     }
    }
@@ -469,11 +475,13 @@ showMenu(event : MatSelectChange){
   if (this.PriceTotal){
     if(type === "Soda") {
       this.PriceTotal = this.PriceTotal - 2
+      this.remisePrice = this.PriceTotal;
       this.sodaPrice = this.sodaPrice - 2
       this.soda = this.soda - 1;
     }
     else if (type === "Eau") {
      this.PriceTotal = this.PriceTotal - 1
+     this.remisePrice = this.PriceTotal;
      this.EauPrice = this.EauPrice - 1;
      this.eau = this.eau - 1 ;
    }
@@ -492,6 +500,7 @@ showMenu(event : MatSelectChange){
       first:['' , Validators.required],
       number_phone:['',Validators.required],
       number_heure:['13:00',Validators.required],
+      remise:[],
       entreSta:['déjeuner'],
       entrePerso:['déjeuner'],
       roomName:[],
@@ -675,13 +684,15 @@ if(event.source.ngControl.name == 'entree_froides'){
 
 
 
+
+
   confirmAdd(): void {
     
    
  
   if(this.menuPdj){
         
-        
+     
     const reservationPersoForm  = {
       type : 'menu',
       status : this.reservationMenuForm.get('status').value,
@@ -696,11 +707,11 @@ if(event.source.ngControl.name == 'entree_froides'){
       number_heure: this.reservationMenuForm.get('number_heure').value,
       entreSta:this.reservationMenuForm.get('entreSta').value,
       nb_eau : this.eau,
-      nb_soda: this.soda
-     
+      nb_soda: this.soda,
+      remise : this.remisePrice
      }
      
-     console.log('reservationForm>>>', reservationPersoForm);
+   
      
      this.service.addMenuReservation(reservationPersoForm).subscribe((data : any) => {
       
@@ -713,7 +724,7 @@ if(event.source.ngControl.name == 'entree_froides'){
 
          
     },err => {
-      console.log('err>>>',err);
+   
       this.showNotification(
        'snackbar-danger',
         err,
@@ -742,7 +753,8 @@ if(event.source.ngControl.name == 'entree_froides'){
       number_heure: this.reservationMenuForm.get('number_heure').value,
       entreSta:this.reservationMenuForm.get('entreSta').value,
       nb_eau : this.eau,
-      nb_soda: this.soda
+      nb_soda: this.soda,
+      remise : this.remisePrice
      }
      
   
@@ -756,7 +768,7 @@ if(event.source.ngControl.name == 'entree_froides'){
            'end'
          );  
     },err => {
-      console.log('err>>>',err);
+  
       this.showNotification(
        'snackbar-danger',
         err,

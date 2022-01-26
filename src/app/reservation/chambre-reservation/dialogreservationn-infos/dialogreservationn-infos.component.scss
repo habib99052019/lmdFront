@@ -73,10 +73,12 @@
 
 .tarif_details{
 display: flex; 
+flex-direction: column;
 background-color: white; 
 width: 23%; 
 border-radius: 8px; 
 margin-left: 5px;
+color: rgb(31, 31, 31);
 }
 
 
@@ -144,3 +146,34 @@ margin-left: 5px;
     margin-bottom:12px !important;
   }
 }
+
+
+@media (max-width: 767px) { 
+
+
+    .tarif_details{
+        display: flex; 
+        background-color: white; 
+        width: 55%; 
+        border-radius: 8px; 
+        margin-left: 0px;
+        }
+    
+
+}
+
+
+/* Mobile xs */ 
+@media (max-width: 420px) {
+
+    
+    .tarif_details{
+        display: flex; 
+        background-color: white; 
+        width: 100%; 
+        border-radius: 8px; 
+        margin-left: 0px;
+        }
+    
+    }
+    

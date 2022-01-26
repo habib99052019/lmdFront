@@ -222,7 +222,7 @@ initfullcalendar = () => {
 
 getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
  
-  // console.log('info from event api >>>', info);
+
    
 
      if(this.statusReservation == 'yellow' || this.statusReservation == 'red' || this.statusReservation == 'gray'){
@@ -233,7 +233,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
                   end: info.end.valueOf()
                 })
                 .end(function(err:any, res:any) {
-                  // console.log("src>>>",src);
+                  
                    
                  
                   if (err) {
@@ -329,7 +329,10 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
 
 
 handleEventClick(clickInfo: EventClickArg) {
-  console.log('clickInfo from event api >>>', clickInfo.event);
+
+  console.log('clickInfo>>>', clickInfo.event.extendedProps);
+  
+  
       if(clickInfo.event.extendedProps.roomID.DOUBLE_BAS_SAISON_PRICE){
           this.roomType = "double"
       }
@@ -379,6 +382,8 @@ handleEventClick(clickInfo: EventClickArg) {
           roomType:this.roomType,
           remark:clickInfo.event.extendedProps.remark,
           number_phone:clickInfo.event.extendedProps.clientID.number_phone,
+          priceTotal: clickInfo.event.extendedProps.priceTotal,
+          remiseTotal: clickInfo.event.extendedProps.remiseTotal,
         //  menu1:clickInfo.event.extendedProps.listmenuID[0].typeRepas,
          // menu2:clickInfo.event.extendedProps.listmenuID[1].typeRepas
         }
@@ -448,7 +453,7 @@ handleEventClick(clickInfo: EventClickArg) {
 
          }
        
-         console.log('data to sent>>>',datatosent );
+       
          
          this._reservationService.updateReservation(id,datatosent).subscribe((data :any) => {
          
@@ -463,7 +468,7 @@ handleEventClick(clickInfo: EventClickArg) {
                 calendarApi.prev();
          }, err => {
            if(err != 'Not Found'){
-              console.log('err>>>',err);
+              
                 this.showNotification(
                 'snackbar-danger',
                   err,

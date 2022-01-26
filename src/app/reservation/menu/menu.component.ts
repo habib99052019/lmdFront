@@ -74,7 +74,7 @@ export class MenuComponent implements OnInit {
   menuID:any;
   soda = 0;
   eau = 0;
-
+  remisePrice:any;
 
 
 
@@ -312,7 +312,8 @@ editCall(row) {
 
   openEditModal(row){
 
-
+  console.log('row from open row>>>', row);
+  
     
      
     this.modalData = row;
@@ -350,11 +351,12 @@ editCall(row) {
   })
 
 
-   
+ 
      
 
    
     this.PriceTotal = +this.modalData.price;
+    this.remisePrice = +this.modalData.remise;
     this.reservationMenuEditForm = this.fb.group({
       _id : [this.modalData._id ],
       first_name : [this.modalData.clientID.first_name , Validators.required],
@@ -369,7 +371,7 @@ editCall(row) {
       status : [this.modalData.status_reservation],
       price : [this.modalData.price , Validators.required],
       entreSta : [this.modalData.typeRepas],
-    
+      remise : [this.modalData.remise ],
     });
 
     this.dialog.open( this.editModal, {
@@ -479,7 +481,8 @@ editCall(row) {
 
   showMenuStandard(event:MatSelectChange){
   
-  
+    console.log('show menu>>>',this.reservationMenuEditForm.value.remise);
+    
     if(event.value === 'petit déjeuner'){
       this.MenuPrice2 = true;
       this.MenuPrice1 = false;
@@ -490,6 +493,8 @@ editCall(row) {
    
     
       this.PriceTotal =  +this.number_geuste * +this.ptDejPrice 
+      this.remisePrice = this.PriceTotal;
+     
       this.soda = 0;
       this.eau = 0;
       this.EauPrice = 0 ;
@@ -505,6 +510,7 @@ editCall(row) {
       this.MenuPrice1 = true;
       this.MenuPrice2 = false;
       this.PriceTotal =  +this.number_geuste * +this.MenuPrice
+      this.remisePrice = this.PriceTotal;
       this.menuPdj = false;
       this.menuSta = true;
       this.soda = 0;
@@ -531,6 +537,7 @@ editCall(row) {
  calculTotal(nombre_personnes : any , menuPrice : any ){
 
   this.PriceTotal = (menuPrice * nombre_personnes) 
+  this.remisePrice = this.PriceTotal;
   this.reservationMenuEditForm.get('price').setValue(+this.PriceTotal);
  }
 
@@ -559,7 +566,7 @@ editCall(row) {
         this.sodaPrice = this.sodaPrice + 2
      
         this.PriceTotal = +this.PriceTotal + 2
-      
+        this.remisePrice = this.PriceTotal;
         this.soda = this.soda + 1;
       
         }
@@ -567,6 +574,7 @@ editCall(row) {
   
       this.EauPrice = this.EauPrice + 1
       this.PriceTotal = +this.PriceTotal + 1
+      this.remisePrice = this.PriceTotal;
       this.eau = this.eau + 1;
     
     
@@ -579,14 +587,14 @@ editCall(row) {
   if (this.PriceTotal){
     if(type === "Soda") {
       this.PriceTotal = +this.PriceTotal - 2
-
+      this.remisePrice = this.PriceTotal;
       this.sodaPrice = this.sodaPrice - 2
       this.soda = this.soda - 1;
      
     }
     else if (type === "Eau") {
     this.PriceTotal = +this.PriceTotal - 1
- 
+    this.remisePrice = this.PriceTotal;
      this.EauPrice = this.EauPrice - 1
      this.eau = this.eau - 1;
    }
@@ -614,7 +622,8 @@ updateReservation(){
       price : +this.PriceTotal,
       typeRepas:this.reservationMenuEditForm.get('entreSta').value,
       nb_eau : this.eau,
-      nb_soda: this.soda
+      nb_soda: this.soda,
+      remise : this.remisePrice
     }
   
     
@@ -651,7 +660,8 @@ updateReservation(){
       price : +this.PriceTotal,
       typeRepas:this.reservationMenuEditForm.get('entreSta').value,
       nb_eau : this.eau,
-      nb_soda: this.soda
+      nb_soda: this.soda,
+      remise : this.remisePrice
     }
   
 
