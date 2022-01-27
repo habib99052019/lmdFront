@@ -76,6 +76,8 @@ export class MenuComponent implements OnInit {
   eau = 0;
   remisePrice:any;
 
+  MenuHautSaison: any[] ;
+  MenuBasSaison: any[];
 
 
 
@@ -105,6 +107,20 @@ export class MenuComponent implements OnInit {
   
   showStaMenu = false;
   isDisabled = false;
+  showHautmenu = false;
+  showBasmenu = false;
+
+  menuType:any;
+  menuName:any;
+  NaturSaison: any[] = [
+    "Haut de saison",
+     "Bas de saison"  
+  ]
+  showHautSaison = true;
+  natureType:any;
+  showNatureSaison = true;
+   repasType:any;
+  
   constructor(
     private fb: FormBuilder, 
     public dialog: MatDialog , 
@@ -121,10 +137,14 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.getMenuReservations()
-    this.getMenus();
+  //  this.getMenus();
     this.assignComponent('cow');
-
+    this.getListNatureMenus();
+ 
+ 
+   
   }
+
 
 
   //////////////////////// Start Menu Standar Task///////////////////////////////////
@@ -151,10 +171,22 @@ export class MenuComponent implements OnInit {
   getMenus(){
     this.service.getMenuList().pipe(take(1)).subscribe((data : any)=>{
      
+      console.log('menus>>>', data);
       
      this.Menus = data.reverse();
     })
   }
+
+
+  
+getListNatureMenus(){
+  this.service.getListNatureMenus().pipe(take(1)).subscribe((data :any ) => {
+        console.log('nature list>>>', data );
+        this.MenuHautSaison = data[0];
+        this.MenuBasSaison = data[1];
+  })
+}
+
   
 
 
@@ -312,9 +344,42 @@ editCall(row) {
 
   openEditModal(row){
 
-  console.log('row from open row>>>', row);
-  
     
+  this.repasType = row.typeRepas;
+  console.log('row from open row>>>', row);
+     
+ /* if(row.menuID.description == ""){
+     if(row.typeRepas == 'petit déjeuner'){
+      this.showHautmenu = false;
+      this.showBasmenu = false;
+      this.showNatureSaison = false ;
+    }
+  }*/
+       
+     
+   
+    
+       if(row.menuID.description == 'haut'){
+        this.showNatureSaison = true;
+        this.natureType = "Haut de saison" ;
+      this.showHautmenu = true;
+      this.showBasmenu = false;
+    
+       
+    }else if(row.menuID.description == 'bas'){
+      this.showBasmenu = true;
+      this.showHautmenu = false; 
+      this.showNatureSaison = true ;
+      this.natureType = "Bas de saison" ;
+       
+    }else{
+      row.menuID.description == ''
+      this.showBasmenu = false;
+      this.showHautmenu = false; 
+      this.showNatureSaison = false ;
+    }
+  
+   
      
     this.modalData = row;
     if(this.modalData){
@@ -324,8 +389,15 @@ editCall(row) {
        this.EauPrice = this.eau
        this.sodaPrice = this.soda * 2 ;
     }
+    this.service.getMenuByDescreption(this.modalData.menuID.name,row.menuID.description).subscribe((menu :any) => {
+      console.log("menu>>>>", menu);
+      
+       this.MenuPrice = menu[0].price;
+      
+  })
 
-    if(this.modalData.menuID.name == 'Menu 1'){
+
+    /*if(this.modalData.menuID.name == 'Menu 1'){
     
       this.MenuPrice = 150
     
@@ -343,7 +415,7 @@ editCall(row) {
        
     }else{
        this.MenuPrice = 20;
-    }
+    }*/
     this.service.getMenuByName(this.modalData.menuID.name).subscribe((menu :any) => {
     
       this.menuID = menu._id;
@@ -396,10 +468,53 @@ editCall(row) {
   }
   
 
+  showNatureSaisonType(event:MatSelectChange){
+    console.log('event saison>>>>', event.value );
+    if(event.value == 'Bas de saison'){
+      this.showHautmenu = false ;
+      this.showBasmenu = true;
+      this.MenuPrice = 0;
+      this.soda = 0;
+      this.eau = 0;
+      this.EauPrice = 0 ;
+      this.sodaPrice = 0;
+      this.PriceTotal = 0;
+      this.remisePrice = 0;
+    }else{
+      this.showHautmenu = true ;
+      this.showBasmenu = false;
+      this.MenuPrice = 0;
+      this.soda = 0;
+      this.eau = 0;
+      this.EauPrice = 0 ;
+      this.sodaPrice = 0;
+      this.PriceTotal = 0;
+      this.remisePrice = 0;
+    }
+  }
 
-  showMenu(event : MatSelectChange){
+
+
+
+  showMenu(event:MatSelectChange){
+    console.log('event>>>>', this.reservationMenuEditForm.get('menuID').value );
+    
    
-    if(event.value == 'Menu 1'){
+    this.service.getMenuByName(event.value).pipe(take(1)).subscribe((menu :any) => {
+      console.log("menu >>>", menu.price);
+      this.MenuPrice = menu.price;
+      this.menuID = menu._id;
+      this.calculTotal(this.number_geuste , this.MenuPrice );
+      this.soda = 0;
+      this.eau = 0;
+      this.EauPrice = 0 ;
+      this.sodaPrice = 0;
+    
+      
+  })
+
+
+  /*  if(event.value == 'Menu 1'){
          this.entree = "Trio de salade";
          this.dessert = "Assiette de fruits de saison";
          this.suite = "Agneau à la gargoulette";
@@ -470,7 +585,7 @@ editCall(row) {
     }else{
       this.showMenuDetails = false ;
       this.MenuPrice2 = true;
-    }
+    }*/
 
 
 
@@ -490,8 +605,9 @@ editCall(row) {
       this.menuSta = false;
       this.isDisabled= true;
       this.showMenuDetails = false;
-   
-    
+      this.showNatureSaison = false;
+      this.showHautmenu = false ;
+      this.showBasmenu = false;
       this.PriceTotal =  +this.number_geuste * +this.ptDejPrice 
       this.remisePrice = this.PriceTotal;
      
@@ -501,15 +617,19 @@ editCall(row) {
       this.sodaPrice = 0;
       const value = 'Petit déjeuner';
       this.service.getMenuByName(value).pipe(take(1)).subscribe((menu :any) => {
-    
+       console.log('menu id>>>',menu._id);
+       
         this.menuID = menu._id;
         
-    })
+    }
+    )
+    
     }else{
       this.isDisabled= false;
       this.MenuPrice1 = true;
       this.MenuPrice2 = false;
-      this.PriceTotal =  +this.number_geuste * +this.MenuPrice
+      // this.PriceTotal =  +this.number_geuste * +this.MenuPrice
+       this.PriceTotal = 0;
       this.remisePrice = this.PriceTotal;
       this.menuPdj = false;
       this.menuSta = true;
@@ -517,7 +637,10 @@ editCall(row) {
       this.eau = 0;
       this.EauPrice = 0 ;
       this.sodaPrice = 0;
-
+      this.showNatureSaison = true;
+      this.showHautmenu = true ;
+      this.MenuPrice = 0;
+      
     }
     
   }
@@ -605,6 +728,7 @@ editCall(row) {
 
 updateReservation(){
 
+console.log('entresta>>>>',this.reservationMenuEditForm.get('entreSta').value);
 
   if(this.reservationMenuEditForm.get('entreSta').value === 'petit déjeuner'){
     const ObjectToEdit = {
@@ -612,7 +736,7 @@ updateReservation(){
       type:"menu",
       first_name :  this.reservationMenuEditForm.get('first_name').value,
       last_name : this.reservationMenuEditForm.get('last_name').value ,
-      menuID :`${this.menuID }`,
+      menuID :'61e1579908210d3cd49bb63f',
       number_phone: this.reservationMenuEditForm.get('number_phone').value ,
       number_heure: this.reservationMenuEditForm.get('number_heure').value ,
       startDate : formatDate(this.reservationMenuEditForm.get('startDate').value, 'yyyy-MM-dd', 'en'),

@@ -101,7 +101,20 @@ export class ReservationServiceService {
     return this.http.get(this.ApiPath + 'plats')
   }
 
+/* get room totale price  */
   getRoomTotalPrice(id){
     return this.http.get(this.ApiPath + 'reservations/total/' + id);
   }
+
+ /* get list of nature menus haut et bas saison */
+
+ getListNatureMenus(){
+  return this.http.get(this.ApiPath + 'menus/nature');
+}
+
+/* get one menu haut or bas saison */
+getMenuByDescreption(name,saison){
+  return this.http.get(this.ApiPath + '/menus/desc?name=' + name + '&saison=' + saison)
+}
+
 }

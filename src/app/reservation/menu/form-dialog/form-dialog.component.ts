@@ -314,6 +314,31 @@ BoissonsList: any[] = [
     "diner"
   ]
 
+  NaturSaison: any[] = [
+    "Haut de saison",
+     "Bas de saison"  
+  ]
+
+  
+  /*MenuHautSaison: any[] = [
+   {name:"Menu1", price: 70},
+   {name:"Menu2", price: 70},
+   {name:"Menu3", price: 70},
+   {name:"Menu4", price: 70},
+   {name:"Enfant", price: 35}
+  ]*/
+
+  MenuHautSaison: any[] ;
+  MenuBasSaison: any[];
+
+ /* MenuBasSaison: any[] = [
+    {name:"Menu1", price: 60},
+    {name:"Menu2", price: 60},
+    {name:"Menu3", price: 60},
+    {name:"Menu4", price: 60},
+    {name:"Enfant", price: 28}
+   ]*/
+
   soda = 0;
   eau = 0;
   ptDejPrice = 20;
@@ -325,8 +350,10 @@ BoissonsList: any[] = [
   addTwoMenu2 = false;
   menuID:any;
   remisePrice:any;
-
-
+  showNatureSaison = true;
+  showHautSaison = false;
+  showBasSaison = false;
+  nature:any;
   constructor(
     private service : ReservationServiceService,
     public dialogRef: MatDialogRef<FormDialogComponent>,
@@ -341,7 +368,13 @@ BoissonsList: any[] = [
 
   ngOnInit() {
 
-    this.getMenus();
+   // this.getMenus();
+    this.getListNatureMenus();
+    this.showNatureSaison = true;
+    this.menuPdj = false;
+    this.menuSta = true;
+    this.MenuPrice2 = false;
+    this.MenuPrice1 = true;
   }
 
 
@@ -353,6 +386,15 @@ getMenus(){
      this.Menus = data.reverse();
     })
   }
+
+getListNatureMenus(){
+  this.service.getListNatureMenus().pipe(take(1)).subscribe((data :any ) => {
+        console.log('nature list>>>', data );
+        this.MenuHautSaison = data[0];
+        this.MenuBasSaison = data[1];
+  })
+}
+
 
 
 changePersoView(){
@@ -382,24 +424,75 @@ getErrorMessage() {
 }
   
 
+showNatureSaisonType(event:MatSelectChange){
+  this.nature = event.value;
+  if(event.value === 'Haut de saison'){
+      this.showHautSaison  = true;
+      this.showBasSaison = false;
+  }else{
+    this.showHautSaison  = false;
+    this.showBasSaison = true;
+  }
+}
+
+selectHautSaisonType(event:MatSelectChange){
+  console.log('haut saison>>>', event.value);
+  if (event.value.price){
+    this.MenuPrice = event.value.price
+  }
+  this.reservationMenuForm.get('menuID').setValue(event.value._id) 
+  this.calculTotal(this.reservationMenuForm.get('number_guests').value  , this.MenuPrice );
+}
+
+selectBasSaisonType(event:MatSelectChange){
+  console.log('haut saison>>>', event.value);
+  if (event.value.price){
+    this.MenuPrice = event.value.price
+  }
+  this.reservationMenuForm.get('menuID').setValue(event.value._id) 
+  this.calculTotal(this.reservationMenuForm.get('number_guests').value  , this.MenuPrice );
+}
+
+
 showMenuStandard(event:MatSelectChange){
 
+console.log('event>>>>',event.value );
 
   if(event.value === 'petit déjeuner'){
     this.MenuPrice2 = true;
     this.MenuPrice1 = false;
     this.menuPdj = true;
     this.menuSta = false;
-    
-
+    this.soda = 0;
+    this.eau = 0 ;
+    this.EauPrice = 0;
+    this.sodaPrice = 0 ;
+    this.showHautSaison = false;
+    this.showNatureSaison = false;
+    this.showBasSaison = false;
     this.PriceTotal =  this.reservationMenuForm.get('number_guests').value * this.ptDejPrice ;
     this.remisePrice = this.PriceTotal;
-    const value = 'Petit déjeuner';
+    const value = 'Petit déjeune';
     this.service.getMenuByName(value).pipe(take(1)).subscribe((menu :any) => {
-  
+      console.log('menu id>>>>',menu);
       this.menuID = menu._id;
       
+      
+      
   })
+  }else{
+    this.PriceTotal = 0;
+    this.remisePrice = 0;
+    this.soda = 0;
+    this.eau = 0 ;
+    this.EauPrice = 0;
+    this.sodaPrice = 0 ;
+    this.MenuPrice = 0;
+    this.showNatureSaison = true;
+    this.menuPdj = false;
+    this.menuSta = true;
+    this.MenuPrice2 = false;
+    this.MenuPrice1 = true;
   }
   
 }
@@ -503,6 +596,9 @@ showMenu(event : MatSelectChange){
       remise:[],
       entreSta:['déjeuner'],
       entrePerso:['déjeuner'],
+      nature:[],
+      haut:[],
+      bas:[],
       roomName:[],
       entree_froides:[],
       entree_chaudes:[],
@@ -688,6 +784,7 @@ if(event.source.ngControl.name == 'entree_froides'){
 
   confirmAdd(): void {
     
+   console.log('nature>>>',`${this.menuID }`);
    
  
   if(this.menuPdj){
@@ -754,10 +851,12 @@ if(event.source.ngControl.name == 'entree_froides'){
       entreSta:this.reservationMenuForm.get('entreSta').value,
       nb_eau : this.eau,
       nb_soda: this.soda,
-      remise : this.remisePrice
+      remise : this.remisePrice,
+      
+      
      }
      
-  
+     console.log('reservationForm >>>',reservationForm );
      
      this.service.addMenuReservation(reservationForm).subscribe((data : any) => {
     
