@@ -342,7 +342,7 @@ handleEventClick(clickInfo: EventClickArg) {
       else if(clickInfo.event.extendedProps.roomID.SINGLE_BAS_SAISON_PRICE){
           this.roomType = "single"
       }
-      else {
+      else if(clickInfo.event.extendedProps.roomID.SINGLE_HAUTE_SAISON_PRICE) {
           this.roomType = "single"
       }
      

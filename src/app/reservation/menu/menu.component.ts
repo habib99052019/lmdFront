@@ -597,7 +597,7 @@ editCall(row) {
 
   showMenuStandard(event:MatSelectChange){
   
-    console.log('show menu>>>',this.reservationMenuEditForm.value.remise);
+    console.log('show menu>>>',event.value);
     
     if(event.value === 'petit déjeuner'){
       this.MenuPrice2 = true;
@@ -616,9 +616,9 @@ editCall(row) {
       this.eau = 0;
       this.EauPrice = 0 ;
       this.sodaPrice = 0;
-      const value = 'Petit déjeuner';
+      const value = 'Petit déjeune';
       this.service.getMenuByName(value).pipe(take(1)).subscribe((menu :any) => {
-       console.log('menu id>>>',menu._id);
+       console.log('menu id>>>',menu);
        
         this.menuID = menu._id;
         
@@ -729,7 +729,7 @@ editCall(row) {
 
 updateReservation(){
 
-console.log('entresta>>>>',this.reservationMenuEditForm.get('entreSta').value);
+console.log('entresta>>>>',`${this.menuID }`);
 
   if(this.reservationMenuEditForm.get('entreSta').value === 'petit déjeuner'){
     const ObjectToEdit = {
@@ -737,7 +737,7 @@ console.log('entresta>>>>',this.reservationMenuEditForm.get('entreSta').value);
       type:"menu",
       first_name :  this.reservationMenuEditForm.get('first_name').value,
       last_name : this.reservationMenuEditForm.get('last_name').value ,
-      menuID :'61e1579908210d3cd49bb63f',
+      menuID :`${this.menuID }`,
       number_phone: this.reservationMenuEditForm.get('number_phone').value ,
       number_heure: this.reservationMenuEditForm.get('number_heure').value ,
       startDate : formatDate(this.reservationMenuEditForm.get('startDate').value, 'yyyy-MM-dd', 'en'),
