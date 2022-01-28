@@ -350,6 +350,7 @@ selectTotalPrice($event:any){
 }
 
 initTarifType(){
+ 
   
  
   
@@ -357,6 +358,7 @@ initTarifType(){
 
     if(this.title === 'Ruppia')
         {
+         
           if (this.roomTypeSelected == '1' &&  this.tarifType === 'bas de saison'){
               this.RoomPrice = 245;
               this.roomType = '1'
@@ -632,7 +634,8 @@ initTarifType(){
     }
 
     if(this.title  === 'Cicogne'){
-      if (this.roomType == '1' &&  this.tarifType === 'bas de saison'){
+      
+      if (this.roomTypeSelected == '1' &&  this.tarifType === 'bas de saison'){
         this.RoomPrice = 265;
         this.roomType = '1'
         this.SINGLE_BAS_SAISON = true;
@@ -641,7 +644,7 @@ initTarifType(){
         this.DOUBLE_HAUTE_SAISON = false;
 
     } 
-    else if(this.roomType == '2' &&  this.tarifType === 'bas de saison'){
+    else if(this.roomTypeSelected == '2' &&  this.tarifType === 'bas de saison'){
         this.RoomPrice = 335;
         this.roomType = '2'
         this.DOUBLE_BAS_SAISON = true;
@@ -650,7 +653,7 @@ initTarifType(){
         this.DOUBLE_HAUTE_SAISON = false;
     }
       //cas single et haute de saison
-      else if(this.roomType == '1' &&  this.tarifType === 'haut de saison'){
+      else if(this.roomTypeSelected == '1' &&  this.tarifType === 'haut de saison'){
         this.RoomPrice = 335;
         this.roomType = '1'
         this.DOUBLE_BAS_SAISON = false;

@@ -65,7 +65,8 @@ export class MenuComponent implements OnInit {
     "diner"
   ]
 
-  defaultValue ="petit déjeune"
+  defaultValue ="petit déjeune";
+  ptdejprice = 20;
 
   number_geuste:any;
   isUnderline = true;
