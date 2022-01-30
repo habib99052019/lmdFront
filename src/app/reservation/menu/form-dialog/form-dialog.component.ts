@@ -472,6 +472,7 @@ console.log('event>>>>',event.value );
     this.showBasSaison = false;
     this.PriceTotal =  this.reservationMenuForm.get('number_guests').value * this.ptDejPrice ;
     this.remisePrice = this.PriceTotal;
+    this.MenuPrice = this.MenuPrice ;
     const value = 'Petit déjeune';
     this.service.getMenuByName(value).pipe(take(1)).subscribe((menu :any) => {
       console.log('menu id>>>>',menu);
@@ -493,6 +494,7 @@ console.log('event>>>>',event.value );
     this.menuSta = true;
     this.MenuPrice2 = false;
     this.MenuPrice1 = true;
+    this.MenuPrice = this.MenuPrice ;
   }
   
 }
@@ -590,35 +592,26 @@ showMenu(event : MatSelectChange){
       type : [ 'menu' ],
       first_name : ['' , Validators.required],
       last_name : ['' , Validators.required],
-      first:['' , Validators.required],
       number_phone:['',Validators.required],
       number_heure:['13:00',Validators.required],
       remise:[],
       entreSta:['déjeuner'],
-      entrePerso:['déjeuner'],
       nature:[],
       haut:[],
       bas:[],
-      roomName:[],
-      entree_froides:[],
-      entree_chaudes:[],
-      nos_specialite:[],
-      boissons:[],
-      pates:[],
-      desserts:[],
-      roomID : [''],
       menuID : [''],
       startDate : ['' , Validators.required],
       number_guests : [1,Validators.required],
-      client_ID : ['',Validators.required],
-      number_identity_document : this.randomKey,
       comment : [''],
       status : ['COMMANDE'],
       extra : [''],
-      price : [''],
+      
     });
   
   }
+
+
+
    
   
   showRoom(event : MatSelectChange){
@@ -785,7 +778,15 @@ if(event.source.ngControl.name == 'entree_froides'){
   confirmAdd(): void {
     
    console.log('nature>>>',`${this.menuID }`);
-   
+   if (!this.reservationMenuForm.valid) {
+    this.showNotification(
+      'snackbar-danger',
+       'Formulaire non valide',
+      'top',
+      'end'
+    );
+    return;
+  }
  
   if(this.menuPdj){
         

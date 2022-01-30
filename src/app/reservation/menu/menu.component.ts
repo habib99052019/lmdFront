@@ -122,6 +122,9 @@ export class MenuComponent implements OnInit {
   showNatureSaison = true;
    repasType:any;
   
+  ptdejunePrice = 0 ;
+
+
   constructor(
     private fb: FormBuilder, 
     public dialog: MatDialog , 
@@ -348,14 +351,14 @@ editCall(row) {
     
   this.repasType = row.typeRepas;
   console.log('row from open row>>>', row);
-     
- /* if(row.menuID.description == ""){
-     if(row.typeRepas == 'petit déjeuner'){
-      this.showHautmenu = false;
-      this.showBasmenu = false;
-      this.showNatureSaison = false ;
-    }
-  }*/
+  if(this.repasType = 'déjeuner'){
+       this.MenuPrice1 = true;
+       this.MenuPrice2 = false ;
+  }else{
+     this.MenuPrice1 = false;
+     this.MenuPrice2 = true ;
+  }
+ 
        
      
    
@@ -600,6 +603,7 @@ editCall(row) {
     console.log('show menu>>>',event.value);
     
     if(event.value === 'petit déjeuner'){
+    
       this.MenuPrice2 = true;
       this.MenuPrice1 = false;
       this.menuPdj = true;
@@ -611,7 +615,7 @@ editCall(row) {
       this.showBasmenu = false;
       this.PriceTotal =  +this.number_geuste * +this.ptDejPrice 
       this.remisePrice = this.PriceTotal;
-     
+      this.ptdejunePrice = 20;
       this.soda = 0;
       this.eau = 0;
       this.EauPrice = 0 ;
@@ -765,7 +769,7 @@ console.log('entresta>>>>',`${this.menuID }`);
       //this.dialog.closeAll()
       this.dialogRef.closeAll()
       this.getMenuReservations();
-  
+    
     } )
   }else{
       

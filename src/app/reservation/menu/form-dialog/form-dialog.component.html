@@ -27,7 +27,7 @@
                 <div class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
                         <mat-label>Nom</mat-label>
-                        <input matInput formControlName="first_name">
+                        <input matInput formControlName="first_name" required >
                         <mat-icon matSuffix>face</mat-icon>
                         <mat-error *ngIf="reservationMenuForm.get('first_name').hasError('required')">
                             Nom est obligatoire
@@ -37,7 +37,7 @@
                 <div class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
                         <mat-label>Prenom</mat-label>
-                        <input matInput formControlName="last_name">
+                        <input matInput formControlName="last_name" required >
                         <mat-icon matSuffix>face</mat-icon>
                         <mat-error *ngIf="reservationMenuForm.get('last_name').hasError('required')">
                             Prenom est obligatoire
@@ -47,7 +47,7 @@
                 <div class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
                         <mat-label>Numéro de téléphone</mat-label>
-                        <input matInput formControlName="number_phone">
+                        <input matInput formControlName="number_phone" required >
                         <mat-icon matSuffix>phone</mat-icon>
                         <mat-error *ngIf="reservationMenuForm.get('number_phone').hasError('required')">
                             Numéro de téléphone est obligatoire
@@ -147,7 +147,7 @@
                 <div class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
                         <mat-label>Date prevue</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="startDate" [min]="today">
+                        <input matInput [matDatepicker]="picker" formControlName="startDate" [min]="today"  required>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error *ngIf="reservationMenuForm.get('startDate').hasError('required')">
