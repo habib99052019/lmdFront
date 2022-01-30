@@ -814,6 +814,9 @@ addNewReservation(){
     remark:this.reservationChambreForm.get('remarque').value
   }
 
+  console.log('reservation input>>>', reservation);
+  
+
   this._reservationService.addReservation(reservation).subscribe((data : any) => {
   
     

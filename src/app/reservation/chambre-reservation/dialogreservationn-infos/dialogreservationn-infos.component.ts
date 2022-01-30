@@ -251,12 +251,13 @@ constructor(
           if(this.data['roomType'] === "single"){
             this.roomTypeSelected = 1;
             this.roomName = 'single'
-          }else {
+          }else if(this.data['roomType'] === "double") {
           this.roomTypeSelected = 2;
           this.roomName = 'double'
           }
           
-          
+          console.log('room type constracture>>>', this.roomTypeSelected);
+          this.roomType = this.roomTypeSelected;
       }
 
 ngOnInit(): void {
@@ -284,6 +285,11 @@ ngOnInit(): void {
     this.number_phone = this.data['number_phone']
     this.priceWithRemise =  this.data['price'] ;
     this.roomRemiseTotal = this.data['remiseTotal']
+
+    this.data['SINGLE_BAS_SAISON'] 
+    this.data['DOUBLE_BAS_SAISON'] 
+    this.data['SINGLE_HAUTE_SAISON'] 
+    this.data['DOUBLE_HAUTE_SAISON'] 
    // this.roomPriceTotal = +this.data['priceTotal'] + +this.data['price'] 
     
   // this.roomPriceTotal = 2000
@@ -348,6 +354,13 @@ selectTotalPrice($event:any){
   console.log('select totale price >>>', $event);
   
 }
+
+
+selectRoomNatureType(event:MatSelectChange){
+    console.log('event value>>>',event);
+    
+}
+
 
 initTarifType(){
  

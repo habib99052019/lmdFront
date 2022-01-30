@@ -117,7 +117,7 @@
                           </div>
                            
                           <div class="col-md-3 col-sm-6 text-center mt-3">
-                               <mat-radio-group   labelPosition="after"    [(ngModel)]="roomTypeSelected" name="roomTypeSelected"    color="primary">
+                               <mat-radio-group   labelPosition="after"    [(ngModel)]="roomTypeSelected" name="roomTypeSelected"  (selectionChange)="selectRoomNatureType($event)"   color="primary">
                                   <mat-radio-button [value]="1"  (change)="selectRoomType($event)" >Single</mat-radio-button>
                                   <mat-radio-button [value]="2"  (change)="selectRoomType($event)"   >Double</mat-radio-button>
                                  </mat-radio-group>
