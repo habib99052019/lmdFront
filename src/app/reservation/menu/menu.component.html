@@ -230,6 +230,15 @@
         </div>
 
            <div class="row">
+
+                    <div class="col-lg-3 col-md-3">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" required>
+                            <mat-icon matSuffix>email</mat-icon>
+                        </mat-form-field>
+                    </div>
+
                 <div   *ngIf="showNatureSaison"      class="col">
                     <form>
                          <mat-form-field class="example-full-width mb-1" appearance="outline">

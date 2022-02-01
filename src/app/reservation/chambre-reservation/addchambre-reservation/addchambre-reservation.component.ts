@@ -262,6 +262,7 @@ createContactForm(): FormGroup {
       type : [ 'room' ],
       first_name : [ '' , Validators.required],
       last_name : ['' , Validators.required],
+      email : ['' , Validators.required],
       taarifType:['' , Validators.required],
       roomType:['' , Validators.required],
       roomID : ['' ],
@@ -763,7 +764,8 @@ verifyPriceTosent(){
 
 addNewReservation(){
 
-  console.log('remise>>>',this.reservationChambreForm.get('remise').value);
+  
+  
   
   
  if(this.datetosent != undefined){
@@ -777,9 +779,10 @@ addNewReservation(){
 
  const realEnd = formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en')+'T11:00:00';
   
-  
+ console.log('start et end>>>',this.reservationChambreForm.get('email').value);
   
   if (this.end == ''){
+    console.log('test');
     this.numberPersons(this.reservationChambreForm.get('number_adulte').value,this.reservationChambreForm.get('number_children').value)
     this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
     this.verifyPriceTosent()
@@ -811,14 +814,16 @@ addNewReservation(){
     extra : this.reservationChambreForm.get('extra').value,
     price : this.priceTotal,
     tarifType:this.taarifType,
-    remark:this.reservationChambreForm.get('remarque').value
+    remark:this.reservationChambreForm.get('remarque').value,
+    email: this.reservationChambreForm.get('email').value,
   }
 
-  console.log('reservation input>>>', reservation);
+ 
   
 
   this._reservationService.addReservation(reservation).subscribe((data : any) => {
-  
+   console.log('data>>>',data);
+   
     
     this.showNotification(
       'snackbar-success',

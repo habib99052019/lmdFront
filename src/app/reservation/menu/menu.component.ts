@@ -175,7 +175,7 @@ export class MenuComponent implements OnInit {
   getMenus(){
     this.service.getMenuList().pipe(take(1)).subscribe((data : any)=>{
      
-      console.log('menus>>>', data);
+   
       
      this.Menus = data.reverse();
     })
@@ -185,7 +185,7 @@ export class MenuComponent implements OnInit {
   
 getListNatureMenus(){
   this.service.getListNatureMenus().pipe(take(1)).subscribe((data :any ) => {
-        console.log('nature list>>>', data );
+       
         this.MenuHautSaison = data[0];
         this.MenuBasSaison = data[1];
   })
@@ -346,11 +346,13 @@ editCall(row) {
   }
 
 
-  openEditModal(row){
 
+  openEditModal(row){
+  console.log('row>>>',row);
+  
     
   this.repasType = row.typeRepas;
-  console.log('row from open row>>>', row);
+ 
   if(this.repasType = 'déjeuner'){
        this.MenuPrice1 = true;
        this.MenuPrice2 = false ;
@@ -359,9 +361,7 @@ editCall(row) {
      this.MenuPrice2 = true ;
   }
  
-       
      
-   
     
        if(row.menuID.description == 'haut'){
         this.showNatureSaison = true;
@@ -383,8 +383,7 @@ editCall(row) {
       this.showNatureSaison = false ;
     }
   
-   
-     
+  
     this.modalData = row;
     if(this.modalData){
        this.number_geuste = this.modalData.number_guests;
@@ -394,32 +393,12 @@ editCall(row) {
        this.sodaPrice = this.soda * 2 ;
     }
     this.service.getMenuByDescreption(this.modalData.menuID.name,row.menuID.description).subscribe((menu :any) => {
-      console.log("menu>>>>", menu);
+     
       
        this.MenuPrice = menu[0].price;
       
   })
 
-
-    /*if(this.modalData.menuID.name == 'Menu 1'){
-    
-      this.MenuPrice = 150
-    
-    }else if(this.modalData.menuID.name == 'Menu 2'){
-     
-        this.MenuPrice = 80
-   
-    }else if(this.modalData.menuID.name == 'Menu 3'){
-       
-        this.MenuPrice = 90
-       
-    }else if(this.modalData.menuID.name == 'Menu 4'){
-       
-        this.MenuPrice = 120
-       
-    }else{
-       this.MenuPrice = 20;
-    }*/
     this.service.getMenuByName(this.modalData.menuID.name).subscribe((menu :any) => {
     
       this.menuID = menu._id;
@@ -427,10 +406,6 @@ editCall(row) {
   })
 
 
- 
-     
-
-   
     this.PriceTotal = +this.modalData.price;
     this.remisePrice = +this.modalData.remise;
     this.reservationMenuEditForm = this.fb.group({
@@ -448,6 +423,7 @@ editCall(row) {
       price : [this.modalData.price , Validators.required],
       entreSta : [this.modalData.typeRepas],
       remise : [this.modalData.remise ],
+      email: [this.modalData.clientID.email, Validators.required]
     });
 
     this.dialog.open( this.editModal, {
@@ -473,7 +449,7 @@ editCall(row) {
   
 
   showNatureSaisonType(event:MatSelectChange){
-    console.log('event saison>>>>', event.value );
+   
     if(event.value == 'Bas de saison'){
       this.showHautmenu = false ;
       this.showBasmenu = true;
@@ -501,11 +477,11 @@ editCall(row) {
 
 
   showMenu(event:MatSelectChange){
-    console.log('event>>>>', this.reservationMenuEditForm.get('menuID').value );
+    
     
    
     this.service.getMenuByName(event.value).pipe(take(1)).subscribe((menu :any) => {
-      console.log("menu >>>", menu.price);
+    
       this.MenuPrice = menu.price;
       this.menuID = menu._id;
       this.calculTotal(this.number_geuste , this.MenuPrice );
@@ -600,7 +576,7 @@ editCall(row) {
 
   showMenuStandard(event:MatSelectChange){
   
-    console.log('show menu>>>',event.value);
+   
     
     if(event.value === 'petit déjeuner'){
     
@@ -622,7 +598,7 @@ editCall(row) {
       this.sodaPrice = 0;
       const value = 'Petit déjeune';
       this.service.getMenuByName(value).pipe(take(1)).subscribe((menu :any) => {
-       console.log('menu id>>>',menu);
+      
        
         this.menuID = menu._id;
         
@@ -733,7 +709,7 @@ editCall(row) {
 
 updateReservation(){
 
-console.log('entresta>>>>',`${this.menuID }`);
+
 
   if(this.reservationMenuEditForm.get('entreSta').value === 'petit déjeuner'){
     const ObjectToEdit = {
@@ -752,7 +728,9 @@ console.log('entresta>>>>',`${this.menuID }`);
       typeRepas:this.reservationMenuEditForm.get('entreSta').value,
       nb_eau : this.eau,
       nb_soda: this.soda,
-      remise : this.remisePrice
+      remise : this.remisePrice,
+      email: this.reservationMenuEditForm.get('email').value
+
     }
   
     
@@ -790,7 +768,8 @@ console.log('entresta>>>>',`${this.menuID }`);
       typeRepas:this.reservationMenuEditForm.get('entreSta').value,
       nb_eau : this.eau,
       nb_soda: this.soda,
-      remise : this.remisePrice
+      remise : this.remisePrice,
+      email: this.reservationMenuEditForm.get('email').value
     }
   
 

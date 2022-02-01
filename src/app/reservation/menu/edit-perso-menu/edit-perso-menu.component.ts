@@ -150,11 +150,11 @@ showNotification(colorName, text, placementFrom, placementAlign) {
 
 openEditModal(row){
 
-  console.log('row>>>',row);
+
   
   
   if(row.listmenuID[1] && row.listmenuID[0]){
-    console.log('row1>>>',row);
+  
     const dialogRef = this.dialog.open(EditFormDialogComponent, {
       disableClose: true, 
       width:'1000px',
@@ -270,7 +270,7 @@ openEditModal(row){
     })
      
   }else{
-    console.log('row2>>>',row);
+   
     const dialogRef = this.dialog.open(EditFormDialogComponent, {
 
       width:'1000px',

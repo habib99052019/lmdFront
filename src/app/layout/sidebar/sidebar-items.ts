@@ -73,5 +73,34 @@ export const ROUTES: RouteInfo[] = [
       },*/
     ],
   },
+ 
+ /* {
+    path: '',
+    title: 'Stock',
+    moduleName: 'stock',
+    iconType: 'material-icons-two-tone',
+    icon: 'book',
+    class: 'menu-toggle',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    submenu: [
+      
+        {
+          path: '/reservation/test',
+          title: 'test',//new future 
+          moduleName: 'stock',
+          iconType: '',
+          icon: '',
+          class: 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          submenu: [],
+        },
+      
+     
+    ],
+  },*/
   
 ];

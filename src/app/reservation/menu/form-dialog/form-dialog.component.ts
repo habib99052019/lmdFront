@@ -389,7 +389,7 @@ getMenus(){
 
 getListNatureMenus(){
   this.service.getListNatureMenus().pipe(take(1)).subscribe((data :any ) => {
-        console.log('nature list>>>', data );
+       
         this.MenuHautSaison = data[0];
         this.MenuBasSaison = data[1];
   })
@@ -436,7 +436,7 @@ showNatureSaisonType(event:MatSelectChange){
 }
 
 selectHautSaisonType(event:MatSelectChange){
-  console.log('haut saison>>>', event.value);
+
   if (event.value.price){
     this.MenuPrice = event.value.price
   }
@@ -445,7 +445,7 @@ selectHautSaisonType(event:MatSelectChange){
 }
 
 selectBasSaisonType(event:MatSelectChange){
-  console.log('haut saison>>>', event.value);
+ 
   if (event.value.price){
     this.MenuPrice = event.value.price
   }
@@ -456,7 +456,7 @@ selectBasSaisonType(event:MatSelectChange){
 
 showMenuStandard(event:MatSelectChange){
 
-console.log('event>>>>',event.value );
+
 
   if(event.value === 'petit déjeuner'){
     this.MenuPrice2 = true;
@@ -472,10 +472,10 @@ console.log('event>>>>',event.value );
     this.showBasSaison = false;
     this.PriceTotal =  this.reservationMenuForm.get('number_guests').value * this.ptDejPrice ;
     this.remisePrice = this.PriceTotal;
-    this.MenuPrice = this.MenuPrice ;
+  
     const value = 'Petit déjeune';
     this.service.getMenuByName(value).pipe(take(1)).subscribe((menu :any) => {
-      console.log('menu id>>>>',menu);
+      
       this.menuID = menu._id;
       
       
@@ -494,7 +494,7 @@ console.log('event>>>>',event.value );
     this.menuSta = true;
     this.MenuPrice2 = false;
     this.MenuPrice1 = true;
-    this.MenuPrice = this.MenuPrice ;
+  
   }
   
 }
@@ -592,6 +592,7 @@ showMenu(event : MatSelectChange){
       type : [ 'menu' ],
       first_name : ['' , Validators.required],
       last_name : ['' , Validators.required],
+      email : ['' , Validators.required],
       number_phone:['',Validators.required],
       number_heure:['13:00',Validators.required],
       remise:[],
@@ -777,7 +778,7 @@ if(event.source.ngControl.name == 'entree_froides'){
 
   confirmAdd(): void {
     
-   console.log('nature>>>',`${this.menuID }`);
+  
    if (!this.reservationMenuForm.valid) {
     this.showNotification(
       'snackbar-danger',
@@ -806,7 +807,8 @@ if(event.source.ngControl.name == 'entree_froides'){
       entreSta:this.reservationMenuForm.get('entreSta').value,
       nb_eau : this.eau,
       nb_soda: this.soda,
-      remise : this.remisePrice
+      remise : this.remisePrice,
+      email: this.reservationMenuForm.get('email').value
      }
      
    
@@ -853,11 +855,11 @@ if(event.source.ngControl.name == 'entree_froides'){
       nb_eau : this.eau,
       nb_soda: this.soda,
       remise : this.remisePrice,
-      
+      email: this.reservationMenuForm.get('email').value
       
      }
      
-     console.log('reservationForm >>>',reservationForm );
+     
      
      this.service.addMenuReservation(reservationForm).subscribe((data : any) => {
     

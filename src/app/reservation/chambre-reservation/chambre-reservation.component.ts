@@ -330,7 +330,8 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
 
 handleEventClick(clickInfo: EventClickArg) {
 
-  console.log('clickInfo>>>', clickInfo.event.extendedProps);
+  console.log('info>>>',clickInfo.event.extendedProps);
+  
   
   
       if(clickInfo.event.extendedProps.roomID.DOUBLE_BAS_SAISON_PRICE){
@@ -384,6 +385,7 @@ handleEventClick(clickInfo: EventClickArg) {
           number_phone:clickInfo.event.extendedProps.clientID.number_phone,
           priceTotal: clickInfo.event.extendedProps.priceTotal,
           remiseTotal: clickInfo.event.extendedProps.remiseTotal,
+          email:clickInfo.event.extendedProps.clientID.email
         //  menu1:clickInfo.event.extendedProps.listmenuID[0].typeRepas,
          // menu2:clickInfo.event.extendedProps.listmenuID[1].typeRepas
         }
@@ -392,7 +394,7 @@ handleEventClick(clickInfo: EventClickArg) {
     
         
        dialogRef.afterClosed().subscribe(result => {
-          console.log('result>>>', result);
+        
           
           const calendarApi = this.calendarComponent.getApi();
           calendarApi.next(); // call a method on the Calendar object
@@ -449,7 +451,8 @@ handleEventClick(clickInfo: EventClickArg) {
            tarifType:result.tarifType,
            remark :result.remark,
            number_cin:result.number_cin,
-           remiseTotal:result.remiseTotal
+           remiseTotal:result.remiseTotal,
+           email:result.email
 
 
          }

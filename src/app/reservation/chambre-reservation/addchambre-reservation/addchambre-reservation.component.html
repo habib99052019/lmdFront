@@ -97,6 +97,14 @@
                                 <div class="row">
                                     <div class="col">
                                         <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Email</mat-label>
+                                            <input matInput formControlName="email" required>
+                                            <mat-icon matSuffix>email</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col">
+                                        <mat-form-field class="example-full-width" appearance="outline">
                                             <mat-label>Tarifs</mat-label>
                                             <mat-select formControlName="taarifType" required (selectionChange)="selectTaarifType($event)"   (selectionChange)="showMenu($event)"      >
                                                 <mat-option [value]="'bas de saison'">
