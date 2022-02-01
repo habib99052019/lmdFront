@@ -118,8 +118,8 @@
                                     </div>
                                     <div class="col-md-3 col-sm-12 text-center mt-3">
                                         <mat-radio-group formControlName="roomType" color="primary">
-                                            <mat-radio-button value="single" (change)="selectRoomType($event)">Single</mat-radio-button>
-                                            <mat-radio-button value="double" (change)="selectRoomType($event)">Double</mat-radio-button>
+                                            <mat-radio-button  *ngIf="showSingle"   value="single" (change)="selectRoomType($event)">Single</mat-radio-button>
+                                            <mat-radio-button  *ngIf="showDouble"  value="double" (change)="selectRoomType($event)">Double</mat-radio-button>
                                         </mat-radio-group>
                                     </div>
                                     <div class="col" id="my_div">

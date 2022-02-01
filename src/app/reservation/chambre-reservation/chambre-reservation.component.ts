@@ -330,7 +330,7 @@ getEventApi(info:any,successCallback:any, failureCallback:any, src:any){
 
 handleEventClick(clickInfo: EventClickArg) {
 
-  console.log('info>>>',clickInfo.event.extendedProps);
+  
   
   
   

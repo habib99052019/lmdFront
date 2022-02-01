@@ -215,6 +215,8 @@ date:any;
 startDate:any;
 remisePrice:any;
 
+showSingle = true;
+showDouble = true;
   constructor(
     public routerActivated: ActivatedRoute,
     public router:Router,
@@ -743,8 +745,14 @@ else if (roomName === 'Amorpha'){
 }
 
 re_calculTotal(event: any){
-  //console.log('event nombre enfant>>>', event.target.value);
-  
+ // console.log('event nombre enfant>>>', event.target.value);
+   if(event.target.value == 1){
+      this.showSingle = true
+      this.showDouble = false;
+   }else{
+      this.showDouble = true;
+      this.showSingle = false;
+   }
   //this.calculTotal(event.target.value  , this.MenuPrice );
 }
 
@@ -779,10 +787,10 @@ addNewReservation(){
 
  const realEnd = formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en')+'T11:00:00';
   
- console.log('start et end>>>',this.reservationChambreForm.get('email').value);
+
   
   if (this.end == ''){
-    console.log('test');
+    
     this.numberPersons(this.reservationChambreForm.get('number_adulte').value,this.reservationChambreForm.get('number_children').value)
     this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
     this.verifyPriceTosent()
@@ -822,7 +830,7 @@ addNewReservation(){
   
 
   this._reservationService.addReservation(reservation).subscribe((data : any) => {
-   console.log('data>>>',data);
+  
    
     
     this.showNotification(

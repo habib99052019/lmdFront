@@ -348,7 +348,7 @@ editCall(row) {
 
 
   openEditModal(row){
-  console.log('row>>>',row);
+ 
   
     
   this.repasType = row.typeRepas;
