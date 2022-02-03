@@ -272,7 +272,7 @@ openEditModal(row){
   }else{
    
     const dialogRef = this.dialog.open(EditFormDialogComponent, {
-
+      disableClose: true,
       width:'1000px',
       height:'800px',
      
@@ -394,7 +394,7 @@ addPersoMenu(){
     tempDirection = "ltr";
   }
   const dialogRef = this.dialog.open(AddPersoMenuComponent, {
-    disableClose: false,
+    disableClose: true,
     
      width:'1000px',
      height:'600px',

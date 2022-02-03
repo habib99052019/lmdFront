@@ -259,6 +259,7 @@ addNew() {
       tempDirection = "ltr";
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
+      disableClose: true,
       width:'1200px',
       height:'670px',
       data: {
@@ -318,6 +319,7 @@ editCall(row) {
       tempDirection = 'ltr';
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
+      disableClose: true,
       data: {
         reservationMenu: row,
         action: 'edit',
@@ -389,8 +391,8 @@ editCall(row) {
        this.number_geuste = this.modalData.number_guests;
        this.eau = this.modalData.nb_eau;
        this.soda = this.modalData.nb_soda;
-       this.EauPrice = this.eau
-       this.sodaPrice = this.soda * 2 ;
+       this.EauPrice = this.eau * 3;
+       this.sodaPrice = this.soda * 4 ;
     }
     this.service.getMenuByDescreption(this.modalData.menuID.name,row.menuID.description).subscribe((menu :any) => {
      
@@ -427,6 +429,7 @@ editCall(row) {
     });
 
     this.dialog.open( this.editModal, {
+      disableClose: true,
           width:'1200px',
           height:'900px'
     });
@@ -667,17 +670,17 @@ editCall(row) {
      if(type === "Soda") {
      
         
-        this.sodaPrice = this.sodaPrice + 2
+        this.sodaPrice = this.sodaPrice + 4
      
-        this.PriceTotal = +this.PriceTotal + 2
+        this.PriceTotal = +this.PriceTotal + 4
         this.remisePrice = this.PriceTotal;
         this.soda = this.soda + 1;
       
         }
      else if (type === "Eau") {
   
-      this.EauPrice = this.EauPrice + 1
-      this.PriceTotal = +this.PriceTotal + 1
+      this.EauPrice = this.EauPrice + 3
+      this.PriceTotal = +this.PriceTotal + 3
       this.remisePrice = this.PriceTotal;
       this.eau = this.eau + 1;
     
@@ -690,16 +693,16 @@ editCall(row) {
  removeFromTotal(type :any){
   if (this.PriceTotal){
     if(type === "Soda") {
-      this.PriceTotal = +this.PriceTotal - 2
+      this.PriceTotal = +this.PriceTotal - 4
       this.remisePrice = this.PriceTotal;
-      this.sodaPrice = this.sodaPrice - 2
+      this.sodaPrice = this.sodaPrice - 4
       this.soda = this.soda - 1;
      
     }
     else if (type === "Eau") {
-    this.PriceTotal = +this.PriceTotal - 1
+    this.PriceTotal = +this.PriceTotal - 3
     this.remisePrice = this.PriceTotal;
-     this.EauPrice = this.EauPrice - 1
+     this.EauPrice = this.EauPrice - 3
      this.eau = this.eau - 1;
    }
   }

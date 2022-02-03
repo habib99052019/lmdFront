@@ -353,6 +353,7 @@ BoissonsList: any[] = [
   showNatureSaison = true;
   showHautSaison = false;
   showBasSaison = false;
+  sodaPricetosent = 0;
   nature:any;
   constructor(
     private service : ReservationServiceService,
@@ -549,16 +550,16 @@ showMenu(event : MatSelectChange){
  addToTotal(type :any){
    if (this.PriceTotal){
      if(type === "Soda") {
-       this.sodaPrice = this.sodaPrice + 2
-       this.PriceTotal = this.PriceTotal + 2
+       this.sodaPrice = this.sodaPrice + 4
+       this.PriceTotal = this.PriceTotal + 4
        this.remisePrice = this.PriceTotal;
        this.soda = this.soda + 1;
       
        
      }
      else if (type === "Eau") {
-      this.EauPrice = this.EauPrice + 1
-      this.PriceTotal = this.PriceTotal + 1
+      this.EauPrice = this.EauPrice + 3
+      this.PriceTotal = this.PriceTotal + 3
       this.remisePrice = this.PriceTotal;
       this.eau = this.eau + 1 ;
     }
@@ -569,15 +570,15 @@ showMenu(event : MatSelectChange){
  removeFromTotal(type :any){
   if (this.PriceTotal){
     if(type === "Soda") {
-      this.PriceTotal = this.PriceTotal - 2
+      this.PriceTotal = this.PriceTotal - 4
       this.remisePrice = this.PriceTotal;
-      this.sodaPrice = this.sodaPrice - 2
+      this.sodaPrice = this.sodaPrice - 4
       this.soda = this.soda - 1;
     }
     else if (type === "Eau") {
-     this.PriceTotal = this.PriceTotal - 1
+     this.PriceTotal = this.PriceTotal - 3
      this.remisePrice = this.PriceTotal;
-     this.EauPrice = this.EauPrice - 1;
+     this.EauPrice = this.EauPrice - 3;
      this.eau = this.eau - 1 ;
    }
   }
@@ -772,6 +773,21 @@ if(event.source.ngControl.name == 'entree_froides'){
 
 }
 
+
+checkRoomReservation(event : MatSelectChange){
+    console.log('event value>>>', formatDate(event.value, 'yyyy-MM-dd', 'en'));
+    this.service.checkRoomReservation(formatDate(event.value, 'yyyy-MM-dd', 'en')).subscribe((data : any ) => {
+        console.log('data>>>>', data);
+        this.showNotification(
+          'snackbar-danger',
+           data.message,
+          'top',
+          'end'
+        )
+    }
+   
+     
+)}
 
 
 

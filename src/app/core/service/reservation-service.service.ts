@@ -117,4 +117,10 @@ getMenuByDescreption(name,saison){
   return this.http.get(this.ApiPath + '/menus/desc?name=' + name + '&saison=' + saison)
 }
 
+/* check room reservation */
+checkRoomReservation(date){
+  return this.http.get(this.ApiPath + 'reservations/check?date=' + date)
+}
+
+
 }

@@ -65,8 +65,8 @@
                                     <div class="col">
                                         <mat-form-field   class="example-full-width" appearance="outline">
                                             <mat-label>Chambre</mat-label>
-                                            <mat-select formControlName="roomID" required>
-                                                <mat-option *ngFor="let chambre of this.Chambres"   [value]=chambre.name>
+                                            <mat-select formControlName="roomID"  (selectionChange)="selectRoom($event)"   required>
+                                                <mat-option *ngFor="let chambre of this.Chambres"        [value]=chambre.name>
                                                     {{chambre.name}}
                                                 </mat-option>
                                             </mat-select>
@@ -82,7 +82,7 @@
                                     <div class="col">
                                         <mat-form-field class="example-full-width mb-3" appearance="outline">
                                             <mat-label>Nombre d’adulte</mat-label>
-                                            <input matInput formControlName="number_children" type="number" [min]="1" (change)="re_calculTotal($event)">
+                                            <input matInput formControlName="number_children" type="number" [min]="1" [max]="35" (change)="re_calculTotal($event)">
                                             <mat-icon matSuffix>group</mat-icon>
                                         </mat-form-field>
                                     </div>
@@ -103,7 +103,7 @@
                                         </mat-form-field>
                                     </div>
 
-                                    <div class="col">
+                                    <!--<div class="col">
                                         <mat-form-field class="example-full-width" appearance="outline">
                                             <mat-label>Tarifs</mat-label>
                                             <mat-select formControlName="taarifType" required (selectionChange)="selectTaarifType($event)"   (selectionChange)="showMenu($event)"      >
@@ -115,13 +115,39 @@
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
+                                    </div>-->
+                                    <div class="col">
+                                        <form>
+                                            <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Tarifs</mat-label>
+                                            <mat-select [(ngModel)]="this.taarifType"  name="taarifType"  required (selectionChange)="selectTaarifType($event)"   (selectionChange)="showMenu($event)"      >
+                                                <mat-option [value]="'bas de saison'">
+                                                    Bas de saison
+                                                </mat-option>
+                                                <mat-option [value]="'haut de saison'">
+                                                    Haut de saison
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        </form>
+                                        
                                     </div>
-                                    <div class="col-md-3 col-sm-12 text-center mt-3">
+                                    <!--<div class="col-md-3 col-sm-12 text-center mt-3">
                                         <mat-radio-group formControlName="roomType" color="primary">
                                             <mat-radio-button  *ngIf="showSingle"   value="single" (change)="selectRoomType($event)">Single</mat-radio-button>
                                             <mat-radio-button  *ngIf="showDouble"  value="double" (change)="selectRoomType($event)">Double</mat-radio-button>
                                         </mat-radio-group>
+                                    </div>-->
+                                    <div class="col-md-3 col-sm-12 text-center mt-3">
+                                        <form>
+                                             <mat-radio-group [(ngModel)]="this.roomType" name="roomType" color="primary">
+                                                <mat-radio-button  *ngIf="showSingle"   value="single" (change)="selectRoomType($event)">Single</mat-radio-button>
+                                                <mat-radio-button  *ngIf="showDouble"  value="double" (change)="selectRoomType($event)">Double</mat-radio-button>
+                                            </mat-radio-group>
+                                        </form>
+                                       
                                     </div>
+                                   
                                     <div class="col" id="my_div">
                                         <mat-form-field class="example-full-width mb-3" appearance="outline">
                                             <mat-label>Extras</mat-label>
@@ -129,16 +155,16 @@
                                                 <mat-option [value]="">
                                                 </mat-option>
                                                 <mat-option [value]="'lit adulte'">
-                                                    Lit adulte
+                                                    Lit adulte 90 DT
                                                 </mat-option>
                                                 <mat-option [value]="'lit enfant'">
-                                                    Lit enfant
+                                                    Lit enfant 90 DT
                                                 </mat-option>
                                                 <mat-option [value]="'Deux lit adulte'">
-                                                    Deux lit adulte
+                                                    Deux lit adulte 180 DT
                                                 </mat-option>
                                                 <mat-option [value]="'Deux lit enfant'">
-                                                    Deux lit enfant
+                                                    Deux lit enfant 180 Dt
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>

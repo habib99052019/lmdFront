@@ -356,7 +356,7 @@ checkDates(event : any ){
 
 selectTaarifType(event: any){
   this.taarifType = event.value;
- 
+  this.selectRoomType2();
 
   if(this.reservationChambreForm.value.roomID){
       if(this.reservationChambreForm.value.roomID === 'Toute la villa' && this.taarifType === 'bas de saison'){
@@ -368,10 +368,10 @@ selectTaarifType(event: any){
       }
   }
  this.calculTotal(this.Days , this.RoomPrice);
-  
+ 
 }
 
-
+/*
 selectRoomType(event: any){
   this.roomType = event.value;    
   
@@ -661,7 +661,597 @@ selectRoomType(event: any){
     
     this.calculTotal(this.Days , this.RoomPrice);
   }
+}*/
+
+
+
+selectRoomType(event: any){
+  console.log('test');
+  
+  this.roomType = event.value;  
+  
+  
+
+  if (this.reservationChambreForm.value.roomID){
+
+        if(this.reservationChambreForm.value.roomID === 'Ruppia')
+            {
+              if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 245;
+                  this.SINGLE_BAS_SAISON = true;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+
+              } 
+              else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 315;
+                  this.DOUBLE_BAS_SAISON = true;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+              }
+              //cas single et haute de saison
+              else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+                  this.RoomPrice = 315;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = true;
+                  this.DOUBLE_HAUTE_SAISON = false;
+                }
+              //cas double et haute de saison
+                else{
+                  this.RoomPrice = 385;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = true;
+                }
+            }
+        if(this.reservationChambreForm.value.roomID === 'Bonnelli'){
+                if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 210;
+                  this.SINGLE_BAS_SAISON = true;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+
+              } 
+              else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 280;
+                  this.DOUBLE_BAS_SAISON = true;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+              }
+              //cas single et haute de saison
+              else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+                this.RoomPrice = 280;
+                this.DOUBLE_BAS_SAISON = false;
+                this.SINGLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = true;
+                this.DOUBLE_HAUTE_SAISON = false;
+              }
+            //cas double et haute de saison
+              else{
+                this.RoomPrice = 350;
+                this.DOUBLE_BAS_SAISON = false;
+                this.SINGLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = false;
+                this.DOUBLE_HAUTE_SAISON = true;
+              }
+              
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Amorpha'){
+              if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+                this.RoomPrice = 245;
+                this.SINGLE_BAS_SAISON = true;
+                this.DOUBLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = false;
+                this.DOUBLE_HAUTE_SAISON = false;
+
+            } 
+            else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+                this.RoomPrice = 315;
+                this.DOUBLE_BAS_SAISON = true;
+                this.SINGLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = false;
+                this.DOUBLE_HAUTE_SAISON = false;
+            }
+            //cas single et haute de saison
+            else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+              this.RoomPrice = 315;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = true;
+              this.DOUBLE_HAUTE_SAISON = false;
+            }
+          //cas double et haute de saison
+            else{
+              this.RoomPrice = 385;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = true;
+            }
+        }
+
+          if(this.reservationChambreForm.value.roomID === 'Ciconia'){
+            if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+              this.RoomPrice = 230;
+              this.SINGLE_BAS_SAISON = true;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+
+          } 
+          else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+              this.RoomPrice = 300;
+              this.DOUBLE_BAS_SAISON = true;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+          }
+            //cas single et haute de saison
+            else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+              this.RoomPrice = 300;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = true;
+              this.DOUBLE_HAUTE_SAISON = false;
+            }
+          //cas double et haute de saison
+            else{
+              this.RoomPrice = 370;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = true;
+            }
+
+        }
+          
+        if(this.reservationChambreForm.value.roomID === 'Marabou'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 300;
+              this.SINGLE_BAS_SAISON = true;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 370;
+              this.DOUBLE_BAS_SAISON = true;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+        }
+        //cas single et haute de saison
+        else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+          this.RoomPrice = 370;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = true;
+          this.DOUBLE_HAUTE_SAISON = false;
+        }
+      //cas double et haute de saison
+        else{
+          this.RoomPrice = 440;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = false;
+          this.DOUBLE_HAUTE_SAISON = true;
+        }
+
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Brecon'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 335;
+            this.SINGLE_BAS_SAISON = true;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 405;
+              this.DOUBLE_BAS_SAISON = true;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+        }
+          //cas single et haute de saison
+          else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+            this.RoomPrice = 405;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = true;
+            this.DOUBLE_HAUTE_SAISON = false;
+          }
+        //cas double et haute de saison
+          else{
+            this.RoomPrice = 475;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = true;
+          }
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Colony'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 385;
+            this.SINGLE_BAS_SAISON = true;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 455;
+            this.DOUBLE_BAS_SAISON = true;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+        }
+         //cas single et haute de saison
+         else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+          this.RoomPrice = 455;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = true;
+          this.DOUBLE_HAUTE_SAISON = false;
+        }
+      //cas double et haute de saison
+        else{
+          this.RoomPrice = 525;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = false;
+          this.DOUBLE_HAUTE_SAISON = true;
+        }
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Cicogne'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 265;
+            this.SINGLE_BAS_SAISON = true;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 335;
+            this.DOUBLE_BAS_SAISON = true;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+        }
+          //cas single et haute de saison
+          else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+            this.RoomPrice = 335;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = true;
+            this.DOUBLE_HAUTE_SAISON = false;
+          }
+        //cas double et haute de saison
+          else{
+            this.RoomPrice = 405;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = true;
+          }
+
+        }
+        
+    
+    this.calculTotal(this.Days , this.RoomPrice);
+  }
 }
+
+selectRoomType2(){
+  //this.roomType = event.value;    
+  
+
+  if (this.reservationChambreForm.value.roomID){
+
+        if(this.reservationChambreForm.value.roomID === 'Ruppia')
+            {
+              if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 245;
+                  this.SINGLE_BAS_SAISON = true;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+
+              } 
+              else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 315;
+                  this.DOUBLE_BAS_SAISON = true;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+              }
+              //cas single et haute de saison
+              else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+                  this.RoomPrice = 315;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = true;
+                  this.DOUBLE_HAUTE_SAISON = false;
+                }
+              //cas double et haute de saison
+                else{
+                  this.RoomPrice = 385;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = true;
+                }
+            }
+        if(this.reservationChambreForm.value.roomID === 'Bonnelli'){
+                if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 210;
+                  this.SINGLE_BAS_SAISON = true;
+                  this.DOUBLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+
+              } 
+              else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+                  this.RoomPrice = 280;
+                  this.DOUBLE_BAS_SAISON = true;
+                  this.SINGLE_BAS_SAISON = false;
+                  this.SINGLE_HAUTE_SAISON = false;
+                  this.DOUBLE_HAUTE_SAISON = false;
+              }
+              //cas single et haute de saison
+              else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+                this.RoomPrice = 280;
+                this.DOUBLE_BAS_SAISON = false;
+                this.SINGLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = true;
+                this.DOUBLE_HAUTE_SAISON = false;
+              }
+            //cas double et haute de saison
+              else{
+                this.RoomPrice = 350;
+                this.DOUBLE_BAS_SAISON = false;
+                this.SINGLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = false;
+                this.DOUBLE_HAUTE_SAISON = true;
+              }
+              
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Amorpha'){
+              if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+                this.RoomPrice = 245;
+                this.SINGLE_BAS_SAISON = true;
+                this.DOUBLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = false;
+                this.DOUBLE_HAUTE_SAISON = false;
+
+            } 
+            else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+                this.RoomPrice = 315;
+                this.DOUBLE_BAS_SAISON = true;
+                this.SINGLE_BAS_SAISON = false;
+                this.SINGLE_HAUTE_SAISON = false;
+                this.DOUBLE_HAUTE_SAISON = false;
+            }
+            //cas single et haute de saison
+            else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+              this.RoomPrice = 315;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = true;
+              this.DOUBLE_HAUTE_SAISON = false;
+            }
+          //cas double et haute de saison
+            else{
+              this.RoomPrice = 385;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = true;
+            }
+        }
+
+          if(this.reservationChambreForm.value.roomID === 'Ciconia'){
+            if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+              this.RoomPrice = 230;
+              this.SINGLE_BAS_SAISON = true;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+
+          } 
+          else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+              this.RoomPrice = 300;
+              this.DOUBLE_BAS_SAISON = true;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+          }
+            //cas single et haute de saison
+            else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+              this.RoomPrice = 300;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = true;
+              this.DOUBLE_HAUTE_SAISON = false;
+            }
+          //cas double et haute de saison
+            else{
+              this.RoomPrice = 370;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = true;
+            }
+
+        }
+          
+        if(this.reservationChambreForm.value.roomID === 'Marabou'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 300;
+              this.SINGLE_BAS_SAISON = true;
+              this.DOUBLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 370;
+              this.DOUBLE_BAS_SAISON = true;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+        }
+        //cas single et haute de saison
+        else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+          this.RoomPrice = 370;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = true;
+          this.DOUBLE_HAUTE_SAISON = false;
+        }
+      //cas double et haute de saison
+        else{
+          this.RoomPrice = 440;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = false;
+          this.DOUBLE_HAUTE_SAISON = true;
+        }
+
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Brecon'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 335;
+            this.SINGLE_BAS_SAISON = true;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 405;
+              this.DOUBLE_BAS_SAISON = true;
+              this.SINGLE_BAS_SAISON = false;
+              this.SINGLE_HAUTE_SAISON = false;
+              this.DOUBLE_HAUTE_SAISON = false;
+        }
+          //cas single et haute de saison
+          else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+            this.RoomPrice = 405;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = true;
+            this.DOUBLE_HAUTE_SAISON = false;
+          }
+        //cas double et haute de saison
+          else{
+            this.RoomPrice = 475;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = true;
+          }
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Colony'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 385;
+            this.SINGLE_BAS_SAISON = true;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 455;
+            this.DOUBLE_BAS_SAISON = true;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+        }
+         //cas single et haute de saison
+         else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+          this.RoomPrice = 455;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = true;
+          this.DOUBLE_HAUTE_SAISON = false;
+        }
+      //cas double et haute de saison
+        else{
+          this.RoomPrice = 525;
+          this.DOUBLE_BAS_SAISON = false;
+          this.SINGLE_BAS_SAISON = false;
+          this.SINGLE_HAUTE_SAISON = false;
+          this.DOUBLE_HAUTE_SAISON = true;
+        }
+
+        }
+
+        if(this.reservationChambreForm.value.roomID === 'Cicogne'){
+          if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 265;
+            this.SINGLE_BAS_SAISON = true;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+
+        } 
+        else if(this.roomType === 'double' && this.taarifType === 'bas de saison'){
+            this.RoomPrice = 335;
+            this.DOUBLE_BAS_SAISON = true;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = false;
+        }
+          //cas single et haute de saison
+          else if(this.roomType === 'single' && this.taarifType === 'haut de saison'){
+            this.RoomPrice = 335;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = true;
+            this.DOUBLE_HAUTE_SAISON = false;
+          }
+        //cas double et haute de saison
+          else{
+            this.RoomPrice = 405;
+            this.DOUBLE_BAS_SAISON = false;
+            this.SINGLE_BAS_SAISON = false;
+            this.SINGLE_HAUTE_SAISON = false;
+            this.DOUBLE_HAUTE_SAISON = true;
+          }
+
+        }
+        
+    
+    this.calculTotal(this.Days , this.RoomPrice);
+  }
+}
+
+
+
 
 selectExtraType(event:any){
     
@@ -744,14 +1334,26 @@ else if (roomName === 'Amorpha'){
   
 }
 
+
+selectRoom(event: any){
+  console.log('test');
+  
+  this.taarifType = "" ;
+}
+
+
 re_calculTotal(event: any){
  // console.log('event nombre enfant>>>', event.target.value);
    if(event.target.value == 1){
       this.showSingle = true
       this.showDouble = false;
+      this.roomType = 'single';
+      this.taarifType = ""  
    }else{
       this.showDouble = true;
       this.showSingle = false;
+      this.roomType = 'double';
+      this.taarifType = ""  
    }
   //this.calculTotal(event.target.value  , this.MenuPrice );
 }

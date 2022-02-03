@@ -153,7 +153,7 @@
                 <div class="col">
                     <mat-form-field class="example-full-width mb-1" appearance="outline">
                         <mat-label>Date prevue</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="startDate" [min]="today"  required>
+                        <input matInput [matDatepicker]="picker" formControlName="startDate" [min]="today"   (dateChange)="checkRoomReservation($event)"      required>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error *ngIf="reservationMenuForm.get('startDate').hasError('required')">
