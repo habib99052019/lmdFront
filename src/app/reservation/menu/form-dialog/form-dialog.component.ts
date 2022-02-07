@@ -777,7 +777,7 @@ if(event.source.ngControl.name == 'entree_froides'){
 checkRoomReservation(event : MatSelectChange){
     console.log('event value>>>', formatDate(event.value, 'yyyy-MM-dd', 'en'));
     this.service.checkRoomReservation(formatDate(event.value, 'yyyy-MM-dd', 'en')).subscribe((data : any ) => {
-        console.log('data>>>>', data);
+       // console.log('data>>>>', data);
         this.showNotification(
           'snackbar-danger',
            data.message,

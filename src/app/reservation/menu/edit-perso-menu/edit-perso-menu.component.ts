@@ -153,6 +153,7 @@ openEditModal(row){
 
   
   
+  
   if(row.listmenuID[1] && row.listmenuID[0]){
   
     const dialogRef = this.dialog.open(EditFormDialogComponent, {
@@ -187,6 +188,8 @@ openEditModal(row){
    });
  
     dialogRef.afterClosed().subscribe(result => {
+    
+      
       this.getlisPersoReervationMenus();
    
       if(result == ""){
@@ -294,6 +297,7 @@ openEditModal(row){
    });
  
     dialogRef.afterClosed().subscribe(result => {
+     
       this.getlisPersoReervationMenus();
       
       if(result == ""){
