@@ -122,5 +122,9 @@ checkRoomReservation(date){
   return this.http.get(this.ApiPath + 'reservations/check?date=' + date)
 }
 
+/* get standard room by name */
+getStandardRoomByName(name){
+  return this.http.get(this.ApiPath + '/rooms?name=' + name )
+}
 
 }

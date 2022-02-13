@@ -363,338 +363,116 @@ initTarifType(){
  
   
  
+  this._reservationService.getStandardRoomByName(this.title).pipe(take(1)).subscribe((room:any) => {
+    console.log('room>>>', room);
+
+    if (this.roomTypeSelected == '1' &&  this.tarifType === 'bas de saison'){
+      this.RoomPrice = room[0].singleBprice;
+      this.roomType = '1'
+
+
+      this.SINGLE_BAS_SAISON = true;
+      this.DOUBLE_BAS_SAISON = false;
+      this.SINGLE_HAUTE_SAISON = false;
+      this.DOUBLE_HAUTE_SAISON = false;
+
+  } 
+  else if(this.roomTypeSelected  == '2' &&  this.tarifType === 'bas de saison'){
+    
+      this.RoomPrice = room[0].doubleBprice;
+      this.roomType = '2'
+      this.DOUBLE_BAS_SAISON = true;
+      this.SINGLE_BAS_SAISON = false;
+      this.SINGLE_HAUTE_SAISON = false;
+      this.DOUBLE_HAUTE_SAISON = false;
+  }
+  //cas single et haute de saison
+  else if(this.roomTypeSelected  == '1' && this.tarifType === 'haut de saison'){
+      this.RoomPrice = room[0].singleHprice;
+      this.roomType = '1'
+      this.DOUBLE_BAS_SAISON = false;
+      this.SINGLE_BAS_SAISON = false;
+      this.SINGLE_HAUTE_SAISON = true;
+      this.DOUBLE_HAUTE_SAISON = false;
+    }
+  //cas double et haute de saison
+    else if(this.roomTypeSelected  == '2' && this.tarifType === 'haut de saison'){
+      this.RoomPrice = room[0].doubleHprice;
+      this.roomType = '2'
+      this.DOUBLE_BAS_SAISON = false;
+      this.SINGLE_BAS_SAISON = false;
+      this.SINGLE_HAUTE_SAISON = false;
+      this.DOUBLE_HAUTE_SAISON = true;
+    }
   
-  if (true){
+  
+    this.calculTotal(this.Days , this.RoomPrice);
+  })
 
-    if(this.title === 'Ruppia')
-        {
-         
-          if (this.roomTypeSelected == '1' &&  this.tarifType === 'bas de saison'){
-              this.RoomPrice = 245;
-              this.roomType = '1'
+}
 
 
-              this.SINGLE_BAS_SAISON = true;
-              this.DOUBLE_BAS_SAISON = false;
-              this.SINGLE_HAUTE_SAISON = false;
-              this.DOUBLE_HAUTE_SAISON = false;
 
-          } 
-          else if(this.roomTypeSelected  == '2' &&  this.tarifType === 'bas de saison'){
-            
-              this.RoomPrice = 315;
-              this.roomType = '2'
-              this.DOUBLE_BAS_SAISON = true;
-              this.SINGLE_BAS_SAISON = false;
-              this.SINGLE_HAUTE_SAISON = false;
-              this.DOUBLE_HAUTE_SAISON = false;
-          }
-          //cas single et haute de saison
-          else if(this.roomTypeSelected  == '1' && this.tarifType === 'haut de saison'){
-              this.RoomPrice = 315;
-              this.roomType = '1'
-              this.DOUBLE_BAS_SAISON = false;
-              this.SINGLE_BAS_SAISON = false;
-              this.SINGLE_HAUTE_SAISON = true;
-              this.DOUBLE_HAUTE_SAISON = false;
-            }
-          //cas double et haute de saison
-            else{
-              this.RoomPrice = 385;
-              this.roomType = '2'
-              this.DOUBLE_BAS_SAISON = false;
-              this.SINGLE_BAS_SAISON = false;
-              this.SINGLE_HAUTE_SAISON = false;
-              this.DOUBLE_HAUTE_SAISON = true;
-            }
-        }
-    if(this.title  === 'Bonnelli'){
-            if (this.roomTypeSelected  == '1' &&  this.tarifType === 'bas de saison'){
-              this.RoomPrice = 210;
-              this.roomType = '1'
-              this.SINGLE_BAS_SAISON = true;
-              this.DOUBLE_BAS_SAISON = false;
-              this.SINGLE_HAUTE_SAISON = false;
-              this.DOUBLE_HAUTE_SAISON = false;
 
-          } 
-          else if(this.roomTypeSelected  == '2' &&  this.tarifType === 'bas de saison'){
-              this.RoomPrice = 280;
-              this.roomType = '2'
-              this.DOUBLE_BAS_SAISON = true;
-              this.SINGLE_BAS_SAISON = false;
-              this.SINGLE_HAUTE_SAISON = false;
-              this.DOUBLE_HAUTE_SAISON = false;
-          }
-          //cas single et haute de saison
-          else if(this.roomTypeSelected == '1' &&  this.tarifType === 'haut de saison'){
-            this.RoomPrice = 280;
-            this.roomType = '1'
-            this.DOUBLE_BAS_SAISON = false;
-            this.SINGLE_BAS_SAISON = false;
-            this.SINGLE_HAUTE_SAISON = true;
-            this.DOUBLE_HAUTE_SAISON = false;
-          }
-        //cas double et haute de saison
-          else{
-            this.RoomPrice = 350;
-            this.roomType = '2'
-            this.DOUBLE_BAS_SAISON = false;
-            this.SINGLE_BAS_SAISON = false;
-            this.SINGLE_HAUTE_SAISON = false;
-            this.DOUBLE_HAUTE_SAISON = true;
-          }
-          
+selectRoomType(event: any){
+  this.roomType = event.value;
 
-    }
+  if(event.value == '1'){
+     this.roomName = 'single'
+  }else{
+    this.roomName = 'double'
+  }
+   
 
-    if(this.title  === 'Amorpha'){
-          if (this.roomTypeSelected  == '1' &&  this.tarifType === 'bas de saison'){
-            this.RoomPrice = 245;
-            this.roomType = '1'
-            this.SINGLE_BAS_SAISON = true;
-            this.DOUBLE_BAS_SAISON = false;
-            this.SINGLE_HAUTE_SAISON = false;
-            this.DOUBLE_HAUTE_SAISON = false;
-
-        } 
-        else if(this.roomTypeSelected  == '2' &&  this.tarifType === 'bas de saison'){
-            this.RoomPrice = 315;
-            this.roomType = '2'
-            this.DOUBLE_BAS_SAISON = true;
-            this.SINGLE_BAS_SAISON = false;
-            this.SINGLE_HAUTE_SAISON = false;
-            this.DOUBLE_HAUTE_SAISON = false;
-        }
-        //cas single et haute de saison
-        else if(this.roomTypeSelected  == '1' &&  this.tarifType === 'haut de saison'){
-          this.RoomPrice = 315;
-          this.roomType = '1'
-          this.DOUBLE_BAS_SAISON = false;
-          this.SINGLE_BAS_SAISON = false;
-          this.SINGLE_HAUTE_SAISON = true;
-          this.DOUBLE_HAUTE_SAISON = false;
-        }
-      //cas double et haute de saison
-        else{
-          this.RoomPrice = 385;
-          this.roomType = '2'
-          this.DOUBLE_BAS_SAISON = false;
-          this.SINGLE_BAS_SAISON = false;
-          this.SINGLE_HAUTE_SAISON = false;
-          this.DOUBLE_HAUTE_SAISON = true;
-        }
-    }
-
-      if(this.title  === 'Ciconia'){
-        if (this.roomTypeSelected  == '1' &&  this.tarifType === 'bas de saison'){
-          this.RoomPrice = 230;
-          this.roomType = '1'
-          this.SINGLE_BAS_SAISON = true;
-          this.DOUBLE_BAS_SAISON = false;
-          this.SINGLE_HAUTE_SAISON = false;
-          this.DOUBLE_HAUTE_SAISON = false;
-
-      } 
-      else if(this.roomTypeSelected  == '2' &&  this.tarifType === 'bas de saison'){
-          this.RoomPrice = 300;
-          this.roomType = '2'
-          this.DOUBLE_BAS_SAISON = true;
-          this.SINGLE_BAS_SAISON = false;
-          this.SINGLE_HAUTE_SAISON = false;
-          this.DOUBLE_HAUTE_SAISON = false;
-      }
-        //cas single et haute de saison
-        else if(this.roomTypeSelected  == '1' &&  this.tarifType === 'haut de saison'){
-          this.RoomPrice = 300;
-          this.roomType = '1'
-          this.DOUBLE_BAS_SAISON = false;
-          this.SINGLE_BAS_SAISON = false;
-          this.SINGLE_HAUTE_SAISON = true;
-          this.DOUBLE_HAUTE_SAISON = false;
-        }
-      //cas double et haute de saison
-        else{
-          this.RoomPrice = 370;
-          this.roomType = '2'
-          this.DOUBLE_BAS_SAISON = false;
-          this.SINGLE_BAS_SAISON = false;
-          this.SINGLE_HAUTE_SAISON = false;
-          this.DOUBLE_HAUTE_SAISON = true;
-        }
-
-    }
-      
-    if(this.title  === 'Marabou'){
-      if (this.roomTypeSelected  == '1' &&  this.tarifType === 'bas de saison'){
-          this.RoomPrice = 300;
-          this.roomType = '1'
-          this.SINGLE_BAS_SAISON = true;
-          this.DOUBLE_BAS_SAISON = false;
-          this.SINGLE_HAUTE_SAISON = false;
-          this.DOUBLE_HAUTE_SAISON = false;
-
+  if(this.roomType){
+    this._reservationService.getStandardRoomByName(this.title).pipe(take(1)).subscribe((room:any) => {
+      console.log('roomtttt2>>>', room);
+    
+      if (this.roomType == '1' &&  this.tarifType === 'bas de saison'){
+        this.RoomPrice = room[0].singleBprice;
+        this.roomType = '1'
+    
+    
+                this.data['SINGLE_BAS_SAISON'] = true;
+                this.data['DOUBLE_BAS_SAISON'] = false;
+                this.data['SINGLE_HAUTE_SAISON'] = false;
+                this.data['DOUBLE_HAUTE_SAISON'] = false;
+    
     } 
-    else if(this.roomTypeSelected  == '2' &&  this.tarifType === 'bas de saison'){
-          this.RoomPrice = 370;
-          this.roomType = '2'
-          this.DOUBLE_BAS_SAISON = true;
-          this.SINGLE_BAS_SAISON = false;
-          this.SINGLE_HAUTE_SAISON = false;
-          this.DOUBLE_HAUTE_SAISON = false;
+    else if(this.roomType  == '2' &&  this.tarifType === 'bas de saison'){
+      
+        this.RoomPrice = room[0].doubleBprice;
+        this.roomType = '2'
+                this.data['SINGLE_BAS_SAISON'] = false;
+                this.data['DOUBLE_BAS_SAISON'] = true;
+                this.data['SINGLE_HAUTE_SAISON'] = false;
+                this.data['DOUBLE_HAUTE_SAISON'] = false;
     }
     //cas single et haute de saison
-    else if(this.roomTypeSelected  == '1' &&  this.tarifType === 'haut de saison'){
-      this.RoomPrice = 370;
-      this.roomType = '1'
-      this.DOUBLE_BAS_SAISON = false;
-      this.SINGLE_BAS_SAISON = false;
-      this.SINGLE_HAUTE_SAISON = true;
-      this.DOUBLE_HAUTE_SAISON = false;
-    }
-  //cas double et haute de saison
-    else{
-      this.RoomPrice = 440;
-      this.roomType = '2'
-      this.DOUBLE_BAS_SAISON = false;
-      this.SINGLE_BAS_SAISON = false;
-      this.SINGLE_HAUTE_SAISON = false;
-      this.DOUBLE_HAUTE_SAISON = true;
-    }
-
-
-    }
-
-    if(this.title  === 'Brecon'){
-      if (this.roomTypeSelected  == '1' &&  this.tarifType === 'bas de saison'){
-        this.RoomPrice = 335;
+    else if(this.roomType  == '1' && this.tarifType === 'haut de saison'){
+        this.RoomPrice = room[0].singleHprice;
         this.roomType = '1'
-        this.SINGLE_BAS_SAISON = true;
-        this.DOUBLE_BAS_SAISON = false;
-        this.SINGLE_HAUTE_SAISON = false;
-        this.DOUBLE_HAUTE_SAISON = false;
-
-    } 
-    else if(this.roomTypeSelected  == '2' &&  this.tarifType === 'bas de saison'){
-          this.RoomPrice = 405;
-          this.roomType = '2'
-          this.DOUBLE_BAS_SAISON = true;
-          this.SINGLE_BAS_SAISON = false;
-          this.SINGLE_HAUTE_SAISON = false;
-          this.DOUBLE_HAUTE_SAISON = false;
-    }
-      //cas single et haute de saison
-      else if(this.roomTypeSelected  == '1' &&  this.tarifType=== 'haut de saison'){
-        this.RoomPrice = 405;
-        this.roomType = '1'
-        this.DOUBLE_BAS_SAISON = false;
-        this.SINGLE_BAS_SAISON = false;
-        this.SINGLE_HAUTE_SAISON = true;
-        this.DOUBLE_HAUTE_SAISON = false;
+        this.RoomPrice = 315;
+                this.data['SINGLE_BAS_SAISON'] = false;
+                this.data['DOUBLE_BAS_SAISON'] = false;
+                this.data['SINGLE_HAUTE_SAISON'] = true;
+                this.data['DOUBLE_HAUTE_SAISON'] = false;
       }
     //cas double et haute de saison
-      else{
-        this.RoomPrice = 475;
+      else if(this.roomType  == '2' && this.tarifType === 'haut de saison'){
+        this.RoomPrice = room[0].doubleHprice;
         this.roomType = '2'
-        this.DOUBLE_BAS_SAISON = false;
-        this.SINGLE_BAS_SAISON = false;
-        this.SINGLE_HAUTE_SAISON = false;
-        this.DOUBLE_HAUTE_SAISON = true;
+                this.data['SINGLE_BAS_SAISON'] = false;
+                this.data['DOUBLE_BAS_SAISON'] = false;
+                this.data['SINGLE_HAUTE_SAISON'] = false;
+                this.data['DOUBLE_HAUTE_SAISON'] = true;
       }
-
-    }
-
-    if(this.title  === 'Colony'){
-      if (this.roomTypeSelected  == '1' &&  this.tarifType === 'bas de saison'){
-        this.RoomPrice = 385;
-        this.roomType = '1'
-        this.SINGLE_BAS_SAISON = true;
-        this.DOUBLE_BAS_SAISON = false;
-        this.SINGLE_HAUTE_SAISON = false;
-        this.DOUBLE_HAUTE_SAISON = false;
-
-    } 
-    else if(this.roomTypeSelected  == '2' &&  this.tarifType === 'bas de saison'){
-        this.RoomPrice = 455;
-        this.roomType = '2'
-        this.DOUBLE_BAS_SAISON = true;
-        this.SINGLE_BAS_SAISON = false;
-        this.SINGLE_HAUTE_SAISON = false;
-        this.DOUBLE_HAUTE_SAISON = false;
-    }
-     //cas single et haute de saison
-     else if(this.roomTypeSelected  == '1' &&  this.tarifType === 'haut de saison'){
-      this.RoomPrice = 455;
-      this.roomType = '1'
-      this.DOUBLE_BAS_SAISON = false;
-      this.SINGLE_BAS_SAISON = false;
-      this.SINGLE_HAUTE_SAISON = true;
-      this.DOUBLE_HAUTE_SAISON = false;
-    }
-  //cas double et haute de saison
-    else{
-      this.RoomPrice = 525;
-      this.roomType = '2'
-      this.DOUBLE_BAS_SAISON = false;
-      this.SINGLE_BAS_SAISON = false;
-      this.SINGLE_HAUTE_SAISON = false;
-      this.DOUBLE_HAUTE_SAISON = true;
-    }
-
-    }
-
-    if(this.title  === 'Cicogne'){
-      
-      if (this.roomTypeSelected == '1' &&  this.tarifType === 'bas de saison'){
-        this.RoomPrice = 265;
-        this.roomType = '1'
-        this.SINGLE_BAS_SAISON = true;
-        this.DOUBLE_BAS_SAISON = false;
-        this.SINGLE_HAUTE_SAISON = false;
-        this.DOUBLE_HAUTE_SAISON = false;
-
-    } 
-    else if(this.roomTypeSelected == '2' &&  this.tarifType === 'bas de saison'){
-        this.RoomPrice = 335;
-        this.roomType = '2'
-        this.DOUBLE_BAS_SAISON = true;
-        this.SINGLE_BAS_SAISON = false;
-        this.SINGLE_HAUTE_SAISON = false;
-        this.DOUBLE_HAUTE_SAISON = false;
-    }
-      //cas single et haute de saison
-      else if(this.roomTypeSelected == '1' &&  this.tarifType === 'haut de saison'){
-        this.RoomPrice = 335;
-        this.roomType = '1'
-        this.DOUBLE_BAS_SAISON = false;
-        this.SINGLE_BAS_SAISON = false;
-        this.SINGLE_HAUTE_SAISON = true;
-        this.DOUBLE_HAUTE_SAISON = false;
-      }
-    //cas double et haute de saison
-      else{
-        this.RoomPrice = 405;
-        this.roomType = '2'
-        this.DOUBLE_BAS_SAISON = false;
-        this.SINGLE_BAS_SAISON = false;
-        this.SINGLE_HAUTE_SAISON = false;
-        this.DOUBLE_HAUTE_SAISON = true;
-      }
-
-    }
-    if(this.title === 'Toute la villa' && this.tarifType === 'bas de saison'){
-       this.RoomPrice = 2100;
-    }
-    if(this.title === 'Toute la villa' && this.tarifType === 'haut de saison'){
-       this.RoomPrice = 2600;
-    }
-
-this.calculTotal(this.Days , this.RoomPrice);
+    
+    
+      this.calculTotal(this.Days , this.RoomPrice);
+    })
+  }
 }
-
-}
-
-
 
 initcheckDates(){
   
@@ -807,602 +585,54 @@ calculDateDays(event : any ){
 
 selectTaarifType(event: any){
   
- this.tarifType = event.value;
-
-
- if (true){
-
-  if(this.title === 'Ruppia')
-      {
-        if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 245;
-            this.data['SINGLE_BAS_SAISON'] = true;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-          
-
-        } 
-        else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 315;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = true;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-        }
-        //cas single et haute de saison
-        else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-            this.RoomPrice = 315;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = true;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-          }
-        //cas double et haute de saison
-          else{
-            this.RoomPrice = 385;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = true;
-          }
-      }
-  if(this.title  === 'Bonnelli'){
-          if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 210;
-            this.data['SINGLE_BAS_SAISON'] = true;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-          
-
-        } 
-        else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 280;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = true;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-        }
-        //cas single et haute de saison
-        else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-          this.RoomPrice = 280;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = true;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-        }
-      //cas double et haute de saison
-        else{
-          this.RoomPrice = 350;
-          this.data['SINGLE_BAS_SAISON'] = false;
-          this.data['DOUBLE_BAS_SAISON'] = false;
-          this.data['SINGLE_HAUTE_SAISON'] = false;
-          this.data['DOUBLE_HAUTE_SAISON'] = true;
-        }
-        
-
-  }
-
-  if(this.title  === 'Amorpha'){
-        if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-          this.RoomPrice = 245;
-          this.data['SINGLE_BAS_SAISON'] = true;
-          this.data['DOUBLE_BAS_SAISON'] = false;
-          this.data['SINGLE_HAUTE_SAISON'] = false;
-          this.data['DOUBLE_HAUTE_SAISON'] = false;
-
-      } 
-      else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-          this.RoomPrice = 315;
-          this.data['SINGLE_BAS_SAISON'] = false;
-          this.data['DOUBLE_BAS_SAISON'] = true;
-          this.data['SINGLE_HAUTE_SAISON'] = false;
-          this.data['DOUBLE_HAUTE_SAISON'] = false;
-      }
-      //cas single et haute de saison
-      else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-        this.RoomPrice = 315;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = true;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-      }
-    //cas double et haute de saison
-      else{
-        this.RoomPrice = 385;
-        this.data['SINGLE_BAS_SAISON'] = false;
-        this.data['DOUBLE_BAS_SAISON'] = false;
-        this.data['SINGLE_HAUTE_SAISON'] = false;
-        this.data['DOUBLE_HAUTE_SAISON'] = true;
-      }
-  }
-
-    if(this.title  === 'Ciconia'){
-      if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-        this.RoomPrice = 230;
-          this.data['SINGLE_BAS_SAISON'] = true;
-          this.data['DOUBLE_BAS_SAISON'] = false;
-          this.data['SINGLE_HAUTE_SAISON'] = false;
-          this.data['DOUBLE_HAUTE_SAISON'] = false;
-
-    } 
-    else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-        this.RoomPrice = 300;
-        this.data['SINGLE_BAS_SAISON'] = false;
-        this.data['DOUBLE_BAS_SAISON'] = true;
-        this.data['SINGLE_HAUTE_SAISON'] = false;
-        this.data['DOUBLE_HAUTE_SAISON'] = false;
-    }
-      //cas single et haute de saison
-      else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-        this.RoomPrice = 300;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = true;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-      }
-    //cas double et haute de saison
-      else{
-        this.RoomPrice = 370;
-        this.data['SINGLE_BAS_SAISON'] = false;
-        this.data['DOUBLE_BAS_SAISON'] = false;
-        this.data['SINGLE_HAUTE_SAISON'] = false;
-        this.data['DOUBLE_HAUTE_SAISON'] = true;
-      }
-
-  }
-    
-  if(this.title  === 'Marabou'){
-    if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-      this.RoomPrice = 300;
-      this.data['SINGLE_BAS_SAISON'] = true;
-      this.data['DOUBLE_BAS_SAISON'] = false;
-      this.data['SINGLE_HAUTE_SAISON'] = false;
-      this.data['DOUBLE_HAUTE_SAISON'] = false;
-
-  } 
-  else if(this.roomType === '2' && this.tarifType === 'bas de saison'){
-      this.RoomPrice = 370;
-      this.data['SINGLE_BAS_SAISON'] = false;
-      this.data['DOUBLE_BAS_SAISON'] = true;
-      this.data['SINGLE_HAUTE_SAISON'] = false;
-      this.data['DOUBLE_HAUTE_SAISON'] = false;
-  }
-  //cas single et haute de saison
-  else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-    this.RoomPrice = 370;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = true;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-  }
-//cas double et haute de saison
-  else{
-    this.RoomPrice = 440;
-    this.data['SINGLE_BAS_SAISON'] = false;
-    this.data['DOUBLE_BAS_SAISON'] = false;
-    this.data['SINGLE_HAUTE_SAISON'] = false;
-    this.data['DOUBLE_HAUTE_SAISON'] = true;
-  }
-
-
-  }
-
-  if(this.title  === 'Brecon'){
-    if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-      this.RoomPrice = 335;
-      this.data['SINGLE_BAS_SAISON'] = true;
-      this.data['DOUBLE_BAS_SAISON'] = false;
-      this.data['SINGLE_HAUTE_SAISON'] = false;
-      this.data['DOUBLE_HAUTE_SAISON'] = false;
-
-  } 
-  else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-      this.RoomPrice = 405;
-      this.data['SINGLE_BAS_SAISON'] = false;
-      this.data['DOUBLE_BAS_SAISON'] = true;
-      this.data['SINGLE_HAUTE_SAISON'] = false;
-      this.data['DOUBLE_HAUTE_SAISON'] = false;
-  }
-    //cas single et haute de saison
-    else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-      this.RoomPrice = 405;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = true;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-    }
-  //cas double et haute de saison
-    else{
-      this.RoomPrice = 475;
-      this.data['SINGLE_BAS_SAISON'] = false;
-      this.data['DOUBLE_BAS_SAISON'] = false;
-      this.data['SINGLE_HAUTE_SAISON'] = false;
-      this.data['DOUBLE_HAUTE_SAISON'] = true;
-    }
-
-  }
-
-  if(this.title  === 'Colony'){
-    if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-      this.RoomPrice = 385;
-      this.data['SINGLE_BAS_SAISON'] = true;
-      this.data['DOUBLE_BAS_SAISON'] = false;
-      this.data['SINGLE_HAUTE_SAISON'] = false;
-      this.data['DOUBLE_HAUTE_SAISON'] = false;
-  } 
-  else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-      this.RoomPrice = 455;
-      this.data['SINGLE_BAS_SAISON'] = false;
-      this.data['DOUBLE_BAS_SAISON'] = true;
-      this.data['SINGLE_HAUTE_SAISON'] = false;
-      this.data['DOUBLE_HAUTE_SAISON'] = false;
-  }
-   //cas single et haute de saison
-   else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-    this.RoomPrice = 455;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = true;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-  }
-//cas double et haute de saison
-  else{
-    this.RoomPrice = 525;
-      this.data['SINGLE_BAS_SAISON'] = false;
-      this.data['DOUBLE_BAS_SAISON'] = false;
-      this.data['SINGLE_HAUTE_SAISON'] = false;
-      this.data['DOUBLE_HAUTE_SAISON'] = true;
-  }
-
-  }
-
-  if(this.title  === 'Cicogne'){
-    if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-      this.RoomPrice = 265;
-      this.data['SINGLE_BAS_SAISON'] = true;
-      this.data['DOUBLE_BAS_SAISON'] = false;
-      this.data['SINGLE_HAUTE_SAISON'] = false;
-      this.data['DOUBLE_HAUTE_SAISON'] = false;
-
-  } 
-  else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-      this.RoomPrice = 335;
-      this.data['SINGLE_BAS_SAISON'] = false;
-      this.data['DOUBLE_BAS_SAISON'] = true;
-      this.data['SINGLE_HAUTE_SAISON'] = false;
-      this.data['DOUBLE_HAUTE_SAISON'] = false;
-  }
-    //cas single et haute de saison
-    else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-      this.RoomPrice = 335;
-      this.data['SINGLE_BAS_SAISON'] = false;
-      this.data['DOUBLE_BAS_SAISON'] = false;
-      this.data['SINGLE_HAUTE_SAISON'] = true;
-      this.data['DOUBLE_HAUTE_SAISON'] = false;
-    }
-  //cas double et haute de saison
-    else{
-      this.RoomPrice = 405;
-      this.data['SINGLE_BAS_SAISON'] = false;
-      this.data['DOUBLE_BAS_SAISON'] = false;
-      this.data['SINGLE_HAUTE_SAISON'] = false;
-      this.data['DOUBLE_HAUTE_SAISON'] = true;
-    }
-
-  }
-  if(this.title === 'Toute la villa' && this.tarifType === 'bas de saison'){
-    this.RoomPrice = 2100;
- }
- if(this.title === 'Toute la villa' && this.tarifType === 'haut de saison'){
-    this.RoomPrice = 2600;
- }
-
-this.calculTotal(this.Days , this.RoomPrice);
-}
+  
+  this.tarifType = event.value;
+  this._reservationService.getStandardRoomByName(this.title).pipe(take(1)).subscribe((room:any) => {
+   console.log('roomtttt>>>', room);
  
- }
-
-
-
-selectRoomType(event: any){
-  this.roomType = event.value;
-
-  if(event.value == '1'){
-     this.roomName = 'single'
-  }else{
-    this.roomName = 'double'
-  }
+   if (this.roomTypeSelected == '1' &&  this.tarifType === 'bas de saison'){
+     this.RoomPrice = room[0].singleBprice;
+     this.roomType = '1'
+ 
+ 
+             this.data['SINGLE_BAS_SAISON'] = true;
+             this.data['DOUBLE_BAS_SAISON'] = false;
+             this.data['SINGLE_HAUTE_SAISON'] = false;
+             this.data['DOUBLE_HAUTE_SAISON'] = false;
+ 
+ } 
+ else if(this.roomTypeSelected  == '2' &&  this.tarifType === 'bas de saison'){
    
-
-  
-  
-  if (this.roomType){
-
-        if(this.title === 'Ruppia')
-            {
-              if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-                  this.RoomPrice = 245;
-                  this.data['SINGLE_BAS_SAISON'] = true;
-                  this.data['DOUBLE_BAS_SAISON'] = false;
-                  this.data['SINGLE_HAUTE_SAISON'] = false;
-                  this.data['DOUBLE_HAUTE_SAISON'] = false;
-                
-
-              } 
-              else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-                  this.RoomPrice = 315;
-                  this.data['SINGLE_BAS_SAISON'] = false;
-                  this.data['DOUBLE_BAS_SAISON'] = true;
-                  this.data['SINGLE_HAUTE_SAISON'] = false;
-                  this.data['DOUBLE_HAUTE_SAISON'] = false;
-              }
-              //cas single et haute de saison
-              else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-                  this.RoomPrice = 315;
-                  this.data['SINGLE_BAS_SAISON'] = false;
-                  this.data['DOUBLE_BAS_SAISON'] = false;
-                  this.data['SINGLE_HAUTE_SAISON'] = true;
-                  this.data['DOUBLE_HAUTE_SAISON'] = false;
-                }
-              //cas double et haute de saison
-                else{
-                  this.RoomPrice = 385;
-                  this.data['SINGLE_BAS_SAISON'] = false;
-                  this.data['DOUBLE_BAS_SAISON'] = false;
-                  this.data['SINGLE_HAUTE_SAISON'] = false;
-                  this.data['DOUBLE_HAUTE_SAISON'] = true;
-                }
-            }
-        if(this.title  === 'Bonnelli'){
-                if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-                  this.RoomPrice = 210;
-                  this.data['SINGLE_BAS_SAISON'] = true;
-                  this.data['DOUBLE_BAS_SAISON'] = false;
-                  this.data['SINGLE_HAUTE_SAISON'] = false;
-                  this.data['DOUBLE_HAUTE_SAISON'] = false;
-                
-
-              } 
-              else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-                  this.RoomPrice = 280;
-                  this.data['SINGLE_BAS_SAISON'] = false;
-                  this.data['DOUBLE_BAS_SAISON'] = true;
-                  this.data['SINGLE_HAUTE_SAISON'] = false;
-                  this.data['DOUBLE_HAUTE_SAISON'] = false;
-              }
-              //cas single et haute de saison
-              else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-                this.RoomPrice = 280;
-                  this.data['SINGLE_BAS_SAISON'] = false;
-                  this.data['DOUBLE_BAS_SAISON'] = false;
-                  this.data['SINGLE_HAUTE_SAISON'] = true;
-                  this.data['DOUBLE_HAUTE_SAISON'] = false;
-              }
-            //cas double et haute de saison
-              else{
-                this.RoomPrice = 350;
-                this.data['SINGLE_BAS_SAISON'] = false;
-                this.data['DOUBLE_BAS_SAISON'] = false;
-                this.data['SINGLE_HAUTE_SAISON'] = false;
-                this.data['DOUBLE_HAUTE_SAISON'] = true;
-              }
-              
-
-        }
-
-        if(this.title  === 'Amorpha'){
-              if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-                this.RoomPrice = 245;
-                this.data['SINGLE_BAS_SAISON'] = true;
-                this.data['DOUBLE_BAS_SAISON'] = false;
-                this.data['SINGLE_HAUTE_SAISON'] = false;
-                this.data['DOUBLE_HAUTE_SAISON'] = false;
-
-            } 
-            else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-                this.RoomPrice = 315;
-                this.data['SINGLE_BAS_SAISON'] = false;
-                this.data['DOUBLE_BAS_SAISON'] = true;
-                this.data['SINGLE_HAUTE_SAISON'] = false;
-                this.data['DOUBLE_HAUTE_SAISON'] = false;
-            }
-            //cas single et haute de saison
-            else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-              this.RoomPrice = 315;
-                  this.data['SINGLE_BAS_SAISON'] = false;
-                  this.data['DOUBLE_BAS_SAISON'] = false;
-                  this.data['SINGLE_HAUTE_SAISON'] = true;
-                  this.data['DOUBLE_HAUTE_SAISON'] = false;
-            }
-          //cas double et haute de saison
-            else{
-              this.RoomPrice = 385;
-              this.data['SINGLE_BAS_SAISON'] = false;
-              this.data['DOUBLE_BAS_SAISON'] = false;
-              this.data['SINGLE_HAUTE_SAISON'] = false;
-              this.data['DOUBLE_HAUTE_SAISON'] = true;
-            }
-        }
-
-          if(this.title  === 'Ciconia'){
-            if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-              this.RoomPrice = 230;
-                this.data['SINGLE_BAS_SAISON'] = true;
-                this.data['DOUBLE_BAS_SAISON'] = false;
-                this.data['SINGLE_HAUTE_SAISON'] = false;
-                this.data['DOUBLE_HAUTE_SAISON'] = false;
-
-          } 
-          else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-              this.RoomPrice = 300;
-              this.data['SINGLE_BAS_SAISON'] = false;
-              this.data['DOUBLE_BAS_SAISON'] = true;
-              this.data['SINGLE_HAUTE_SAISON'] = false;
-              this.data['DOUBLE_HAUTE_SAISON'] = false;
-          }
-            //cas single et haute de saison
-            else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-              this.RoomPrice = 300;
-                  this.data['SINGLE_BAS_SAISON'] = false;
-                  this.data['DOUBLE_BAS_SAISON'] = false;
-                  this.data['SINGLE_HAUTE_SAISON'] = true;
-                  this.data['DOUBLE_HAUTE_SAISON'] = false;
-            }
-          //cas double et haute de saison
-            else{
-              this.RoomPrice = 370;
-              this.data['SINGLE_BAS_SAISON'] = false;
-              this.data['DOUBLE_BAS_SAISON'] = false;
-              this.data['SINGLE_HAUTE_SAISON'] = false;
-              this.data['DOUBLE_HAUTE_SAISON'] = true;
-            }
-
-        }
-          
-        if(this.title  === 'Marabou'){
-          if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 300;
-            this.data['SINGLE_BAS_SAISON'] = true;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-
-        } 
-        else if(this.roomType === '2' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 370;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = true;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-        }
-        //cas single et haute de saison
-        else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-          this.RoomPrice = 370;
-                  this.data['SINGLE_BAS_SAISON'] = false;
-                  this.data['DOUBLE_BAS_SAISON'] = false;
-                  this.data['SINGLE_HAUTE_SAISON'] = true;
-                  this.data['DOUBLE_HAUTE_SAISON'] = false;
-        }
-      //cas double et haute de saison
-        else{
-          this.RoomPrice = 440;
-          this.data['SINGLE_BAS_SAISON'] = false;
-          this.data['DOUBLE_BAS_SAISON'] = false;
-          this.data['SINGLE_HAUTE_SAISON'] = false;
-          this.data['DOUBLE_HAUTE_SAISON'] = true;
-        }
-
-
-        }
-
-        if(this.title  === 'Brecon'){
-          if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 335;
-            this.data['SINGLE_BAS_SAISON'] = true;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-
-        } 
-        else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 405;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = true;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-        }
-          //cas single et haute de saison
-          else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-            this.RoomPrice = 405;
-                  this.data['SINGLE_BAS_SAISON'] = false;
-                  this.data['DOUBLE_BAS_SAISON'] = false;
-                  this.data['SINGLE_HAUTE_SAISON'] = true;
-                  this.data['DOUBLE_HAUTE_SAISON'] = false;
-          }
-        //cas double et haute de saison
-          else{
-            this.RoomPrice = 475;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = true;
-          }
-
-        }
-
-        if(this.title  === 'Colony'){
-          if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 385;
-            this.data['SINGLE_BAS_SAISON'] = true;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-        } 
-        else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 455;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = true;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-        }
-         //cas single et haute de saison
-         else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-          this.RoomPrice = 455;
-                  this.data['SINGLE_BAS_SAISON'] = false;
-                  this.data['DOUBLE_BAS_SAISON'] = false;
-                  this.data['SINGLE_HAUTE_SAISON'] = true;
-                  this.data['DOUBLE_HAUTE_SAISON'] = false;
-        }
-      //cas double et haute de saison
-        else{
-          this.RoomPrice = 525;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = true;
-        }
-
-        }
-
-        if(this.title  === 'Cicogne'){
-          if (this.roomType == '1' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 265;
-            this.data['SINGLE_BAS_SAISON'] = true;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-
-        } 
-        else if(this.roomType == '2' && this.tarifType === 'bas de saison'){
-            this.RoomPrice = 335;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = true;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-        }
-          //cas single et haute de saison
-          else if(this.roomType == '1' && this.tarifType === 'haut de saison'){
-            this.RoomPrice = 335;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = true;
-            this.data['DOUBLE_HAUTE_SAISON'] = false;
-          }
-        //cas double et haute de saison
-          else{
-            this.RoomPrice = 405;
-            this.data['SINGLE_BAS_SAISON'] = false;
-            this.data['DOUBLE_BAS_SAISON'] = false;
-            this.data['SINGLE_HAUTE_SAISON'] = false;
-            this.data['DOUBLE_HAUTE_SAISON'] = true;
-          }
-
-        }
-    
-    this.calculTotal(this.Days , this.RoomPrice);
-  }
+     this.RoomPrice = room[0].doubleBprice;
+     this.roomType = '2'
+             this.data['SINGLE_BAS_SAISON'] = false;
+             this.data['DOUBLE_BAS_SAISON'] = true;
+             this.data['SINGLE_HAUTE_SAISON'] = false;
+             this.data['DOUBLE_HAUTE_SAISON'] = false;
+ }
+ //cas single et haute de saison
+ else if(this.roomTypeSelected  == '1' && this.tarifType === 'haut de saison'){
+     this.RoomPrice = room[0].singleHprice;
+     this.roomType = '1'
+     this.RoomPrice = 315;
+             this.data['SINGLE_BAS_SAISON'] = false;
+             this.data['DOUBLE_BAS_SAISON'] = false;
+             this.data['SINGLE_HAUTE_SAISON'] = true;
+             this.data['DOUBLE_HAUTE_SAISON'] = false;
+   }
+ //cas double et haute de saison
+   else if(this.roomTypeSelected  == '2' && this.tarifType === 'haut de saison'){
+     this.RoomPrice = room[0].doubleHprice;
+     this.roomType = '2'
+             this.data['SINGLE_BAS_SAISON'] = false;
+             this.data['DOUBLE_BAS_SAISON'] = false;
+             this.data['SINGLE_HAUTE_SAISON'] = false;
+             this.data['DOUBLE_HAUTE_SAISON'] = true;
+   }
+ 
+ 
+   this.calculTotal(this.Days , this.RoomPrice);
+ })
 }
 
 
