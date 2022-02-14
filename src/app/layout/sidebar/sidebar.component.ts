@@ -11,10 +11,12 @@ import {
 } from '@angular/core';
 import { ROUTES } from './sidebar-items';
 import { AuthService } from 'src/app/core/service/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { StcokOptionsComponent } from 'src/app/stock/stcok-options/stcok-options.component';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.sass'],
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   public sidebarItems: any[];
@@ -36,7 +38,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     public elementRef: ElementRef,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog,
+    private dialogRef: MatDialog
   ) {
     const body = this.elementRef.nativeElement.closest('body');
     this.routerObj = this.router.events.subscribe((event) => {
@@ -135,4 +139,32 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.renderer.addClass(this.document.body, 'submenu-closed');
     }
   }
+
+
+  opendialogue(item:any){
+      console.log('item>>>', item);
+
+      if(item.submenu[0].title === 'Gestion de stock'){
+        const dialogRef = this.dialog.open(StcokOptionsComponent, {
+                disableClose: true,
+              
+               width:'840px',
+               height:'450px',
+                data: {
+                  
+                },
+                
+              });
+              dialogRef.afterClosed().subscribe((result) => {
+                console.log(result);
+               
+                  
+          
+              });
+      }
+
+     
+    }
+    
+  
 }

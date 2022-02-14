@@ -74,7 +74,7 @@ export const ROUTES: RouteInfo[] = [
     ],
   },
  
- /* {
+  {
     path: '',
     title: 'Stock',
     moduleName: 'stock',
@@ -87,8 +87,21 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       
         {
-          path: '/reservation/test',
-          title: 'test',//new future 
+          path: 'stock/gestion-stock',
+          title: 'Gestion de stock',//
+          moduleName: 'stock',
+          iconType: '',
+          icon: '',
+          class: 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          submenu: [],
+        },
+        
+        {
+          path: 'stock/gestion-stock',
+          title: 'Inventaire',//
           moduleName: 'stock',
           iconType: '',
           icon: '',
@@ -101,6 +114,6 @@ export const ROUTES: RouteInfo[] = [
       
      
     ],
-  },*/
+  },
   
 ];

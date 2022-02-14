@@ -576,8 +576,6 @@ searchDateRange(){
   calendarApi.prev();
 }
 
-
-
 Reload(){
   window.location.reload();
 }

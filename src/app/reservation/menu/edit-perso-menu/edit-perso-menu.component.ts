@@ -54,11 +54,9 @@ export class EditPersoMenuComponent implements OnInit {
     
   }
 
-  
 
   ngAfterViewInit() {
 
-    
     this.DataPersoMenu.paginator = this.paginator;
   
   }
@@ -96,9 +94,6 @@ search(term: string) {
  getlisPersoReervationMenus(){
   
     this.service.getReservationList().pipe(take(1)).subscribe((persoMenus:any) => {
-     
-      
-      
      
       const persoMenusActive = persoMenus.filter(list => {
          return list.listmenuID.length > 0 ;

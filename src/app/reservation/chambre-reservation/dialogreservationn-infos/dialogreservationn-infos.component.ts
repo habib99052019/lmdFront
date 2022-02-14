@@ -347,24 +347,13 @@ getRoomTotalPrice(){
   })
 }
 
-selectTotalPrice($event:any){
-
-  
-}
-
-
-selectRoomNatureType(event:MatSelectChange){
-    
-    
-}
-
 
 initTarifType(){
  
   
  
   this._reservationService.getStandardRoomByName(this.title).pipe(take(1)).subscribe((room:any) => {
-    console.log('room>>>', room);
+  
 
     if (this.roomTypeSelected == '1' &&  this.tarifType === 'bas de saison'){
       this.RoomPrice = room[0].singleBprice;
@@ -412,8 +401,6 @@ initTarifType(){
 }
 
 
-
-
 selectRoomType(event: any){
   this.roomType = event.value;
 
@@ -426,7 +413,7 @@ selectRoomType(event: any){
 
   if(this.roomType){
     this._reservationService.getStandardRoomByName(this.title).pipe(take(1)).subscribe((room:any) => {
-      console.log('roomtttt2>>>', room);
+      
     
       if (this.roomType == '1' &&  this.tarifType === 'bas de saison'){
         this.RoomPrice = room[0].singleBprice;
@@ -473,6 +460,7 @@ selectRoomType(event: any){
     })
   }
 }
+
 
 initcheckDates(){
   
@@ -588,7 +576,7 @@ selectTaarifType(event: any){
   
   this.tarifType = event.value;
   this._reservationService.getStandardRoomByName(this.title).pipe(take(1)).subscribe((room:any) => {
-   console.log('roomtttt>>>', room);
+   
  
    if (this.roomTypeSelected == '1' &&  this.tarifType === 'bas de saison'){
      this.RoomPrice = room[0].singleBprice;
@@ -698,19 +686,6 @@ showNotification(colorName, text, placementFrom, placementAlign) {
   });
 }
 
-
-re_calculTotal(event:any){
-
-}
-
-
-showMenu(event : MatSelectChange){
-  // this.extraType = event.value;
-   
-   
-  // this.showMenuDetails = true ; 
-   
- }
  
 
 selectExtraType(event:any){

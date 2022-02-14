@@ -729,33 +729,7 @@ calculTarifPersoMenu(event : MatSelectChange){
   let from =event.source.ngControl.name
   if(event.source.ngControl.name == 'boissons'){
     
-   /* this.boissons = event.value;
-    const names = event.value.map(v => {
-         return v.name;
-      });
-   
-     this.arrayBoisson = names;
-        let filterList = this.arrayBoisson.concat((this.arrayDessert || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""));
-            this.listOfTarifNames2 = filterList.filter(function(e){return e});
-
-
-
-          const totalTarifBoissons = this.boissons.reduce((acc,cur) => {
-          return acc + cur.price;
-        },0)
-    
-    this.totalTarifBoissons = totalTarifBoissons;
-    this.totalePersoMenuPrice2 = this.totalTarifBoissons + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
-    this.data['price'] = this.totalePersoMenuPrice2;
-    this.data['remise'] = this.totalePersoMenuPrice2;
-    
-     this.data['menuList'] = this.listOfTarifNames2;
-     this.data['menuListTosent'] = this.listOfTarifNames2;*/
-
-
-
-     
-    
+  
      this.boissons = event.value;
      const names = event.value.map(v => {
       
@@ -810,31 +784,7 @@ calculTarifPersoMenu(event : MatSelectChange){
 
 //////////
 if(event.source.ngControl.name == 'desserts'){
-  /*this.desserts = event.value;
-  ////
-  const names = event.value.map(v => {
-    return v.name;
- });
- this.arrayDessert= names;
- let filterList =  this.arrayDessert.concat((this.arrayBoisson || ""),(this.arrayPate || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
- this.listOfTarifNames2 = filterList.filter(function(e){return e});
-///
-    const totalTarifDesserts = this.desserts.reduce((acc,cur) => {
-    return acc + cur.price;
-     },0)
   
-   this.totalTarifDesserts = totalTarifDesserts;
-   this.totalePersoMenuPrice2 = this.totalTarifDesserts + (this.totalTarifBoissons || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
-   this.data['price'] = this.totalePersoMenuPrice2;
-   this.data['remise'] = this.totalePersoMenuPrice2;
-   this.data['menuList'] = this.listOfTarifNames2;
-   this.data['menuListTosent'] = this.listOfTarifNames2;*/
-
-
-
- 
-    
-   
    this.desserts = event.value;
    const names = event.value.map(v => {
   
@@ -884,27 +834,6 @@ const totalTarifDesserts = this.desserts.reduce((acc,cur) => {
 
 ///////////
 if(event.source.ngControl.name == 'pates'){
-   /* this.pates = event.value;
-
-   ////
-  const names = event.value.map(v => {
-    return v.name;
- });
- this.arrayPate= names;
- let filterList = this.arrayPate.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
- this.listOfTarifNames2 = filterList.filter(function(e){return e});
-
-
-   const totalTarifPates = this.pates.reduce((acc,cur) => {
-   return acc + cur.price;
-  },0)
-
- this.totalTarifPates = totalTarifPates;
- this.totalePersoMenuPrice2 =  this.totalTarifPates + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
- this.data['price'] = this.totalePersoMenuPrice2;
- this.data['remise'] = this.totalePersoMenuPrice2;
- this.data['menuList'] = this.listOfTarifNames2;
- this.data['menuListTosent'] = this.listOfTarifNames2;*/
 
  this.pates = event.value;
  const names = event.value.map(v => {
@@ -952,28 +881,6 @@ const totalTarifPates = this.pates.reduce((acc,cur) => {
 ///////
 if(event.source.ngControl.name == 'nos_specialite'){
 
-   /*  this.specialists = event.value;
-     ////
-  const names = event.value.map(v => {
-    return v.name;
- });
- this.arraySpeciale= names;
- let filterList = this.arraySpeciale.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arrayPate || ""), (this.arrayChaud || ""),(this.arrayFeroids || ""))
-
- this.listOfTarifNames2 = filterList.filter(function(e){return e});
-
-
-     const totalTarifSpecialists = this.specialists.reduce((acc,cur) => {
-     return acc + cur.price;
-  },0)
-  
-  this.totalTarifSpecialists = totalTarifSpecialists;
-  this.totalePersoMenuPrice2 =  this.totalTarifSpecialists + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifChaudes || 0) + (this.totalTarifFeroids || 0);
-  this.data['price'] = this.totalePersoMenuPrice2;
-  this.data['remise'] = this.totalePersoMenuPrice2;
-  this.data['menuList'] = this.listOfTarifNames2;
-  this.data['menuListTosent'] = this.listOfTarifNames2;*/
-
   this.specialists = event.value;
  const names = event.value.map(v => {
  
@@ -1019,28 +926,6 @@ const totalTarifSpecialists = this.specialists.reduce((acc,cur) => {
 
  ///////
  if(event.source.ngControl.name == 'entree_chaudes'){
-  /* this.chaudes = event.value;
-
-    ////
-  const names = event.value.map(v => {
-    return v.name;
- });
- this.arrayChaud= names;
- let filterList = this.arrayChaud.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayPate || ""),(this.arrayFeroids || ""))
-
- this.listOfTarifNames2 = filterList.filter(function(e){return e});
-
-
-    const totalTarifChaudes = this.chaudes.reduce((acc,cur) => {
-    return acc + cur.price;
-   },0)
-  
-   this.totalTarifChaudes = totalTarifChaudes;
-   this.totalePersoMenuPrice2 =  this.totalTarifChaudes + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifFeroids || 0);
-   this.data['price'] = this.totalePersoMenuPrice2;
-   this.data['remise'] = this.totalePersoMenuPrice2;
-   this.data['menuList'] = this.listOfTarifNames2;
-   this.data['menuListTosent'] = this.listOfTarifNames2;*/
 
    this.chaudes = event.value;
    const names = event.value.map(v => {
@@ -1086,28 +971,6 @@ const totalTarifSpecialists = this.specialists.reduce((acc,cur) => {
  
 /////
 if(event.source.ngControl.name == 'entree_froides'){
-/*  this.froides = event.value;
-  
-  const names = event.value.map(v => {
-    return v.name;
- });
- this.arrayFeroids= names;
- let filterList = this.arrayFeroids.concat((this.arrayDessert || ""),(this.arrayBoisson || ""), (this.arraySpeciale || ""), (this.arrayChaud || ""),(this.arrayPate || ""))
-
- this.listOfTarifNames2 = filterList.filter(function(e){return e});
-
-
-  const totalTarifFeroids = this.froides.reduce((acc,cur) => {
-  return acc + cur.price;
-  },0)
- 
-   this.totalTarifFeroids = totalTarifFeroids;
-   this.totalePersoMenuPrice2 = this.totalTarifFeroids + (this.totalTarifBoissons || 0) + (this.totalTarifDesserts || 0) + (this.totalTarifPates || 0) + (this.totalTarifSpecialists || 0) + (this.totalTarifChaudes || 0);
-   this.data['price'] = this.totalePersoMenuPrice2;
-   this.data['remise'] = this.totalePersoMenuPrice2;
-   this.data['menuList'] = this.listOfTarifNames2;
-   this.data['menuListTosent'] = this.listOfTarifNames2;*/
-
 
    this.froides = event.value;
    const names = event.value.map(v => {
@@ -1169,29 +1032,6 @@ calculTarifPersoMenu2(event : MatSelectChange){
     let from =event.source.ngControl.name
   if(event.source.ngControl.name == 'boissons'){
     
-    /*this.boissons2 = event.value;
-    const names = event.value.map(v => {
-         return v.name;
-      });
-   
-     this.arrayBoisson2 = names;
-        let filterList = this.arrayBoisson2.concat((this.arrayDessert2 || ""),(this.arrayPate2 || ""), (this.arraySpeciale2 || ""), (this.arrayChaud2 || ""),(this.arrayFeroids2 || ""));
-            this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
-
-
-
-          const totalTarifBoissons = this.boissons2.reduce((acc,cur) => {
-          return acc + cur.price;
-        },0)
-    
-    this.totalTarifBoissons2 = totalTarifBoissons;
-    this.totalePersoMenu2Price = this.totalTarifBoissons2 + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
-    this.data['price2'] = this.totalePersoMenu2Price;
-    this.data['remise2'] = this.totalePersoMenu2Price;
-    
-    
-     this.data['menu2List'] = this.listDynamiqueMenu2;*/
-
      this.boissons2 = event.value;
      const names = event.value.map(v => {
       
@@ -1238,25 +1078,7 @@ calculTarifPersoMenu2(event : MatSelectChange){
 
 //////////
 if(event.source.ngControl.name == 'desserts'){
-  /*this.desserts2 = event.value;
-  ////
-  const names = event.value.map(v => {
-    return v.name;
- });
- this.arrayDessert2 = names;
- let filterList =  this.arrayDessert2.concat((this.arrayBoisson2 || ""),(this.arrayPate2 || ""), (this.arraySpeciale2 || ""), (this.arrayChaud2 || ""),(this.arrayFeroids2 || ""))
- this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
-///
-    const totalTarifDesserts = this.desserts2.reduce((acc,cur) => {
-    return acc + cur.price;
-     },0)
-  
-   this.totalTarifDesserts2 = totalTarifDesserts;
-   this.totalePersoMenu2Price = this.totalTarifDesserts2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
-   this.data['price2'] = this.totalePersoMenu2Price;
-   this.data['remise2'] = this.totalePersoMenu2Price;
-   this.data['menu2List'] = this.listDynamiqueMenu2;*/
-
+ 
    this.desserts2 = event.value;
    const names = event.value.map(v => {
  
@@ -1304,27 +1126,7 @@ const totalTarifDesserts = this.desserts2.reduce((acc,cur) => {
 
 ///////////
 if(event.source.ngControl.name == 'pates'){
-   /* this.pates2 = event.value;
-
-   ////
-  const names = event.value.map(v => {
-    return v.name;
- });
- this.arrayPate2 = names;
- let filterList = this.arrayPate2.concat((this.arrayDessert2 || ""),(this.arrayBoisson2 || ""), (this.arraySpeciale2 || ""), (this.arrayChaud2 || ""),(this.arrayFeroids2 || ""))
- this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
-
-
-   const totalTarifPates = this.pates2.reduce((acc,cur) => {
-   return acc + cur.price;
-  },0)
-
- this.totalTarifPates2 = totalTarifPates;
- this.totalePersoMenu2Price =  this.totalTarifPates2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
- this.data['price2'] = this.totalePersoMenu2Price;
- this.data['remise2'] = this.totalePersoMenu2Price;
- this.data['menu2List'] = this.listDynamiqueMenu2;*/
-
+  
  this.pates2 = event.value;
  const names = event.value.map(v => {
    
@@ -1369,28 +1171,7 @@ const totalTarifPates = this.pates2.reduce((acc,cur) => {
 
 ///////
 if(event.source.ngControl.name == 'nos_specialite'){
-     /*this.specialists2 = event.value;
-     ////
-  const names = event.value.map(v => {
-    return v.name;
- });
- this.arraySpeciale2 = names;
- let filterList = this.arraySpeciale2.concat((this.arrayDessert2 || ""),(this.arrayBoisson2 || ""), (this.arrayPate2 || ""), (this.arrayChaud2 || ""),(this.arrayFeroids2 || ""))
-
- this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
-
-
-     const totalTarifSpecialists = this.specialists2.reduce((acc,cur) => {
-     return acc + cur.price;
-  },0)
-  
-  this.totalTarifSpecialists2 = totalTarifSpecialists;
-  this.totalePersoMenu2Price =  this.totalTarifSpecialists2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifChaudes2 || 0) + (this.totalTarifFeroids2 || 0);
-  this.data['price2'] = this.totalePersoMenu2Price;
-  this.data['remise2'] = this.totalePersoMenu2Price;
- 
-  this.data['menu2List'] = this.listDynamiqueMenu2;*/
-
+    
   this.specialists2 = event.value;
  const names = event.value.map(v => {
    
@@ -1435,30 +1216,7 @@ const totalTarifSpecialists = this.specialists2.reduce((acc,cur) => {
 
  ///////
  if(event.source.ngControl.name == 'entree_chaudes'){
-   /*this.chaudes2 = event.value;
-
-    ////
-  const names = event.value.map(v => {
-    return v.name;
- });
- this.arrayChaud2 = names;
- let filterList = this.arrayChaud2.concat((this.arrayDessert2 || ""),(this.arrayBoisson2 || ""), (this.arraySpeciale2 || ""), (this.arrayPate2 || ""),(this.arrayFeroids2 || ""))
-
- this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
-
-
-    const totalTarifChaudes = this.chaudes2.reduce((acc,cur) => {
-    return acc + cur.price;
-   },0)
   
-   this.totalTarifChaudes2 = totalTarifChaudes;
-   this.totalePersoMenu2Price =  this.totalTarifChaudes2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifFeroids2 || 0);
-   this.data['price2'] = this.totalePersoMenu2Price;
-   this.data['remise2'] = this.totalePersoMenu2Price;
-   
-   this.data['menu2List'] = this.listDynamiqueMenu2;*/
-
-   
    this.chaudes2 = event.value;
   const names = event.value.map(v => {
  
@@ -1505,27 +1263,6 @@ const totalTarifSpecialists = this.specialists2.reduce((acc,cur) => {
  
 /////
 if(event.source.ngControl.name == 'entree_froides'){
- /* this.froides2 = event.value;
-  ////
-  const names = event.value.map(v => {
-    return v.name;
- });
- this.arrayFeroids2 = names;
- let filterList = this.arrayFeroids2.concat((this.arrayDessert2 || ""),(this.arrayBoisson2 || ""), (this.arraySpeciale2 || ""), (this.arrayChaud2 || ""),(this.arrayPate2 || ""))
-
- this.listDynamiqueMenu2 = filterList.filter(function(e){return e});
-
-
-  const totalTarifFeroids = this.froides2.reduce((acc,cur) => {
-  return acc + cur.price;
-  },0)
-  
-   this.totalTarifFeroids2 = totalTarifFeroids;
-   this.totalePersoMenu2Price = this.totalTarifFeroids2 + (this.totalTarifBoissons2 || 0) + (this.totalTarifDesserts2 || 0) + (this.totalTarifPates2 || 0) + (this.totalTarifSpecialists2 || 0) + (this.totalTarifChaudes2 || 0);
-   this.data['price2'] = this.totalePersoMenu2Price;
-   this.data['remise2'] = this.totalePersoMenu2Price;
-   
-   this.data['menu2List'] = this.listDynamiqueMenu2;*/
 
    this.froides2 = event.value;
    const names = event.value.map(v => {
@@ -1658,6 +1395,7 @@ changeFirstView(){
  
   
 }
+
 changeSecondView(){
   this.showview = false
   this.isUnderline = false;
@@ -1677,15 +1415,6 @@ search(query:string)
      return subject ? subject.clientID.first_name : undefined;
   }
   
-  BoissonsMenu(event:any){
-      
-      
-  }
-
-  onChange(event : MatSelectChange){
-   
-  }
-
 
   onNoClick(): void {
     this.dialogRef.close();

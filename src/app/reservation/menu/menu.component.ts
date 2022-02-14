@@ -154,7 +154,6 @@ export class MenuComponent implements OnInit {
   //////////////////////// Start Menu Standar Task///////////////////////////////////
   ngAfterViewInit() {
 
-    
     this.TableSourceData.paginator = this.paginator;
   
   }
@@ -172,11 +171,9 @@ export class MenuComponent implements OnInit {
 
   
 
-  getMenus(){
+ getMenus(){
     this.service.getMenuList().pipe(take(1)).subscribe((data : any)=>{
-     
-   
-      
+  
      this.Menus = data.reverse();
     })
   }
@@ -192,7 +189,6 @@ getListNatureMenus(){
 }
 
   
-
 
 search(term: string) {
 
@@ -247,8 +243,6 @@ getMenuReservations(){
     })
     
  }
-
-
 
 
 addNew() {
@@ -477,8 +471,6 @@ editCall(row) {
   }
 
 
-
-
   showMenu(event:MatSelectChange){
     
     
@@ -628,9 +620,6 @@ editCall(row) {
     }
     
   }
-
-
-
 
 
 

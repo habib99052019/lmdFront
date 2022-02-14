@@ -80,7 +80,7 @@
                             <form>
                                 <mat-form-field class="example-full-width mb-3" appearance="outline">
                                     <mat-label>nombre d’adulte</mat-label>
-                                    <input matInput [(ngModel)]="data.nb_children" name="nb_children" type="number" [min]="1" (change)="re_calculTotal($event)">
+                                    <input matInput [(ngModel)]="data.nb_children" name="nb_children" type="number" [min]="1">
                                     <mat-icon matSuffix>group</mat-icon>
                                 </mat-form-field>
                             </form>
@@ -90,7 +90,7 @@
                             <form>
                                 <mat-form-field class="example-full-width mb-3" appearance="outline">
                                     <mat-label>nombre d’enfant</mat-label>
-                                    <input matInput [(ngModel)]="data.number_adulte" name="number_adulte" type="number" [min]="1" (change)="re_calculTotal($event)">
+                                    <input matInput [(ngModel)]="data.number_adulte" name="number_adulte" type="number" [min]="1">
                                     <mat-icon matSuffix>group</mat-icon>
                                 </mat-form-field>
                             </form>
@@ -115,7 +115,7 @@
                             <form>
                                 <mat-form-field class="example-full-width" appearance="outline">
                                     <mat-label>Tarifs</mat-label>
-                                    <mat-select [(ngModel)]="data.tarifType" name="tarifType" required (selectionChange)="selectTaarifType($event)" (selectionChange)="showMenu($event)">
+                                    <mat-select [(ngModel)]="data.tarifType" name="tarifType" required (selectionChange)="selectTaarifType($event)">
                                         <mat-option [value]="'bas de saison'">
                                             Bas de saison
                                         </mat-option>
@@ -129,7 +129,7 @@
                         </div>
 
                         <div class="col-md-3 col-sm-6 text-center mt-3">
-                            <mat-radio-group labelPosition="after" [(ngModel)]="roomTypeSelected" name="roomTypeSelected" (selectionChange)="selectRoomNatureType($event)" color="primary">
+                            <mat-radio-group labelPosition="after" [(ngModel)]="roomTypeSelected" name="roomTypeSelected" color="primary">
                                 <mat-radio-button [value]="1" (change)="selectRoomType($event)">Single</mat-radio-button>
                                 <mat-radio-button [value]="2" (change)="selectRoomType($event)">Double</mat-radio-button>
                             </mat-radio-group>

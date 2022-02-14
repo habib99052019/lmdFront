@@ -24,56 +24,7 @@ export class AddPersoMenuComponent implements OnInit {
 
 
   
- // List des tarifs personaliser
- /*EntreeFeroidsList: any[] = [
-  {name:'Salade tunisienne', price:12},
-  {name:'Salade de capese', price:18},
-  {name:'Salade méchouia', price:13},
-  {name:'Salade niçoise', price:14},
-  {name:'Salade César', price:18},
-  {name:'Salade Dar ichkeul', price:14},
-  {name:'Salade de saumon fumé', price:25},
- ];*/
- /*EntreeChaudesList: any[] = [
-   {name:"Soupe à agneau", price:16},
-   {name:'Brik au thion', price:6},
-   {name:'Brik à la viande', price:7}   
- ]*/
-
- /*NosSpecialistesList: any[] = [
-   {name:"Agneau à la gargoulette", price:35},
-   {name:"Cotelette agneau grillée", price:32},
-   {name:"Entrecote grillée beurre maitre hotel", price:40},
-   {name:"Filet de boeuf", price:45},
-   {name:"Grillades mixtes", price:39},
-   {name:"Cailles grillées", price:28},
-   {name:"Escalope de poulet à la crème", price:28},
-   {name:"Excalope de poulet panné", price:25},
-   {name:"Ojja Merguez", price:18},
-   {name:"Ojja chevrettes", price:28}    
- ]*/
-/*
-PatesList: any[] = [
-   {name:"Nwasser au poulet fermier", price:20},
-   {name:"Spaghettis Bolognaises", price:32},
- ]*
-
-/*BoissonsList: any[] = [
-   {name:"Eau minérale 1L", price:3},
-   {name:"Eau gazeuse 1L", price:3},
-   {name:"Soda", price:4},
-   {name:"Jus Orange", price:6},
-   {name:"Jus de Fraise", price:6},
-   {name:"Citronade", price:4},
-   {name:"Boissons énergétiques", price:8},
-   {name:"Nepresso", price:4.5},
- ]*/
-
- /*DessertsList: any[] = [
-   {name:"Sorbet", price:4},
-   {name:"Assiette de fruits(1pax)", price:8},
-   
- ]*/
+ 
 
  DessertsList: any[];
  BoissonsList: any[];
@@ -198,7 +149,6 @@ getPlatList(){
 }
 
 
-
   
 getUserList(){
 this.service.getReservationList().pipe(take(1)).subscribe((users:any[]) => {
@@ -222,6 +172,7 @@ this.service.getReservationList().pipe(take(1)).subscribe((users:any[]) => {
        ) 
        : this.users;
   }
+
 
   displayFn(subject:any)
   {

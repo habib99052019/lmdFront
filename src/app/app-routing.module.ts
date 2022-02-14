@@ -21,8 +21,15 @@ const routes: Routes = [
       
       {
         path: 'reservation',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./reservation/reservation.module').then((m) => m.ReservationModule),
+      },
+      {
+        path: 'stock',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./stock/stock.module').then((m) => m.StockModule),
       },
       {
         path: 'extra-pages',

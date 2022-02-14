@@ -26,7 +26,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row flex ">
-                            <form  [formGroup]="reservationChambreForm" >
+                            <form [formGroup]="reservationChambreForm">
                                 <div class="row">
                                     <div class="col">
                                         <mat-form-field class="example-full-width" appearance="outline">
@@ -43,10 +43,10 @@
                                         </mat-form-field>
                                     </div>
 
-                                     <div class="col">
+                                    <div class="col">
                                         <mat-form-field class="example-full-width" appearance="outline">
                                             <mat-label>Date d’arrivée</mat-label>
-                                            <input matInput    [matDatepicker]="picker"   name="date" [formControl]="date"      required (dateChange)="checkDates($event)" [max]="this.maxDate" [min]="this.todayDate">
+                                            <input matInput [matDatepicker]="picker" name="date" [formControl]="date" required (dateChange)="checkDates($event)" [max]="this.maxDate" [min]="this.todayDate">
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-datepicker #picker></mat-datepicker>
                                         </mat-form-field>
@@ -59,14 +59,14 @@
                                             <mat-datepicker #picker2></mat-datepicker>
                                         </mat-form-field>
                                     </div>
-                                </div> 
+                                </div>
 
                                 <div class="row">
                                     <div class="col">
-                                        <mat-form-field   class="example-full-width" appearance="outline">
+                                        <mat-form-field class="example-full-width" appearance="outline">
                                             <mat-label>Chambre</mat-label>
-                                            <mat-select formControlName="roomID"  (selectionChange)="selectRoom($event)"   required>
-                                                <mat-option *ngFor="let chambre of this.Chambres"        [value]=chambre.name>
+                                            <mat-select formControlName="roomID" (selectionChange)="selectRoom($event)" required>
+                                                <mat-option *ngFor="let chambre of this.Chambres" [value]=chambre.name>
                                                     {{chambre.name}}
                                                 </mat-option>
                                             </mat-select>
@@ -75,8 +75,8 @@
                                     <div class="col">
                                         <mat-form-field class="example-full-width mb-3" appearance="outline">
                                             <mat-label>Numéro de téléphone</mat-label>
-                                            <input matInput formControlName="number_phone" name="number_phone" type="number" [min]="8"  required>
-                                
+                                            <input matInput formControlName="number_phone" name="number_phone" type="number" [min]="8" required>
+
                                         </mat-form-field>
                                     </div>
                                     <div class="col">
@@ -89,7 +89,7 @@
                                     <div class="col">
                                         <mat-form-field class="example-full-width mb-3" appearance="outline">
                                             <mat-label>Nombre d’enfant</mat-label>
-                                            <input matInput formControlName="number_adulte" type="number" [min]="1" >
+                                            <input matInput formControlName="number_adulte" type="number" [min]="1">
                                             <mat-icon matSuffix>group</mat-icon>
                                         </mat-form-field>
                                     </div>
@@ -119,39 +119,34 @@
                                     <div class="col">
                                         <form>
                                             <mat-form-field class="example-full-width" appearance="outline">
-                                            <mat-label>Tarifs</mat-label>
-                                            <mat-select [(ngModel)]="this.taarifType"  name="taarifType"  required (selectionChange)="selectTaarifType($event)"   (selectionChange)="showMenu($event)"      >
-                                                <mat-option [value]="'bas de saison'">
-                                                    Bas de saison
-                                                </mat-option>
-                                                <mat-option [value]="'haut de saison'">
-                                                    Haut de saison
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
+                                                <mat-label>Tarifs</mat-label>
+                                                <mat-select [(ngModel)]="this.taarifType" name="taarifType" required (selectionChange)="selectTaarifType($event)" (selectionChange)="showMenu($event)">
+                                                    <mat-option [value]="'bas de saison'">
+                                                        Bas de saison
+                                                    </mat-option>
+                                                    <mat-option [value]="'haut de saison'">
+                                                        Haut de saison
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
                                         </form>
-                                        
+
                                     </div>
-                                    <!--<div class="col-md-3 col-sm-12 text-center mt-3">
-                                        <mat-radio-group formControlName="roomType" color="primary">
-                                            <mat-radio-button  *ngIf="showSingle"   value="single" (change)="selectRoomType($event)">Single</mat-radio-button>
-                                            <mat-radio-button  *ngIf="showDouble"  value="double" (change)="selectRoomType($event)">Double</mat-radio-button>
-                                        </mat-radio-group>
-                                    </div>-->
+
                                     <div class="col-md-3 col-sm-12 text-center mt-3">
                                         <form>
-                                             <mat-radio-group [(ngModel)]="this.roomType" name="roomType" color="primary">
-                                                <mat-radio-button  *ngIf="showSingle"   value="single" (change)="selectRoomType($event)">Single</mat-radio-button>
-                                                <mat-radio-button  *ngIf="showDouble"  value="double" (change)="selectRoomType($event)">Double</mat-radio-button>
+                                            <mat-radio-group [(ngModel)]="this.roomType" name="roomType" color="primary">
+                                                <mat-radio-button *ngIf="showSingle" value="single" (change)="selectRoomType($event)">Single</mat-radio-button>
+                                                <mat-radio-button *ngIf="showDouble" value="double" (change)="selectRoomType($event)">Double</mat-radio-button>
                                             </mat-radio-group>
                                         </form>
-                                       
+
                                     </div>
-                                   
+
                                     <div class="col" id="my_div">
                                         <mat-form-field class="example-full-width mb-3" appearance="outline">
                                             <mat-label>Extras</mat-label>
-                                            <mat-select formControlName="extra" (selectionChange)="selectExtraType($event)"   >
+                                            <mat-select formControlName="extra" (selectionChange)="selectExtraType($event)">
                                                 <mat-option [value]="">
                                                 </mat-option>
                                                 <mat-option [value]="'lit adulte'">
@@ -172,24 +167,23 @@
 
                                 </div>
 
-                                <div  style="border-width: 5px solid; background-color: rgb(202, 230, 255);
-                                                 border-radius: 5px; "   class="row d-flex justify-content-between align-items-center m-1 text-capitalize"
-                                      *ngIf="showMenuDetails" >
-                                       
-                                        <div class="col-6 mb-4 mt-2">
-                                            tarif: {{taarifType}}
-                                        </div>
-                                        <div class="col-6 mb-4">
-                                            type: {{roomType}}
-                                        </div>
-                                        <div class="col-6 mb-2">
-                                            extras: {{extraType}}
-                                        </div>
-                                        <div class="col-6 ">
-                                            prix: {{ priceTotal }} DT
-                                        </div>
-                                </div> 
-                                <div class="row mt-3"  *ngIf="showMenuDetails">
+                                <div style="border-width: 5px solid; background-color: rgb(202, 230, 255);
+                                                 border-radius: 5px; " class="row d-flex justify-content-between align-items-center m-1 text-capitalize" *ngIf="showMenuDetails">
+
+                                    <div class="col-6 mb-4 mt-2">
+                                        tarif: {{taarifType}}
+                                    </div>
+                                    <div class="col-6 mb-4">
+                                        type: {{roomType}}
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        extras: {{extraType}}
+                                    </div>
+                                    <div class="col-6 ">
+                                        prix: {{ priceTotal }} DT
+                                    </div>
+                                </div>
+                                <div class="row mt-3" *ngIf="showMenuDetails">
                                     <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-body bg-gray text-white text-capitalize">
@@ -200,12 +194,12 @@
                                                     <div class="col-md-12">
                                                         <p>nuits : {{this.Days}} </p>
                                                     </div>
-                                                   <!--
+                                                    <!--
                                                        <div class="col-md-12">
                                                         <p>Total : {{this.priceTotal}} DT</p>
                                                        </div>
-                                                   --> 
-                                                    <div  class="remise">
+                                                   -->
+                                                    <div class="remise">
                                                         <!--<button mat-icon-button color="warn" (click)="removeFromTotal()" [disabled]="this.sodaPrice === 0">
                                                             <mat-icon>remove</mat-icon>
                                                           </button> 
@@ -218,18 +212,18 @@
                                                             <mat-icon>add</mat-icon>
                                                         </button>-->
                                                         <div style="display: flex; margin-top: 10px;">
-                                                            <p style="color: rgb(49, 49, 49);">Total : </p> 
+                                                            <p style="color: rgb(49, 49, 49);">Total : </p>
                                                             <p style="color: rgb(49, 49, 49); margin-left: 2px;"> {{this.priceTotal}} DT</p>
-                                                          </div>
-                                                          <form>
-                                                              <mat-form-field class="example-full-width mb-3" appearance="outline">
+                                                        </div>
+                                                        <form>
+                                                            <mat-form-field class="example-full-width mb-3" appearance="outline">
                                                                 <mat-label>Total avec remise</mat-label>
                                                                 <input matInput [(ngModel)]="this.remisePrice" name="remise" type="number">
-                                                
-                                                             </mat-form-field>
 
-                                                          </form>
-                                                        
+                                                            </mat-form-field>
+
+                                                        </form>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -260,18 +254,18 @@
 
 
 
-                               
-                                 <div style="display: flex; flex-direction:row; justify-content:end;">
-                                     <div>
-                                            <button mat-raised-button color="warn" routerLink="/reservation/calendrier"  >Annuler</button>
-                                            <button  style="margin-left:10px" mat-raised-button color="primary" (click)="addNewReservation()"  >Confirmer</button>
-                                            
-                                  
-                                     </div>
+
+                                <div style="display: flex; flex-direction:row; justify-content:end;">
+                                    <div>
+                                        <button mat-raised-button color="warn" routerLink="/reservation/calendrier">Annuler</button>
+                                        <button style="margin-left:10px" mat-raised-button color="primary" (click)="addNewReservation()">Confirmer</button>
+
+
+                                    </div>
                                 </div>
-                           
-                                
-                                
+
+
+
 
                             </form>
                         </div>
@@ -282,6 +276,3 @@
         </div>
     </div>
 </section>
-
-
-
