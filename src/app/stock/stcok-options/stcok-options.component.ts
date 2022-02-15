@@ -12,4 +12,7 @@ export class StcokOptionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+ 
+
 }

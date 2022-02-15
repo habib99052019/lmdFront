@@ -8,12 +8,18 @@ import { InventaireOptionsComponent } from './inventaire-options/inventaire-opti
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MatStepperModule } from '@angular/material/stepper';
+import { EconomatComponent } from './stcok-options/economat/economat.component';
+import { ShopComponent } from './stcok-options/shop/shop.component';
+import { ExterieurComponent } from './stcok-options/exterieur/exterieur.component';
 
 @NgModule({
   declarations: [
     StcokOptionsComponent,
     EmptyPageComponent,
-    InventaireOptionsComponent
+    InventaireOptionsComponent,
+    EconomatComponent,
+    ShopComponent,
+    ExterieurComponent
   ],
   imports: [
     CommonModule,

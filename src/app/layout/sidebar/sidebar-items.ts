@@ -79,7 +79,7 @@ export const ROUTES: RouteInfo[] = [
     title: 'Stock',
     moduleName: 'stock',
     iconType: 'material-icons-two-tone',
-    icon: 'book',
+    icon: 'equalizer',
     class: 'menu-toggle',
     groupTitle: false,
     badge: '',
