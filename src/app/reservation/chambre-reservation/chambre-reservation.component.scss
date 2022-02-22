@@ -1,238 +1,240 @@
-
-
-.min-calendar{
-display: flex;
-flex-direction: row;
-justify-content: space-between;      
+.min-calendar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-
-.dispo{
-position:absolute;
-right: 15px;
-top:70px      
+.dispo {
+    position: absolute;
+    right: 15px;
+    top: 70px
 }
 
 .fc.fc-button-primary {
-color: var(--fc-button-text-color,#fff) !important;
-background-color: #1c4587ff !important;
-border-color: var(--fc-button-border-color,#1c4587ff) !important;
+    color: var(--fc-button-text-color, #fff) !important;
+    background-color: #1c4587ff !important;
+    border-color: var(--fc-button-border-color, #1c4587ff) !important;
 }
 
-#dispo{
-    color: #b366ff; 
-    margin-left: 58px; 
-    }
-    #occup{
+#dispo {
+    color: #b366ff;
+    margin-left: 58px;
+}
+
+#occup {
     color: rgb(235, 12, 12);
     margin-left: 38px;
-    }
-    #Reserv{
+}
+
+#Reserv {
     color: rgb(243, 247, 35);
     margin-left: 37px;
-    }
-    #Ferm{
+}
+
+#Ferm {
     color: rgb(182, 182, 182);
     margin-left: 48px;
-    }
-    p {
-        font-family: Lato;
-      }
+}
+
+p {
+    font-family: Lato;
+}
 
 .fullscreen-dialog {
     position: fixed;
-  }
+}
 
-  .custom-dialog-container .mat-dialog-container {
+.custom-dialog-container .mat-dialog-container {
     width: '1200px';
-    height:'900px';
+    height: '900px';
 }
 
-
-.cercle{
-  width: 35px;
-  height: 35px;
-  border-radius: 20px;
-  margin-left:2%;
-  background: #1c4587ff;
-  margin-top: 2px;
+.cercle {
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    margin-left: 2%;
+    background: #1c4587ff;
+    margin-top: 2px;
 }
-
 
 /////////// Creation des buttons pressoir///////////////////////////////////////////
 
-
 /* Création de l'effet : au clic, le bouton descend. Il faut donc le déplacer vers le bas ET REDUIRE L'OMBRE */
-.Bouton{
+
+.Bouton {
     bottom: 2px;
-    background-color:#d8d8d8 !important;
-    color:white; 
+    background-color: #d8d8d8 !important;
+    color: white;
     width: 90px;
     margin-bottom: 5px;
-   // box-shadow: -1px -1px -1px -1px#003b60;
- 
+    // box-shadow: -1px -1px -1px -1px#003b60;
 }
 
-.ruppia{
-  background-color:#deaa89;
-  color:white;
-   width: 90px;
-   margin-bottom: 5px;
+.ruppia {
+    background-color: #deaa89;
+    color: white;
+    width: 90px;
+    margin-bottom: 5px;
 }
 
-.ciconia{
-  background-color:#ce711a;
-  color:white;
-   width: 90px;
-   margin-bottom: 5px;
+.ciconia {
+    background-color: #ce711a;
+    color: white;
+    width: 90px;
+    margin-bottom: 5px;
 }
 
-.amorpha{
-  background-color:#79c296;
-  color:white;
-   width: 90px;
-   margin-bottom: 5px;
+.amorpha {
+    background-color: #79c296;
+    color: white;
+    width: 90px;
+    margin-bottom: 5px;
 }
 
-.marabou{
-  background-color:#d29e6d;
-  color:white;
-   width: 90px;
-   margin-bottom: 5px;
+.marabou {
+    background-color: #d29e6d;
+    color: white;
+    width: 90px;
+    margin-bottom: 5px;
 }
 
-.brecon{
-  background-color:#246880;
-  color:white;
-   width: 90px;
-   margin-bottom: 5px;
+.brecon {
+    background-color: #246880;
+    color: white;
+    width: 90px;
+    margin-bottom: 5px;
 }
 
-.colony{
-background-color:#2896bc;
-color:white;
-width: 90px;
-margin-bottom: 5px;
-
+.colony {
+    background-color: #2896bc;
+    color: white;
+    width: 90px;
+    margin-bottom: 5px;
 }
 
-.cicogne{
-background-color:#dcc379;
-color:white;
-width: 90px;
-margin-bottom: 5px;
+.cicogne {
+    background-color: #dcc379;
+    color: white;
+    width: 90px;
+    margin-bottom: 5px;
 }
 
-.bonnelli{
-background-color:#997259;
-color:white;
-width: 90px;
-margin-bottom: 5px;
+.bonnelli {
+    background-color: #997259;
+    color: white;
+    width: 90px;
+    margin-bottom: 5px;
 }
 
-.villa{
-  background-color:#7aa0b8;
-  color:white;
-  width: 90px;
-  margin-bottom: 5px;
+.villa {
+    background-color: #7aa0b8;
+    color: white;
+    width: 90px;
+    margin-bottom: 5px;
 }
 
 
 /****** Start Media ***********/
 
-/* Mobile xs */ 
+
+/* Mobile xs */
+
 @media (max-width: 420px) {
-
-  .cercle{
-   
-  
-  }
-  .cal{
-    .mat-form-field{
-      width:150px !important;
+    .cercle {}
+    .cal {
+        .mat-form-field {
+            width: 150px !important;
+        }
     }
-    
-  }
-
-  .searsh{
-    margin-top: 40px;
-  }
-  .add_circle{
-  
-  }
-
-  .fc .fc-scrollgrid, .fc .fc-scrollgrid table {
-    width: 100%;
-    table-layout: fixed;
-    margin-left: -14px;
+    .searsh {
+        margin-top: 40px;
+    }
+    .add_circle {}
+    .fc .fc-scrollgrid,
+    .fc .fc-scrollgrid table {
+        width: 100%;
+        table-layout: fixed;
+        margin-left: -14px;
+    }
+    .mat-button.mat-primary,
+    .mat-icon-button.mat-primary,
+    .mat-stroked-button.mat-primary {
+        color: #3f51b5;
+        margin-top: 100px;
+    }
+    .filter-container {
+        margin: auto;
+        position: absolute;
+        top: 90px;
+        left: 10px;
+    }
+    .fc.fc-button-primary {
+        color: var(--fc-button-text-color, rgb(255, 255, 255)) !important;
+        background-color: #1c4587ff !important;
+        border-color: var(--fc-button-border-color, #1c4587ff) !important;
+        padding-left: 21px !important;
+        margin-top: 5px !important;
+    }
 }
 
-.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
-  color: #3f51b5;
-  margin-top: 100px;
-}
-
-
-.filter-container{
-    
-  margin: auto;
-position: absolute;
-top: 90px;
-left: 10px;
-
-}
-
-.fc.fc-button-primary {
-  color: var(--fc-button-text-color,rgb(255, 255, 255)) !important;
-  background-color: #1c4587ff !important;
-  border-color: var(--fc-button-border-color,#1c4587ff) !important;
-  padding-left: 21px !important;
-  margin-top: 5px !important;
-  }
-
-
-}
 
 /* Mobile & Tablet Rules */
-@media (max-width: 767px) { 
 
-  .min-calendar{
-    
-  }
-  .cercle{
-    
-    position: absolute;
-    left: 60px;
-  }
-  .cal{
-    position: absolute;
-    right: 60px;
-   
-  }
- 
-  .filter-container{
-    
-    margin: auto;
-  position: absolute;
-  top: 90px;
-  left: 10px;
-  
-}
-  
-full-calendar{
-  
-  margin-top: 60px;
-  width: 98%;
-  margin-left: 100px;
-}
-
-.fc-button-primary{
-  position: absolute;
-   top: 122px;
-   background-color: red;
+@media (max-width: 767px) {
+    .min-calendar {}
+    .cercle {
+        position: absolute;
+        left: 60px;
+    }
+    .cal {
+        position: absolute;
+        right: 60px;
+    }
+    .filter-container {
+        margin: auto;
+        position: absolute;
+        top: 90px;
+        left: 10px;
+    }
+    full-calendar {
+        margin-top: 60px;
+        width: 98%;
+        margin-left: 100px;
+    }
+    .fc-button-primary {
+        position: absolute;
+        top: 122px;
+        background-color: red;
+    }
 }
 
 
+/* Small Screen Rules */
 
-
+@media (min-width: 768px) and (max-width: 991px) {
+    .cercle {
+        position: absolute;
+        left: 60px;
+    }
+    .cal {
+        position: absolute;
+        right: 60px;
+    }
+    .filter-container {
+        margin: auto;
+        position: absolute;
+        top: 90px;
+        left: 10px;
+    }
+    full-calendar {
+        margin-top: 60px;
+        width: 98%;
+        margin-left: 100px;
+    }
+    .fc-button-primary {
+        position: absolute;
+        top: 122px;
+        background-color: red;
+    }
 }
