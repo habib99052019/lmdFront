@@ -140,7 +140,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
   }
 
-
+/*
   opendialogue(item:any){
       console.log('item>>>', item);
 
@@ -164,7 +164,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       }
 
      
-    }
+    }*/
     
   
 }

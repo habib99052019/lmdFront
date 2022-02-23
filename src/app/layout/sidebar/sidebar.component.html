@@ -46,7 +46,7 @@
                         <span *ngIf="sidebarItem.badge != '' " [ngClass]="[sidebarItem.badgeClass]">{{sidebarItem.badge}}</span>
                     </a>
                     <!-- First level menu -->
-                    <ul class="ml-menu" *ngIf="sidebarItem.submenu.length > 0" (click)=opendialogue(sidebarItem)>
+                    <ul class="ml-menu" *ngIf="sidebarItem.submenu.length > 0">
                         <li [ngClass]="level2Menu === sidebarSubItem.moduleName? 'activeSub':''" *ngFor="let sidebarSubItem of sidebarItem.submenu" [routerLinkActive]="sidebarSubItem.submenu.length > 0 ? '' : 'active'">
                             <a [routerLink]="sidebarSubItem.submenu.length > 0 ? null : [sidebarSubItem.path]" (click)="callLevel2Toggle($event,sidebarSubItem.moduleName)" [ngClass]="[sidebarSubItem.class]">
                 {{sidebarSubItem.title}}
