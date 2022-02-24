@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlimentaireComponent } from './stcok-options/economat/alimentaire/alimentaire.component';
 import { ViandeComponent } from './stcok-options/economat/alimentaire/viande/viande.component';
 import { EconomatComponent } from './stcok-options/economat/economat.component';
+import { NettoyageComponent } from './stcok-options/economat/nettoyage/nettoyage.component';
 import { ExterieurComponent } from './stcok-options/exterieur/exterieur.component';
 import { ShopComponent } from './stcok-options/shop/shop.component';
 import { StcokOptionsComponent } from './stcok-options/stcok-options.component';
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'gestion-stock/economat/alimentaire/viande',
     component: ViandeComponent
+  },
+  {
+    path: 'gestion-stock/economat/nettoyage',
+    component: NettoyageComponent
   },
 
   {

@@ -12,6 +12,7 @@ import { ShopComponent } from './stcok-options/shop/shop.component';
 import { ExterieurComponent } from './stcok-options/exterieur/exterieur.component';
 import { AlimentaireComponent } from './stcok-options/economat/alimentaire/alimentaire.component';
 import { ViandeComponent } from './stcok-options/economat/alimentaire/viande/viande.component';
+import { NettoyageComponent } from './stcok-options/economat/nettoyage/nettoyage.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ViandeComponent } from './stcok-options/economat/alimentaire/viande/via
     ShopComponent,
     ExterieurComponent,
     AlimentaireComponent,
-    ViandeComponent 
+    ViandeComponent,
+    NettoyageComponent 
     
    
   ],
