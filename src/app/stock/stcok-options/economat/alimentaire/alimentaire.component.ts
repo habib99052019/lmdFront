@@ -16,7 +16,10 @@ export class AlimentaireComponent implements OnInit {
   }
 
   gotoPreviousPage(){
-    this.router.navigate(['stock/gestion-stock/economat'])
+    this.router.navigate(['stock/gestion-stock/economat']);
   }
-
+  gotostockPage(){
+    
+    this.router.navigate(['stock/gestion-stock']);
+  }
 }

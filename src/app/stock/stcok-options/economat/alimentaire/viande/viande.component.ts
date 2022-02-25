@@ -19,4 +19,11 @@ export class ViandeComponent implements OnInit {
   gotoPreviousPage(){
     this.router.navigate(['stock/gestion-stock/economat/alimentaire'])
   }
+  gotostockPage(){
+    
+    this.router.navigate(['stock/gestion-stock']);
+  }
+  gotoEconomatPage(){
+    this.router.navigate(['stock/gestion-stock/economat']);
+  }
 }

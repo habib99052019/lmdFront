@@ -1,36 +1,25 @@
 .boxDiv {
     display: flex;
     flex-direction: column;
-    min-height: 150px;
-    // padding-left: 20px;
-    padding-top: 55px;
-    background-color: rgb(196, 196, 196);
+    //padding-top: 30px;
     font-weight: bold;
-    color: rgb(12, 12, 12);
-    margin: 5px;
-    // margin-left: 150px;
+    color: rgb(56, 56, 56);
+    border-radius: 12px;
+    box-shadow: 0.5px 0.5px 6px 0.5px#9e9e9e;
 }
 
 .boxDiv2 {
     display: flex;
     flex-direction: column;
-    min-height: 150px;
-    // padding-left: 20px;
-    padding-top: 55px;
-    background-color: rgb(13, 9, 245);
+    padding-top: 20px;
+    // min-height: 100px;
     font-weight: bold;
-    color: rgb(12, 12, 12);
-    margin: 5px;
+    color: rgb(56, 56, 56);
+    border-radius: 12px;
+    box-shadow: 0.5px 0.5px 6px 0.5px#9e9e9e;
+    background-color: rgb(13, 9, 245);
 }
 
-.boxDiv3 {
-    display: flex;
-    flex-direction: column;
-    min-height: 150px;
-    // padding-left: 20px;
-    padding-top: 55px;
-    background-color: rgb(26, 211, 165);
-    font-weight: bold;
-    color: rgb(12, 12, 12);
-    margin: 5px;
+img {
+    border-radius: 6px;
 }

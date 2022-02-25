@@ -11,7 +11,24 @@
                             <a href="#" onClick="return false;">
                                 <i class="fas fa-home"></i>Accueil</a>
                         </li>
-                        <li class="breadcrumb-item active">Stock</li>
+                        <li class="breadcrumb-item active">
+                            <a href="#" onClick="return false;">
+                                Stock
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-3">
+                            <a style=" cursor: pointer;" (click)="gotostockPage()">
+                               Gestion de stock
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-3">
+                            <a style=" cursor: pointer;" (click)="gotoPreviousPage()">
+                               Economat
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-3">
+                            Alimentaire
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -30,131 +47,167 @@
 
                         <div class="row mt-5">
 
-                            <a routerLink="viande" class="col-lg-3">
+                            <a routerLink="shop" class="col-lg-3 mb-3">
 
                                 <div class="boxDiv2 text-center">
-                                    <!--<img alt="image" width="80px" height="80px" src="https://www.clipartmax.com/png/middle/302-3023641_home-icons-grey-home-icon-png-grey.png" class="image" />-->
-
-                                    <span><mat-icon style="color: rgb(255, 254, 254);font-size: 60px; margin-right: 30px; margin-top: 15px;">kitchen</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253);">Viandes</span>
-                                </div>
-
-
-                            </a>
-
-
-                            <a routerLink="exterieur" class="col-lg-3">
-                                <div class="boxDiv2 text-center">
-
-                                    <span><mat-icon style="color: rgb(255, 255, 255);font-size: 60px; margin-right: 30px; margin-top: 15px;">kitchen</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253);">Poissons</span>
-                                </div>
-                            </a>
-
-                            <a routerLink="shop" class="col-lg-3">
-
-                                <div class="boxDiv2 text-center">
-
-                                    <span><mat-icon style="color: rgb(255, 253, 253);font-size: 60px; margin-right: 30px; margin-top: 15px;">kitchen</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253)">Fruits de mer</span>
-                                </div>
-
-
-                            </a>
-
-                            <!---------------------------------------->
-                            <a routerLink="shop" class="col-lg-3">
-
-                                <div class="boxDiv2 text-center">
-
-                                    <span><mat-icon style="color: rgb(255, 253, 253);font-size: 60px; margin-right: 30px; margin-top: 15px;">kitchen</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253)">Chrcuterie</span>
-                                </div>
-
-
-                            </a>
-                            <a routerLink="shop" class="col-lg-3">
-
-                                <div class="boxDiv2 text-center">
-
-                                    <span><mat-icon style="color: rgb(255, 253, 253);font-size: 60px; margin-right: 30px; margin-top: 15px;">kitchen</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253)">Produits laittiers</span>
-                                </div>
-
-
-                            </a>
-                            <a routerLink="shop" class="col-lg-3">
-
-                                <div class="boxDiv2 text-center">
-
-                                    <span><mat-icon style="color: rgb(255, 253, 253);font-size: 60px; margin-right: 30px; margin-top: 15px;">kitchen</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253)">Boissons</span>
-                                </div>
-
-
-                            </a>
-
-                            <!---------------------------------------->
-                            <a routerLink="shop" class="col-lg-3">
-
-                                <div class="boxDiv2 text-center">
-
-                                    <span><mat-icon style="color: rgb(255, 253, 253);font-size: 60px; margin-right: 30px; margin-top: 15px;">kitchen</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253)">Legumes</span>
-                                </div>
-
-
-                            </a>
-                            <a routerLink="shop" class="col-lg-3">
-
-                                <div class="boxDiv2 text-center">
-
-                                    <span><mat-icon style="color: rgb(255, 253, 253);font-size: 60px; margin-right: 30px; margin-top: 15px;">kitchen</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253)">Fruits</span>
-                                </div>
-
-
-                            </a>
-                            <a routerLink="shop" class="col-lg-3">
-
-                                <div class="boxDiv2 text-center">
-
-                                    <span><mat-icon style="color: rgb(255, 253, 253);font-size: 60px; margin-right: 30px; margin-top: 15px;">kitchen</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253)">Conserves</span>
-                                </div>
-
-
-                            </a>
-                            <a routerLink="shop" class="col-lg-3">
-
-                                <div class="boxDiv2 text-center">
-
-                                    <span><mat-icon style="color: rgb(255, 253, 253);font-size: 60px; margin-right: 30px; margin-top: 15px;">kitchen</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253)">Pattes</span>
-                                </div>
-
-
-                            </a>
-                            <a routerLink="shop" class="col-lg-3">
-
-                                <div class="boxDiv2 text-center">
-
-                                    <span><mat-icon style="color: rgb(255, 253, 253);font-size: 60px; margin-right: 30px; margin-top: 15px;">kitchen</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253)">Epices</span>
-                                </div>
-
-
-                            </a>
-                            <a routerLink="shop" class="col-lg-3">
-
-                                <div class="boxDiv3 text-center">
 
                                     <span><mat-icon style="color: rgb(255, 253, 253);font-size: 60px; margin-right: 30px; margin-top: 15px;">view_module</mat-icon></span>
-                                    <span style="margin-bottom: 42px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;color: rgb(255, 253, 253)">Tout</span>
+                                    <span style="margin-bottom:21px;padding-bottom: 0px;align-self: flex-center; font-size: 16.5px;color: rgb(255, 253, 253)">Tout</span>
                                 </div>
 
 
                             </a>
+
+                            <a routerLink="viande" class="col-lg-3 mb-3">
+
+
+                                <div class="boxDiv text-center">
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src="https://resize1.prod.docfr.doc-media.fr/rcrop/1200,902,center-middle/img/var/doctissimo/storage/images/fr/www/sante/news/la-viande-blanche-aussi-mauvaise-que-la-viande-rouge-pour-le-cholesterol/7825627-1-fre-FR/la-viande-blanche-aussi-mauvaise-que-la-viande-rouge-pour-le-cholesterol.jpg"
+                                            class="image" />
+
+                                    </div>
+                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px; ">Viandes</span>
+                                </div>
+
+
+                            </a>
+
+
+                            <a routerLink="exterieur" class="col-lg-3 mb-3">
+
+                                <div class="boxDiv text-center">
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src="https://resize.prod.femina.ladmedia.fr/rblr/1401,978/img/var/2021-06/poisson.jpg" class="image" />
+
+                                    </div>
+                                    <span style="margin-bottom: 25px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;margin-top: 10px;">Poissons</span>
+                                </div>
+                            </a>
+
+                            <a routerLink="shop" class="col-lg-3 mb-3">
+
+                                <div class="boxDiv text-center">
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src="https://www.mycuisine.com/wp-content/uploads/2016/12/plaeau_de_fruits_de_mer-768x461.jpg" class="image" />
+
+                                    </div>
+                                    <span style="margin-bottom:25px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;margin-top: 10px">Fruits de mer</span>
+                                </div>
+
+
+                            </a>
+
+                            <!---------------------------------------->
+                            <a routerLink="shop" class="col-lg-3 mb-3">
+
+                                <div class="boxDiv text-center">
+
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src=" https://cdn-s-www.ledauphine.com/images/7367EC7C-89AB-45E9-8338-25C2D9F787D3/NW_raw/l-organisation-mondiale-de-la-sante-(oms)-a-classe-la-charcuterie-comme-cancerigene-de-categorie-1-un-echelon-beaucoup-plus-eleve-que-celui-de-la-viande-rouge-(classee-2a)-en-raison-probablement-de-la-presence-de-nitrites-et-nitrates-photo-d-illustration-pixabay-1606341264.jpg"
+                                            class="image" />
+
+                                    </div>
+                                    <span style="margin-bottom:25px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;margin-top: 10px">Chrcuterie</span>
+                                </div>
+
+
+                            </a>
+                            <a routerLink="shop" class="col-lg-3 mb-3">
+
+                                <div class="boxDiv text-center">
+
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src="https://cdn.futura-sciences.com/buildsv6/images/wide1920/2/f/4/2f4b321336_50157684_produits-laitiers-sont-neutres-vie.jpg" class="image" />
+
+                                    </div>
+                                    <span style="margin-bottom:25px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;margin-top: 10px">Produits laittiers</span>
+                                </div>
+
+
+                            </a>
+                            <a routerLink="shop" class="col-lg-3 mb-3">
+
+                                <div class="boxDiv text-center">
+
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src="https://www.permis-de-exploitation.com/pix/alcoolisees-boissons.jpg" class="image" />
+
+                                    </div>
+                                    <span style="margin-bottom:25px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;margin-top: 10px">Boissons</span>
+                                </div>
+
+
+                            </a>
+
+                            <!---------------------------------------->
+                            <a routerLink="shop" class="col-lg-3 mb-3">
+
+                                <div class="boxDiv text-center">
+
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src="https://actinutrition.fr/wp-content/uploads/2020/01/legume-hiver-1000.jpg" class="image" />
+
+                                    </div>
+                                    <span style="margin-bottom:25px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;margin-top: 10px">Legumes</span>
+                                </div>
+
+
+                            </a>
+                            <a routerLink="shop" class="col-lg-3 mb-3">
+
+                                <div class="boxDiv text-center">
+
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src="https://housekeeping.tn/wp-content/uploads/2022/02/Quel-fruit-manger-quand-on-a-la-goutte-1.jpeg" class="image" />
+
+                                    </div>
+                                    <span style="margin-bottom:25px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;margin-top: 10px">Fruits</span>
+                                </div>
+
+
+                            </a>
+                            <a routerLink="shop" class="col-lg-3 mb-3">
+
+                                <div class="boxDiv text-center">
+
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src="https://www.consoglobe.com/wp-content/uploads/2016/08/conserves-bocaux_shutterstock_588233324_ban.jpg" class="image" />
+
+                                    </div>
+                                    <span style="margin-bottom:25px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;margin-top: 10px">Conserves</span>
+                                </div>
+
+
+                            </a>
+                            <a routerLink="shop" class="col-lg-3 mb-3">
+
+                                <div class="boxDiv text-center">
+
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src="https://res.cloudinary.com/hv9ssmzrz/image/fetch/c_fill,f_auto,h_600,q_auto,w_800/https://s3-eu-west-1.amazonaws.com/images-ca-1-0-1-eu/recipe_photos/original/172756/Pates_au_poulet_sauce_cremeuse_champignons_parmesan_2_680.jpg"
+                                            class="image" />
+
+                                    </div>
+                                    <span style="margin-bottom:25px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;margin-top: 10px">Pattes</span>
+                                </div>
+
+
+                            </a>
+                            <a routerLink="shop" class="col-lg-3 mb-3">
+
+                                <div class="boxDiv text-center">
+
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src="https://cdn.bioalaune.com/img/article/thumb/900x500/11550-epices.jpg" class="image" />
+
+                                    </div>
+                                    <span style="margin-bottom:25px;padding-bottom: 0px;align-self: flex-center; font-size: 21px;margin-top: 10px">Epices</span>
+                                </div>
+
+
+                            </a>
+
 
 
 
