@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategorieComponent } from './depot/categorie/categorie.component';
+import { DepotComponent } from './depot/depot.component';
 import { AlimentaireComponent } from './stcok-options/economat/alimentaire/alimentaire.component';
 import { ViandeComponent } from './stcok-options/economat/alimentaire/viande/viande.component';
 import { EconomatComponent } from './stcok-options/economat/economat.component';
@@ -11,8 +13,13 @@ import { StcokOptionsComponent } from './stcok-options/stcok-options.component';
 const routes: Routes = [
   {
     path: 'gestion-stock',
-    component: StcokOptionsComponent
+    component: DepotComponent
   },
+  {
+    path: 'gestion-stock/depot/categorie/:name',
+    component: CategorieComponent
+  },
+
   {
     path: 'gestion-stock/economat',
     component: EconomatComponent

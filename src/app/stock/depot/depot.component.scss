@@ -1,0 +1,30 @@
+.boxDiv {
+    display: flex;
+    flex-direction: column;
+    // min-height: 100px;
+    //padding-left: 20px;
+    // padding-top: 30px;
+    font-weight: bold;
+    color: rgb(56, 56, 56);
+    //  margin: 5px;
+    border-radius: 12px;
+    //margin-left: 150px;
+    box-shadow: 0.5px 0.5px 6px 0.5px#9e9e9e;
+}
+
+.boxDiv2 {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    min-height: 100px;
+    font-weight: bold;
+    color: rgb(56, 56, 56);
+    border-radius: 12px;
+    box-shadow: 0.5px 0.5px 6px 0.5px#9e9e9e;
+    background-color: rgb(13, 9, 245);
+}
+
+img {
+    border-top-right-radius: 12px 12px;
+    border-top-left-radius: 12px 12px;
+}
