@@ -11,12 +11,23 @@
                             <a href="#" onClick="return false;">
                                 <i class="fas fa-home"></i>Accueil</a>
                         </li>
-                        <li class="breadcrumb-item active">Stock</li>
-                        <li class="breadcrumb-item bcrumb-3">
-
-                            Gestion de stock
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="#" onClick="return false;">
+                               Stock
+                            </a>
 
                         </li>
+                        <li class="breadcrumb-item bcrumb-3">
+                            <a style=" cursor: pointer;" (click)="gotoPreviousPage()">
+                               Gestion de stock
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-4">
+
+                            Economat
+
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -26,9 +37,13 @@
             <div class="col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="text-center mt-3">
-                            <h1>Choisissez le Dépôts</h1>
+                        <div>
+                            <span (click)="gotoPreviousPage()"><mat-icon style="font-size: 45px; color: rgb(50, 76, 228); cursor: pointer;">reply</mat-icon></span>
                         </div>
+                        <div class="text-center mt-3">
+                            <h1>Choisissez le type</h1>
+                        </div>
+
 
                         <div class="row mt-5">
                             <a routerLink="economat" class="col-lg-3 mb-3">
@@ -37,44 +52,41 @@
                                         <img alt="image" width="100%" height="80px" src="https://cdn2.hubspot.net/hubfs/53/homme%20dans%20un%20entrep%C3%B4t.jpg" class="image" />
 
                                     </div>
-                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les depots</span>
+                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les types</span>
                                 </div>
                             </a>
-                            <a routerLink="economat" class="col-lg-6 mb-3">
+                            <a routerLink="economat" class="col-lg-3 mb-3">
                                 <div class="boxDiv text-center">
                                     <div style="width: 100%;">
                                         <img alt="image" width="100%" height="80px" src="https://www.compta-facile.com/wp-content/uploads/2013/02/7522613_blog.jpg" class="image" />
 
                                     </div>
-                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les articles des toutes les depots</span>
+                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les articles</span>
                                 </div>
                             </a>
                         </div>
 
+                        <div class="row mt-1">
 
-                        <div class="row mt-2">
 
-                            <div class="col-lg-3 mb-3" *ngFor="let depot of Depots">
-                                <a [routerLink]="['depot/categorie', depot.name]">
+
+                            <div class="col-lg-3 mb-3" *ngFor="let type of Types">
+                                <a routerLink='{{type.name}}'>
 
 
                                     <div class="boxDiv text-center">
                                         <div style="width: 100%;">
-                                            <img alt="image" width="100%" height="80px" src='{{ depot.img }}' class="image" />
+                                            <img alt="image" width="100%" height="80px" src='{{ type.img }}' class="image" />
 
                                         </div>
-                                        <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">{{depot.name}}</span>
+                                        <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">{{type.name}}</span>
                                     </div>
 
 
                                 </a>
                             </div>
 
-
-
-
                         </div>
-
 
                         <div class="text-center mt-5">
 

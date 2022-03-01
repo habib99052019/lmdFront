@@ -22,5 +22,20 @@ export class StockService {
   return this.http.get(this.ApiPath + '/categories/articles/depot?name=' + name )
  }
 
+// get list of all family by category
+getListFamilyByCategorie(name){
+  return this.http.get(this.ApiPath + '/categories?name=' + name )
+}
+
+// get list of all family by category
+getListOfTypesByFamily(name){
+  return this.http.get(this.ApiPath + '/categories/family?name=' + name )
+}
+
+//get list articles by type
+getListOfArticlesByType(name){
+  return this.http.get(this.ApiPath + '/categories/family/type?name=' + name )
+}
+
 
 }

@@ -15,6 +15,9 @@ import { ViandeComponent } from './stcok-options/economat/alimentaire/viande/via
 import { NettoyageComponent } from './stcok-options/economat/nettoyage/nettoyage.component';
 import { DepotComponent } from './depot/depot.component';
 import { CategorieComponent } from './depot/categorie/categorie.component';
+import { FamilleComponent } from './depot/categorie/famille/famille.component';
+import { TypeComponent } from './depot/categorie/famille/type/type.component';
+import { ArticleComponent } from './depot/categorie/famille/type/article/article.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { CategorieComponent } from './depot/categorie/categorie.component';
     ViandeComponent,
     NettoyageComponent,
     DepotComponent,
-    CategorieComponent 
+    CategorieComponent,
+    FamilleComponent,
+    TypeComponent,
+    ArticleComponent 
     
    
   ],

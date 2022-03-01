@@ -20,24 +20,20 @@ export class CategorieComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   let name = this.route.snapshot.paramMap.get("name");
-    this.service.getListCategoryByDepot(name).pipe(take(1)).subscribe((data : any)=>{
-      this.Categories = data[0].listCategorys;
-      console.log("categories>>>", this.Categories);
-      
-   })
+   this.name = this.route.snapshot.paramMap.get("name");
+   this.getListCategoryByDepot();
   }
 
 
   
- /* getListCategoryByDepot(){
+ getListCategoryByDepot(){
     this.service.getListCategoryByDepot(this.name).pipe(take(1)).subscribe((data : any)=>{
         this.Categories = data[0].listCategorys;
         console.log("categories>>>", this.Categories);
         
        })
   
-    }*/
+    }
   
 
 
