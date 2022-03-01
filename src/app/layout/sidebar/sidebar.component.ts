@@ -12,7 +12,7 @@ import {
 import { ROUTES } from './sidebar-items';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { StcokOptionsComponent } from 'src/app/stock/stcok-options/stcok-options.component';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
