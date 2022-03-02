@@ -12,6 +12,8 @@ import { CategorieComponent } from './depot/categorie/categorie.component';
 import { FamilleComponent } from './depot/categorie/famille/famille.component';
 import { TypeComponent } from './depot/categorie/famille/type/type.component';
 import { ArticleComponent } from './depot/categorie/famille/type/article/article.component';
+import { AllDepotComponent } from './depot/all-depot/all-depot.component';
+import { AllArticlesDepotComponent } from './depot/all-articles-depot/all-articles-depot.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ArticleComponent } from './depot/categorie/famille/type/article/article
     CategorieComponent,
     FamilleComponent,
     TypeComponent,
-    ArticleComponent 
+    ArticleComponent,
+    AllDepotComponent,
+    AllArticlesDepotComponent 
     
    
   ],
