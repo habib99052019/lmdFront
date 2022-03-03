@@ -11,23 +11,12 @@
                             <a href="#" onClick="return false;">
                                 <i class="fas fa-home"></i>Accueil</a>
                         </li>
-                        <li class="breadcrumb-item bcrumb-2">
-                            <a href="#" onClick="return false;">
-                               Stock
-                            </a>
-
-                        </li>
+                        <li class="breadcrumb-item active">Stock</li>
                         <li class="breadcrumb-item bcrumb-3">
-                            <a style=" cursor: pointer;" (click)="gotoPreviousPage()">
-                               Gestion de stock
-                            </a>
-                        </li>
-                        <li class="breadcrumb-item bcrumb-4">
 
-                            Economat
+                            Gestion de stock
 
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -40,13 +29,12 @@
                         <div>
                             <span (click)="gotoPreviousPage()"><mat-icon style="font-size: 55px; color: rgb(50, 76, 228); cursor: pointer;">reply</mat-icon></span>
                         </div>
-                        <div class="text-center mt-3">
-                            <h1>Choisissez la Categorie</h1>
+                        <div class="text-center">
+                            <h1>Tous les familles</h1>
                         </div>
 
-
-                        <div class="row mt-5">
-                            <a (click)="gotoAllDepotComponent()" class="col-lg-3 mb-3" style="cursor: pointer;">
+                        <div class="row mt-4">
+                            <a routerLink="depot/tous" class="col-lg-3 mb-3">
                                 <div class="boxDiv text-center">
                                     <div style="width: 100%;">
                                         <img alt="image" width="100%" height="80px" src="https://cdn2.hubspot.net/hubfs/53/homme%20dans%20un%20entrep%C3%B4t.jpg" class="image" />
@@ -55,42 +43,45 @@
                                     <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les categories</span>
                                 </div>
                             </a>
-                            <a (click)="gotoAllArticlesCategorieComponent()" class="col-lg-3 mb-3" style="cursor: pointer;">
+                            <a routerLink="economat" class="col-lg-6 mb-3">
                                 <div class="boxDiv text-center">
                                     <div style="width: 100%;">
                                         <img alt="image" width="100%" height="80px" src="https://www.compta-facile.com/wp-content/uploads/2013/02/7522613_blog.jpg" class="image" />
 
                                     </div>
-                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les articles</span>
+                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les articles des toutes les categories</span>
                                 </div>
                             </a>
                         </div>
 
-                        <div class="row mt-1">
 
 
+                        <div class="row mt-2" *ngFor="let listfamille of  Listfamilles">
+                            <h4>{{listfamille.name}}</h4>
+                            <div class="row">
+                                <div class="col" class="boxDiv text-center col-lg-3 m-2 p-0" *ngFor="let family of  listfamille.listFamily">
 
-                            <div class="col-lg-3 mb-3" *ngFor="let categorie of Categories">
-                                <a routerLink='{{categorie.name}}'>
 
+                                    <a (click)="gotoTypeComponent(family.name)">
 
-                                    <div class="boxDiv text-center">
-                                        <div style="width: 100%;">
-                                            <img alt="image" width="100%" height="80px" src='{{ categorie.img }}' class="image" />
+                                        <div>
+                                            <img alt="image" width="100%" height="80px" src='{{ family.img }}' class="image" />
 
                                         </div>
-                                        <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">{{categorie.name}}</span>
-                                    </div>
+                                        <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">{{family.name}}</span>
 
+                                    </a>
 
-                                </a>
+                                </div>
                             </div>
 
+
+
+
                         </div>
 
-                        <div class="text-center mt-5">
 
-                        </div>
+
 
 
                     </div>

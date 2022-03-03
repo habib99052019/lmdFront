@@ -12,6 +12,7 @@ export class CategorieComponent implements OnInit {
 
   name:string;
   Categories:any;
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +22,8 @@ export class CategorieComponent implements OnInit {
 
   ngOnInit(): void {
    this.name = this.route.snapshot.paramMap.get("name");
+   console.log("name>>", this.name);
+   
    this.getListCategoryByDepot();
   }
 
@@ -29,7 +32,8 @@ export class CategorieComponent implements OnInit {
  getListCategoryByDepot(){
     this.service.getListCategoryByDepot(this.name).pipe(take(1)).subscribe((data : any)=>{
         this.Categories = data[0].listCategorys;
-        console.log("categories>>>", this.Categories);
+        
+        console.log("categories>>>", data);
         
        })
   
@@ -40,6 +44,14 @@ export class CategorieComponent implements OnInit {
 
   gotoPreviousPage(){
     this.router.navigate(['stock/gestion-stock']);
+  }
+
+  gotoAllDepotComponent(){
+    this.router.navigate(['stock/gestion-stock/depot/tous']);
+  }
+
+  gotoAllArticlesCategorieComponent(){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.name + '/list/articles/all/details']);
   }
   
 

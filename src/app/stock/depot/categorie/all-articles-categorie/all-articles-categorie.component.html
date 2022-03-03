@@ -30,27 +30,31 @@
                             <span (click)="gotoPreviousPage()"><mat-icon style="font-size: 55px; color: rgb(50, 76, 228); cursor: pointer;">reply</mat-icon></span>
                         </div>
                         <div class="text-center">
-                            <h1>Tous les articles de toutes les depots</h1>
+                            <h1>Tous les articles</h1>
                         </div>
 
 
-                        <div class="row mt-2" *ngFor="let depoArticle of  DepotArticles">
+                        <div class="row mt-2" *ngFor="let CategorieArticle of  CategorieArticles">
 
 
                             <div class="row">
-                                <h4>{{depoArticle.name}}</h4>
 
-                                <div *ngFor="let listcatego of  depoArticle.listCategorys">
-                                    <div *ngFor="let family of  listcatego.listFamily">
+                                <div *ngFor="let catego of  CategorieArticle.listCategorys">
+                                    <h4>{{catego.name}}</h4>
+
+                                    <div *ngFor="let family of  catego.listFamily">
                                         <div *ngFor="let type of  family.listType">
-                                            <div style="background-color: rgb(188, 217, 226);" class="col-lg-12 d-flex  align-items-center justify-content-between mb-2  pt-3 p-2 mr-5 ml-5 rounded " *ngFor="let article of  type.listArticle">
+                                            <div *ngFor="let article of  type.listArticle" style="background-color: rgb(188, 217, 226);" class="col-lg-12 d-flex  align-items-center justify-content-between mb-2  pt-3 p-2 mr-5 ml-5 rounded ">
+
                                                 <p>{{article.name}}</p>
                                                 <p>Marque: {{article.marque}}</p>
                                                 <span>
-                                                        <mat-icon>shopping_cart</mat-icon>
-                                                        <p>{{article.quantity}}kg</p> 
+                                                            <mat-icon>shopping_cart</mat-icon>
+                                                            <p>{{article.quantity}}kg</p> 
                                                     </span>
+
                                             </div>
+
                                         </div>
 
                                     </div>

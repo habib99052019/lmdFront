@@ -11,6 +11,7 @@ import { StockService } from 'src/app/core/service/stock.service';
 export class FamilleComponent implements OnInit {
 
   name:string;
+ 
   Familles:any;
   economat = "Economat"
   constructor(
@@ -39,6 +40,10 @@ export class FamilleComponent implements OnInit {
 
     gotoPreviousPage(){
       this.router.navigate(['stock/gestion-stock/depot/categorie/Economat']);
+    }
+
+    gotoAllFamilyByDepotComponent(){
+      this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.name + '/list/familles/all/details/go']);
     }
 
 }
