@@ -16,6 +16,9 @@ import { AllDepotComponent } from './depot/all-depot/all-depot.component';
 import { AllArticlesDepotComponent } from './depot/all-articles-depot/all-articles-depot.component';
 import { AllArticlesCategorieComponent } from './depot/categorie/all-articles-categorie/all-articles-categorie.component';
 import { AllFamilyComponent } from './depot/categorie/famille/all-family/all-family.component';
+import { AllArticlesComponent } from './depot/categorie/famille/all-articles/all-articles.component';
+import { AllTypesComponent } from './depot/categorie/famille/type/all-types/all-types.component';
+import { AllArticlesTypesComponent } from './depot/categorie/famille/type/all-articles-types/all-articles-types.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { AllFamilyComponent } from './depot/categorie/famille/all-family/all-fam
     AllDepotComponent,
     AllArticlesDepotComponent,
     AllArticlesCategorieComponent,
-    AllFamilyComponent 
+    AllFamilyComponent,
+    AllArticlesComponent,
+    AllTypesComponent,
+    AllArticlesTypesComponent 
     
    
   ],

@@ -38,4 +38,8 @@ export class AllDepotComponent implements OnInit {
   gotoPreviousPage(){
     this.router.navigate(['stock/gestion-stock']);
   }
+  
+  gotoAllCategorieDepotComponent(){
+    this.router.navigate(['stock/gestion-stock/depot/articles']);
+  }
 }

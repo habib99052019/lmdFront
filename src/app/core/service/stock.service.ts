@@ -61,4 +61,23 @@ getListOfFamilyByDepot(name){
 }
 
 
+
+//get list articles by family
+getListOfArticlesByFamily(name){
+  return this.http.get(this.ApiPath + '/depots/articles/categorie?name=' + name )
+}
+
+
+//get list types by depot
+getListOfTypesByDepot(name){
+  return this.http.get(this.ApiPath + '/depots/types/family?name=' + name )
+}
+
+
+//get list types by depot //all articles type
+getListOfTypes(name){
+  return this.http.get(this.ApiPath + 'depots/types/family/articles?name=' + name )
+}
+
+
 }

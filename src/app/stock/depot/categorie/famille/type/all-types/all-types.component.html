@@ -30,10 +30,10 @@
                             <span (click)="gotoPreviousPage()"><mat-icon style="font-size: 55px; color: rgb(50, 76, 228); cursor: pointer;">reply</mat-icon></span>
                         </div>
                         <div class="text-center">
-                            <h1>Tous les Dépôts</h1>
+                            <h1>Tous les types</h1>
                         </div>
 
-                        <div class="row mt-4">
+                        <!--<div class="row mt-4">
                             <a routerLink="depot/tous" class="col-lg-3 mb-3">
                                 <div class="boxDiv text-center">
                                     <div style="width: 100%;">
@@ -43,7 +43,7 @@
                                     <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les categories</span>
                                 </div>
                             </a>
-                            <a (click)="gotoAllCategorieDepotComponent()" class="col-lg-6 mb-3">
+                            <a routerLink="economat" class="col-lg-6 mb-3">
                                 <div class="boxDiv text-center">
                                     <div style="width: 100%;">
                                         <img alt="image" width="100%" height="80px" src="https://www.compta-facile.com/wp-content/uploads/2013/02/7522613_blog.jpg" class="image" />
@@ -52,26 +52,32 @@
                                     <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les articles des toutes les categories</span>
                                 </div>
                             </a>
-                        </div>
+                        </div>-->
 
 
 
-                        <div class="row mt-2" *ngFor="let depoCatego of  DepotCategories">
+                        <div class="row mt-2" *ngFor="let ListCategorie  of  ListCategories">
+                            <h4>{{ListCategorie.name}}</h4>
 
-                            <div class="row">
-                                <h4>{{depoCatego.name}}</h4>
+                            <div class="row" *ngFor="let family of  ListCategorie.listFamily">
+                                <h6 class="mt-1">{{family.name}}</h6>
+                                <div class="col" class="boxDiv text-center col-lg-2 m-2 p-0" *ngFor="let type of  family.listType">
+                                    <a (click)="gotoTypeComponent(type.name)">
 
-                                <a routerLink='{{listCatego.name}}' class="boxDiv text-center col-lg-2 m-2 p-0" *ngFor="let listCatego of  depoCatego.listCategorys">
+                                        <div>
+                                            <img alt="image" width="100%" height="80px" src='{{ type.img }}' class="image" />
 
-                                    <div>
-                                        <img alt="image" width="100%" height="80px" src='{{ listCatego.img }}' class="image" />
+                                        </div>
+                                        <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">{{type.name}}</span>
 
-                                    </div>
-                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">{{listCatego.name}}</span>
+                                    </a>
+                                </div>
 
-                                </a>
+
 
                             </div>
+
+
 
 
 

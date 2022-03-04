@@ -42,4 +42,14 @@ export class TypeComponent implements OnInit {
     this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/Alimentaire']);
   }
 
+  gotoAllTypesComponent(){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.name + '/list/familles/all/details/go/spec/types']);
+  }
+
+  gotoAllArticlesTypesComponent(){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.name + '/list/familles/all/details/go/spec/full/articles']);
+  }
+  
+  
+
 }
