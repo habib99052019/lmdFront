@@ -8,11 +8,14 @@
                             <h4 class="page-title">Stock</h4>
                         </li>
                         <li class="breadcrumb-item bcrumb-1">
-                            <a href="#" onClick="return false;">
-                                <i class="fas fa-home"></i>Accueil</a>
+                            <!--onClick="return false;-->
+                            <a>
+                                <i class="fas fa-home"></i>Accueil
+                            </a>
                         </li>
                         <li class="breadcrumb-item bcrumb-2">
-                            <a href="#" onClick="return false;">
+                            <!--onClick="return false;"-->
+                            <a>
                                Stock
                             </a>
 
@@ -22,9 +25,15 @@
                                Gestion de stock
                             </a>
                         </li>
+
+                        <li class="breadcrumb-item bcrumb-3">
+                            <a style=" cursor: pointer;" (click)="gotoPreviousPage()">
+                              {{this.pathName}}
+                            </a>
+                        </li>
                         <li class="breadcrumb-item bcrumb-4">
 
-                            Economat
+                            {{this.name}}
 
                         </li>
 

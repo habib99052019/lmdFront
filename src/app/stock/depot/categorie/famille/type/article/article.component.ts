@@ -13,6 +13,9 @@ export class ArticleComponent implements OnInit {
   name:string;
   Articles:any;
   articleName:string;
+  pathName:string;
+  categorieName:string;
+  depotName:string;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,14 +35,17 @@ export class ArticleComponent implements OnInit {
     this.service.getListOfArticlesByType(this.name).pipe(take(1)).subscribe((data : any)=>{
        this.Articles = data[0].listArticle;
        this.articleName = data[0].name;
-      console.log("types>>>", data);
+       this.pathName = data[0].idFamily.name;
+       this.categorieName = data[0].idFamily.idCategory.name;
+       this.depotName = data[0].idFamily.idCategory.idDepot.name;
+      console.log("types222>>>", data);
       
      })
 
   }
 
   gotoPreviousPage(){
-    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/Alimentaire/Viandes']);
+    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/Alimentaire/' + this.pathName]);
   }
 
 }

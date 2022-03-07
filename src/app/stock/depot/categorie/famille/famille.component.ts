@@ -11,9 +11,10 @@ import { StockService } from 'src/app/core/service/stock.service';
 export class FamilleComponent implements OnInit {
 
   name:string;
- 
   Familles:any;
-  economat = "Economat"
+  pathName:string;
+
+
   constructor(
     private route: ActivatedRoute,
     public router: Router,
@@ -31,6 +32,7 @@ export class FamilleComponent implements OnInit {
   getListFamilyByCategorie(){
     this.service.getListFamilyByCategorie(this.name).pipe(take(1)).subscribe((data : any)=>{
         this.Familles = data[0].listFamily;
+        this.pathName = data[0].idDepot.name;
         console.log("familles>>>", data);
         
        })
@@ -39,7 +41,7 @@ export class FamilleComponent implements OnInit {
   
 
     gotoPreviousPage(){
-      this.router.navigate(['stock/gestion-stock/depot/categorie/Economat']);
+      this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.pathName]);
     }
 
     gotoAllFamilyByDepotComponent(){

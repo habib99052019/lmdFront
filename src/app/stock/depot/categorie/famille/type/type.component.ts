@@ -12,7 +12,8 @@ export class TypeComponent implements OnInit {
 
   name:string;
   Types:any;
-
+  pathName:string;
+  DepotName:string;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,8 @@ export class TypeComponent implements OnInit {
   getListOfTypesByFamily(){
     this.service.getListOfTypesByFamily(this.name).pipe(take(1)).subscribe((data : any)=>{
       this.Types = data[0].listType;
+      this.pathName = data[0].idCategory.name;
+      this.DepotName = data[0].idCategory.idDepot.name;
       console.log("types>>>", data);
       
      })
@@ -39,7 +42,7 @@ export class TypeComponent implements OnInit {
 
 
   gotoPreviousPage(){
-    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/Alimentaire']);
+    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/' + this.pathName]);
   }
 
   gotoAllTypesComponent(){

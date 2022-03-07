@@ -39,7 +39,7 @@ export class AllArticlesComponent implements OnInit {
 
   gotoPreviousPage(){
     
-    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/Alimentaire']);
+    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/' + this.name]);
   }
 
 }

@@ -8,13 +8,25 @@
                             <h4 class="page-title">Stock</h4>
                         </li>
                         <li class="breadcrumb-item bcrumb-1">
-                            <a href="#" onClick="return false;">
-                                <i class="fas fa-home"></i>Accueil</a>
+                            <!--href="#" onClick="return false;"-->
+                            <a>
+                                <i class="fas fa-home"></i>Accueil
+                            </a>
                         </li>
-                        <li class="breadcrumb-item active">Stock</li>
+
+                        <li class="breadcrumb-item bcrumb-3">
+                            <a style=" cursor: pointer;" (click)="gotoPreviousPage()">
+                                Stock
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-3">
+                            <a style=" cursor: pointer;" (click)="gotoPreviousPage()">
+                                Gestion de stock
+                            </a>
+                        </li>
                         <li class="breadcrumb-item bcrumb-3">
 
-                            Gestion de stock
+                            toutes les depots
 
                         </li>
                     </ul>
@@ -34,7 +46,7 @@
                         </div>
 
                         <div class="row mt-4">
-                            <a routerLink="depot/tous" class="col-lg-3 mb-3">
+                            <a (click)="gotoAllDepotComponent()" class="col-lg-3 mb-3" style="cursor: pointer;">
                                 <div class="boxDiv text-center">
                                     <div style="width: 100%;">
                                         <img alt="image" width="100%" height="80px" src="https://cdn2.hubspot.net/hubfs/53/homme%20dans%20un%20entrep%C3%B4t.jpg" class="image" />
@@ -43,7 +55,7 @@
                                     <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les categories</span>
                                 </div>
                             </a>
-                            <a (click)="gotoAllCategorieDepotComponent()" class="col-lg-6 mb-3">
+                            <a (click)="gotoAllCategorieDepotComponent()" class="col-lg-6 mb-3" style="cursor: pointer;">
                                 <div class="boxDiv text-center">
                                     <div style="width: 100%;">
                                         <img alt="image" width="100%" height="80px" src="https://www.compta-facile.com/wp-content/uploads/2013/02/7522613_blog.jpg" class="image" />
