@@ -4,17 +4,30 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <ul class="breadcrumb breadcrumb-style ">
+
                         <li class="breadcrumb-item">
                             <h4 class="page-title">Stock</h4>
                         </li>
                         <li class="breadcrumb-item bcrumb-1">
-                            <a href="#" onClick="return false;">
-                                <i class="fas fa-home"></i>Accueil</a>
+                            <!--href="#" onClick="return false;"-->
+                            <a>
+                                <i class="fas fa-home"></i>Accueil
+                            </a>
                         </li>
-                        <li class="breadcrumb-item active">Stock</li>
+
+                        <li class="breadcrumb-item bcrumb-3">
+                            <a style=" cursor: pointer;" (click)="gotoPreviousPage()">
+                                Stock
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-3">
+                            <a style=" cursor: pointer;" (click)="gotoPreviousPage()">
+                                Gestion de stock
+                            </a>
+                        </li>
                         <li class="breadcrumb-item bcrumb-3">
 
-                            Gestion de stock
+                            toutes les articles
 
                         </li>
                     </ul>

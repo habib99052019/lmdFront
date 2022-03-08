@@ -8,13 +8,25 @@
                             <h4 class="page-title">Stock</h4>
                         </li>
                         <li class="breadcrumb-item bcrumb-1">
-                            <a href="#" onClick="return false;">
+                            <!--href="#" onClick="return false;"-->
+                            <a>
                                 <i class="fas fa-home"></i>Accueil</a>
                         </li>
-                        <li class="breadcrumb-item active">Stock</li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <!--href="#" onClick="return false;"-->
+                            <a>
+                               Stock
+                            </a>
+
+                        </li>
+                        <li class="breadcrumb-item bcrumb-3">
+                            <a style=" cursor: pointer;" (click)="gotoAllDepotComponent()">
+                               Gestion de stock
+                            </a>
+                        </li>
                         <li class="breadcrumb-item bcrumb-3">
 
-                            Gestion de stock
+                            Tous les familles
 
                         </li>
                     </ul>

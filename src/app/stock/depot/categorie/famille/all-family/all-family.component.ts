@@ -48,6 +48,10 @@ export class AllFamilyComponent implements OnInit {
   }
 
   
+  
+  gotoAllDepotComponent(){
+    this.router.navigate(['stock/gestion-stock']);
+  }
 
 
 

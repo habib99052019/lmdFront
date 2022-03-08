@@ -48,4 +48,22 @@ export class ArticleComponent implements OnInit {
     this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/Alimentaire/' + this.pathName]);
   }
 
+  
+
+  
+  gotoCategorieComponent(){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/' + this.categorieName]);
+  }
+
+
+
+  gotoAllDepotComponent(){
+    this.router.navigate(['stock/gestion-stock']);
+  }
+
+  
+  gotoDepotComponent(){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.depotName]);
+
+  }
 }

@@ -14,7 +14,7 @@ export class TypeComponent implements OnInit {
   Types:any;
   pathName:string;
   DepotName:string;
-
+  CategorieName:string;
   constructor(
     private route: ActivatedRoute,
     public router: Router,
@@ -51,6 +51,11 @@ export class TypeComponent implements OnInit {
 
   gotoAllArticlesTypesComponent(){
     this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.name + '/list/familles/all/details/go/spec/full/articles']);
+  }
+
+  gotoDepotComponent(){
+    this.router.navigate(['stock/gestion-stock']);
+
   }
   
   

@@ -42,4 +42,8 @@ export class AllArticlesCategorieComponent implements OnInit {
   gotoPreviousPage(){
     this.router.navigate(['/stock/gestion-stock/depot/categorie/'+this.name]);
   }
+
+  gotoAllDepotComponent(){
+    this.router.navigate(['stock/gestion-stock']);
+  }
 }

@@ -42,8 +42,9 @@ export class AllTypesComponent implements OnInit {
 
 
   gotoPreviousPage(){
-   // stock/gestion-stock/depot/categorie/Economat/Salle%20de%20bain/s1
+   
     this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/Alimentaire/' + this.name]);
+    
   }
 
 
