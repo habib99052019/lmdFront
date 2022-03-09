@@ -1,6 +1,8 @@
 import { FactoryTarget } from '@angular/compiler';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddCourseComponent } from './courses/add-course/add-course.component';
+import { CoursesComponent } from './courses/courses.component';
 import { AllArticlesDepotComponent } from './depot/all-articles-depot/all-articles-depot.component';
 import { AllDepotComponent } from './depot/all-depot/all-depot.component';
 import { AllArticlesCategorieComponent } from './depot/categorie/all-articles-categorie/all-articles-categorie.component';
@@ -76,6 +78,14 @@ const routes: Routes = [
   {
     path: 'gestion-stock/depot/categorie/:name/list/familles/all/details/go/spec/full/articles',
     component: AllArticlesTypesComponent
+  },
+  {
+    path: 'courses',
+    component: CoursesComponent
+  },
+  {
+    path: 'courses/add',
+    component: AddCourseComponent
   },
 
 ];

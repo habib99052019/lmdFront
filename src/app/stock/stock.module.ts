@@ -19,6 +19,8 @@ import { AllFamilyComponent } from './depot/categorie/famille/all-family/all-fam
 import { AllArticlesComponent } from './depot/categorie/famille/all-articles/all-articles.component';
 import { AllTypesComponent } from './depot/categorie/famille/type/all-types/all-types.component';
 import { AllArticlesTypesComponent } from './depot/categorie/famille/type/all-articles-types/all-articles-types.component';
+import { CoursesComponent } from './courses/courses.component';
+import { AddCourseComponent } from './courses/add-course/add-course.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { AllArticlesTypesComponent } from './depot/categorie/famille/type/all-ar
     AllFamilyComponent,
     AllArticlesComponent,
     AllTypesComponent,
-    AllArticlesTypesComponent 
+    AllArticlesTypesComponent,
+    CoursesComponent,
+    AddCourseComponent 
     
    
   ],

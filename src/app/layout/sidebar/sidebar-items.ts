@@ -111,6 +111,18 @@ export const ROUTES: RouteInfo[] = [
           badgeClass: '',
           submenu: [],
         },
+        {
+          path: 'stock/courses',
+          title: 'Courses',
+          moduleName: 'stock',
+          iconType: '',
+          icon: '',
+          class: 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          submenu: [],
+        },
       
      
     ],
