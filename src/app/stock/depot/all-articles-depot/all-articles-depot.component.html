@@ -51,7 +51,12 @@
 
 
                             <div class="row">
-                                <h4>{{depoArticle.name}}</h4>
+
+                                <ul style="margin-left: 12px;" class="breadcrumb">
+                                    <li><a style="cursor: pointer;" (click)="gotoDepotComponent(depoArticle.name)">{{depoArticle.name}}</a></li>
+                                    <li><a style="color: black !important;">Articles</a></li>
+
+                                </ul>
 
                                 <div *ngFor="let listcatego of  depoArticle.listCategorys">
                                     <div *ngFor="let family of  listcatego.listFamily">

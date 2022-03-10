@@ -58,7 +58,13 @@
 
 
                         <div class="row mt-2" *ngFor="let ListCategorie  of  ListCategories">
-                            <h4>{{ListCategorie.name}}</h4>
+
+                            <ul class="breadcrumb">
+                                <li><a style="cursor: pointer;" (click)="gotoDepotComponent()">{{this.DepotName}}</a></li>
+                                <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(ListCategorie.name)">{{ListCategorie.name}}</a></li>
+                                <li><a style="color: black !important;">Types</a></li>
+
+                            </ul>
 
                             <div class="row" *ngFor="let family of  ListCategorie.listFamily">
                                 <h6 class="mt-1">{{family.name}}</h6>

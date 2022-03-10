@@ -26,7 +26,7 @@
                         </li>
                         <li class="breadcrumb-item bcrumb-3">
 
-                            Tous les familles
+                            <a style="color: black !important;">Tous les familles</a>
 
                         </li>
                     </ul>
@@ -69,7 +69,16 @@
 
 
                         <div class="row mt-2" *ngFor="let listfamille of  Listfamilles">
-                            <h4>{{listfamille.name}}</h4>
+                            <!--<h4><a style=" cursor: pointer; color: rgb(138, 219, 219);" (click)="gotoAllDepotComponent()">{{this.DepotName}}</a> / <a>{{listfamille.name}}</a> / <a>Familles</a> </h4>-->
+                            <ul class="breadcrumb">
+                                <li><a style="cursor: pointer;" (click)="gotoDepotComponent()">{{this.DepotName}}</a></li>
+                                <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(listfamille.name)">{{listfamille.name}}</a></li>
+                                <li><a style="color: black !important;">Familles</a></li>
+
+                            </ul>
+
+
+
                             <div class="row">
                                 <div class="col" class="boxDiv text-center col-lg-3 m-2 p-0" *ngFor="let family of  listfamille.listFamily">
 

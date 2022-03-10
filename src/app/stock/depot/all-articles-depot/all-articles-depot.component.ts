@@ -35,4 +35,14 @@ export class AllArticlesDepotComponent implements OnInit {
     this.router.navigate(['stock/gestion-stock']);
   }
 
+
+  gotoDepotComponent(name){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + name]);
+   }
+ 
+ 
+   gotoCategorieComponent(name){
+     this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/' + name]);
+   }
+
 }

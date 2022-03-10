@@ -12,6 +12,7 @@ export class AllArticlesCategorieComponent implements OnInit {
 
   CategorieArticles: any[]=[];
   name:string;
+  DepotName: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +31,7 @@ export class AllArticlesCategorieComponent implements OnInit {
   getListOfArticlesByCategorie(){
     this.service.getListOfArticlesByCategorie(this.name).pipe(take(1)).subscribe((data : any)=>{
       this.CategorieArticles = data;
-   
+      this.DepotName = data[0].name;
       console.log("all articles>>>", data);
      
     })
@@ -45,5 +46,14 @@ export class AllArticlesCategorieComponent implements OnInit {
 
   gotoAllDepotComponent(){
     this.router.navigate(['stock/gestion-stock']);
+  }
+
+  gotoDepotComponent(){
+   this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.DepotName]);
+  }
+
+
+  gotoCategorieComponent(name){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/' + name]);
   }
 }

@@ -79,5 +79,21 @@ getListOfTypes(name){
   return this.http.get(this.ApiPath + 'depots/types/family/articles?name=' + name )
 }
 
+//get list articles  by name
+getListOfArticlesByName(name){
+  return this.http.get(this.ApiPath + 'articles?name=' + name )
+}
+
+//create new course
+CreateNewCourse(course : any){
+  return this.http.post(this.ApiPath + 'courses', course)
+}
+
+//get list of courses
+getListCourse(){
+  return this.http.get(this.ApiPath + 'courses');
+}
+
+
 
 }

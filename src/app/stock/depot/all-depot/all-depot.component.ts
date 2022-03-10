@@ -46,4 +46,8 @@ export class AllDepotComponent implements OnInit {
   gotoAllDepotComponent(){
     this.router.navigate(['stock/gestion-stock/depot/tous']);
   }
+
+  gotoDepotComponent(name){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + name]);
+   }
 }

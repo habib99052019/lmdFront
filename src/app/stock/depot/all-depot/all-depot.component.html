@@ -71,7 +71,12 @@
                         <div class="row mt-2" *ngFor="let depoCatego of  DepotCategories">
 
                             <div class="row">
-                                <h4>{{depoCatego.name}}</h4>
+
+                                <ul style="margin-left: 10px;" class="breadcrumb">
+                                    <li><a style="cursor: pointer;" (click)="gotoDepotComponent(depoCatego.name)">{{depoCatego.name}}</a></li>
+                                    <li><a style="color: black !important;">Categories</a></li>
+
+                                </ul>
 
                                 <a routerLink='{{listCatego.name}}' class="boxDiv text-center col-lg-2 m-2 p-0" *ngFor="let listCatego of  depoCatego.listCategorys">
 

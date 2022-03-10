@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { take } from "rxjs/operators";
+import { StockService } from "src/app/core/service/stock.service";
 
 @Component({
   selector: "app-courses",
@@ -9,12 +11,20 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 export class CoursesComponent implements OnInit {
   showFilters: boolean = false;
   coursesFilterForm: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  ListCourses:any;
+
+
+  constructor(
+      private fb: FormBuilder,
+      private service: StockService,
+    ) {}
 
   ngOnInit(): void {
     this.coursesFilterForm = this.createContactForm();
+    this.getListCourse();
   }
 
+  
   createContactForm(): FormGroup {
     return this.fb.group({
       from: [""],
@@ -23,6 +33,16 @@ export class CoursesComponent implements OnInit {
       person: [""],
     });
   }
+
+  getListCourse(){
+    this.service.getListCourse().pipe(take(1)).subscribe((data : any) => {
+      console.log("courses api>>>",data );
+      this.ListCourses = data;
+  })
+  }
+
+
+
   courses = {
     "Février 2022": [
       {
@@ -65,9 +85,12 @@ export class CoursesComponent implements OnInit {
     ],
   };
 
+
+
   typeExist(types: string[], type: string) {
     return types.find((t) => t === type);
   }
+
 
   showFiltersHandler = () => {
     this.showFilters = !this.showFilters;

@@ -12,6 +12,7 @@ export class AllTypesComponent implements OnInit {
   name:string;
 
   ListCategories:any;
+  DepotName:string;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +29,7 @@ export class AllTypesComponent implements OnInit {
   getListOfTypesByDepot(){
     this.service.getListOfTypesByDepot(this.name).pipe(take(1)).subscribe((data : any)=>{
       this.ListCategories = data.listCategorys;
+      this.DepotName = data.name;
       console.log("typess>>>", data);
       
      })
@@ -45,6 +47,14 @@ export class AllTypesComponent implements OnInit {
    
     this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/Alimentaire/' + this.name]);
     
+  }
+
+  gotoCategorieComponent(name){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/' + name]);
+  }
+
+  gotoDepotComponent(){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.DepotName]);
   }
 
 

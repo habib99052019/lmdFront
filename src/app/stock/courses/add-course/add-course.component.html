@@ -62,13 +62,38 @@
                                 Pour ajouter un nouvel article connu par le système tapez quelques lettres dans la zone de recherche <br /> Si vous ne trouvez pas, vous pouvez ajouter un nouvel article inconnu
                             </p>
                             <div style="display: flex; justify-content: space-between" class="row">
-                                <form class="col">
+                                <!--<form class="col">
                                     <mat-form-field class="mb-3" appearance="outline">
                                         <mat-label>Search</mat-label>
                                         <input matInput type="search" #query (keyup)="searchForArticles(query.value)" />
                                         <mat-icon matPrefix>search</mat-icon>
                                     </mat-form-field>
+                                </form>-->
+
+
+                                <form class="col">
+
+                                    <mat-form-field class="mb-3" appearance="outline">
+                                        <mat-label>Search</mat-label>
+                                        <input matInput type="text" [matAutocomplete]="auto" #query (keyup)="search(query.value)" [value]='this.article'>
+                                        <mat-icon matSuffix>local_grocery_store</mat-icon>
+
+                                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selected($event)">
+                                            <mat-option *ngFor="let article of searchuser" [value]="article">
+                                                {{article.name}}
+                                            </mat-option>
+
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+
                                 </form>
+
+
+
+
+
+
+
                                 <div class="col">
                                     <button mat-raised-button color="primary" style="margin-right: 10px; margin-bottom: 10px">
                                        <mat-icon>add</mat-icon>
@@ -82,31 +107,31 @@
                             </div>
 
                             <div class="row">
-                                <div class="col" style="margin-bottom: 10px" *ngFor="let item of articles">
+                                <div class="col" style="margin-bottom: 10px" *ngIf="Articles">
                                     <mat-card class="example-card" style="border: 3px solid #6c757d;">
                                         <mat-card-header style="justify-content: space-between">
-                                            <mat-card-title>{{ item.name }}</mat-card-title>
-                                            <img mat-card-md-image [src]="item.image" alt="article image" />
+                                            <mat-card-title>{{ Articles.article[0].name}}</mat-card-title>
+                                            <img mat-card-md-image [src]="Articles.article[0].img" alt="article image" />
                                         </mat-card-header>
                                         <mat-card-content>
                                             <ul class="list-group">
                                                 <li class="list-group-item">
                                                     <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <mat-icon svgIcon="thermometer"></mat-icon>
-                                                        <h5 style="margin: 0">{{ item.unity }}</h5>
+                                                        <h5 style="margin: 0">{{ kg }}</h5>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Dépot</h5>
-                                                        <h5 style="margin: 0">{{ item.depot }}</h5>
+                                                        <h5 style="margin: 0">{{ Articles.type.idFamily.idCategory.idDepot.name }}</h5>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Catégorie</h5>
                                                         <h5 style="margin: 0">
-                                                            {{ item.category }}
+                                                            {{ Articles.type.idFamily.idCategory.name }}
                                                         </h5>
                                                     </div>
                                                 </li>
@@ -114,7 +139,7 @@
                                                     <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Famille</h5>
                                                         <h5 style="margin: 0">
-                                                            {{ item.family }}
+                                                            {{ Articles.type.idFamily.name }}
                                                         </h5>
                                                     </div>
                                                 </li>
@@ -122,12 +147,12 @@
                                                     <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Type</h5>
                                                         <h5 style="margin: 0">
-                                                            {{ item.type }}
+                                                            {{ Articles.type.name }}
                                                         </h5>
                                                     </div>
                                                 </li>
                                             </ul>
-                                            <div *ngIf="item.isActive" style="padding-top: 10px">
+                                            <div *ngIf="isActive" style="padding-top: 10px">
                                                 <form [formGroup]="addArticleToCourseForm">
                                                     <div class="row">
                                                         <div class="col">
@@ -158,13 +183,13 @@
                                             </div>
                                         </mat-card-content>
                                         <mat-card-actions align="end">
-                                            <button mat-stroked-button (click)="showAddArticle(item.id)" *ngIf="!item.isActive">
+                                            <button mat-stroked-button (click)="showAddArticle(Articles.article[0]._id)" *ngIf="!isActive">
                                                <mat-icon>add</mat-icon>Ajouter
                                             </button>
-                                            <button mat-stroked-button *ngIf="item.isActive" (click)="closeAddArticle(item.id)">
+                                            <button mat-stroked-button *ngIf="isActive" (click)="closeAddArticle(Articles.article[0]._id)">
                                                <mat-icon>clear</mat-icon>Annuler
                                            </button>
-                                            <button style="margin-left: 10px" mat-raised-button color="primary" *ngIf="item.isActive" (click)="addArticleToCourse(item)">
+                                            <button style="margin-left: 10px" mat-raised-button color="primary" *ngIf="isActive" (click)="addArticleToCourse(Articles.type)">
                                               <mat-icon matSuffix>add_shopping_cart</mat-icon>
                                               Ajouter à la course
                                             </button>
@@ -224,7 +249,7 @@
                                                 </ul>
                                             </mat-card-content>
                                             <mat-card-actions>
-                                                <button mat-stroked-button color="warn" (click)="removeArticle(article.id)">
+                                                <button mat-stroked-button color="warn" (click)="removeArticle(article)">
                                                    <mat-icon>delete</mat-icon>Supprimer
                                                 </button>
                                                 <button mat-stroked-button>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StringifyOptions } from 'querystring';
 import { take } from 'rxjs/operators';
 import { StockService } from 'src/app/core/service/stock.service';
 
@@ -14,7 +15,7 @@ export class AllArticlesTypesComponent implements OnInit {
   name:string;
   CategorieArticles: any;
   pathName:string;
-
+  DepotName:string;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,8 +36,9 @@ export class AllArticlesTypesComponent implements OnInit {
   getListOfTypes(){
     this.service.getListOfTypes(this.name).pipe(take(1)).subscribe((data : any)=>{
       this.CategorieArticles = data.listCategorys;
-    //  this.pathName = data.name;
-     // console.log("aeticless>>>", data.name);
+      this.DepotName = data.name;
+      
+      console.log("aeticless>>>", data);
       
      })
   }
@@ -49,4 +51,13 @@ export class AllArticlesTypesComponent implements OnInit {
   gotoAllDepotComponent(){
     this.router.navigate(['stock/gestion-stock']);
   }
+
+  gotoCategorieComponent(name){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/' + name]);
+  }
+
+  gotoDepotComponent(){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.DepotName]);
+  }
+
 }

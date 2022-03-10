@@ -76,42 +76,45 @@
                                 </div>
                             </form>
                         </div>
-                        <div *ngFor="let course of courses | keyvalue" style="display: flex; flex-direction: column">
-                            <h6>{{ course.key }}</h6>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngFor="let item of course.value" style="margin-bottom: 10px">
-                                <mat-card class="courseItem">
-                                    <div style="display: flex; align-items: center">
-                                        <mat-icon matListIcon>shopping_cart</mat-icon>
-                                        <h5 style="margin: 0">Course {{ item.code }}</h5>
-                                    </div>
-                                    <div>
+                        <div class="mt-4">
+                            <div *ngFor="let course of ListCourses" style="display: flex; flex-direction: column;">
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px">
+                                    <mat-card class="courseItem">
                                         <div style="display: flex; align-items: center">
-                                            <mat-icon matListIcon>person</mat-icon>
-                                            <h5 style="margin: 0">{{ item.person }}</h5>
+                                            <mat-icon matListIcon>shopping_cart</mat-icon>
+                                            <h5 style="margin: 0">Course {{ course.code }}</h5>
+                                        </div>
+                                        <div>
+                                            <div style="display: flex; align-items: center">
+                                                <mat-icon matListIcon>person</mat-icon>
+                                                <h5 style="margin: 0">{{ course.clientID.first_name }}</h5>
+                                            </div>
+                                            <div style="display: flex; align-items: center">
+                                                <mat-icon matListIcon>insert_invitation</mat-icon>
+                                                <h5 style="margin: 0">
+                                                    {{ course.date | date: "EEE, dd/LL":"fr" }}
+                                                </h5>
+                                            </div>
                                         </div>
                                         <div style="display: flex; align-items: center">
-                                            <mat-icon matListIcon>insert_invitation</mat-icon>
-                                            <h5 style="margin: 0">
-                                                {{ item.date | date: "EEE, dd/LL":"fr" }}
-                                            </h5>
+                                            <mat-icon matListIcon *ngIf="typeExist(course.types, 'room')">hotel</mat-icon>
+                                            <mat-icon matListIcon *ngIf="typeExist(course.types, 'food')">local_dining</mat-icon>
                                         </div>
-                                    </div>
-                                    <div style="display: flex; align-items: center">
-                                        <mat-icon matListIcon *ngIf="typeExist(item.types, 'room')">hotel</mat-icon>
-                                        <mat-icon matListIcon *ngIf="typeExist(item.types, 'food')">local_dining</mat-icon>
-                                    </div>
-                                    <div style="display: flex; align-items: center">
-                                        <mat-icon matListIcon>monetization_on</mat-icon>
-                                        <h5 style="margin: 0">{{ item.price }} dt</h5>
-                                    </div>
-                                    <div style="display: flex; align-items: center">
-                                        <button mat-icon-button color="accent" class="btn-tbl-edit">
+                                        <div style="display: flex; align-items: center">
+                                            <mat-icon matListIcon>monetization_on</mat-icon>
+                                            <h5 style="margin: 0">{{ course.price }} dt</h5>
+                                        </div>
+                                        <div style="display: flex; align-items: center">
+                                            <button mat-icon-button color="accent" class="btn-tbl-edit">
                                            <mat-icon aria-label="Edit" class="col-white">edit</mat-icon>
                                         </button>
-                                    </div>
-                                </mat-card>
+                                        </div>
+                                    </mat-card>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

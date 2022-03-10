@@ -12,6 +12,8 @@ export class AllFamilyComponent implements OnInit {
   
   name:string;
   Listfamilles:any;
+  DepotName:any;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +30,7 @@ export class AllFamilyComponent implements OnInit {
   getListOfFamilyByDepot(){
     this.service.getListOfFamilyByDepot(this.name).pipe(take(1)).subscribe((data : any)=>{
         this.Listfamilles = data.listCategorys;
+        this.DepotName = data.name;
         console.log("familles>>>", data);
         
        })
@@ -53,7 +56,14 @@ export class AllFamilyComponent implements OnInit {
     this.router.navigate(['stock/gestion-stock']);
   }
 
+  
+  gotoDepotComponent(){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.DepotName]);
+  }
 
+  gotoCategorieComponent(name){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/' + name]);
+  }
 
 
 }
