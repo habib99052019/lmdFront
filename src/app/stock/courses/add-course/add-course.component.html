@@ -227,24 +227,41 @@
                                             <mat-card-content>
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
-                                                        <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <!--<mat-icon svgIcon="quantity"></mat-icon>-->
+                                                        <!--<div style="display: flex;align-items: center;justify-content: space-between;">
+                                                            <mat-icon svgIcon="quantity"></mat-icon>
                                                             <h5 style="margin: 0">{{ article.quantity }}</h5>
-                                                        </div>
+                                                        </div>-->
+                                                        <form style="display: flex;align-items: center;justify-content: space-between;">
+
+                                                            <mat-form-field class="col" appearance="outline">
+                                                                <mat-label>quantity</mat-label>
+                                                                <input style="margin: 0" matInput type="text" #query (keyup)="search(query.value)" [value]='article.quantity'>
+                                                            </mat-form-field>
+
+                                                        </form>
                                                     </li>
                                                     <li class="list-group-item">
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <!--<mat-icon svgIcon="thermometer"></mat-icon>-->
                                                             <h5 style="margin: 0">{{ article.unity }}</h5>
                                                         </div>
+
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                                                        <!--<div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <mat-icon>monetization_on</mat-icon>
                                                             <h5 style="margin: 0">
                                                                 {{ article.price }}DT/{{ article.unity }}
                                                             </h5>
-                                                        </div>
+                                                        </div>-->
+                                                        <form style="display: flex;align-items: center;justify-content: space-between;">
+
+                                                            <mat-form-field class="col" appearance="outline">
+                                                                <mat-label>prix unitaire TTC</mat-label>
+                                                                <input style="margin: 0" matInput type="text" #query (keyup)="search(query.value)" [value]='article.price'>
+                                                            </mat-form-field>
+
+                                                        </form>
                                                     </li>
                                                 </ul>
                                             </mat-card-content>
@@ -252,7 +269,7 @@
                                                 <button mat-stroked-button color="warn" (click)="removeArticle(article)">
                                                    <mat-icon>delete</mat-icon>Supprimer
                                                 </button>
-                                                <button mat-stroked-button>
+                                                <button mat-stroked-button (click)="updateArticle(article)">
                                                   <mat-icon>edit</mat-icon>Modifier
                                                 </button>
                                             </mat-card-actions>

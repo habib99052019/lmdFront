@@ -47,7 +47,7 @@
                         </div>
 
 
-                        <div class="row mt-2" *ngFor="let depoArticle of  DepotArticles">
+                        <!--<div class="row mt-2" *ngFor="let depoArticle of  DepotArticles">
 
 
                             <div class="row">
@@ -80,6 +80,38 @@
 
 
 
+                        </div>-->
+                        <div class="row mt-2" *ngFor="let depoArticle of  DepotArticles">
+
+                            <div class="row">
+
+
+                                <div *ngFor="let categorie of  depoArticle.listCategorys">
+
+                                    <ul class="breadcrumb">
+                                        <li><a style="cursor: pointer;" (click)="gotoDepotComponent(depoArticle.name)">{{depoArticle.name}}</a></li>
+                                        <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(categorie.name)">{{categorie.name}}</a></li>
+
+                                        <li><a style="color: black !important;">Articles</a></li>
+
+                                    </ul>
+                                    <div *ngFor="let family of  categorie.listFamily">
+                                        <div *ngFor="let type  of family.listType">
+
+                                            <div *ngFor="let article of type.listArticle" style="background-color: rgb(188, 217, 226);" class="col-lg-12 d-flex  align-items-center justify-content-between mb-2  pt-3 p-2 mr-5 ml-5 rounded ">
+                                                <p>{{article.name}}</p>
+                                                <p>Marque: {{article.marque}}</p>
+                                                <span>
+                                                        <mat-icon>shopping_cart</mat-icon>
+                                                        <p>{{article.quantity}}kg</p> 
+                                                    </span>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 

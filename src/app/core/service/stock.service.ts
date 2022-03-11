@@ -93,6 +93,10 @@ CreateNewCourse(course : any){
 getListCourse(){
   return this.http.get(this.ApiPath + 'courses');
 }
+//get list of courses by date range
+getListCourseByDateRange(from, to){
+  return this.http.get(this.ApiPath + 'courses?from=' + from + '&to=' + to) ;
+}
 
 
 

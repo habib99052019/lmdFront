@@ -40,7 +40,7 @@
                                     <div class="col">
                                         <mat-form-field class="mb-3" appearance="outline">
                                             <mat-label>De</mat-label>
-                                            <input matInput formControlName="from" [matDatepicker]="picker1" />
+                                            <input matInput formControlName="from" [matDatepicker]="picker1" (dateChange)="checkFromDate($event.target.value)" />
                                             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                             <mat-datepicker #picker1></mat-datepicker>
                                             <mat-error *ngIf="coursesFilterForm.get('from').hasError('matDatepickerParse')">
@@ -51,7 +51,7 @@
                                     <div class="col">
                                         <mat-form-field class="mb-3" appearance="outline">
                                             <mat-label>À</mat-label>
-                                            <input matInput formControlName="to" [matDatepicker]="picker2" />
+                                            <input matInput formControlName="to" [matDatepicker]="picker2" (dateChange)="checkToDate($event.target.value)" />
                                             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                             <mat-datepicker #picker2></mat-datepicker>
                                             <mat-error *ngIf="coursesFilterForm.get('to').hasError('matDatepickerParse')">
@@ -62,16 +62,22 @@
                                     <div class="col">
                                         <mat-form-field class="mb-3" appearance="outline">
                                             <mat-label>Prix</mat-label>
-                                            <input matInput formControlName="price" type="text" [value]="" />
+                                            <input matInput formControlName="price" type="text" [value]="" (keyup)='search($event.target.value)' />
                                             <mat-icon matSuffix>monetization_on</mat-icon>
                                         </mat-form-field>
                                     </div>
                                     <div class="col">
                                         <mat-form-field class="mb-3" appearance="outline">
                                             <mat-label>Personne</mat-label>
-                                            <input matInput formControlName="person" type="text" [value]="" />
+                                            <input matInput formControlName="person" type="text" [value]="" (keyup)='search($event.target.value)' />
                                             <mat-icon matSuffix>person</mat-icon>
                                         </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <button style="margin-top: 10px" mat-raised-button color="primary" *ngIf="showSearhshButton" (click)="searshDateRange()">
+                                            <mat-icon>done</mat-icon>
+                                             Chercher
+                                         </button>
                                     </div>
                                 </div>
                             </form>
@@ -79,7 +85,7 @@
                         <div class="mt-4">
                             <div *ngFor="let course of ListCourses" style="display: flex; flex-direction: column;">
 
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;cursor:pointer" (click)="selectedItem(course._id)">
                                     <mat-card class="courseItem">
                                         <div style="display: flex; align-items: center">
                                             <mat-icon matListIcon>shopping_cart</mat-icon>

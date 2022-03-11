@@ -29,6 +29,8 @@ export class AddCourseComponent implements OnInit {
   article:any;
   Articles:any;
   CureentUser:any;
+  inputData:any;
+  inputData2:any;
 
   constructor(
      private fb: FormBuilder,
@@ -290,6 +292,50 @@ export class AddCourseComponent implements OnInit {
     console.log("article",article);
     this.totalPrice = this.totalPrice - article.totalPrice;
     this.addedArticles.splice(this.addedArticles.findIndex(a => a.id === article._id) , 1)
+
+  }
+
+
+  checkInput(value){
+    console.log(value);
+     this.inputData = value;
+  }
+  checkInput2(query:string){
+    console.log("ttttttt",query);
+    
+    this.inputData2 = query;
+ }
+
+
+
+  updateArticle(article){
+    console.log("article>>>",article);
+ 
+
+     const objtosent = {
+      quantity: this.inputData,
+      price: this.inputData2,
+     
+    };
+
+   //create a copy of summer fruits.
+const summerFruitsCopy = [...this.addedArticles];
+
+//find index of item to be replaced
+const targetIndex = this.addedArticles.findIndex(f=>f.id === article.id); 
+
+//replace the object with a new one.
+summerFruitsCopy[targetIndex] = objtosent;
+    
+    console.log("list>>>>", this.addedArticles);
+    
+  
+    
+
+    /*this.addedArticles.push(article);
+    this.price = "";
+    this.quantity = "";
+    this.totalPrice += parseFloat(article.totalPrice);*/
 
   }
 
