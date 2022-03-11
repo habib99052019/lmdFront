@@ -235,7 +235,7 @@
 
                                                             <mat-form-field class="col" appearance="outline">
                                                                 <mat-label>quantity</mat-label>
-                                                                <input style="margin: 0" matInput type="text" #query (keyup)="search(query.value)" [value]='article.quantity'>
+                                                                <input style="margin: 0" matInput type="text" name="quantity" (keyup)="checkInput($event.target.value)" [value]='article.quantity'>
                                                             </mat-form-field>
 
                                                         </form>
@@ -258,7 +258,7 @@
 
                                                             <mat-form-field class="col" appearance="outline">
                                                                 <mat-label>prix unitaire TTC</mat-label>
-                                                                <input style="margin: 0" matInput type="text" #query (keyup)="search(query.value)" [value]='article.price'>
+                                                                <input style="margin: 0" matInput type="text" name="price" (keyup)="checkInput2($event.target.value)" [value]='article.price'>
                                                             </mat-form-field>
 
                                                         </form>

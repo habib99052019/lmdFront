@@ -297,54 +297,51 @@ export class AddCourseComponent implements OnInit {
 
 
   checkInput(value){
-    console.log(value);
-     this.inputData = value;
+    console.log("check 1",value);
+    this.inputData = value;
   }
-  checkInput2(query:string){
-    console.log("ttttttt",query);
+
+  checkInput2(value){
+    console.log("input",value);
     
-    this.inputData2 = query;
+   this.inputData2 = value;
  }
 
 
 
-  updateArticle(article){
-    console.log("article>>>",article);
- 
-
-     const objtosent = {
-      quantity: this.inputData,
-      price: this.inputData2,
+updateArticle(article){
+console.log("article>>>",article);
+const objtosent = {
+  ...article,
+  id: article.id,
+  name: article.name,
+  image: article.image,
+  quantity: this.inputData,
+  price: this.inputData2,
+  totalPrice:
+  this.inputData *
+  this.inputData2,
      
-    };
-
-   //create a copy of summer fruits.
-const summerFruitsCopy = [...this.addedArticles];
-
-//find index of item to be replaced
+ };
+//const summerFruitsCopy = [...this.addedArticles];
 const targetIndex = this.addedArticles.findIndex(f=>f.id === article.id); 
+console.log("index>>>", targetIndex );
 
-//replace the object with a new one.
-summerFruitsCopy[targetIndex] = objtosent;
-    
-    console.log("list>>>>", this.addedArticles);
-    
-  
-    
+//summerFruitsCopy[targetIndex] = objtosent;
+this.addedArticles[targetIndex]  = objtosent;
+console.log("list>>>>", this.addedArticles);
+ const totalprice = this.addedArticles.reduce((acc,cur) => {
+   return acc + cur.totalPrice;
+ },0)
+ this.totalPrice = totalprice;
+}
 
-    /*this.addedArticles.push(article);
-    this.price = "";
-    this.quantity = "";
-    this.totalPrice += parseFloat(article.totalPrice);*/
-
-  }
-
-  showNotification(colorName, text, placementFrom, placementAlign) {
+showNotification(colorName, text, placementFrom, placementAlign) {
     this.snackBar.open(text, '', {
       duration: 3000,
       verticalPosition: placementFrom,
       horizontalPosition: placementAlign,
       panelClass: colorName,
     });
-  }
+}
 }
