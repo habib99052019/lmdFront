@@ -33,12 +33,13 @@ export class ArticleComponent implements OnInit {
 
   getListOfArticlesByType(){
     this.service.getListOfArticlesByType(this.name).pipe(take(1)).subscribe((data : any)=>{
+      console.log("types222>>>", data);
        this.Articles = data[0].listArticle;
        this.articleName = data[0].name;
        this.pathName = data[0].idFamily.name;
        this.categorieName = data[0].idFamily.idCategory.name;
        this.depotName = data[0].idFamily.idCategory.idDepot.name;
-      console.log("types222>>>", data);
+      
       
      })
 

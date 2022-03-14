@@ -59,17 +59,24 @@
 
                         <div class="row mt-2" *ngFor="let ListCategorie  of  ListCategories">
 
-                            <ul class="breadcrumb">
+                            <!--<ul class="breadcrumb">
                                 <li><a style="cursor: pointer;" (click)="gotoDepotComponent()">{{this.DepotName}}</a></li>
                                 <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(ListCategorie.name)">{{ListCategorie.name}}</a></li>
                                 <li><a style="color: black !important;">Types</a></li>
 
-                            </ul>
+                            </ul>-->
 
                             <div class="row" *ngFor="let family of  ListCategorie.listFamily">
-                                <h6 class="mt-1">{{family.name}}</h6>
+                                <!--<h6 class="mt-1">{{family.name}}</h6>-->
+
+                                <ul class="breadcrumb">
+                                    <li><a style="cursor: pointer;" (click)="gotoDepotComponent()">{{this.DepotName}}</a></li>
+                                    <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(ListCategorie.name)">{{ListCategorie.name}}</a></li>
+                                    <li><a style="color: black !important;">{{family.name}}</a></li>
+
+                                </ul>
                                 <div class="col" class="boxDiv text-center col-lg-2 m-2 p-0" *ngFor="let type of  family.listType">
-                                    <a (click)="gotoTypeComponent(type.name)">
+                                    <a (click)="gotoTypeComponent(this.DepotName,ListCategorie.name,family.name,type.name)">
 
                                         <div>
                                             <img alt="image" width="100%" height="80px" src='{{ type.img }}' class="image" />

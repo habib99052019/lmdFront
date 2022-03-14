@@ -31,6 +31,7 @@ export class AddCourseComponent implements OnInit {
   CureentUser:any;
   inputData:any;
   inputData2:any;
+  updatePrice:any;
 
   constructor(
      private fb: FormBuilder,
@@ -49,6 +50,7 @@ export class AddCourseComponent implements OnInit {
     this.CureentUser = localStorage.getItem('currentUser')
     console.log(JSON.parse(this.CureentUser).user);
     
+    console.log("update price>>>",this.updatePrice);
     
     
   }
@@ -301,8 +303,8 @@ export class AddCourseComponent implements OnInit {
     this.inputData = value;
   }
 
-  checkInput2(value){
-    console.log("input",value);
+  checkInput2(value, price){
+    console.log("input",value,price);
     
    this.inputData2 = value;
  }
@@ -311,13 +313,25 @@ export class AddCourseComponent implements OnInit {
 
 updateArticle(article){
 console.log("article>>>",article);
+console.log("update price>>>", this.inputData);
+
+if(this.inputData == undefined){
+   this.inputData = article.quantity;
+  
+}
+if(this.inputData2 == undefined){
+ 
+  this.inputData2 = article.price;
+}
+
+
 const objtosent = {
   ...article,
   id: article.id,
   name: article.name,
   image: article.image,
-  quantity: this.inputData,
-  price: this.inputData2,
+  quantity: +this.inputData,
+  price: +this.inputData2,
   totalPrice:
   this.inputData *
   this.inputData2,

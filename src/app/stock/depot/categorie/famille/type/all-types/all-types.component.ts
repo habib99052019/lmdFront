@@ -37,8 +37,9 @@ export class AllTypesComponent implements OnInit {
   }
 
 
-  gotoTypeComponent(name){
-    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/Alimentaire/' + this.name + '/' + name]);
+  gotoTypeComponent(depotName,categorieName,FamilyName,typeName){
+   
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + depotName + '/' + categorieName + '/' + FamilyName + '/' + typeName]);
   }
 
 

@@ -80,7 +80,7 @@
 
                                         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selected($event)">
                                             <mat-option *ngFor="let article of searchuser" [value]="article">
-                                                {{article.name}}
+                                                <img mat-card-sm-image [src]="article.img" alt="article image" /> {{article.name}}
                                             </mat-option>
 
                                         </mat-autocomplete>
@@ -262,6 +262,7 @@
                                                             </mat-form-field>
 
                                                         </form>
+
                                                     </li>
                                                 </ul>
                                             </mat-card-content>

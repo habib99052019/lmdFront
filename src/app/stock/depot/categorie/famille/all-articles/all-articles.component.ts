@@ -49,6 +49,17 @@ export class AllArticlesComponent implements OnInit {
 
 
   gotoCategorieComponent(name){
-    this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/' + name]);
+    this.router.navigate(['stock/gestion-stock/depot/categorie/'+ this.DepotName + '/' + name]);
   }
+
+  
+  gotoTypeComponent(name,family){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.DepotName + '/' + this.name + '/' + family + '/' + name]);
+  }
+
+
+  gotoFamilyComponent(name){
+    this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.DepotName + '/' + this.name + '/' + name]);
+  }
+
 }
