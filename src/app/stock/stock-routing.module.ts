@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddCourseComponent } from './courses/add-course/add-course.component';
 import { CoursesComponent } from './courses/courses.component';
+import { EditCourseComponent } from './courses/edit-course/edit-course.component';
+import { ShowCourseComponent } from './courses/show-course/show-course.component';
 import { AllArticlesDepotComponent } from './depot/all-articles-depot/all-articles-depot.component';
 import { AllDepotComponent } from './depot/all-depot/all-depot.component';
 import { AllArticlesCategorieComponent } from './depot/categorie/all-articles-categorie/all-articles-categorie.component';
@@ -87,6 +89,14 @@ const routes: Routes = [
     path: 'courses/add',
     component: AddCourseComponent
   },
+  {
+    path: 'courses/show/:id',
+    component: ShowCourseComponent
+  },
+  {
+    path: 'courses/edit/:id',
+    component: EditCourseComponent
+  }
 
 ];
 

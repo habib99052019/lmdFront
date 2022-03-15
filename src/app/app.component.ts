@@ -10,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppComponent {
   currentUrl: string;
-  constructor(public _router: Router, private spinner: NgxSpinnerService) {
+  constructor(public _router: Router, private spinner: NgxSpinnerService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     this._router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationStart) {
         this.spinner.show();
@@ -24,7 +24,7 @@ export class AppComponent {
       window.scrollTo(0, 0);
     });
 
-    //iconRegistry.addSvgIcon('thermometer', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/thermometer.svg"));
-   // iconRegistry.addSvgIcon('quantity', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/quantity.svg"));
+    iconRegistry.addSvgIcon('thermometer', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/thermometer.svg"));
+    iconRegistry.addSvgIcon('quantity', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/quantity.svg"));
   }
 }

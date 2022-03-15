@@ -56,7 +56,7 @@ export class AllArticlesComponent implements OnInit {
   gotoTypeComponent(name,family){
     this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.DepotName + '/' + this.name + '/' + family + '/' + name]);
   }
-
+ 
 
   gotoFamilyComponent(name){
     this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.DepotName + '/' + this.name + '/' + name]);

@@ -27,43 +27,44 @@
             <div class="col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <div>
-                            <span (click)="gotoPreviousPage()"><mat-icon style="font-size: 55px; color: rgb(50, 76, 228); cursor: pointer;">reply</mat-icon></span>
-                        </div>
-                        <div class="text-center">
-                            <h1>Tous les articles</h1>
+
+                        <div class="sticky">
+                            <span (click)="gotoPreviousPage()">
+                                <mat-icon style="font-size: 55px; color: rgb(50, 76, 228) !important; cursor: pointer;">
+                                    reply
+                                </mat-icon>
+                            </span>
+                            <div class="text-center">
+                                <h1>Tous les articles</h1>
+                            </div>
                         </div>
 
                         <div class="row mt-2" *ngFor="let categorie of  Categories">
 
                             <div class="row">
 
-                                <!--<ul class="breadcrumb">
-                                    <li><a style="cursor: pointer;" (click)="gotoDepotComponent()">{{this.DepotName}}</a></li>
-                                    <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(categorie.name)">{{categorie.name}}</a></li>
-
-                                    <li><a style="color: black !important;">Articles</a></li>
-
-                                </ul>-->
                                 <div *ngFor="let family of  categorie.listFamily">
 
                                     <div *ngFor="let type of  family.listType">
-                                        <ul class="breadcrumb">
-                                            <li><a style="cursor: pointer;" (click)="gotoDepotComponent()">{{this.DepotName}}</a></li>
-                                            <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(categorie.name)">{{categorie.name}}</a></li>
-                                            <li><a style="cursor: pointer;" (click)="gotoFamilyComponent(family.name)">{{family.name}}</a></li>
-                                            <!--<li><a style="cursor: pointer;" (click)="gotoTypeComponent(type.name,family.name)">{{type.name}}</a></li>-->
-                                            <li><a style="color: black !important;">{{type.name}}</a></li>
-                                        </ul>
-                                        <div *ngFor="let article  of type.listArticle" style="background-color: rgb(188, 217, 226);" class="col-lg-12 d-flex  align-items-center justify-content-between mb-2  pt-3 p-2 mr-5 ml-5 rounded ">
-                                            <p>{{article.name}}</p>
-                                            <p>Marque: {{article.marque}}</p>
-                                            <span>
+                                        <div *ngIf="type.listArticle.length != 0">
+                                            <ul class="breadcrumb">
+                                                <li><a style="cursor: pointer;" (click)="gotoDepotComponent()">{{this.DepotName}}</a></li>
+                                                <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(categorie.name)">{{categorie.name}}</a></li>
+                                                <li><a style="cursor: pointer;" (click)="gotoFamilyComponent(family.name)">{{family.name}}</a></li>
+                                                <!--<li><a style="cursor: pointer;" (click)="gotoTypeComponent(type.name,family.name)">{{type.name}}</a></li>-->
+                                                <li><a style="color: black !important;">{{type.name}}</a></li>
+                                            </ul>
+                                            <div *ngFor="let article  of type.listArticle" style="background-color: rgb(188, 217, 226);" class="col-lg-12 d-flex  align-items-center justify-content-between mb-2  pt-3 p-2 mr-5 ml-5 rounded ">
+                                                <p>{{article.name}}</p>
+                                                <p>Marque: {{article.marque}}</p>
+                                                <span>
                                                 <mat-icon>shopping_cart</mat-icon>
                                                 <p>{{article.quantity}}kg</p> 
                                             </span>
 
+                                            </div>
                                         </div>
+
 
                                     </div>
                                 </div>

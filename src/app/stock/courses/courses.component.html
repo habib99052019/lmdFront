@@ -112,9 +112,16 @@
                                             <h5 style="margin: 0">{{ course.price }} dt</h5>
                                         </div>
                                         <div style="display: flex; align-items: center">
-                                            <button mat-icon-button color="accent" class="btn-tbl-edit">
-                                           <mat-icon aria-label="Edit" class="col-white">edit</mat-icon>
-                                        </button>
+                                            <button mat-icon-button color="accent" class="btn-tbl-edit" [routerLink]="['edit',course._id]">
+                                              <mat-icon aria-label="Edit" class="col-white"
+                                                >edit
+                                              </mat-icon>
+                                            </button>
+                                            <button mat-icon-button color="accent" class="btn-tbl-edit" [routerLink]="['show', course._id]">
+                                              <mat-icon class="col-white"
+                                                >visibility
+                                              </mat-icon>
+                                            </button>
                                         </div>
                                     </mat-card>
                                 </div>

@@ -81,7 +81,7 @@ export class AddCourseComponent implements OnInit {
 
 
       console.log("list articles>>>", this.ListArticles);
-      this.searchuser =  this.ListArticles;
+     // this.searchuser =  this.ListArticles;
     })
   }
 

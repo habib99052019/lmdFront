@@ -1,0 +1,131 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Stock</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <!--href="#" onClick="return false;"-->
+                            <a>
+                                <i class="fas fa-home"></i>Accueil</a>
+                        </li>
+                        <li class="breadcrumb-item active">Stock</li>
+                        <li class="breadcrumb-item bcrumb-3">Courses</li>
+                        <li class="breadcrumb-item bcrumb-3">{{id}}</li>
+                        <li class="breadcrumb-item bcrumb-3">Détails</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card" style="height: 100%" style="margin-bottom: 30px">
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between">
+                            <div style="display: flex; align-items: center">
+                                <mat-icon matListIcon>shopping_cart</mat-icon>
+                                <h5 style="margin: 0">Course {{id}}</h5>
+                            </div>
+                        </div>
+                        <div style="margin: 20px 0;">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div style="
+                              display: flex;
+                              align-items: center;
+                              justify-content: space-between;
+                            ">
+                                        <mat-icon matListIcon>monetization_on</mat-icon>
+                                        <h5 style="margin: 0">{{course.price}} DT</h5>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div style="
+                              display: flex;
+                              align-items: center;
+                              justify-content: space-between;
+                            ">
+                                        <mat-icon matListIcon>insert_invitation</mat-icon>
+                                        <h5 style="margin: 0">{{course.date | date: "EEE, dd/LL":"fr" }}</h5>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div style="
+                              display: flex;
+                              align-items: center;
+                              justify-content: space-between;
+                            ">
+                                        <mat-icon matListIcon>person</mat-icon>
+                                        <h5 style="margin: 0">
+                                            {{course.person}}
+                                        </h5>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5>Articles</h5>
+                            <div class="row" style="padding: 10px">
+                                <div style="margin: 20px 0; text-align: center" *ngIf="!course.articles.length">
+                                    Aucun article
+                                </div>
+                                <div class="row" *ngIf="course.articles.length">
+                                    <div class="col" style="padding-bottom: 10px" *ngFor="let article of course.articles">
+                                        <mat-card class="example-card" style="border: 3px solid rgb(0 0 0 / 12%)">
+                                            <mat-card-header style="justify-content: space-between">
+                                                <mat-card-title>{{article.name}}</mat-card-title>
+                                                <mat-card-subtitle style="display: flex">
+                                                    <mat-icon>monetization_on</mat-icon>
+                                                    {{article.price*article.quantity}} DT</mat-card-subtitle>
+                                                <img mat-card-md-image [src]="article.image" alt="article image" />
+                                            </mat-card-header>
+                                            <mat-card-content>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <div style="
+                                      display: flex;
+                                      align-items: center;
+                                      justify-content: space-between;
+                                    ">
+                                                            <mat-icon svgIcon="quantity"></mat-icon>
+                                                            <h5 style="margin: 0">{{article.quantity}}</h5>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div style="
+                                      display: flex;
+                                      align-items: center;
+                                      justify-content: space-between;
+                                    ">
+                                                            <mat-icon svgIcon="thermometer"></mat-icon>
+                                                            <h5 style="margin: 0">{{article.unity}}</h5>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div style="
+                                      display: flex;
+                                      align-items: center;
+                                      justify-content: space-between;
+                                    ">
+                                                            <mat-icon>monetization_on</mat-icon>
+                                                            <h5 style="margin: 0">
+                                                                {{article.price}}DT/{{article.unity}}
+                                                            </h5>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </mat-card-content>
+                                        </mat-card>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -79,9 +79,7 @@
                                         <mat-icon matSuffix>local_grocery_store</mat-icon>
 
                                         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selected($event)">
-                                            <mat-option *ngFor="let article of searchuser" [value]="article">
-                                                <img mat-card-sm-image [src]="article.img" alt="article image" /> {{article.name}}
-                                            </mat-option>
+
 
                                         </mat-autocomplete>
                                     </mat-form-field>
@@ -107,11 +105,11 @@
                             </div>
 
                             <div class="row">
-                                <div class="col" style="margin-bottom: 10px" *ngIf="Articles">
+                                <div class="col" style="margin-bottom: 10px" *ngFor="let article of searchuser">
                                     <mat-card class="example-card" style="border: 3px solid #6c757d;">
                                         <mat-card-header style="justify-content: space-between">
-                                            <mat-card-title>{{ Articles.article[0].name}}</mat-card-title>
-                                            <img mat-card-md-image [src]="Articles.article[0].img" alt="article image" />
+                                            <mat-card-title>{{article.name}}</mat-card-title>
+                                            <img mat-card-md-image [src]="article.img" alt="article image" />
                                         </mat-card-header>
                                         <mat-card-content>
                                             <ul class="list-group">
@@ -124,14 +122,14 @@
                                                 <li class="list-group-item">
                                                     <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Dépot</h5>
-                                                        <h5 style="margin: 0">{{ Articles.type.idFamily.idCategory.idDepot.name }}</h5>
+                                                        <h5 style="margin: 0"></h5>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Catégorie</h5>
                                                         <h5 style="margin: 0">
-                                                            {{ Articles.type.idFamily.idCategory.name }}
+
                                                         </h5>
                                                     </div>
                                                 </li>
@@ -139,7 +137,7 @@
                                                     <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Famille</h5>
                                                         <h5 style="margin: 0">
-                                                            {{ Articles.type.idFamily.name }}
+
                                                         </h5>
                                                     </div>
                                                 </li>
@@ -147,7 +145,7 @@
                                                     <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Type</h5>
                                                         <h5 style="margin: 0">
-                                                            {{ Articles.type.name }}
+
                                                         </h5>
                                                     </div>
                                                 </li>
@@ -183,13 +181,13 @@
                                             </div>
                                         </mat-card-content>
                                         <mat-card-actions align="end">
-                                            <button mat-stroked-button (click)="showAddArticle(Articles.article[0]._id)" *ngIf="!isActive">
+                                            <button mat-stroked-button (click)="showAddArticle(article._id)" *ngIf="!isActive">
                                                <mat-icon>add</mat-icon>Ajouter
                                             </button>
-                                            <button mat-stroked-button *ngIf="isActive" (click)="closeAddArticle(Articles.article[0]._id)">
+                                            <button mat-stroked-button *ngIf="isActive" (click)="closeAddArticle(article._id)">
                                                <mat-icon>clear</mat-icon>Annuler
                                            </button>
-                                            <button style="margin-left: 10px" mat-raised-button color="primary" *ngIf="isActive" (click)="addArticleToCourse(Articles.type)">
+                                            <button style="margin-left: 10px" mat-raised-button color="primary" *ngIf="isActive" (click)="addArticleToCourse(article)">
                                               <mat-icon matSuffix>add_shopping_cart</mat-icon>
                                               Ajouter à la course
                                             </button>

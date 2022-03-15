@@ -49,3 +49,12 @@ ul.breadcrumb li a:hover {
     color: #01447e;
     //  text-decoration: underline;
 }
+
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    padding-top: 60px;
+    font-size: 20px;
+    background-color: white;
+}

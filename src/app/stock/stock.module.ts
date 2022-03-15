@@ -21,6 +21,8 @@ import { AllTypesComponent } from './depot/categorie/famille/type/all-types/all-
 import { AllArticlesTypesComponent } from './depot/categorie/famille/type/all-articles-types/all-articles-types.component';
 import { CoursesComponent } from './courses/courses.component';
 import { AddCourseComponent } from './courses/add-course/add-course.component';
+import { ShowCourseComponent } from './courses/show-course/show-course.component';
+import { EditCourseComponent } from './courses/edit-course/edit-course.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { AddCourseComponent } from './courses/add-course/add-course.component';
     AllTypesComponent,
     AllArticlesTypesComponent,
     CoursesComponent,
-    AddCourseComponent 
+    AddCourseComponent,
+    ShowCourseComponent,
+    EditCourseComponent 
     
    
   ],
