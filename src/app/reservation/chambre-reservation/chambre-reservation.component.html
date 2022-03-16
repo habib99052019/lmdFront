@@ -8,7 +8,8 @@
                             <h4 class="page-title">Calendrier</h4>
                         </li>
                         <li class="breadcrumb-item bcrumb-1">
-                            <a href="#" onClick="return false;">
+                            <!--href="#" onClick="return false;"-->
+                            <a>
                                 <i class="fas fa-home"></i>Accueil</a>
                         </li>
                         <li class="breadcrumb-item active">Calendrier</li>
@@ -21,23 +22,23 @@
             <div class="col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                       
+
                         <div class="row d-flex justify-content-between align-content-center">
-                            
+
                             <form class="min-calendar" [formGroup]="cal">
-                                
+
                                 <div class="add_circle">
-                                    <mat-icon style="color:#1c4587ff;font-size:40px; cursor: pointer;"    (click)="gotoReservation()">add_circle</mat-icon>
-                                    
-                                   <!-- <button  id="updateHeader" (click)="gotoReservation()"    mat-flat-button style="background-color:#1c4587ff;color:white">Réserver</button>  --> 
+                                    <mat-icon style="color:#1c4587ff;font-size:40px; cursor: pointer;" (click)="gotoReservation()">add_circle</mat-icon>
+
+                                    <!-- <button  id="updateHeader" (click)="gotoReservation()"    mat-flat-button style="background-color:#1c4587ff;color:white">Réserver</button>  -->
                                 </div>
                                 <div class="cercle">
-                                    <mat-icon style="color:white;font-size:29px; cursor: pointer;margin-left: 2px;margin-top: 2px;"    (click)="Reload()">replay</mat-icon>
+                                    <mat-icon style="color:white;font-size:29px; cursor: pointer;margin-left: 2px;margin-top: 2px;" (click)="Reload()">replay</mat-icon>
 
                                 </div>
 
-                                <div   class="cal" style="font-size: 8px; margin-left:'31.5%';">
-                                     <mat-form-field  style="margin-right: 20px;"  appearance="outline">
+                                <div class="cal" style="font-size: 8px; margin-left:'31.5%';">
+                                    <mat-form-field style="margin-right: 20px;" appearance="outline">
                                         <input formControlName="date1" matInput placeholder="A partir de" required [matDatepicker]="picker1">
                                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                         <mat-datepicker ngDefaultControl #picker1 color="primary"></mat-datepicker>
@@ -47,123 +48,120 @@
                                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                         <mat-datepicker ngDefaultControl #picker2 color="primary"></mat-datepicker>
                                     </mat-form-field>
-                                                  
-                                                   
-                                   
+
+
+
                                 </div>
                                 <div class="search">
-                                    <button    style="background-color: #1c4587ff;margin-top: 3px;height: 34px;"  mat-button (click)="searchDateRange()">
+                                    <button style="background-color: #1c4587ff;margin-top: 3px;height: 34px;" mat-button (click)="searchDateRange()">
                                        <mat-icon style="color:white">search</mat-icon>
                                  
                                     </button>
-                         
+
                                 </div>
-                               
+
                             </form>
                         </div>
-                         <div>
-                               <button class="fc fc-button-primary dispo" mat-button [matMenuTriggerFor]="aboveMenu">Filtre</button>
-                                    <mat-menu #aboveMenu="matMenu" yPosition="above">
-                                    
-                                    <button (click)="setColorEvents('red')"      mat-menu-item class="disp">
+                        <div>
+                            <button class="fc fc-button-primary dispo" mat-button [matMenuTriggerFor]="aboveMenu">Filtre</button>
+                            <mat-menu #aboveMenu="matMenu" yPosition="above">
+
+                                <button (click)="setColorEvents('red')" mat-menu-item class="disp">
                                         <span>Occupé</span>
                                         <mat-icon id="occup">brightness_1</mat-icon>
                                     </button>
-                                    <button (click)="setColorEvents('yellow')" mat-menu-item class="disp">
+                                <button (click)="setColorEvents('yellow')" mat-menu-item class="disp">
                                         <span >Réservé</span>
                                         <mat-icon id="Reserv">brightness_1</mat-icon>
                                     </button>
-                                    <button  (click)="setColorEvents('gray')"   mat-menu-item class="disp">
+                                <button (click)="setColorEvents('gray')" mat-menu-item class="disp">
                                         <span>Fermé</span>
                                         <mat-icon id="Ferm">brightness_1</mat-icon>
                                     </button>
-                                    <button (click)="setColorEvents('all')"  mat-menu-item class="disp">
+                                <button (click)="setColorEvents('all')" mat-menu-item class="disp">
                                         <span>Tous</span>
                                         <mat-icon id="dispo">brightness_1</mat-icon>
                                     </button>
-                                    </mat-menu>
-                         </div>
-                      
-                        
+                            </mat-menu>
+                        </div>
+
+
                         <div class="row">
-                            <div    class="col-md-12 col-sm-12 p-l-30 col-lg-2">
-                                <div  class="filter-container">
-                                    
+                            <div class="col-md-12 col-sm-12 p-l-30 col-lg-2">
+                                <div class="filter-container">
 
 
-                                        <ul    style="margin-top: 5px;height: 20vh; width: 0px;" >
-                                         
 
-                                        
+                                    <ul style="margin-top: 5px;height: 20vh; width: 0px;">
 
-                                          
-                                             <div>
-                                                <button  [ngClass]="{'Bouton':isClicked, '': false}"   class="rooms"    class="ruppia"  (click)="getRuppiaRooms($event)"   mat-flat-button    >
+
+
+
+
+                                        <div>
+                                            <button [ngClass]="{'Bouton':isClicked, '': false}" class="rooms" class="ruppia" (click)="getRuppiaRooms($event)" mat-flat-button>
                                                     Ruppia
                                                 </button>
-                                            
-                                            </div>
-                                            <div>
-                                                <button    [ngClass]="{'Bouton':isClicked2, '': false}"     class="ciconia"  (click)="getCiconiaRooms($event)"   mat-flat-button    >
+
+                                        </div>
+                                        <div>
+                                            <button [ngClass]="{'Bouton':isClicked2, '': false}" class="ciconia" (click)="getCiconiaRooms($event)" mat-flat-button>
                                                     Ciconia
                                                 </button>
-    
-                                            </div>
-                                            <div>
-                                                <button    [ngClass]="{'Bouton':isClicked3, '': false}"     class="amorpha"  (click)="getAmorphaRooms($event)"   mat-flat-button    >
+
+                                        </div>
+                                        <div>
+                                            <button [ngClass]="{'Bouton':isClicked3, '': false}" class="amorpha" (click)="getAmorphaRooms($event)" mat-flat-button>
                                                     Amorpha
                                                 </button>
-                                                
-                                            </div>
-                                            <div>
-                                                <button    [ngClass]="{'Bouton':isClicked4, '': false}"     class="marabou"  (click)="getMarabouRooms($event)"   mat-flat-button    >
+
+                                        </div>
+                                        <div>
+                                            <button [ngClass]="{'Bouton':isClicked4, '': false}" class="marabou" (click)="getMarabouRooms($event)" mat-flat-button>
                                                     Marabou
                                                 </button>
-                                            </div>
-                                            <div>
-                                                <button    [ngClass]="{'Bouton':isClicked5, '': false}"     class="brecon"  (click)="getBreconRooms($event)"   mat-flat-button    >
+                                        </div>
+                                        <div>
+                                            <button [ngClass]="{'Bouton':isClicked5, '': false}" class="brecon" (click)="getBreconRooms($event)" mat-flat-button>
                                                     Brecon
                                                 </button>
-                                                
-                                            </div>
-                                            <div>
-                                                <button    [ngClass]="{'Bouton':isClicked6, '': false}"     class="colony"  (click)="getColonyRooms($event)"   mat-flat-button    >
+
+                                        </div>
+                                        <div>
+                                            <button [ngClass]="{'Bouton':isClicked6, '': false}" class="colony" (click)="getColonyRooms($event)" mat-flat-button>
                                                     Colony
                                                 </button>
-                                            </div>
-                                            <div>
-                                                <button    [ngClass]="{'Bouton':isClicked7, '': false}"     class="cicogne"  (click)="getCicogneRooms($event)"   mat-flat-button    >
+                                        </div>
+                                        <div>
+                                            <button [ngClass]="{'Bouton':isClicked7, '': false}" class="cicogne" (click)="getCicogneRooms($event)" mat-flat-button>
                                                     Cicogne
                                                 </button>
-                                            </div>
-                                            <div>
-                                                <button    [ngClass]="{'Bouton':isClicked8, '': false}"     class="bonnelli"  (click)="getBonnelliRooms($event)"   mat-flat-button    >
+                                        </div>
+                                        <div>
+                                            <button [ngClass]="{'Bouton':isClicked8, '': false}" class="bonnelli" (click)="getBonnelliRooms($event)" mat-flat-button>
                                                     Bonnelli
                                                 </button>
-                                                
-                                            </div>
-                                            <div>
-                                                <button    [ngClass]="{'Bouton':isClicked9, '': false}"     class="villa"  (click)="getVillaRooms($event)"   mat-flat-button    >
+
+                                        </div>
+                                        <div>
+                                            <button [ngClass]="{'Bouton':isClicked9, '': false}" class="villa" (click)="getVillaRooms($event)" mat-flat-button>
                                                     Villa
                                                 </button>
-                                                
-                                            </div>
-                                       
-                                      
-                                       </ul>
+
+                                        </div>
+
+
+                                    </ul>
                                 </div>
                             </div>
 
-                            <div  class="col-10" style="padding:8px;">
-                                <full-calendar 
-                                #calendar
-                                [options]="calendarOptions"
-                                 >
-                                 </full-calendar>
+                            <div class="col-10" style="padding:8px;">
+                                <full-calendar #calendar [options]="calendarOptions">
+                                </full-calendar>
 
                             </div>
                             <div>
-                                <button  routerLink="/reservation/menu"   mat-stroked-button color="primary">Menu</button>
+                                <button routerLink="/reservation/menu" mat-stroked-button color="primary">Menu</button>
                             </div>
                         </div>
 
@@ -173,6 +171,3 @@
         </div>
     </div>
 </section>
-
-
-

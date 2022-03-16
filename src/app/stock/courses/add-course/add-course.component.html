@@ -77,10 +77,7 @@
                                         <mat-label>Search</mat-label>
                                         <input matInput type="text" [matAutocomplete]="auto" #query (keyup)="search(query.value)" [value]='this.article'>
                                         <mat-icon matSuffix>local_grocery_store</mat-icon>
-
                                         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selected($event)">
-
-
                                         </mat-autocomplete>
                                     </mat-form-field>
 

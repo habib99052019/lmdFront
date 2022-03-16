@@ -93,9 +93,16 @@ CreateNewCourse(course : any){
 getListCourse(){
   return this.http.get(this.ApiPath + 'courses');
 }
+
 //get list of courses by date range
 getListCourseByDateRange(from, to){
-  return this.http.get(this.ApiPath + 'courses?from=' + from + '&to=' + to) ;
+  return this.http.get(this.ApiPath + 'courses?from=' + from + '&to=' + to);
+}
+
+
+//get list of courses by price
+getListCourseByPrice(prixMin, prixMax){
+  return this.http.get(this.ApiPath + 'courses/filter?prixMin=' + prixMin + '&prixMax=' + prixMax);
 }
 
 

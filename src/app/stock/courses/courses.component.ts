@@ -1,6 +1,7 @@
 import { formatDate } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { take } from "rxjs/operators";
 import { StockService } from "src/app/core/service/stock.service";
 
@@ -21,6 +22,7 @@ export class CoursesComponent implements OnInit {
   constructor(
       private fb: FormBuilder,
       private service: StockService,
+      private snackBar: MatSnackBar,
     ) {}
 
   ngOnInit(): void {
@@ -34,7 +36,8 @@ export class CoursesComponent implements OnInit {
     return this.fb.group({
       from: [""],
       to: [""],
-      price: [""],
+      priceMin: [""],
+      priceMax: [""],
       person: [""],
     });
   }
@@ -62,6 +65,7 @@ export class CoursesComponent implements OnInit {
     
     
   }
+
   checkToDate(date){
     console.log("date 2>>>",formatDate(date, 'yyyy-MM-dd', 'en'));
     this.to = formatDate(date, 'yyyy-MM-dd', 'en');
@@ -76,13 +80,44 @@ export class CoursesComponent implements OnInit {
     )
   }
 
-  searshDateRange(){
-     console.log("date range>>>", this.from, this.to);
-     this.service.getListCourseByDateRange(this.from,this.to).subscribe(resp => {
-         console.log("resp>>", resp);
-         this.ListCourses = resp;
-     })
+  deepFilter(){
+    
+    console.log("date range>>>", this.coursesFilterForm.get('from').value,this.coursesFilterForm.get('to').value);
+     console.log("date range>>>", this.coursesFilterForm.get('priceMin').value,this.coursesFilterForm.get('priceMax').value);
+   if( this.coursesFilterForm.get('from').value != "" || this.coursesFilterForm.get('to').value != ""  || this.coursesFilterForm.get('priceMin').value != ""  || this.coursesFilterForm.get('priceMin').value != ""  || this.coursesFilterForm.get('person').value){
+      if(this.coursesFilterForm.get('from').value != "" && this.coursesFilterForm.get('to').value != ""){
+            let from = formatDate(this.coursesFilterForm.get('from').value, 'yyyy-MM-dd', 'en');
+            let to = formatDate(this.coursesFilterForm.get('to').value, 'yyyy-MM-dd', 'en') ;
+            this.service.getListCourseByDateRange(from,to).subscribe(resp => {
+                        console.log("resp>>", resp);
+                        this.ListCourses = resp;
+              })
+     }else if(this.coursesFilterForm.get('priceMin').value != "" && this.coursesFilterForm.get('priceMax').value != "" ){
+       console.log("testtt");
+  
+          let prixMin = this.coursesFilterForm.get('priceMin').value;
+          let prixMax = this.coursesFilterForm.get('priceMax').value;
+
+          this.service.getListCourseByPrice(prixMin,prixMax).subscribe(resp => {
+                      console.log("resp>>", resp);
+                      this.ListCourses = resp;
+            })
+         
+     }else if(this.coursesFilterForm.get('person').value != ""){
+         let name = this.coursesFilterForm.get('person').value;
+         this.search(name)
+      
+    }
+      else{
+      this.showNotification(
+        'snackbar-danger',
+        "Formulaire invalide",
+        'top',
+        'end'
+      );
+   }
      
+   }  
   }
 
 
@@ -143,6 +178,15 @@ export class CoursesComponent implements OnInit {
     console.log("item id >>>", id);
     
   }
+
+  showNotification(colorName, text, placementFrom, placementAlign) {
+    this.snackBar.open(text, '', {
+      duration: 3000,
+      verticalPosition: placementFrom,
+      horizontalPosition: placementAlign,
+      panelClass: colorName,
+    });
+}
 
 
 }

@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <!---filter -->
-                        <div class="cal" style="display: flex;justify-content: space-between;margin-top: 20px;" *ngIf="showFilters">
+                        <div class="col" style="display: flex;justify-content: space-between;margin-top: 20px;" *ngIf="showFilters">
                             <form [formGroup]="coursesFilterForm">
                                 <div class="row">
                                     <div class="col">
@@ -61,26 +61,36 @@
                                     </div>
                                     <div class="col">
                                         <mat-form-field class="mb-3" appearance="outline">
-                                            <mat-label>Prix</mat-label>
-                                            <input matInput formControlName="price" type="text" [value]="" (keyup)='search($event.target.value)' />
+                                            <mat-label>Prix min</mat-label>
+                                            <input matInput formControlName="priceMin" type="text" [value]="" />
+                                            <mat-icon matSuffix>monetization_on</mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col">
+                                        <mat-form-field class="mb-3" appearance="outline">
+                                            <mat-label>Prix max</mat-label>
+                                            <input matInput formControlName="priceMax" type="text" [value]="" />
                                             <mat-icon matSuffix>monetization_on</mat-icon>
                                         </mat-form-field>
                                     </div>
                                     <div class="col">
                                         <mat-form-field class="mb-3" appearance="outline">
                                             <mat-label>Personne</mat-label>
-                                            <input matInput formControlName="person" type="text" [value]="" (keyup)='search($event.target.value)' />
+                                            <input matInput formControlName="person" type="text" [value]="" />
                                             <mat-icon matSuffix>person</mat-icon>
                                         </mat-form-field>
                                     </div>
                                     <div class="col">
-                                        <button style="margin-top: 10px" mat-raised-button color="primary" *ngIf="showSearhshButton" (click)="searshDateRange()">
+                                        <button style="margin-top: 10px" mat-raised-button color="primary" (click)="deepFilter()">
                                             <mat-icon>done</mat-icon>
                                              Chercher
                                          </button>
                                     </div>
+
                                 </div>
+
                             </form>
+
                         </div>
                         <div class="mt-4">
                             <div *ngFor="let course of ListCourses" style="display: flex; flex-direction: column;">
