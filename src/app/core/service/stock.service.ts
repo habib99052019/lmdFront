@@ -80,8 +80,8 @@ getListOfTypes(name){
 }
 
 //get list articles  by name
-getListOfArticlesByName(name){
-  return this.http.get(this.ApiPath + 'articles?name=' + name )
+getListOfArticles(){
+  return this.http.get(this.ApiPath + '/articles')
 }
 
 //create new course

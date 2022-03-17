@@ -25,7 +25,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
-
+//pagination module
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -54,6 +55,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ClickOutsideModule,
     CoreModule,
     SharedModule,
+    NgxPaginationModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

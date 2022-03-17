@@ -1,8 +1,6 @@
-
-
 //events background style
 .fc .fc-daygrid-event {
-     padding: 0px 0px; 
+    padding: 0px 0px;
     box-shadow: 0 4px 25px 0 rgb(0 0 0 / 10%);
     color: #ffffff;
     text-align: left;
@@ -10,50 +8,46 @@
 
 //
 .fc .fc-button-primary {
-    color: var(--fc-button-text-color,#fff) !important;
-    background-color: #1c4587ff  !important;
-    border-color: var(--fc-button-border-color,#1c4587ff ) !important;
-    }
-   
-.fc .fc-button-primary:hover {
-    color: var(--fc-button-text-color,#fff) !important;
-    background-color: #1c4587ff  !important;
-    border-color: var(--fc-button-border-color,#1c4587ff ) !important;
+    color: var(--fc-button-text-color, #fff) !important;
+    background-color: #1c4587ff !important;
+    border-color: var(--fc-button-border-color, #1c4587ff) !important;
 }
 
+.fc .fc-button-primary:hover {
+    color: var(--fc-button-text-color, #fff) !important;
+    background-color: #1c4587ff !important;
+    border-color: var(--fc-button-border-color, #1c4587ff) !important;
+}
 
-   
 //cette semaine button style
-    .fc .fc-button-primary:not(:disabled).fc-button-active {
-        color: #242424 !important;
-        background-color: #ffffff !important;
-        border-color: #ffffff !important;
-         box-shadow: 0px 2px 2px rgb(173, 173, 173), 0px 0px 5px rgb(207, 207, 207) !important;
-    }
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+    color: #242424 !important;
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: 0px 2px 2px rgb(173, 173, 173), 0px 0px 5px rgb(207, 207, 207) !important;
+}
 
 // header toolbar style (date center position)
-    .fc .fc-toolbar-title {
-        font-size: 1.75em;
-        margin-right: 120px !important;
-        color:rgb(105, 105, 105)
-    }
+.fc .fc-toolbar-title {
+    font-size: 1.75em;
+    margin-right: 120px !important;
+    color: rgb(105, 105, 105)
+}
 
-     .fc-toolbar {
-       // text-transform: uppercase !important;
-    }
-
+.fc-toolbar {
+    // text-transform: uppercase !important;
+}
 
 // effacer les colones en gray (valid Range)
-fc .fc-cell-shaded, .fc .fc-day-disabled {
-        // background: hsl(0deg 80% 47% / 30%); */
-       //  background: var(--fc-neutral-bg-color,white) !important; 
-       display:none!important;
-    }
+fc .fc-cell-shaded,
+.fc .fc-day-disabled {
+    // background: hsl(0deg 80% 47% / 30%); */
+    //  background: var(--fc-neutral-bg-color,white) !important; 
+    display: none!important;
+}
 
-
-
-@media (max-width: 767px) { 
-  /*  .fc .fc-toolbar-title {
+@media (max-width: 767px) {
+    /*  .fc .fc-toolbar-title {
         font-size: 1.75em;
         position: absolute;
        // margin-top: 60px;
@@ -64,44 +58,51 @@ fc .fc-cell-shaded, .fc .fc-day-disabled {
        // margin-left: 110px !important;
        color:rgb(105, 105, 105)
     }*/
-
     .fc .fc-toolbar-title {
         font-size: 1.60em;
         margin-left: 40px !important;
-        color:rgb(105, 105, 105);
+        color: rgb(105, 105, 105);
         margin-top: 10px !important;
     }
+}
 
- }
 
- 
-/* Mobile xs */ 
+/* Mobile xs */
+
 @media (max-width: 420px) {
-
-   
-  // update calandar position
-    .fc .fc-scrollgrid, .fc .fc-scrollgrid table {
-      width: 100%;
-      table-layout: fixed;
-      margin-left: -18px;
-     // margin-top: 10px;
-  }
-   
-  //update title position
-  .fc .fc-toolbar-title {
-    font-size: 1.60em;
-    margin-left: 30px !important;
-    color:rgb(105, 105, 105);
-    margin-top: 10px !important;
-    width: 250px !important;
-    margin-bottom: 0px !important;
+    // update calandar position
+    .fc .fc-scrollgrid,
+    .fc .fc-scrollgrid table {
+        width: 100%;
+        table-layout: fixed;
+        margin-left: -18px;
+        // margin-top: 10px;
+    }
+    //update title position
+    .fc .fc-toolbar-title {
+        font-size: 1.60em;
+        margin-left: 30px !important;
+        color: rgb(105, 105, 105);
+        margin-top: 10px !important;
+        width: 250px !important;
+        margin-bottom: 0px !important;
+    }
+    .fc {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.7em !important;
+    }
 }
 
-.fc {
-    display: flex;
-    flex-direction: column;
-    font-size: 0.7em !important;
+.ngx-pagination {
+    margin-left: 0 !important;
+    margin-bottom: 1rem !important;
+    margin-top: 25px !important;
 }
-  
-  
-  }
+
+.ngx-pagination .current {
+    padding: 0.1875rem 0.625rem !important;
+    background: #3f51b5 !important;
+    color: #fefefe !important;
+    cursor: default !important;
+}

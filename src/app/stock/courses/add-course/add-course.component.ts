@@ -24,7 +24,7 @@ export class AddCourseComponent implements OnInit {
   isActive = false;
   ListArticles: any = [];
 
-  searchuser!: any[];
+  searchArticles!: any[];
   articles!: any[];
   article:any;
   Articles:any;
@@ -32,6 +32,12 @@ export class AddCourseComponent implements OnInit {
   inputData:any;
   inputData2:any;
   updatePrice:any;
+  DepotArticles:any;
+  filtredArticles:any;
+
+
+  totalLength:any;
+  page:number = 1;
 
   constructor(
      private fb: FormBuilder,
@@ -46,7 +52,7 @@ export class AddCourseComponent implements OnInit {
    }
     this.addArticleToCourseForm = this.createAddArticleToCourseForm();
     this.addCourseForm = this.createAddCourseForm();
-    this.getListOfArticlesByAllDepot();
+    this.getListOfArticles();
     this.CureentUser = localStorage.getItem('currentUser')
     console.log(JSON.parse(this.CureentUser).user);
     
@@ -56,9 +62,9 @@ export class AddCourseComponent implements OnInit {
   }
 
 
-  getListOfArticlesByAllDepot(){
+  /*getListOfArticlesByAllDepot(){
     this.service.getListOfArticlesByAllDepot().pipe(take(1)).subscribe((data : any)=>{
-     // this.DepotArticles = data;
+    // this.DepotArticles = data;
         data.map(item => {
           console.log("items>>>", item.listCategorys);
           item.listCategorys.map(item => {
@@ -83,11 +89,17 @@ export class AddCourseComponent implements OnInit {
       console.log("list articles>>>", this.ListArticles);
      // this.searchuser =  this.ListArticles;
     })
+  }*/
+
+
+  getListOfArticles(){
+    this.service.getListOfArticles().pipe(take(1)).subscribe((data : any)=>{
+      this.ListArticles = data;
+      
+      console.log("data>>>>", data.length);
+      
+    })
   }
-
-
-
-
 
   createAddArticleToCourseForm(): FormGroup {
     return this.fb.group({
@@ -159,16 +171,21 @@ export class AddCourseComponent implements OnInit {
   };
 
   
-  search(query:string)
-  {
+  search(query:string){
    
     if(query == ''){
     }
-     this.searchuser = (query) ? this.ListArticles.filter( articles =>
-      articles.name.toLowerCase().includes(query.toLowerCase()) 
-    
+     this.searchArticles = (query) ? this.ListArticles.filter( articles =>
+         
+       
+       articles.name.toLowerCase().includes(query.toLowerCase()) 
+       
        ) 
        : this.ListArticles;
+
+      console.log(this.ListArticles);
+      this.totalLength = this.searchArticles.length;
+      console.log("articles length>>>",this.totalLength);
   }
 
   displayFn(subject:any)
@@ -177,7 +194,7 @@ export class AddCourseComponent implements OnInit {
      return subject ? subject.name : undefined;
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
+ /* selected(event: MatAutocompleteSelectedEvent): void {
    
      console.log("event",event.option.value.name);
      
@@ -188,7 +205,7 @@ export class AddCourseComponent implements OnInit {
       this.Articles = data;
    })
  
-}
+}*/
 
 
 
@@ -205,37 +222,39 @@ export class AddCourseComponent implements OnInit {
 
 
   showAddArticle = (id: string) => {
-    this.isActive = !this.isActive;
+   // this.isActive = !this.isActive;
   
-   /* this.articles.forEach((element, index) => {
-      if (element.id === id) {
-        this.articles[index].isActive = true;
+   this.searchArticles.forEach((element, index) => {
+      if (element._id === id) {
+        this.searchArticles[index].isHide = true;
       } else {
-        this.articles[index].isActive = false;
+        this.searchArticles[index].isHide = false;
       }
-    });*/
+    });
   };
 
+
+
   closeAddArticle = (id:string) =>{
-   /* this.articles.forEach((element, index) => {
-      if (element.id === id) {
-        this.articles[index].isActive = false;
-      }})*/
-      this.isActive = !this.isActive;
+    this.searchArticles.forEach((element, index) => {
+      if (element._id === id) {
+        this.searchArticles[index].isHide = false;
+      }})
+      //this.isActive = !this.isActive;
   }
 
 
   addArticleToCourse = (item) => {
     console.log("articles>>>",item);
     
-    if (this.addArticleToCourseForm.invalid) {
+   if (this.addArticleToCourseForm.invalid) {
       return;
     }
     const article = {
       ...item,
-      id: this.Articles.article[0]._id,
-      name: this.Articles.article[0].name,
-      image: this.Articles.article[0].img,
+      id: item._id,
+      name: item.name,
+      image: item.img,
       quantity: this.addArticleToCourseForm.get("quantity").value,
       price: this.addArticleToCourseForm.get("price").value,
       totalPrice:
@@ -245,9 +264,13 @@ export class AddCourseComponent implements OnInit {
     this.addedArticles.push(article);
     this.price = "";
     this.quantity = "";
+    this.addArticleToCourseForm.patchValue({
+      quantity: ["", Validators.required,],
+      price: ["", Validators.required],
+    });
     this.totalPrice += parseFloat(article.totalPrice);
     console.log("addedArticles>>>", this.addedArticles);
-    
+  
   };
 
 

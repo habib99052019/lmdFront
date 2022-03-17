@@ -24,6 +24,12 @@ import { AddCourseComponent } from './courses/add-course/add-course.component';
 import { ShowCourseComponent } from './courses/show-course/show-course.component';
 import { EditCourseComponent } from './courses/edit-course/edit-course.component';
 
+
+
+//pagination module
+import {NgxPaginationModule} from 'ngx-pagination';
+
+
 @NgModule({
   declarations: [
     DepotComponent,
@@ -52,6 +58,7 @@ import { EditCourseComponent } from './courses/edit-course/edit-course.component
     StockRoutingModule,
     MatStepperModule,
     ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class StockModule { }
