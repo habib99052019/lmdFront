@@ -24,22 +24,14 @@
             <div class="col-md-12 col-sm-12">
                 <div class="card" style="height: 100%" style="margin-bottom: 30px">
                     <div class="card-body">
-                        <div style="
-                  display: flex;
-                  justify-content: space-between;
-                  margin-bottom: 20px;
-                ">
+                        <div style="display: flex;justify-content: space-between;margin-bottom: 20px;">
                             <div style="display: flex; align-items: center">
                                 <mat-icon matListIcon>shopping_cart</mat-icon>
-                                <h5 style="margin: 0">Course {{ id }}</h5>
+                                <h5 style="margin: 0">Course {{ Course.code }}</h5>
                             </div>
-                            <div style="
-                    display: flex;
-                    align-items: center;
-                    color: rgb(0 0 0 / 20%);
-                  ">
+                            <div style="display: flex;align-items: center;color: rgb(0 0 0 / 20%);">
                                 <mat-icon matListIcon>monetization_on</mat-icon>
-                                <h5 style="margin: 0 0 0 5px">{{ course.price }} DT</h5>
+                                <h5 style="margin: 0 0 0 5px">{{ Course.price }} DT</h5>
                             </div>
                         </div>
                         <form [formGroup]="addCourseForm">
@@ -47,20 +39,13 @@
                                 <div class="col">
                                     <mat-form-field class="mb-3" appearance="outline">
                                         <mat-label>Date</mat-label>
-                                        <input matInput [matDatepicker]="picker" formControlName="date" required [(ngModel)]="course.date" />
+                                        <input matInput [matDatepicker]="picker" formControlName="date" required [(ngModel)]="Course.date" />
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
-                                        <mat-error *ngIf="
-                          !addCourseForm
-                            .get('date')
-                            .hasError('matDatepickerParse') &&
-                          addCourseForm.get('date').hasError('required')
-                        ">
+                                        <mat-error *ngIf="!addCourseForm.get('date').hasError('matDatepickerParse') && addCourseForm.get('date').hasError('required')">
                                             La date de la course est <strong>obligatoire</strong>
                                         </mat-error>
-                                        <mat-error *ngIf="
-                          addCourseForm.get('date').hasError('matDatepickerParse')
-                        ">
+                                        <mat-error *ngIf="addCourseForm.get('date').hasError('matDatepickerParse')">
                                             La date de la course est <strong>invalide</strong>
                                         </mat-error>
                                     </mat-form-field>
@@ -68,7 +53,7 @@
                                 <div class="col">
                                     <mat-form-field class="mb-3" appearance="outline">
                                         <mat-label>Personne</mat-label>
-                                        <input matInput formControlName="person" type="text" [value]="course.person" />
+                                        <input matInput formControlName="person" type="text" [value]="Course.clientID.first_name" />
                                         <mat-icon matSuffix>person</mat-icon>
                                     </mat-form-field>
                                 </div>
@@ -89,13 +74,13 @@
                                 </form>
                                 <div class="col">
                                     <button mat-raised-button color="primary" style="margin-right: 10px; margin-bottom: 10px">
-                      <mat-icon>add</mat-icon>
-                      Nouvel article inconnu
-                    </button>
+                                      <mat-icon>add</mat-icon>
+                                      Nouvel article inconnu
+                                    </button>
                                     <button mat-raised-button (click)="hideNewArticle()">
-                      <mat-icon>clear</mat-icon>
-                      annuler
-                    </button>
+                                      <mat-icon>clear</mat-icon>
+                                      annuler
+                                    </button>
                                 </div>
                             </div>
                             <div class="row">
@@ -108,31 +93,19 @@
                                         <mat-card-content>
                                             <ul class="list-group">
                                                 <li class="list-group-item">
-                                                    <div style="
-                                display: flex;
-                                align-items: center;
-                                justify-content: space-between;
-                              ">
+                                                    <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <mat-icon svgIcon="thermometer"></mat-icon>
                                                         <h5 style="margin: 0">{{ item.unity }}</h5>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <div style="
-                                display: flex;
-                                align-items: center;
-                                justify-content: space-between;
-                              ">
+                                                    <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Dépot</h5>
                                                         <h5 style="margin: 0">{{ item.depot }}</h5>
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <div style="
-                                display: flex;
-                                align-items: center;
-                                justify-content: space-between;
-                              ">
+                                                    <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Catégorie</h5>
                                                         <h5 style="margin: 0">
                                                             {{ item.category }}
@@ -140,11 +113,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <div style="
-                                display: flex;
-                                align-items: center;
-                                justify-content: space-between;
-                              ">
+                                                    <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Famille</h5>
                                                         <h5 style="margin: 0">
                                                             {{ item.family }}
@@ -152,11 +121,7 @@
                                                     </div>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <div style="
-                                display: flex;
-                                align-items: center;
-                                justify-content: space-between;
-                              ">
+                                                    <div style="display: flex;align-items: center;justify-content: space-between;">
                                                         <h5>Type</h5>
                                                         <h5 style="margin: 0">
                                                             {{ item.type }}
@@ -172,11 +137,7 @@
                                                                 <mat-label>Quantité</mat-label>
                                                                 <input matInput formControlName="quantity" type="number" class="example-right-align" [value]="quantity" />
                                                                 <mat-icon matSuffix aria-hidden="false" svgIcon="quantity"></mat-icon>
-                                                                <mat-error *ngIf="
-                                      addArticleToCourseForm
-                                        .get('quantity')
-                                        .hasError('required')
-                                    ">
+                                                                <mat-error *ngIf="addArticleToCourseForm.get('quantity').hasError('required')">
                                                                     La quantité de l'article est
                                                                     <strong>obligatoire</strong>
                                                                 </mat-error>
@@ -187,204 +148,120 @@
                                                                 <mat-label>Prix unitaire TTC</mat-label>
                                                                 <input formControlName="price" matInput type="number" class="example-right-align" [value]="price" class="example-right-align" />
                                                                 <span matSuffix>DT</span>
-                                                                <span matPrefix><mat-icon matPrefix
-                                      >monetization_on</mat-icon
-                                    ></span
-                                  >
-                                  <mat-error
-                                    *ngIf="
-                                      addArticleToCourseForm
-                                        .get('price')
-                                        .hasError('required')
-                                    "
-                                  >
-                                    Le prix de l'article est
-                                    <strong>obligatoire</strong>
-                                  </mat-error>
-                                </mat-form-field>
-                              </div>
+                                                                <span matPrefix><mat-icon matPrefix>monetization_on</mat-icon></span>
+                                                                <mat-error *ngIf="
+                                                                    addArticleToCourseForm
+                                                                      .get('price')
+                                                                      .hasError('required')
+                                                                  ">
+                                                                    Le prix de l'article est
+                                                                    <strong>obligatoire</strong>
+                                                                </mat-error>
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </mat-card-content>
+                                        <mat-card-actions align="end">
+                                            <button mat-stroked-button (click)="showAddArticle(item.id)" *ngIf="!item.isActive">
+                                    <mat-icon>add</mat-icon>Ajouter
+                                  </button>
+                                            <button mat-stroked-button *ngIf="item.isActive">
+                                    <mat-icon>clear</mat-icon>Annuler
+                                  </button>
+                                            <button style="margin-left: 10px" mat-raised-button color="primary" *ngIf="item.isActive" (click)="addArticleToCourse(item)">
+                                    <mat-icon matSuffix>add_shopping_cart</mat-icon>
+                                    Ajouter à la course
+                                  </button>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                </div>
                             </div>
-                          </form>
+                            <mat-divider style="margin: 20px 0; width: 30%"></mat-divider>
                         </div>
-                      </mat-card-content>
-                      <mat-card-actions align="end">
-                        <button
-                          mat-stroked-button
-                          (click)="showAddArticle(item.id)"
-                          *ngIf="!item.isActive"
-                        >
-                          <mat-icon>add</mat-icon>Ajouter
-                        </button>
-                        <button mat-stroked-button *ngIf="item.isActive">
-                          <mat-icon>clear</mat-icon>Annuler
-                        </button>
-                        <button
-                          style="margin-left: 10px"
-                          mat-raised-button
-                          color="primary"
-                          *ngIf="item.isActive"
-                          (click)="addArticleToCourse(item)"
-                        >
-                          <mat-icon matSuffix>add_shopping_cart</mat-icon>
-                          Ajouter à la course
-                        </button>
-                      </mat-card-actions>
-                    </mat-card>
-                  </div>
-                </div>
-                <mat-divider style="margin: 20px 0; width: 30%"></mat-divider>
-              </div>
-              <div>
-                <h5>Articles</h5>
-                <div class="row" style="padding: 10px">
-                  <div
-                    style="margin: 20px 0; text-align: center"
-                    *ngIf="showAddNewArticle && !course.articles.length"
-                  >
-                    Aucun article n'a été ajouté
-                  </div>
-                  <div class="row">
-                    <div
-                      class="col"
-                      *ngIf="!showAddNewArticle"
-                      style="padding-bottom: 10px"
-                    >
-                      <mat-card
-                        class="example-card"
-                        style="
-                          background-color: #eee;
-                          height: 365px;
-                          display: flex;
-                          justify-content: center;
-                          align-items: center;
-                        "
-                        (click)="addNewArticle()"
-                        ><div style="text-align: center">
-                          <mat-icon style="transform: scale(2)">add</mat-icon>
-                        </div></mat-card
-                      >
+                        <div>
+                            <h5>Articles</h5>
+                            <div class="row" style="padding: 10px">
+                                <div style="margin: 20px 0; text-align: center" *ngIf="showAddNewArticle && !course.articles.length">
+                                    Aucun article n'a été ajouté
+                                </div>
+                                <div class="row">
+                                    <div class="col" *ngIf="!showAddNewArticle" style="padding-bottom: 10px">
+                                        <mat-card class="example-card" style="background-color: #eee;height: 365px;display: flex;justify-content: center;align-items: center;" (click)="addNewArticle()">
+                                            <div style="text-align: center">
+                                                <mat-icon style="transform: scale(2)">add</mat-icon>
+                                            </div>
+                                        </mat-card>
+                                    </div>
+                                    <div class="col" style="padding-bottom: 10px" *ngFor="let article of Course.articleList">
+                                        <mat-card class="example-card" style="border: 3px solid rgb(0 0 0 / 12%)">
+                                            <mat-card-header style="justify-content: space-between">
+                                                <mat-card-title>{{ article.name }}</mat-card-title>
+                                                <mat-card-subtitle style="display: flex">
+                                                    <mat-icon>monetization_on</mat-icon>
+                                                    {{ article.quantity * article.price }} DT
+                                                </mat-card-subtitle>
+                                                <img mat-card-md-image [src]="article.image" alt="article image" />
+                                            </mat-card-header>
+                                            <mat-card-content>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                                                            <mat-icon svgIcon="quantity"></mat-icon>
+                                                            <h5 style="margin: 0">{{ article.quantity }}</h5>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                                                            <mat-icon svgIcon="thermometer"></mat-icon>
+                                                            <h5 style="margin: 0">{{ article.unity }}</h5>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                                                            <mat-icon>monetization_on</mat-icon>
+                                                            <h5 style="margin: 0">
+                                                                {{ article.price }}DT/{{ article.unity }}
+                                                            </h5>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </mat-card-content>
+                                            <mat-card-actions>
+                                                <button mat-stroked-button color="warn" (click)="removeArticle(article.id)">
+                                                  <mat-icon>delete</mat-icon>Supprimer
+                                                </button>
+                                                <button mat-stroked-button>
+                                                  <mat-icon>edit</mat-icon>Modifier
+                                                </button>
+                                            </mat-card-actions>
+                                        </mat-card>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex;justify-content: space-between;margin-top: 10px;">
+                            <div style="display: flex; align-items: flex-end">
+                                <button mat-raised-button routerLink="../..">
+                                  <mat-icon>clear</mat-icon>
+                                  Annuler
+                                </button>
+                            </div>
+                            <div style="display: flex;flex-direction: column;align-items: center;color: rgb(0 0 0 / 20%);">
+                                <div style="display: flex; align-items: center">
+                                    <mat-icon matListIcon>monetization_on</mat-icon>
+                                    <h5 style="margin: 0 0 0 5px">{{ Course.price }} DT</h5>
+                                </div>
+                                <button style="margin-top: 10px" mat-raised-button color="primary" *ngIf="!showAddNewArticle" (click)="addCourse()">
+                                  <mat-icon>done</mat-icon>
+                                  Confirmer
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div
-                      class="col"
-                      style="padding-bottom: 10px"
-                      *ngFor="let article of course.articles"
-                    >
-                      <mat-card
-                        class="example-card"
-                        style="border: 3px solid rgb(0 0 0 / 12%)"
-                      >
-                        <mat-card-header style="justify-content: space-between">
-                          <mat-card-title>{{ article.name }}</mat-card-title>
-                          <mat-card-subtitle style="display: flex"
-                            ><mat-icon>monetization_on</mat-icon>
-                            {{ article.quantity * article.price }}
-                            DT</mat-card-subtitle
-                          >
-                          <img
-                            mat-card-md-image
-                            [src]="article.image"
-                            alt="article image"
-                          />
-                        </mat-card-header>
-                        <mat-card-content>
-                          <ul class="list-group">
-                            <li class="list-group-item">
-                              <div
-                                style="
-                                  display: flex;
-                                  align-items: center;
-                                  justify-content: space-between;
-                                "
-                              >
-                                <mat-icon svgIcon="quantity"></mat-icon>
-                                <h5 style="margin: 0">{{ article.quantity }}</h5>
-                              </div>
-                            </li>
-                            <li class="list-group-item">
-                              <div
-                                style="
-                                  display: flex;
-                                  align-items: center;
-                                  justify-content: space-between;
-                                "
-                              >
-                                <mat-icon svgIcon="thermometer"></mat-icon>
-                                <h5 style="margin: 0">{{ article.unity }}</h5>
-                              </div>
-                            </li>
-                            <li class="list-group-item">
-                              <div
-                                style="
-                                  display: flex;
-                                  align-items: center;
-                                  justify-content: space-between;
-                                "
-                              >
-                                <mat-icon>monetization_on</mat-icon>
-                                <h5 style="margin: 0">
-                                  {{ article.price }}DT/{{ article.unity }}
-                                </h5>
-                              </div>
-                            </li>
-                          </ul>
-                        </mat-card-content>
-                        <mat-card-actions>
-                          <button
-                            mat-stroked-button
-                            color="warn"
-                            (click)="removeArticle(article.id)"
-                          >
-                            <mat-icon>delete</mat-icon>Supprimer
-                          </button>
-                          <button mat-stroked-button>
-                            <mat-icon>edit</mat-icon>Modifier
-                          </button>
-                        </mat-card-actions>
-                      </mat-card>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  margin-top: 10px;
-                "
-              >
-                <div style="display: flex; align-items: flex-end">
-                  <button mat-raised-button routerLink="../..">
-                    <mat-icon>clear</mat-icon>
-                    Annuler
-                  </button>
-                </div>
-                <div
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    color: rgb(0 0 0 / 20%);
-                  "
-                >
-                  <div style="display: flex; align-items: center">
-                    <mat-icon matListIcon>monetization_on</mat-icon>
-                    <h5 style="margin: 0 0 0 5px">{{ course.price }} DT</h5>
-                  </div>
-                  <button
-                    style="margin-top: 10px"
-                    mat-raised-button
-                    color="primary"
-                    *ngIf="!showAddNewArticle"
-                    (click)="addCourse()"
-                  >
-                    <mat-icon>done</mat-icon>
-                    Confirmer
-                  </button>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>

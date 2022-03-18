@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { id } from 'date-fns/locale';
+import { take } from 'rxjs/operators';
+import { StockService } from 'src/app/core/service/stock.service';
 
 @Component({
   selector: 'app-edit-course',
@@ -17,10 +19,19 @@ export class EditCourseComponent implements OnInit {
   addArticleToCourseForm: FormGroup;
   addCourseForm: FormGroup;
   id: string;
+  Course:any;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
-    this.id = this.route.snapshot.paramMap.get("id");
-  }
+
+  constructor(
+    private route: ActivatedRoute, 
+    private fb: FormBuilder,
+    private service: StockService,
+    ) 
+    {
+      this.id = this.route.snapshot.paramMap.get("id");
+    }
+
+
   course = {
     code: id,
     date: new Date(),
@@ -55,10 +66,17 @@ export class EditCourseComponent implements OnInit {
     ]
 
   }
+
+
   ngOnInit(): void {
     this.addArticleToCourseForm = this.createAddArticleToCourseForm();
     this.addCourseForm = this.createAddCourseForm();
+    console.log("id>>>", this.id);
+    this.getCourseById();
+    
   }
+
+
   createAddArticleToCourseForm(): FormGroup {
     return this.fb.group({
       quantity: ["", Validators.required,],
@@ -70,6 +88,20 @@ export class EditCourseComponent implements OnInit {
       date: ["", Validators.required],
     });
   }
+
+
+  getCourseById(){
+    this.service.getCourseById(this.id).pipe(take(1)).subscribe((data : any) => {
+      console.log("courses api>>>",data );
+      this.Course = data;
+  })
+}
+
+
+
+
+
+
   searchForArticles = (query: string) => {
     console.log(query);
     this.articles = [

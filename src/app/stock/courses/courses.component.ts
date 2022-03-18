@@ -83,9 +83,9 @@ export class CoursesComponent implements OnInit {
   deepFilter(){
     
     console.log("date range>>>", this.coursesFilterForm.get('from').value,this.coursesFilterForm.get('to').value);
-     console.log("date range>>>", this.coursesFilterForm.get('priceMin').value,this.coursesFilterForm.get('priceMax').value);
+     console.log("price>>>", this.coursesFilterForm.get('priceMin').value,this.coursesFilterForm.get('priceMax').value);
    if( this.coursesFilterForm.get('from').value != "" || this.coursesFilterForm.get('to').value != ""  || this.coursesFilterForm.get('priceMin').value != ""  || this.coursesFilterForm.get('priceMin').value != ""  || this.coursesFilterForm.get('person').value){
-      if(this.coursesFilterForm.get('from').value != "" && this.coursesFilterForm.get('to').value != ""){
+      if(this.coursesFilterForm.get('from').value != null && this.coursesFilterForm.get('to').value != null){
             let from = formatDate(this.coursesFilterForm.get('from').value, 'yyyy-MM-dd', 'en');
             let to = formatDate(this.coursesFilterForm.get('to').value, 'yyyy-MM-dd', 'en') ;
             this.service.getListCourseByDateRange(from,to).subscribe(resp => {

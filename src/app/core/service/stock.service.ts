@@ -79,7 +79,7 @@ getListOfTypes(name){
   return this.http.get(this.ApiPath + 'depots/types/family/articles?name=' + name )
 }
 
-//get list articles  by name
+//get list articles  
 getListOfArticles(){
   return this.http.get(this.ApiPath + '/articles')
 }
@@ -103,6 +103,11 @@ getListCourseByDateRange(from, to){
 //get list of courses by price
 getListCourseByPrice(prixMin, prixMax){
   return this.http.get(this.ApiPath + 'courses/filter?prixMin=' + prixMin + '&prixMax=' + prixMax);
+}
+
+//get course by id 
+getCourseById(id){
+  return this.http.get(this.ApiPath + 'courses/' + id);
 }
 
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { id } from 'date-fns/locale';
+import { take } from 'rxjs/operators';
+import { StockService } from 'src/app/core/service/stock.service';
 
 @Component({
   selector: 'app-show-course',
@@ -12,12 +14,34 @@ export class ShowCourseComponent implements OnInit {
 
   editCourseForm: FormGroup;
   id: string;
+  Course:any;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(
+      private route: ActivatedRoute, 
+      private fb: FormBuilder,
+      private service: StockService,
+      ) {
+        this.id = this.route.snapshot.paramMap.get("id");
+       }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get("id");
+    
+    console.log("id >>>",this.id);
+    this.getCourseById();
+    
   }
+
+  
+  getCourseById(){
+    this.service.getCourseById(this.id).pipe(take(1)).subscribe((data : any) => {
+      console.log("courses api>>>",data );
+      this.Course = data;
+  })
+}
+
+
+
+
 
   course = {
     code: id,
