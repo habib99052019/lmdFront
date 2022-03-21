@@ -133,6 +133,14 @@ closeAddArticle = (id:string) =>{
     }})
 }
 
+closeCourseArticle = (id:string) => {
+  this.Course.articleList.forEach((element, index) => {
+    if (element._id === id) {
+      this.Course.articleList[index].isHide = true;
+    }})
+}
+
+
 
 
 search(query:string){
@@ -317,6 +325,8 @@ search(query:string){
     this.totalPrice = totalprice;
     this.showOldPrice = false;
   }
+
+
   checkInput(value){
     console.log("check 1",value);
     this.inputData = value;

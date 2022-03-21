@@ -38,56 +38,61 @@
                             <form [formGroup]="coursesFilterForm">
                                 <div class="row">
                                     <div class="col">
-                                        <mat-form-field class="mb-3" appearance="outline">
-                                            <mat-label>De</mat-label>
-                                            <input matInput formControlName="from" [matDatepicker]="picker1" (dateChange)="checkFromDate($event.target.value)" />
-                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                            <mat-datepicker #picker1></mat-datepicker>
-                                            <mat-error *ngIf="coursesFilterForm.get('from').hasError('matDatepickerParse')">
-                                                La date de début est <strong>invalide</strong>
-                                            </mat-error>
-                                        </mat-form-field>
+                                        <div class="row" style="font-size: 11px;">
+                                            <mat-form-field style="width:50%" class="mb-3" appearance="outline">
+                                                <mat-label>De</mat-label>
+                                                <input matInput formControlName="from" [matDatepicker]="picker1" (dateChange)="checkFromDate($event.target.value)" />
+                                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker1></mat-datepicker>
+                                                <mat-error *ngIf="coursesFilterForm.get('from').hasError('matDatepickerParse')">
+                                                    La date de début est <strong>invalide</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                            <mat-form-field style="width:50%" class="mb-3" appearance="outline">
+                                                <mat-label>À</mat-label>
+                                                <input matInput formControlName="to" [matDatepicker]="picker2" (dateChange)="checkToDate($event.target.value)" />
+                                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker2></mat-datepicker>
+                                                <mat-error *ngIf="coursesFilterForm.get('to').hasError('matDatepickerParse')">
+                                                    La date de fin est <strong>invalide</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+
                                     </div>
-                                    <div class="col">
-                                        <mat-form-field class="mb-3" appearance="outline">
-                                            <mat-label>À</mat-label>
-                                            <input matInput formControlName="to" [matDatepicker]="picker2" (dateChange)="checkToDate($event.target.value)" />
-                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                                            <mat-datepicker #picker2></mat-datepicker>
-                                            <mat-error *ngIf="coursesFilterForm.get('to').hasError('matDatepickerParse')">
-                                                La date de fin est <strong>invalide</strong>
-                                            </mat-error>
-                                        </mat-form-field>
+                                    <div class="col" style="font-size: 11px;">
+                                        <div class="row">
+                                            <mat-form-field style="width:50%" class="mb-3" appearance="outline">
+                                                <mat-label>Prix min</mat-label>
+                                                <input matInput formControlName="priceMin" type="text" [value]="" />
+                                                <mat-icon matSuffix>monetization_on</mat-icon>
+                                            </mat-form-field>
+                                            <mat-form-field style="width:50%" class="mb-3" appearance="outline">
+                                                <mat-label>Prix max</mat-label>
+                                                <input matInput formControlName="priceMax" type="text" [value]="" />
+                                                <mat-icon matSuffix>monetization_on</mat-icon>
+                                            </mat-form-field>
+                                        </div>
+
                                     </div>
-                                    <div class="col">
-                                        <mat-form-field class="mb-3" appearance="outline">
-                                            <mat-label>Prix min</mat-label>
-                                            <input matInput formControlName="priceMin" type="text" [value]="" />
-                                            <mat-icon matSuffix>monetization_on</mat-icon>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col">
-                                        <mat-form-field class="mb-3" appearance="outline">
-                                            <mat-label>Prix max</mat-label>
-                                            <input matInput formControlName="priceMax" type="text" [value]="" />
-                                            <mat-icon matSuffix>monetization_on</mat-icon>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col">
-                                        <mat-form-field class="mb-3" appearance="outline">
-                                            <mat-label>Personne</mat-label>
-                                            <input matInput formControlName="person" type="text" [value]="" />
-                                            <mat-icon matSuffix>person</mat-icon>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col">
-                                        <button style="margin-top: 10px" mat-raised-button color="primary" (click)="deepFilter()">
-                                            <mat-icon>done</mat-icon>
-                                             Chercher
-                                         </button>
+                                    <div class="col" style="font-size: 11px;">
+                                        <div class="row">
+                                            <mat-form-field style="width:50%" class="mb-3" appearance="outline">
+                                                <mat-label>Personne</mat-label>
+                                                <input matInput formControlName="person" type="text" [value]="" />
+                                                <mat-icon matSuffix>person</mat-icon>
+                                            </mat-form-field>
+                                            <button class="mb-3" style="width:140px;height:40px;margin-top:4px;;display: inline-block;" mat-raised-button color="primary" (click)="deepFilter()">
+                                                <mat-icon>done</mat-icon>
+                                                Chercher
+                                            </button>
+                                        </div>
+
                                     </div>
 
                                 </div>
+
+
 
                             </form>
 

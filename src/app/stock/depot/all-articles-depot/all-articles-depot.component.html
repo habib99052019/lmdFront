@@ -9,10 +9,8 @@
                             <h4 class="page-title">Stock</h4>
                         </li>
                         <li class="breadcrumb-item bcrumb-1">
-                            <!--href="#" onClick="return false;"-->
-                            <a>
-                                <i class="fas fa-home"></i>Accueil
-                            </a>
+                            <a routerLink="/dashboard/main">
+                                <i class="fas fa-home"></i>Accueil</a>
                         </li>
 
                         <li class="breadcrumb-item bcrumb-3">
@@ -27,7 +25,7 @@
                         </li>
                         <li class="breadcrumb-item bcrumb-3">
 
-                            toutes les articles
+                            <span style="color: rgb(31, 29, 29) !important;font-size: 14px;">Toutes les articles</span>
 
                         </li>
                     </ul>
@@ -46,7 +44,7 @@
                                 </mat-icon>
                             </span>
                             <div class="text-center">
-                                <h1>Tous les articles</h1>
+                                <h1 style="font-weight: bold;font-family: open sans,sans-serif;font-size: 30px;">Tous les articles</h1>
                             </div>
                         </div>
 
@@ -78,8 +76,8 @@
                                                         <mat-icon style="margin-left: 12px;">shopping_cart</mat-icon>
                                                         <div style="display: flex;">
                                                            <span style="font-weight: bold;"> Quantite </span>
-                                                          <p style="margin-left: 5px;">{{article.quantity}}kg</p>
-                                                       </div>
+                                                    <p style="margin-left: 5px;">{{article.quantity}}kg</p>
+                                                </div>
                                                 </span>
 
                                             </div>

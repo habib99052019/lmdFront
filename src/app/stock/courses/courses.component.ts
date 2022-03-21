@@ -23,7 +23,9 @@ export class CoursesComponent implements OnInit {
       private fb: FormBuilder,
       private service: StockService,
       private snackBar: MatSnackBar,
-    ) {}
+    ) {
+     
+    }
 
   ngOnInit(): void {
     this.coursesFilterForm = this.createContactForm();

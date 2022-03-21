@@ -8,8 +8,7 @@
                             <h4 class="page-title">Stock</h4>
                         </li>
                         <li class="breadcrumb-item bcrumb-1">
-                            <!--href="#" onClick="return false;"-->
-                            <a>
+                            <a routerLink="/dashboard/main">
                                 <i class="fas fa-home"></i>Accueil</a>
                         </li>
                         <li class="breadcrumb-item bcrumb-2">
@@ -54,7 +53,7 @@
                             <span (click)="gotoPreviousPage()"><mat-icon style="font-size: 55px; color: rgb(50, 76, 228); cursor: pointer;">reply</mat-icon></span>
                         </div>
                         <div class="text-center mt-3">
-                            <h1>Choisissez le type</h1>
+                            <h1 style="font-weight: bold;font-family: open sans,sans-serif;font-size: 30px;">Choisissez le type</h1>
                         </div>
 
 
@@ -65,7 +64,7 @@
                                         <img alt="image" width="100%" height="80px" src="https://cdn2.hubspot.net/hubfs/53/homme%20dans%20un%20entrep%C3%B4t.jpg" class="image" />
 
                                     </div>
-                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les types</span>
+                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 15px;margin-top: 10px;">tous les types</span>
                                 </div>
                             </a>
                             <a (click)="gotoAllArticlesTypesComponent()" class="col-lg-2 mb-3" style="cursor: pointer;">
@@ -74,7 +73,7 @@
                                         <img alt="image" width="100%" height="80px" src="https://www.compta-facile.com/wp-content/uploads/2013/02/7522613_blog.jpg" class="image" />
 
                                     </div>
-                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">tous les articles</span>
+                                    <span style="margin-bottom:25px;align-self: flex-center; font-size: 15px;margin-top: 10px;">tous les articles</span>
                                 </div>
                             </a>
                         </div>
@@ -92,7 +91,7 @@
                                             <img alt="image" width="100%" height="80px" src='{{ type.img }}' class="image" />
 
                                         </div>
-                                        <span style="margin-bottom:25px;align-self: flex-center; font-size: 21px;margin-top: 10px;">{{type.name}}</span>
+                                        <span style="margin-bottom:25px;align-self: flex-center; font-size: 15px;margin-top: 10px;">{{type.name}}</span>
                                     </div>
 
 

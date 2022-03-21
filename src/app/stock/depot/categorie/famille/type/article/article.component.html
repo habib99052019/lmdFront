@@ -8,8 +8,7 @@
                             <h4 class="page-title">Stock</h4>
                         </li>
                         <li class="breadcrumb-item bcrumb-1">
-                            <!--href="#" onClick="return false;"-->
-                            <a>
+                            <a routerLink="/dashboard/main">
                                 <i class="fas fa-home"></i>Accueil</a>
                         </li>
                         <li class="breadcrumb-item bcrumb-2">
@@ -57,7 +56,7 @@
                             <span (click)="gotoPreviousPage()"><mat-icon style="font-size: 55px; color: rgb(50, 76, 228); cursor: pointer;">reply</mat-icon></span>
                         </div>
                         <div class="text-center">
-                            <h1>Etat de stock</h1>
+                            <h1 style="font-weight: bold;font-family: open sans,sans-serif;font-size: 30px;">Etat de stock</h1>
                         </div>
 
 
@@ -79,9 +78,9 @@
                                         <mat-icon style="margin-left: 12px;">shopping_cart</mat-icon>
                                         <div style="display: flex;">
                                            <span style="font-weight: bold;"> Quantite </span>
-                                           <p style="margin-left: 5px;">{{article.quantity}}kg</p>
-                                       </div>
-                                   </span>
+                                    <p style="margin-left: 5px;">{{article.quantity}}kg</p>
+                                </div>
+                                </span>
 
                             </div>
                         </div>

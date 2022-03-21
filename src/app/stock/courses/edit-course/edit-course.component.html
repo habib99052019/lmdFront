@@ -199,7 +199,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col" *ngIf="!showAddNewArticle" style="padding-bottom: 10px">
-                                        <mat-card class="example-card" style="background-color: #eee;height: 365px;display: flex;justify-content: center;align-items: center;" (click)="addNewArticle()">
+                                        <mat-card class="example-card" style="background-color: #eee;height: 417px;display: flex;justify-content: center;align-items: center;" (click)="addNewArticle()">
                                             <div style="text-align: center">
                                                 <mat-icon style="transform: scale(2)">add</mat-icon>
                                             </div>
@@ -237,7 +237,7 @@
                                                     <li class="list-group-item">
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
                                                             <mat-icon svgIcon="thermometer"></mat-icon>
-                                                            <h5 style="margin: 0">{{ article.unity }}</h5>
+                                                            <h5 style="margin: 0">kg</h5>
                                                         </div>
                                                     </li>
                                                     <li class="list-group-item">
@@ -260,13 +260,17 @@
                                                     </li>
                                                 </ul>
                                             </mat-card-content>
-                                            <mat-card-actions *ngIf="!article.isHide">
+                                            <mat-card-actions style="display:flex; justify-content: space-between;" *ngIf="!article.isHide">
                                                 <button mat-stroked-button color="warn" (click)="removeArticle(article)">
                                                   <mat-icon>delete</mat-icon>Supprimer
                                                 </button>
                                                 <button mat-stroked-button (click)="updateArticle(article)">
                                                   <mat-icon>edit</mat-icon>Modifier
                                                 </button>
+                                                <button mat-stroked-button (click)="closeCourseArticle(article._id)">
+                                                    <mat-icon>clear</mat-icon>
+                                                    Annuler
+                                               </button>
                                             </mat-card-actions>
                                             <div *ngIf="article.isHide" style="display:flex;justify-content: flex-end; cursor: pointer;" (click)="editArticle(article)">
                                                 <mat-icon>edit</mat-icon>

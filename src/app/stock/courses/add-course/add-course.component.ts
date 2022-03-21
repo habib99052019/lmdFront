@@ -323,6 +323,13 @@ export class AddCourseComponent implements OnInit {
   }
 
 
+  closeCourseArticle = (id:string) => {
+    this.addedArticles.forEach((element, index) => {
+      if (element._id === id) {
+        this.addedArticles[index].isHide = true;
+      }})
+  }
+
   checkInput(value){
     console.log("check 1",value);
     this.inputData = value;

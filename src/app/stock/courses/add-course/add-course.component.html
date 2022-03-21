@@ -268,13 +268,17 @@
                                                     </li>
                                                 </ul>
                                             </mat-card-content>
-                                            <mat-card-actions *ngIf="!article.isHide">
+                                            <mat-card-actions style="display:flex; justify-content: space-between;" *ngIf="!article.isHide">
                                                 <button mat-stroked-button color="warn" (click)="removeArticle(article)">
                                                    <mat-icon>delete</mat-icon>Supprimer
                                                 </button>
                                                 <button mat-stroked-button (click)="updateArticle(article)">
                                                   <mat-icon>edit</mat-icon>Modifier
                                                 </button>
+                                                <button mat-stroked-button (click)="closeCourseArticle(article._id)">
+                                                    <mat-icon>clear</mat-icon>
+                                                    Annuler
+                                               </button>
                                             </mat-card-actions>
                                             <!--add edit icon here-->
                                             <div *ngIf="article.isHide" style="display:flex;justify-content: flex-end; cursor: pointer;" (click)="editArticle(article)">
