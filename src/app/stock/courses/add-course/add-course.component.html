@@ -104,7 +104,7 @@
 
 
                             <div class="row mb-7">
-                                <div class="col" style="margin-bottom: 10px" *ngFor="let article of searchArticles | paginate: { itemsPerPage: 5, currentPage: page , totalItems:totalLength }">
+                                <div class="col" style="margin-bottom: 10px" *ngFor="let article of searchArticles | paginate: { itemsPerPage: 3, currentPage: page , totalItems:totalLength }">
                                     <mat-card class="example-card" style="border: 3px solid #6c757d;">
                                         <mat-card-header style="justify-content: space-between">
                                             <mat-card-title>{{article.name}}</mat-card-title>
@@ -237,7 +237,7 @@
 
                                                             <mat-form-field class="col" appearance="outline">
                                                                 <mat-label>quantity</mat-label>
-                                                                <input style="margin: 0" matInput type="text" name="quantity" (keyup)="checkInput($event.target.value)" [value]='article.quantity'>
+                                                                <input [readonly]="article.isHide" style="margin: 0" matInput type="text" name="quantity" (keyup)="checkInput($event.target.value)" [value]='article.quantity'>
                                                             </mat-form-field>
 
                                                         </form>
@@ -260,7 +260,7 @@
 
                                                             <mat-form-field class="col" appearance="outline">
                                                                 <mat-label>prix unitaire TTC</mat-label>
-                                                                <input style="margin: 0" matInput type="text" name="price" (keyup)="checkInput2($event.target.value)" [value]='article.price'>
+                                                                <input [readonly]="article.isHide" style="margin: 0" matInput type="text" name="price" (keyup)="checkInput2($event.target.value)" [value]='article.price'>
                                                             </mat-form-field>
 
                                                         </form>
@@ -268,7 +268,7 @@
                                                     </li>
                                                 </ul>
                                             </mat-card-content>
-                                            <mat-card-actions>
+                                            <mat-card-actions *ngIf="!article.isHide">
                                                 <button mat-stroked-button color="warn" (click)="removeArticle(article)">
                                                    <mat-icon>delete</mat-icon>Supprimer
                                                 </button>
@@ -276,6 +276,11 @@
                                                   <mat-icon>edit</mat-icon>Modifier
                                                 </button>
                                             </mat-card-actions>
+                                            <!--add edit icon here-->
+                                            <div *ngIf="article.isHide" style="display:flex;justify-content: flex-end; cursor: pointer;" (click)="editArticle(article)">
+                                                <mat-icon>edit</mat-icon>
+                                            </div>
+
                                         </mat-card>
                                     </div>
                                 </div>

@@ -111,5 +111,9 @@ getCourseById(id){
 }
 
 
+//update course 
+updateCourse(id , data){
+  return this.http.put(this.ApiPath + 'courses/' + id , data);
+}
 
 }

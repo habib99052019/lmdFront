@@ -34,7 +34,7 @@ export class AddCourseComponent implements OnInit {
   updatePrice:any;
   DepotArticles:any;
   filtredArticles:any;
-
+  disabled = true;
 
   totalLength:any;
   page:number = 1;
@@ -257,6 +257,7 @@ export class AddCourseComponent implements OnInit {
       image: item.img,
       quantity: this.addArticleToCourseForm.get("quantity").value,
       price: this.addArticleToCourseForm.get("price").value,
+      isHide:item.isHide,
       totalPrice:
         this.addArticleToCourseForm.get("quantity").value *
         this.addArticleToCourseForm.get("price").value,
@@ -299,6 +300,7 @@ export class AddCourseComponent implements OnInit {
       types: ["room"],
       price: this.totalPrice,
       clientID: JSON.parse(this.CureentUser).user,
+      
     }
      
      this.service.CreateNewCourse(objectTosent).subscribe(course => {
@@ -371,6 +373,13 @@ console.log("list>>>>", this.addedArticles);
    return acc + cur.totalPrice;
  },0)
  this.totalPrice = totalprice;
+
+ /* close update & supp */
+ this.addedArticles.forEach((element, index) => {
+  if (element.id === article._id) {
+    this.addedArticles[index].isHide = true;
+  
+  }})
 }
 
 showNotification(colorName, text, placementFrom, placementAlign) {
@@ -380,5 +389,17 @@ showNotification(colorName, text, placementFrom, placementAlign) {
       horizontalPosition: placementAlign,
       panelClass: colorName,
     });
+}
+
+
+editArticle(article){
+  console.log("edit article >>>", article);
+  
+  this.addedArticles.forEach((element, index) => {
+    if (element.id === article._id) {
+      this.addedArticles[index].isHide = false;
+    
+    }})
+  
 }
 }
