@@ -9,3 +9,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+.mat-form-field.ng-dirty.ng-invalid .mat-form-field-label {
+    color: rgb(0, 255, 42) !important;
+}

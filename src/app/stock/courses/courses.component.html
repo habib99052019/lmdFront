@@ -44,18 +44,18 @@
                                                 <input matInput formControlName="from" [matDatepicker]="picker1" (dateChange)="checkFromDate($event.target.value)" />
                                                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                                 <mat-datepicker #picker1></mat-datepicker>
-                                                <mat-error *ngIf="coursesFilterForm.get('from').hasError('matDatepickerParse')">
+                                                <!--<mat-error *ngIf="coursesFilterForm.get('from').hasError('matDatepickerParse')">
                                                     La date de début est <strong>invalide</strong>
-                                                </mat-error>
+                                                </mat-error>-->
                                             </mat-form-field>
                                             <mat-form-field style="width:50%" class="mb-3" appearance="outline">
                                                 <mat-label>À</mat-label>
                                                 <input matInput formControlName="to" [matDatepicker]="picker2" (dateChange)="checkToDate($event.target.value)" />
                                                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                                 <mat-datepicker #picker2></mat-datepicker>
-                                                <mat-error *ngIf="coursesFilterForm.get('to').hasError('matDatepickerParse')">
+                                                <!--<mat-error *ngIf="coursesFilterForm.get('to').hasError('matDatepickerParse')">
                                                     La date de fin est <strong>invalide</strong>
-                                                </mat-error>
+                                                </mat-error>-->
                                             </mat-form-field>
                                         </div>
 
@@ -98,7 +98,8 @@
 
                         </div>
                         <div class="mt-4">
-                            <div *ngFor="let course of ListCourses" style="display: flex; flex-direction: column;">
+                            <span style="display:flex;justify-content:flex-end;margin-top: 10px; margin-bottom: 15px;margin-right:25px;cursor: pointer;" *ngIf="filteredActive" (click)="initCourseList()"><mat-icon style="color:red;font-size:30px;">remove_circle_outline</mat-icon> </span>
+                            <div *ngFor="let course of ListCourses | paginate: { itemsPerPage: 5, currentPage: page , totalItems:totalLength }" style="display: flex; flex-direction: column;">
 
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;cursor:pointer" (click)="selectedItem(course._id)">
                                     <mat-card class="courseItem">
@@ -140,7 +141,10 @@
                                         </div>
                                     </mat-card>
                                 </div>
+
                             </div>
+                            <!--previousLabel="" nextLabel=""-->
+                            <pagination-controls class="text-center" (pageChange)="page = $event" *ngIf="ListCourses" previousLabel="précédente" nextLabel="suivant"></pagination-controls>
                         </div>
 
                     </div>

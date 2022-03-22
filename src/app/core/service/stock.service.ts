@@ -116,4 +116,17 @@ updateCourse(id , data){
   return this.http.put(this.ApiPath + 'courses/' + id , data);
 }
 
+
+// get user by id 
+getUserById(id){
+  return this.http.get(this.ApiPath + 'users/' + id);
+}
+
+
+//get list of courses by multiples options 
+getListCourseByallOptions(prixMin, prixMax, from, to , person){
+  return this.http.get(this.ApiPath + 'courses/filter/deep?prixMin=' + prixMin + '&prixMax=' + prixMax + '&from=' + from + '&to=' + to + '&person=' + person);
+}
+
+
 }

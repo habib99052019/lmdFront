@@ -301,19 +301,29 @@ search(query:string){
   console.log("object to sent>>>", objectTosent);
   
 
-   this.service.updateCourse(this.Course._id , objectTosent).subscribe(course => {
+   this.service.updateCourse(this.Course._id , objectTosent).subscribe((course :any ) => {
        console.log("resp>>>",course);
        this.showNotification(
         'snackbar-success',
-         "course modifier avec succes",
+         course.message,
         'top',
         'end'
       );
+      this.router.navigate(['stock/courses']);
+   },err => {
+     console.log(err);
+     
+    this.showNotification(
+      'snackbar-danger',
+        err,
+      'top',
+      'end'
+    );
    })
-  this.router.navigate(['stock/courses']);
+  
 
 
-  };
+ };
 
   removeArticle = (article) => {
     console.log("article",article);

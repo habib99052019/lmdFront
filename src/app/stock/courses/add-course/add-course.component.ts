@@ -38,6 +38,7 @@ export class AddCourseComponent implements OnInit {
 
   totalLength:any;
   page:number = 1;
+  userName:string;
 
   constructor(
      private fb: FormBuilder,
@@ -57,9 +58,21 @@ export class AddCourseComponent implements OnInit {
     console.log(JSON.parse(this.CureentUser).user);
     
     console.log("update price>>>",this.updatePrice);
+    this.getUserById();
     
     
   }
+
+  getUserById(){
+    this.service.getUserById(JSON.parse(this.CureentUser).user).pipe(take(1)).subscribe((user : any)=>{
+      console.log("user>>>>", user.first_name);
+      this.userName = user.first_name;
+      
+    })
+  }
+
+
+
 
 
   /*getListOfArticlesByAllDepot(){
@@ -300,6 +313,7 @@ export class AddCourseComponent implements OnInit {
       types: ["room"],
       price: this.totalPrice,
       clientID: JSON.parse(this.CureentUser).user,
+      person: this.userName
       
     }
      

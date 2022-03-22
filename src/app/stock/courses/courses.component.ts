@@ -1,6 +1,6 @@
 import { formatDate } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { take } from "rxjs/operators";
 import { StockService } from "src/app/core/service/stock.service";
@@ -13,11 +13,14 @@ import { StockService } from "src/app/core/service/stock.service";
 export class CoursesComponent implements OnInit {
   showFilters: boolean = false;
   coursesFilterForm: FormGroup;
-  ListCourses:any;
+  ListCourses!:any[];
   filterData:any;
   showSearhshButton = false;
   to:string;
   from:string;
+  totalLength:any;
+  page:number = 1;
+  filteredActive = false;
 
   constructor(
       private fb: FormBuilder,
@@ -49,6 +52,7 @@ export class CoursesComponent implements OnInit {
       console.log("courses api>>>",data );
       this.ListCourses = data;
       this.filterData = data;
+      this.totalLength = data.length;
             
           
   })
@@ -80,48 +84,84 @@ export class CoursesComponent implements OnInit {
       course.clientID.first_name.trim().toLowerCase().includes(term.trim().toLowerCase()) ||
       course.price.toString().includes(term)  
     )
+    this.totalLength = this.ListCourses.length;
+    this.filteredActive = true;
   }
 
   deepFilter(){
     
     console.log("date range>>>", this.coursesFilterForm.get('from').value,this.coursesFilterForm.get('to').value);
      console.log("price>>>", this.coursesFilterForm.get('priceMin').value,this.coursesFilterForm.get('priceMax').value);
-   if( this.coursesFilterForm.get('from').value != "" || this.coursesFilterForm.get('to').value != ""  || this.coursesFilterForm.get('priceMin').value != ""  || this.coursesFilterForm.get('priceMin').value != ""  || this.coursesFilterForm.get('person').value){
-      if(this.coursesFilterForm.get('from').value != null && this.coursesFilterForm.get('to').value != null){
+   if( this.coursesFilterForm.get('from').value != "" || this.coursesFilterForm.get('to').value != ""  || this.coursesFilterForm.get('priceMax').value != ""  || this.coursesFilterForm.get('priceMin').value != ""  || this.coursesFilterForm.get('person').value){
+     
+      if((this.coursesFilterForm.get('from').value != "") && (this.coursesFilterForm.get('to').value != "") && (this.coursesFilterForm.get('priceMin').value != "") && (this.coursesFilterForm.get('priceMax').value != "") && (this.coursesFilterForm.get('person').value != "")){
+        
+        console.log("all>>>",this.coursesFilterForm.get('from').value, this.coursesFilterForm.get('to').value,this.coursesFilterForm.get('priceMax').value,this.coursesFilterForm.get('priceMin').value,this.coursesFilterForm.get('person').value);
             let from = formatDate(this.coursesFilterForm.get('from').value, 'yyyy-MM-dd', 'en');
             let to = formatDate(this.coursesFilterForm.get('to').value, 'yyyy-MM-dd', 'en') ;
-            this.service.getListCourseByDateRange(from,to).subscribe(resp => {
-                        console.log("resp>>", resp);
-                        this.ListCourses = resp;
-              })
-     }else if(this.coursesFilterForm.get('priceMin').value != "" && this.coursesFilterForm.get('priceMax').value != "" ){
-       console.log("testtt");
-  
-          let prixMin = this.coursesFilterForm.get('priceMin').value;
-          let prixMax = this.coursesFilterForm.get('priceMax').value;
-
-          this.service.getListCourseByPrice(prixMin,prixMax).subscribe(resp => {
-                      console.log("resp>>", resp);
-                      this.ListCourses = resp;
-            })
-         
-     }else if(this.coursesFilterForm.get('person').value != ""){
-         let name = this.coursesFilterForm.get('person').value;
-         this.search(name)
+            let prixMin = this.coursesFilterForm.get('priceMin').value;
+            let prixMax = this.coursesFilterForm.get('priceMax').value;
+            let person = this.coursesFilterForm.get('person').value;
+          this.service.getListCourseByallOptions(prixMin, prixMax, from, to , person).subscribe((resp:any)=>{
+              this.ListCourses = resp;
+              this.totalLength = resp.length;
+              this.filteredActive = true;
+          })
+         }
+    
+        else if(this.coursesFilterForm.get('from').value != "" && this.coursesFilterForm.get('to').value != ""){
+                let from = formatDate(this.coursesFilterForm.get('from').value, 'yyyy-MM-dd', 'en');
+                let to = formatDate(this.coursesFilterForm.get('to').value, 'yyyy-MM-dd', 'en') ;
+              
+                this.service.getListCourseByDateRange(from,to).subscribe((resp:any) => {
+                            console.log("resp>>", resp);
+                            this.ListCourses = resp;
+                            this.totalLength = resp.length;
+                            this.filteredActive = true;
+                  })
+        }else if(this.coursesFilterForm.get('priceMin').value != "" && this.coursesFilterForm.get('priceMax').value != "" ){
+          console.log("testtt");
       
-    }
-      else{
-      this.showNotification(
-        'snackbar-danger',
-        "Formulaire invalide",
-        'top',
-        'end'
-      );
-   }
-     
-   }  
+              let prixMin = this.coursesFilterForm.get('priceMin').value;
+              let prixMax = this.coursesFilterForm.get('priceMax').value;
+
+              this.service.getListCourseByPrice(prixMin,prixMax).subscribe((resp:any) => {
+                          console.log("resp>>", resp);
+                          this.ListCourses = resp;
+                          this.totalLength = resp.length;
+                          this.filteredActive = true;
+                })
+            
+        }else if(this.coursesFilterForm.get('person').value != ""){
+            let name = this.coursesFilterForm.get('person').value;
+            this.search(name)
+          
+        }
+    
+   }  else{
+          this.showNotification(
+            'snackbar-danger',
+            "Formulaire invalide",
+            'top',
+            'end'
+          );
+        }
   }
 
+
+
+
+  initCourseList(){
+     this.getListCourse();
+     this.filteredActive = false;
+     this.coursesFilterForm.patchValue({
+      from: [""],
+      to: [""],
+      priceMin: [],
+      priceMax: [],
+      person: [],
+    });
+  }
 
   courses = {
     "Février 2022": [
