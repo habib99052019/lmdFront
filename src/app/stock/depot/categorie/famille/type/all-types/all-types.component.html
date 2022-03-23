@@ -29,12 +29,18 @@
             <div class="col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <div>
-                            <span (click)="gotoPreviousPage()"><mat-icon style="font-size: 55px; color: rgb(50, 76, 228); cursor: pointer;">reply</mat-icon></span>
+
+                        <div class="sticky">
+                            <span (click)="gotoPreviousPage()">
+                                <mat-icon style="font-size: 55px; color: rgb(50, 76, 228) !important; cursor: pointer;">
+                                    reply
+                                </mat-icon>
+                            </span>
+                            <div class="text-center">
+                                <h1 style="font-weight: bold;font-family: open sans,sans-serif;font-size: 30px;">Tous les types</h1>
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <h1 style="font-weight: bold;font-family: open sans,sans-serif;font-size: 30px;">Tous les types</h1>
-                        </div>
+
 
 
                         <div class="row mt-2" *ngFor="let ListCategorie  of  ListCategories">
@@ -44,23 +50,28 @@
                             <div class="row" *ngFor="let family of  ListCategorie.listFamily">
                                 <!--<h6 class="mt-1">{{family.name}}</h6>-->
 
-                                <ul class="breadcrumb">
-                                    <li><a style="cursor: pointer;" (click)="gotoDepotComponent()">{{this.DepotName}}</a></li>
-                                    <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(ListCategorie.name)">{{ListCategorie.name}}</a></li>
-                                    <li><a style="color: black !important;">{{family.name}}</a></li>
 
-                                </ul>
-                                <div class="col" class="boxDiv text-center col-lg-2 m-2 p-0" *ngFor="let type of  family.listType">
-                                    <a (click)="gotoTypeComponent(this.DepotName,ListCategorie.name,family.name,type.name)">
+                                <div class="row" *ngIf="family.listType.length != 0">
+                                    <ul class="breadcrumb">
+                                        <li><a style="cursor: pointer;" (click)="gotoDepotComponent()">{{this.DepotName}}</a></li>
+                                        <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(ListCategorie.name)">{{ListCategorie.name}}</a></li>
+                                        <li><a style="color: black !important;">{{family.name}}</a></li>
 
-                                        <div>
-                                            <img alt="image" width="100%" height="80px" src='{{ type.img }}' class="image" />
+                                    </ul>
+                                    <div class="col" class="boxDiv text-center col-lg-2 m-4 p-0" *ngFor="let type of  family.listType">
+                                        <a (click)="gotoTypeComponent(this.DepotName,ListCategorie.name,family.name,type.name)">
 
-                                        </div>
-                                        <span style="margin-bottom:25px;align-self: flex-center; font-size: 15px;margin-top: 10px;">{{type.name}}</span>
+                                            <div>
+                                                <img alt="image" width="100%" height="80px" src='{{ type.img }}' class="image" />
 
-                                    </a>
+                                            </div>
+                                            <span style="margin-bottom:25px;align-self: flex-center; font-size: 15px;margin-top: 10px;">{{type.name}}</span>
+
+                                        </a>
+                                    </div>
                                 </div>
+
+
 
 
 

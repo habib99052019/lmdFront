@@ -31,8 +31,9 @@ export class CoursesComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.coursesFilterForm = this.createContactForm();
     this.getListCourse();
+    this.coursesFilterForm = this.createContactForm();
+    
     
   }
 

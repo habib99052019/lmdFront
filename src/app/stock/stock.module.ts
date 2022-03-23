@@ -28,6 +28,7 @@ import { EditCourseComponent } from './courses/edit-course/edit-course.component
 
 //pagination module
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ShowArticleComponent } from './depot/categorie/famille/type/article/show-article/show-article.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CoursesComponent,
     AddCourseComponent,
     ShowCourseComponent,
-    EditCourseComponent 
+    EditCourseComponent,
+    ShowArticleComponent 
     
    
   ],

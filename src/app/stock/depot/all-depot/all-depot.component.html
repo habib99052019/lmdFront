@@ -38,15 +38,18 @@
             <div class="col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-
-                        <div>
-                            <span (click)="gotoPreviousPage()"><mat-icon style="font-size: 55px; color: rgb(50, 76, 228); cursor: pointer;">reply</mat-icon></span>
+                        <div class="sticky">
+                            <span (click)="gotoPreviousPage()">
+                                <mat-icon style="font-size: 55px; color: rgb(50, 76, 228) !important; cursor: pointer;">
+                                    reply
+                                </mat-icon>
+                            </span>
+                            <div class="text-center">
+                                <h1 style="font-weight: bold;font-family: open sans,sans-serif;font-size: 30px;">Tous les Dépôts</h1>
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <h1>Tous les Dépôts</h1>
-                        </div>
 
-                        <div class="row mt-4">
+                        <div class="row mt-4 m-l-5">
                             <a (click)="gotoAllDepotComponent()" class="col-lg-2 mb-3" style="cursor: pointer;">
                                 <div class="boxDiv text-center">
                                     <div style="width: 100%;">
@@ -69,7 +72,7 @@
 
 
 
-                        <div class="row mt-2" *ngFor="let depoCatego of  DepotCategories">
+                        <div class="row mt-2 m-l-5" *ngFor="let depoCatego of  DepotCategories">
 
                             <div class="row">
 

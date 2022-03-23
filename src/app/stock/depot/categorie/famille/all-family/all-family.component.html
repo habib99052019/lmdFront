@@ -48,30 +48,33 @@
 
                         <div class="row mt-2" *ngFor="let listfamille of  Listfamilles">
                             <!--<h4><a style=" cursor: pointer; color: rgb(138, 219, 219);" (click)="gotoAllDepotComponent()">{{this.DepotName}}</a> / <a>{{listfamille.name}}</a> / <a>Familles</a> </h4>-->
-                            <ul class="breadcrumb">
-                                <li><a style="cursor: pointer;" (click)="gotoDepotComponent()">{{this.DepotName}}</a></li>
-                                <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(listfamille.name)">{{listfamille.name}}</a></li>
-                                <li><a style="color: black !important;">Familles</a></li>
 
-                            </ul>
 
 
 
                             <div class="row">
-                                <div class="col" class="boxDiv text-center col-lg-2 m-2 p-0" *ngFor="let family of  listfamille.listFamily">
+                                <div class="row" *ngIf="listfamille.listFamily.length != 0">
+                                    <ul class="breadcrumb">
+                                        <li><a style="cursor: pointer;" (click)="gotoDepotComponent()">{{this.DepotName}}</a></li>
+                                        <li><a style="cursor: pointer;" (click)="gotoCategorieComponent(listfamille.name)">{{listfamille.name}}</a></li>
+                                        <li><a style="color: black !important;">Familles</a></li>
 
+                                    </ul>
+                                    <div class="col" class="boxDiv text-center col-lg-2 m-2 p-0" *ngFor="let family of  listfamille.listFamily">
 
-                                    <a (click)="gotoTypeComponent(family.name)">
+                                        <a (click)="gotoTypeComponent(family.name)">
 
-                                        <div>
-                                            <img alt="image" width="100%" height="80px" src='{{ family.img }}' class="image" />
+                                            <div>
+                                                <img alt="image" width="100%" height="80px" src='{{ family.img }}' class="image" />
 
-                                        </div>
-                                        <span style="margin-bottom:25px;align-self: flex-center; font-size: 15px;margin-top: 10px;">{{family.name}}</span>
+                                            </div>
+                                            <span style="margin-bottom:25px;align-self: flex-center; font-size: 15px;margin-top: 10px;">{{family.name}}</span>
 
-                                    </a>
+                                        </a>
 
+                                    </div>
                                 </div>
+
                             </div>
 
 

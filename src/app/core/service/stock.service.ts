@@ -129,4 +129,10 @@ getListCourseByallOptions(prixMin, prixMax, from, to , person){
 }
 
 
+// get user by id 
+getArticleById(id){
+  return this.http.get(this.ApiPath + 'articles/' + id);
+}
+
+
 }

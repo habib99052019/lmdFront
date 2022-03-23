@@ -15,6 +15,7 @@ import { FamilleComponent } from './depot/categorie/famille/famille.component';
 import { AllArticlesTypesComponent } from './depot/categorie/famille/type/all-articles-types/all-articles-types.component';
 import { AllTypesComponent } from './depot/categorie/famille/type/all-types/all-types.component';
 import { ArticleComponent } from './depot/categorie/famille/type/article/article.component';
+import { ShowArticleComponent } from './depot/categorie/famille/type/article/show-article/show-article.component';
 import { TypeComponent } from './depot/categorie/famille/type/type.component';
 import { DepotComponent } from './depot/depot.component';
 
@@ -36,9 +37,15 @@ const routes: Routes = [
     path: 'gestion-stock/depot/categorie/:name/:name/:name',
     component: TypeComponent
   },
+
+ 
   {
     path: 'gestion-stock/depot/categorie/:name/:name/:name/:name',
     component: ArticleComponent
+  },
+  {
+    path: 'gestion-stock/depot/categorie/:name/:name/:name/:name/:name/:id',
+    component: ShowArticleComponent
   },
   {
     path: 'gestion-stock/depot/tous',
@@ -62,16 +69,28 @@ const routes: Routes = [
     component: AllArticlesDepotComponent
   },
   {
+    path: 'gestion-stock/depot/articles/:name/:id',
+    component: ShowArticleComponent
+  },
+  {
     path: 'gestion-stock/depot/categorie/:name/list/articles/all/details',
     component: AllArticlesCategorieComponent
   },
   {
-    path: 'gestion-stock/depot/categorie/:name/list/familles/all/details/go',
+    path: 'gestion-stock/depot/categorie/:name/list/articles/all/details/:name/:id',
+    component: ShowArticleComponent
+  },
+  {
+    path: 'gestion-stock/depot/categorie/:name/list/familles/all/details/go/deep',
     component: AllFamilyComponent
   },
   {
     path: 'gestion-stock/depot/categorie/:name/list/familles/all/details/go/articles',
     component: AllArticlesComponent
+  },
+  {
+    path: 'gestion-stock/depot/categorie/:name/list/familles/all/details/go/articles/:name/:id',
+    component: ShowArticleComponent
   },
   {
     path: 'gestion-stock/depot/categorie/:name/list/familles/all/details/go/spec/types',
@@ -81,6 +100,11 @@ const routes: Routes = [
     path: 'gestion-stock/depot/categorie/:name/list/familles/all/details/go/spec/full/articles',
     component: AllArticlesTypesComponent
   },
+  {
+    path: 'gestion-stock/depot/categorie/:name/list/familles/all/details/go/spec/full/articles/:name/:id',
+    component: ShowArticleComponent
+  },
+ 
   {
     path: 'courses',
     component: CoursesComponent

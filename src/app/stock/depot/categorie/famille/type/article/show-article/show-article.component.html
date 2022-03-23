@@ -1,0 +1,122 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Stock</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <!--href="#" onClick="return false;"-->
+                            <a>
+                                <i class="fas fa-home"></i>Accueil</a>
+                        </li>
+                        <li class="breadcrumb-item active">Stock</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="this.article">
+            <div class="col-md-12 col-sm-12">
+                <div class="card" style="height: 100%" style="margin-bottom: 30px">
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between">
+                            <div style="display: flex; align-items: center">
+                                <mat-icon matListIcon>shopping_cart</mat-icon>
+                                <h5 style="margin: 0">Article</h5>
+                            </div>
+                            <img alt="image" src='{{ article.img }}' class="image" />
+
+                        </div>
+                        <div style="margin: 20px 0;">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div style="display: flex;align-items: center;justify-content: space-between;">
+                                        <div style="display: flex;align-items: center;">
+                                            <mat-icon style="margin-right: 5px;">assignment</mat-icon>
+                                            name
+                                        </div>
+
+                                        <h5 style="margin: 0">{{article.name}}</h5>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div style="display: flex;align-items: center;justify-content: space-between;">
+                                        <div style="display: flex;align-items: center;">
+                                            <mat-icon style="margin-right: 5px;" svgIcon="quantity"></mat-icon>
+                                            quantite
+                                        </div>
+                                        <h5 style="margin: 0">{{article.quantity}} kg</h5>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div style="display: flex;align-items: center;justify-content: space-between;">
+                                        <div style="display: flex;align-items: center;">
+                                            <mat-icon style="margin-right: 5px;">table_chart</mat-icon>
+                                            marque
+                                        </div>
+                                        <h5 style="margin: 0">{{article.marque}}</h5>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div style="display: flex;align-items: center;justify-content: space-between;">
+                                        <div style="display: flex;align-items: center;">
+                                            <mat-icon style="margin-right: 5px;">spa</mat-icon>
+                                            type
+                                        </div>
+                                        <h5 style="margin: 0">
+                                            {{article.idType.name}}
+                                        </h5>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div style="display: flex;align-items: center;justify-content: space-between;">
+                                        <div style="display: flex;align-items: center;">
+                                            <mat-icon style="margin-right: 5px;">spa</mat-icon>
+                                            famille
+                                        </div>
+                                        <h5 style="margin: 0">
+                                            {{article.idType.idFamily.name}}
+                                        </h5>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div style="display: flex;align-items: center;justify-content: space-between;">
+                                        <div style="display: flex;align-items: center;">
+                                            <mat-icon style="margin-right: 5px;">spa</mat-icon>
+                                            categorie
+                                        </div>
+                                        <h5 style="margin: 0">
+                                            {{article.idType.idFamily.idCategory.name}}
+                                        </h5>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div style="display: flex;align-items: center;justify-content: space-between;">
+                                        <div style="display: flex;align-items: center;">
+                                            <mat-icon style="margin-right: 5px;">spa</mat-icon>
+                                            depot
+                                        </div>
+                                        <h5 style="margin: 0">
+                                            {{article.idType.idFamily.idCategory.idDepot.name}}
+                                        </h5>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div style="display: flex; align-items: flex-end">
+                            <button mat-raised-button routerLink="../..">
+                              <mat-icon>clear</mat-icon>
+                              Annuler
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

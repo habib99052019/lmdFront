@@ -67,7 +67,7 @@
                             <div *ngFor="let article of Articles">
 
 
-                                <div style="background-color: rgb(188, 217, 226);" class="col-lg-12 d-flex  align-items-center justify-content-between mb-2  pt-3 p-2 mr-5 ml-5 rounded ">
+                                <div [routerLink]="['show', article._id]" style="background-color: rgb(188, 217, 226); cursor: pointer;" class="col-lg-12 d-flex  align-items-center justify-content-between mb-2  pt-3 p-2 mr-5 ml-5 rounded ">
                                     <div style="display: flex;align-items: center;">
                                         <img alt="image" src='{{ article.img }}' class="image" />
                                         <p style="margin-left: 7px;">{{article.name}}</p>

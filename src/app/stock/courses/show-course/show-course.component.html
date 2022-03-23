@@ -14,13 +14,13 @@
                         </li>
                         <li class="breadcrumb-item active">Stock</li>
                         <li class="breadcrumb-item bcrumb-3">Courses</li>
-                        <li class="breadcrumb-item bcrumb-3">{{id}}</li>
-                        <li class="breadcrumb-item bcrumb-3">Détails</li>
+                        <li class="breadcrumb-item bcrumb-3">{{Course.code}}</li>
+
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div *ngIf="Course" class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="card" style="height: 100%" style="margin-bottom: 30px">
                     <div class="card-body">

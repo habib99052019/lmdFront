@@ -45,7 +45,7 @@ export class FamilleComponent implements OnInit {
     }
 
     gotoAllFamilyByDepotComponent(){
-      this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.name + '/list/familles/all/details/go']);
+      this.router.navigate(['stock/gestion-stock/depot/categorie/' + this.name + '/list/familles/all/details/go/deep']);
     }
 
 

@@ -10,6 +10,14 @@
     justify-content: space-between;
 }
 
-.mat-form-field.ng-dirty.ng-invalid .mat-form-field-label {
-    color: rgb(0, 255, 42) !important;
+
+/* Mobile & Tablet Rules */
+
+@media (max-width: 767px) {
+    h5 {
+        font-size: 10px !important;
+    }
+    mat-icon {
+        font-size: 18px !important;
+    }
 }
