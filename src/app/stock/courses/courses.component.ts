@@ -54,7 +54,7 @@ export class CoursesComponent implements OnInit {
       this.ListCourses = data;
       this.filterData = data;
       this.totalLength = data.length;
-            
+     
           
   })
   }

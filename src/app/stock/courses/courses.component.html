@@ -102,6 +102,7 @@
                             <div *ngFor="let course of ListCourses | paginate: { itemsPerPage: 5, currentPage: page , totalItems:totalLength }" style="display: flex; flex-direction: column;">
 
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;cursor:pointer" (click)="selectedItem(course._id)">
+
                                     <mat-card class="courseItem">
                                         <div style="display: flex; align-items: center">
                                             <mat-icon matListIcon>shopping_cart</mat-icon>
@@ -146,6 +147,8 @@
                             <!--previousLabel="" nextLabel=""-->
                             <pagination-controls class="text-center" (pageChange)="page = $event" *ngIf="ListCourses" previousLabel="précédente" nextLabel="suivant"></pagination-controls>
                         </div>
+
+
 
                     </div>
                 </div>

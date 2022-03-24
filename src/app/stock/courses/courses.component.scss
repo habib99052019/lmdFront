@@ -21,3 +21,15 @@
         font-size: 18px !important;
     }
 }
+
+$color-outline: rgb(183, 182, 185);
+mat-form-field {
+    // to change border color
+     ::ng-deep .mat-form-field-outline {
+        color: $color-outline !important;
+    }
+    // to change label color
+     ::ng-deep .mat-form-field-label {
+        color: $color-outline !important;
+    }
+}
