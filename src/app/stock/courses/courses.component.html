@@ -99,7 +99,7 @@
                         </div>
                         <div class="mt-4">
                             <span style="display:flex;justify-content:flex-end;margin-top: 10px; margin-bottom: 15px;margin-right:25px;cursor: pointer;" *ngIf="filteredActive" (click)="initCourseList()"><mat-icon style="color:red;font-size:30px;">remove_circle_outline</mat-icon> </span>
-                            <div *ngFor="let course of ListCourses | paginate: { itemsPerPage: 5, currentPage: page , totalItems:totalLength }" style="display: flex; flex-direction: column;">
+                            <div *ngFor="let course of ListCourses | paginate: config" style="display: flex; flex-direction: column;">
 
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;cursor:pointer" (click)="selectedItem(course._id)">
 
@@ -144,11 +144,41 @@
                                 </div>
 
                             </div>
-                            <!--previousLabel="" nextLabel=""-->
-                            <pagination-controls class="text-center" (pageChange)="page = $event" *ngIf="ListCourses" previousLabel="précédente" nextLabel="suivant"></pagination-controls>
+                            <!--previousLabel="" nextLabel=""  (pageChange)="page = $event"  
+                                <pagination-controls class="text-center" (pageChange)="page = $event" *ngIf="ListCourses" previousLabel="précédente" nextLabel="suivant"></pagination-controls>
+                     
+                            -->
+                            <pagination-template class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
+                                <div class="custom-pagination">
+                                    <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
+                                        <!--*ngIf="!p.isFirstPage()"-->
+                                        <span (click)="p.previous()" style="background-color: #3f51b5;font-size:40px;padding-right:10px;padding-left:10px; color:white; border-radius:1px;">
+                                            <
+                                        </span>
+                                    </div>
+                                    <!--<div
+                                            class="page-number"
+                                            *ngFor="let page of p.pages"
+                                            [class.current]="p.getCurrent() === page.value"
+                                            >
+                                            <span
+                                                (click)="p.setCurrent(page.value)"
+                                                *ngIf="p.getCurrent() !== page.value"
+                                                >{{ page.label }}</span
+                                            >
+                                            <div *ngIf="p.getCurrent() === page.value">
+                                                <span>{{ page.label }}</span>
+                                            </div>
+                                            </div>-->
+                                    <!--*ngIf="!p.isLastPage()"-->
+                                    <div class="pagination-next" [ngClass]="{'disable': p.isLastPage()}">
+                                        <span (click)="p.next()" style="background-color:#3f51b5;font-size:40px;padding-right:10px;padding-left:10px;margin:60px;color:white;border-radius:1px;">
+                                                    >
+                                        </span>
+                                    </div>
+                                </div>
+                            </pagination-template>
                         </div>
-
-
 
                     </div>
                 </div>

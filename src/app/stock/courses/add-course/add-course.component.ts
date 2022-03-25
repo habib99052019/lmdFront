@@ -1,11 +1,13 @@
 import { formatDate } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit ,ViewChild} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { Router } from "@angular/router";
 import { take } from "rxjs/operators";
 import { StockService } from "src/app/core/service/stock.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PaginationControlsDirective} from 'ngx-pagination';
+
 
 @Component({
   selector: "app-add-course",
@@ -13,6 +15,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ["./add-course.component.scss", "../courses.component.scss"],
 })
 export class AddCourseComponent implements OnInit {
+  @ViewChild('p', { static: true}) pa: PaginationControlsDirective;
+
  // articles: any = [];
   addedArticles: any = [];
   showAddNewArticle = false;
@@ -39,6 +43,19 @@ export class AddCourseComponent implements OnInit {
   totalLength:any;
   page:number = 1;
   userName:string;
+
+  /* /////////// start custom pagination ///////// */
+
+config = {
+  id: 'custom',
+  itemsPerPage: 5,
+  currentPage: 1,
+  totalItems: 0
+};
+
+ 
+/* /////////// end custom pagination ///////// */
+
 
   constructor(
      private fb: FormBuilder,
@@ -198,6 +215,7 @@ export class AddCourseComponent implements OnInit {
 
       console.log(this.ListArticles);
       this.totalLength = this.searchArticles.length;
+      this.config.totalItems = this.searchArticles.length;
       console.log("articles length>>>",this.totalLength);
   }
 

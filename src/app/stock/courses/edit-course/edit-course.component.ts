@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { id } from 'date-fns/locale';
 import { take } from 'rxjs/operators';
 import { StockService } from 'src/app/core/service/stock.service';
+import { PaginationControlsDirective} from 'ngx-pagination';
 
 @Component({
   selector: 'app-edit-course',
@@ -12,6 +13,8 @@ import { StockService } from 'src/app/core/service/stock.service';
   styleUrls: ['./edit-course.component.scss']
 })
 export class EditCourseComponent implements OnInit {
+
+  @ViewChild('p', { static: true}) pa: PaginationControlsDirective;
 
   articles: any = [];
   showAddNewArticle = false;
@@ -32,6 +35,20 @@ export class EditCourseComponent implements OnInit {
   totalLength:any;
   page:number = 1;
   article:any;
+/* /////////// start custom pagination ///////// */
+
+config = {
+  id: 'custom',
+  itemsPerPage: 5,
+  currentPage: 1,
+  totalItems: 0
+};
+
+ 
+/* /////////// end custom pagination ///////// */
+
+
+
   constructor(
     private route: ActivatedRoute, 
     private fb: FormBuilder,
@@ -157,6 +174,7 @@ search(query:string){
 
     console.log(this.ListArticles);
     this.totalLength = this.searchArticles.length;
+    this.config.totalItems = this.searchArticles.length;
     console.log("articles length>>>",this.totalLength);
 }
 

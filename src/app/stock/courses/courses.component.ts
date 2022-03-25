@@ -1,9 +1,19 @@
 import { formatDate } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { take } from "rxjs/operators";
 import { StockService } from "src/app/core/service/stock.service";
+
+ /* /////////// start custom pagination ///////// */
+
+ import { PaginationControlsDirective} from 'ngx-pagination';
+
+
+
+  
+
+  /* /////////// end custom pagination ///////// */
 
 @Component({
   selector: "app-courses",
@@ -11,6 +21,10 @@ import { StockService } from "src/app/core/service/stock.service";
   styleUrls: ["./courses.component.scss"],
 })
 export class CoursesComponent implements OnInit {
+
+
+ @ViewChild('p', { static: true}) pa: PaginationControlsDirective;
+ 
   showFilters: boolean = false;
   coursesFilterForm: FormGroup;
   ListCourses!:any[];
@@ -21,6 +35,19 @@ export class CoursesComponent implements OnInit {
   totalLength:any;
   page:number = 1;
   filteredActive = false;
+
+ /* /////////// start custom pagination ///////// */
+
+ config = {
+  id: 'custom',
+  itemsPerPage: 5,
+  currentPage: 1,
+  totalItems: 0
+};
+
+ 
+/* /////////// end custom pagination ///////// */
+ 
 
   constructor(
       private fb: FormBuilder,
@@ -54,6 +81,7 @@ export class CoursesComponent implements OnInit {
       this.ListCourses = data;
       this.filterData = data;
       this.totalLength = data.length;
+      this.config.totalItems = data.length;
      
           
   })
@@ -85,7 +113,8 @@ export class CoursesComponent implements OnInit {
       course.clientID.first_name.trim().toLowerCase().includes(term.trim().toLowerCase()) ||
       course.price.toString().includes(term)  
     )
-    this.totalLength = this.ListCourses.length;
+  //  this.totalLength = this.ListCourses.length;
+    this.config.totalItems = this.ListCourses.length;
     this.filteredActive = true;
   }
 
@@ -105,7 +134,8 @@ export class CoursesComponent implements OnInit {
             let person = this.coursesFilterForm.get('person').value;
           this.service.getListCourseByallOptions(prixMin, prixMax, from, to , person).subscribe((resp:any)=>{
               this.ListCourses = resp;
-              this.totalLength = resp.length;
+             // this.totalLength = resp.length;
+              this.config.totalItems = resp.length;
               this.filteredActive = true;
           })
          }
@@ -117,7 +147,8 @@ export class CoursesComponent implements OnInit {
                 this.service.getListCourseByDateRange(from,to).subscribe((resp:any) => {
                             console.log("resp>>", resp);
                             this.ListCourses = resp;
-                            this.totalLength = resp.length;
+                            //this.totalLength = resp.length;
+                            this.config.totalItems = resp.length;
                             this.filteredActive = true;
                   })
         }else if(this.coursesFilterForm.get('priceMin').value != "" && this.coursesFilterForm.get('priceMax').value != "" ){
@@ -129,7 +160,8 @@ export class CoursesComponent implements OnInit {
               this.service.getListCourseByPrice(prixMin,prixMax).subscribe((resp:any) => {
                           console.log("resp>>", resp);
                           this.ListCourses = resp;
-                          this.totalLength = resp.length;
+                         // this.totalLength = resp.length;
+                          this.config.totalItems = resp.length;
                           this.filteredActive = true;
                 })
             
@@ -158,9 +190,9 @@ export class CoursesComponent implements OnInit {
      this.coursesFilterForm.patchValue({
       from: [""],
       to: [""],
-      priceMin: [],
-      priceMax: [],
-      person: [],
+      priceMin: [""],
+      priceMax: [""],
+      person: [""],
     });
   }
 
@@ -230,6 +262,7 @@ export class CoursesComponent implements OnInit {
       panelClass: colorName,
     });
 }
+
 
 
 }
