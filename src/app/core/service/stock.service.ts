@@ -99,6 +99,12 @@ getListCourseByDateRange(from, to){
   return this.http.get(this.ApiPath + 'courses?from=' + from + '&to=' + to);
 }
 
+//get list of courses by pzersonne
+getListCourseByPerson(person){
+  return this.http.get(this.ApiPath + 'courses/person?person=' + person);
+}
+
+
 
 //get list of courses by price
 getListCourseByPrice(prixMin, prixMax){
@@ -134,5 +140,10 @@ getArticleById(id){
   return this.http.get(this.ApiPath + 'articles/' + id);
 }
 
+
+// get courses by month
+getCoursesByMonth(number){
+  return this.http.get(this.ApiPath + 'courses/month?number=' + number);
+}
 
 }

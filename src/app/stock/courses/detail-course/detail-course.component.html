@@ -28,7 +28,7 @@
                                 <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" style="margin-right: 10px" (click)="showFiltersHandler()">
                                   <mat-icon>filter_list</mat-icon>
                                 </button>
-                                <button mat-mini-fab color="primary" routerLink="add" aria-label="Example icon button with a menu icon">
+                                <button mat-mini-fab color="primary" [routerLink]="['add']" aria-label="Example icon button with a menu icon">
                                   <mat-icon>add</mat-icon>
                                 </button>
                             </div>
@@ -97,12 +97,13 @@
                             </form>
 
                         </div>
-                        <!--<div class="mt-4">
+                        <div class="mt-4">
+                            <span>{{ labelMonth(showMonth )}}  {{year}}</span>
                             <span style="display:flex;justify-content:flex-end;margin-top: 10px; margin-bottom: 15px;margin-right:25px;cursor: pointer;" *ngIf="filteredActive" (click)="initCourseList()">
                                 <mat-icon style="color:red;font-size:30px;">remove_circle_outline</mat-icon> </span>
-                            <div *ngFor="let course of ListCourses | paginate: config" style="display: flex; flex-direction: column;">
+                            <div style="display: flex; flex-direction: column;">
 
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;cursor:pointer" (click)="selectedItem(course._id)">
+                                <div *ngFor="let course of ListCourses | paginate: config" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;cursor:pointer">
 
                                     <mat-card class="courseItem">
                                         <div style="display: flex; align-items: center">
@@ -145,111 +146,9 @@
                                 </div>
 
                             </div>
-                             previousLabel="" nextLabel="" (pageChange)="page = $event"
-                            <pagination-controls class="text-center" (pageChange)="page = $event" *ngIf="ListCourses" previousLabel="précédente" nextLabel="suivant"></pagination-controls>
-                        
-
-                            <pagination-template class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
-                                <div class="custom-pagination">
-                                    <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
-
-                                        <span (click)="p.previous()" style="background-color: #3f51b5;font-size:40px;padding-right:10px;padding-left:10px; color:white; border-radius:1px;">
-                                            <
-                                        </span>
-                                    </div>
-                                    <div class="page-number" *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
-                                        <span (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">{{ page.label }}</span
-                                            >
-                                            <div *ngIf="p.getCurrent() === page.value">
-                                                <span>{{ page.label }}</span>
-                                    </div>
-                                </div>
-
-                                    <div class="pagination-next" [ngClass]="{'disable': p.isLastPage()}">
-                                        <span (click)="p.next()" style="background-color:#3f51b5;font-size:40px;padding-right:10px;padding-left:10px;margin:60px;color:white;border-radius:1px;">
-                                                    >
-                                        </span>
-                                    </div>
-                                </div>
-                            </pagination-template>
-                        </div>-->
-
-
-
-                        <div class="mt-4">
-                            <!--<div style="display: flex; justify-content: flex-end;margin-bottom: 8px;">
-
-                                <button *ngIf="showFiltred" mat-stroked-button color="white" (click)="showFilter()">
-                                    <mat-icon style="font-size: 20px;color: rgb(90, 86, 86);">calendar_today</mat-icon>
-                                     Mois 
-                                    <mat-icon    style="font-size: 20px;color: rgb(131, 210, 255);margin-left: 8px;">keyboard_arrow_left</mat-icon>
-                                </button>
-
-                                <mat-icon (click)="closeFilter()" *ngIf="canselFiltred" style="color:red;font-size:40px; margin-right: 20px;cursor: pointer;">remove_circle_outline</mat-icon>
-
-                                <div style="display: flex;flex-wrap: wrap;" *ngIf="filtred">
-                                    <div *ngFor="let month of monthItem">
-                                        <button mat-raised-button style="height:37px;display: inline-block;" color="primary" class="m-1" (click)="searshMonth(month)"><p style="font-size: 12px;">{{month.name}}</p></button>
-
-                                    </div>
-
-                                </div>
-                            </div>-->
-
-                            <span style="display:flex;justify-content:flex-end;margin-top: 10px; margin-bottom: 15px;margin-right:25px;cursor: pointer;" *ngIf="filteredActive" (click)="initCourseList()">
-                                <mat-icon style="color:red;font-size:30px;">remove_circle_outline</mat-icon> </span>
-                            <div *ngFor="let course of ListCourses | paginate: config" style="display: flex; flex-direction: column;">
-
-                                <div style="display: flex; justify-content: space-between;"><span style="margin-right: 30px;">{{ labelMonth(course._id.month )}}</span>
-                                    <div [routerLink]="['detail',course._id.month]" style="background-color: rgb(232, 250, 250);padding: 6px;border-radius:10px;margin-bottom: 3px;cursor: pointer; margin-top: 5px;">Voir tout</div>
-                                </div>
-                                <div *ngFor="let c of course.transactions | paginate: { itemsPerPage: 3, currentPage: p }" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;cursor:pointer" (click)="selectedItem(course._id)">
-
-                                    <mat-card class="courseItem">
-                                        <div style="display: flex; align-items: center">
-                                            <mat-icon matListIcon>shopping_cart</mat-icon>
-                                            <h5 style="margin: 0">Course {{ c.code }}</h5>
-                                        </div>
-                                        <div>
-                                            <div style="display: flex; align-items: center">
-                                                <mat-icon matListIcon>person</mat-icon>
-                                                <h5 style="margin: 0">{{ c.person }}</h5>
-                                            </div>
-                                            <div style="display: flex; align-items: center">
-                                                <mat-icon matListIcon>insert_invitation</mat-icon>
-                                                <h5 style="margin: 0">
-                                                    {{ c.date | date: "EEE, dd/LL":"fr" }}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <div style="display: flex; align-items: center">
-                                            <mat-icon matListIcon *ngIf="typeExist(c.types, 'room')">hotel</mat-icon>
-                                            <mat-icon matListIcon *ngIf="typeExist(c.types, 'food')">local_dining</mat-icon>
-                                        </div>
-                                        <div style="display: flex; align-items: center">
-                                            <mat-icon matListIcon>monetization_on</mat-icon>
-                                            <h5 style="margin: 0">{{ c.price }} dt</h5>
-                                        </div>
-                                        <div style="display: flex; align-items: center">
-                                            <button mat-icon-button color="accent" class="btn-tbl-edit" [routerLink]="['edit',c._id]">
-                                              <mat-icon aria-label="Edit" class="col-white"
-                                                >edit
-                                              </mat-icon>
-                                            </button>
-                                            <button mat-icon-button color="accent" class="btn-tbl-edit" [routerLink]="['show', c._id]">
-                                              <mat-icon class="col-white"
-                                                >visibility
-                                              </mat-icon>
-                                            </button>
-                                        </div>
-                                    </mat-card>
-
-                                </div>
-
-                            </div>
-                            <!--previousLabel="" nextLabel=""  (pageChange)="page = $event"  
+                            <!-- previousLabel="" nextLabel=""  (pageChange)="page = $event"  
                                 <pagination-controls class="text-center" (pageChange)="page = $event" *ngIf="ListCourses" previousLabel="précédente" nextLabel="suivant"></pagination-controls>
-                            -->
+                              -->
 
                             <pagination-template class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
                                 <div class="custom-pagination">
@@ -272,8 +171,8 @@
                                             <div *ngIf="p.getCurrent() === page.value">
                                                 <span>{{ page.label }}</span>
                                             </div>
-                                            </div>-->
-
+                                            </div>
+                                        -->
                                     <div class="pagination-next" [ngClass]="{'disable': p.isLastPage()}">
                                         <span (click)="p.next()" style="background-color:#3f51b5;font-size:40px;padding-right:10px;padding-left:10px;margin:60px;color:white;border-radius:1px;">
                                                     >
@@ -282,6 +181,14 @@
                                 </div>
                             </pagination-template>
                         </div>
+
+                        <div style="display: flex; align-items: flex-end">
+                            <button mat-raised-button routerLink="../..">
+                              <mat-icon>clear</mat-icon>
+                              Annuler
+                            </button>
+                        </div>
+
 
                     </div>
                 </div>

@@ -26,5 +26,6 @@ export class AppComponent {
 
     iconRegistry.addSvgIcon('thermometer', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/thermometer.svg"));
     iconRegistry.addSvgIcon('quantity', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/quantity.svg"));
+
   }
 }

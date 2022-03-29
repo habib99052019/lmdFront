@@ -45,15 +45,12 @@ export class AddCourseComponent implements OnInit {
   userName:string;
 
   /* /////////// start custom pagination ///////// */
-
 config = {
   id: 'custom',
   itemsPerPage: 5,
   currentPage: 1,
   totalItems: 0
 };
-
- 
 /* /////////// end custom pagination ///////// */
 
 
@@ -87,9 +84,6 @@ config = {
       
     })
   }
-
-
-
 
 
   /*getListOfArticlesByAllDepot(){
@@ -237,8 +231,6 @@ config = {
    })
  
 }*/
-
-
 
 
   addNewArticle = () => {

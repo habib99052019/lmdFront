@@ -8,6 +8,7 @@ import { StockService } from "src/app/core/service/stock.service";
  /* /////////// start custom pagination ///////// */
 
  import { PaginationControlsDirective} from 'ngx-pagination';
+import { Router } from "@angular/router";
 
 
 
@@ -40,19 +41,42 @@ export class CoursesComponent implements OnInit {
 
  config = {
   id: 'custom',
-  itemsPerPage: 5,
+  itemsPerPage: 2,
   currentPage: 1,
   totalItems: 0
 };
 
+dataToSent:any;
  
 /* /////////// end custom pagination ///////// */
  
+
+months = ["hello","janvier","fevrier","mars","avril","mai","juin", "juillet","aout","september","october","november","december"]
+
+monthItem = [
+  {name:"janvier", number:1},
+  {name:"fevrier", number:2},
+  {name:"mars", number:3},
+  {name:"avril", number:4},
+  {name:"mai", number:5},
+  {name:"juin", number:6},
+  {name:"juillet", number:7},
+  {name:"aout", number:8},
+  {name:"september", number:9},
+  {name:"october", number:10},
+  {name:"november", number:11},
+  {name:"december", number:12}
+]
+
+filtred = false;
+canselFiltred = false;
+showFiltred = true;
 
   constructor(
       private fb: FormBuilder,
       private service: StockService,
       private snackBar: MatSnackBar,
+      private router: Router
     ) {
      
     }
@@ -60,6 +84,8 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     this.getListCourse();
     this.coursesFilterForm = this.createContactForm();
+    
+    
     
     
   }
@@ -78,14 +104,60 @@ export class CoursesComponent implements OnInit {
   getListCourse(){
     this.service.getListCourse().pipe(take(1)).subscribe((data : any) => {
       console.log("courses api>>>",data );
+     /* this.ListCourses = data;
+      this.filterData = data;
+      this.totalLength = data.length;
+      this.config.totalItems = data.length;*/
+
       this.ListCourses = data;
       this.filterData = data;
       this.totalLength = data.length;
       this.config.totalItems = data.length;
-     
-          
+
+/* get item by month */
+  let obj = this.ListCourses.find(obj => obj._id.month == 5);
+  console.log(obj);
+      
   })
   }
+
+
+  showFilter(){
+     this.filtred = !this.filtred;
+     this.showFiltred = !this.showFiltred;
+     this.canselFiltred = !this.canselFiltred;
+  }
+
+  closeFilter(){
+    this.filtred = !this.filtred;
+     this.showFiltred = !this.showFiltred;
+     this.canselFiltred = !this.canselFiltred;
+     this.getListCourse();
+  }
+
+  searshMonth(month){
+    console.log("month>>>",month);
+   this.service.getCoursesByMonth(month.number).pipe(take(1)).subscribe((data : any) => {
+     console.log("data api >>>>", data)
+     this.ListCourses = data;
+   })
+  }
+
+  labelMonth ( m : number) {
+    return this.months[m]
+  }
+
+  selectedMonth(){
+  // console.log("month>>>>", month);
+   let obj = this.ListCourses.find(obj => obj._id.month == 3);
+    console.log("selected>>>",obj);
+  }
+
+  typeExist(types: string[], type: string) {
+    return types.find((t) => t === type);
+  }
+
+
 
 
   checkFromDate(date){
@@ -118,7 +190,7 @@ export class CoursesComponent implements OnInit {
     this.filteredActive = true;
   }
 
-  deepFilter(){
+ /* deepFilter(){
     
     console.log("date range>>>", this.coursesFilterForm.get('from').value,this.coursesFilterForm.get('to').value);
      console.log("price>>>", this.coursesFilterForm.get('priceMin').value,this.coursesFilterForm.get('priceMax').value);
@@ -180,7 +252,83 @@ export class CoursesComponent implements OnInit {
           );
         }
   }
+*/
 
+
+
+
+
+
+deepFilter(){
+    
+  console.log("date range>>>", this.coursesFilterForm.get('from').value,this.coursesFilterForm.get('to').value);
+   console.log("price>>>", this.coursesFilterForm.get('priceMin').value,this.coursesFilterForm.get('priceMax').value);
+ if( this.coursesFilterForm.get('from').value != "" || this.coursesFilterForm.get('to').value != ""  || this.coursesFilterForm.get('priceMax').value != ""  || this.coursesFilterForm.get('priceMin').value != ""  || this.coursesFilterForm.get('person').value){
+   
+    if((this.coursesFilterForm.get('from').value != "") && (this.coursesFilterForm.get('to').value != "") && (this.coursesFilterForm.get('priceMin').value != "") && (this.coursesFilterForm.get('priceMax').value != "") && (this.coursesFilterForm.get('person').value != "")){
+      
+      console.log("all>>>",this.coursesFilterForm.get('from').value, this.coursesFilterForm.get('to').value,this.coursesFilterForm.get('priceMax').value,this.coursesFilterForm.get('priceMin').value,this.coursesFilterForm.get('person').value);
+          let from = formatDate(this.coursesFilterForm.get('from').value, 'yyyy-MM-dd', 'en');
+          let to = formatDate(this.coursesFilterForm.get('to').value, 'yyyy-MM-dd', 'en') ;
+          let prixMin = this.coursesFilterForm.get('priceMin').value;
+          let prixMax = this.coursesFilterForm.get('priceMax').value;
+          let person = this.coursesFilterForm.get('person').value;
+        this.service.getListCourseByallOptions(prixMin, prixMax, from, to , person).subscribe((resp:any)=>{
+            this.ListCourses = resp;
+           // this.totalLength = resp.length;
+            this.config.totalItems = resp.length;
+            this.filteredActive = true;
+        })
+       }
+  
+      else if(this.coursesFilterForm.get('from').value != "" && this.coursesFilterForm.get('to').value != ""){
+              let from = formatDate(this.coursesFilterForm.get('from').value, 'yyyy-MM-dd', 'en');
+              let to = formatDate(this.coursesFilterForm.get('to').value, 'yyyy-MM-dd', 'en') ;
+            
+              this.service.getListCourseByDateRange(from,to).subscribe((resp:any) => {
+                          console.log("resp>>", resp);
+                          this.ListCourses = resp;
+                          //this.totalLength = resp.length;
+                          this.config.totalItems = resp.length;
+                          this.filteredActive = true;
+                })
+      }else if(this.coursesFilterForm.get('priceMin').value != "" && this.coursesFilterForm.get('priceMax').value != "" ){
+        console.log("testtt");
+    
+            let prixMin = this.coursesFilterForm.get('priceMin').value;
+            let prixMax = this.coursesFilterForm.get('priceMax').value;
+
+            this.service.getListCourseByPrice(prixMin,prixMax).subscribe((resp:any) => {
+                        console.log("resp>>", resp);
+                        this.ListCourses = resp;
+                       // this.totalLength = resp.length;
+                        this.config.totalItems = resp.length;
+                        this.filteredActive = true;
+              })
+          
+      }else if(this.coursesFilterForm.get('person').value != ""){
+          let name = this.coursesFilterForm.get('person').value;
+          /*this.search(name)*/
+
+          this.service.getListCourseByPerson(name).subscribe((resp:any) => {
+            console.log("resp>>", resp);
+            this.ListCourses = resp;
+           // this.totalLength = resp.length;
+            this.config.totalItems = resp.length;
+            this.filteredActive = true;
+  })
+        
+      }
+  
+ }  else{
+        this.showNotification(
+          'snackbar-danger',
+          "Formulaire invalide",
+          'top',
+          'end'
+        );
+      }
+}
 
 
 
@@ -238,12 +386,17 @@ export class CoursesComponent implements OnInit {
     ],
   };
 
-
-
-  typeExist(types: string[], type: string) {
-    return types.find((t) => t === type);
+  gotoDetail(month){
+    console.log("month>>>>",month);
+    let obj = this.ListCourses.find(obj => obj._id.month == month);
+    console.log("selected>>>",obj);
+  this.router.navigate(['stock/courses/detail', month],{state: obj})
+   
+ 
+   // [routerLink]="['detail',course._id.month]" 
   }
 
+ 
 
   showFiltersHandler = () => {
     this.showFilters = !this.showFilters;

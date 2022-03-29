@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddCourseComponent } from './courses/add-course/add-course.component';
 import { CoursesComponent } from './courses/courses.component';
+import { DetailCourseComponent } from './courses/detail-course/detail-course.component';
 import { EditCourseComponent } from './courses/edit-course/edit-course.component';
 import { ShowCourseComponent } from './courses/show-course/show-course.component';
 import { AllArticlesDepotComponent } from './depot/all-articles-depot/all-articles-depot.component';
@@ -114,14 +115,30 @@ const routes: Routes = [
     component: AddCourseComponent
   },
   {
+    path: 'courses/detail/:number/add',
+    component: AddCourseComponent
+  },
+  {
     path: 'courses/show/:id',
+    component: ShowCourseComponent
+  },
+  {
+    path: 'courses/detail/:number/show/:id',
     component: ShowCourseComponent
   },
   {
     path: 'courses/edit/:id',
     component: EditCourseComponent
+  },
+  {
+    path: 'courses/detail/:number/edit/:id',
+    component: EditCourseComponent
+  },
+  
+  {
+    path: 'courses/detail/:month',
+    component: DetailCourseComponent
   }
-
 ];
 
 @NgModule({
