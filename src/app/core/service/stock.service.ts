@@ -142,8 +142,8 @@ getArticleById(id){
 
 
 // get courses by month
-getCoursesByMonth(number){
-  return this.http.get(this.ApiPath + 'courses/month?number=' + number);
+getCoursesByMonth(number,year){
+  return this.http.get(this.ApiPath + 'courses/month?number=' + number + '&year=' + year);
 }
 
 }

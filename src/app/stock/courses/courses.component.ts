@@ -9,6 +9,7 @@ import { StockService } from "src/app/core/service/stock.service";
 
  import { PaginationControlsDirective} from 'ngx-pagination';
 import { Router } from "@angular/router";
+import { ObjectUnsubscribedError } from "rxjs";
 
 
 
@@ -135,6 +136,8 @@ showFiltred = true;
      this.getListCourse();
   }
 
+
+  /*
   searshMonth(month){
     console.log("month>>>",month);
    this.service.getCoursesByMonth(month.number).pipe(take(1)).subscribe((data : any) => {
@@ -142,7 +145,7 @@ showFiltred = true;
      this.ListCourses = data;
    })
   }
-
+*/
   labelMonth ( m : number) {
     return this.months[m]
   }
@@ -386,11 +389,11 @@ deepFilter(){
     ],
   };
 
-  gotoDetail(month){
-    console.log("month>>>>",month);
-    let obj = this.ListCourses.find(obj => obj._id.month == month);
-    console.log("selected>>>",obj);
-  this.router.navigate(['stock/courses/detail', month],{state: obj})
+  gotoDetail(obj){
+    console.log("month>>>>",obj);
+   // let obj = this.ListCourses.find(obj => obj._id.month == month);
+  //  console.log("selected>>>",obj);
+  this.router.navigate(['stock/courses/detail', obj.month],{state: obj})
    
  
    // [routerLink]="['detail',course._id.month]" 

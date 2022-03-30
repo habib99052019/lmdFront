@@ -15,7 +15,7 @@ export class ShowCourseComponent implements OnInit {
   editCourseForm: FormGroup;
   id: string;
   Course:any;
-  courses:any;
+ 
 
   constructor(
       private route: ActivatedRoute, 
@@ -24,8 +24,7 @@ export class ShowCourseComponent implements OnInit {
       private router: Router
       ) {
         this.id = this.route.snapshot.paramMap.get("id");
-        this.courses = this.router.getCurrentNavigation();
-         console.log("course navigation show>>>", this.courses);
+      
        }
 
   ngOnInit(): void {
@@ -41,16 +40,6 @@ export class ShowCourseComponent implements OnInit {
       console.log("courses api>>>",data );
       this.Course = data;
   })
-}
-
-
-gotoDetailComponent(){
-  if(this.courses){
-    this.router.navigate(['stock/courses/detail',this.courses.extras.state.extras.state._id.month],{state: this.courses})
-  }else{
-    this.router.navigate(['"../.."'])
-  }
-  
 }
 
 

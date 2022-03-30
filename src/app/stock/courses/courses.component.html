@@ -200,8 +200,8 @@
                                 <mat-icon style="color:red;font-size:30px;">remove_circle_outline</mat-icon> </span>
                             <div *ngFor="let course of ListCourses | paginate: config" style="display: flex; flex-direction: column;">
 
-                                <div style="display: flex; justify-content: space-between;"><span style="margin-right: 30px;">{{ labelMonth(course._id.month )}}</span>
-                                    <div [routerLink]="['detail',course._id.month]" style="background-color: rgb(232, 250, 250);padding: 6px;border-radius:10px;margin-bottom: 3px;cursor: pointer; margin-top: 5px;">Voir tout</div>
+                                <div style="display: flex; justify-content: space-between;"><span style="margin-right: 30px;margin-top: 5px;">{{ labelMonth(course._id.month )}}  {{course._id.year}}  </span>
+                                    <div [routerLink]="['detail',course._id.month, course._id.year]" style="background-color: rgb(232, 250, 250);padding: 6px;border-radius:10px;margin-bottom: 3px;cursor: pointer; margin-top: 5px;">Voir tout</div>
                                 </div>
                                 <div *ngFor="let c of course.transactions | paginate: { itemsPerPage: 3, currentPage: p }" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;cursor:pointer" (click)="selectedItem(course._id)">
 

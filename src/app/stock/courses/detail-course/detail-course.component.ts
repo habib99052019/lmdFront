@@ -37,6 +37,10 @@ year:any;
 
 months = ["hello","janvier","fevrier","mars","avril","mai","juin", "juillet","aout","september","october","november","december"]
 
+
+object :any;
+
+
   constructor(
     private route: ActivatedRoute, 
     private fb: FormBuilder,
@@ -45,16 +49,24 @@ months = ["hello","janvier","fevrier","mars","avril","mai","juin", "juillet","ao
     private snackBar: MatSnackBar,
     ) {
       this.month = this.route.snapshot.paramMap.get("month");
-      //this.courses = this.router.getCurrentNavigation();
-     // console.log("course navigation>>>", this.courses);
+      this.year = this.route.snapshot.paramMap.get("year");
+     
+      //this.object = this.router.getCurrentNavigation();
+      console.log("month, year>>>", this.month, this.year);
+      
       
      }
 
+
+
   ngOnInit(): void {
-    this.getCourseByMonth()
-   // this.ListCourses = this.courses.extras.state.transactions;
+    
+   
+   this.getCourseByMonth()
+ // this.ListCourses = this.courses.extras.state.transactions;
+  
     this.showMonth = this.month;
-   // this.year = this.courses.extras.state._id.year;
+    //this.year = this.courses.extras.state._id.year;
     console.log("month>>",this.month);
     this.coursesFilterForm = this.createContactForm();
   }
@@ -78,10 +90,10 @@ months = ["hello","janvier","fevrier","mars","avril","mai","juin", "juillet","ao
 
   getCourseByMonth(){
     
-   this.service.getCoursesByMonth(this.month).pipe(take(1)).subscribe((data : any) => {
+   this.service.getCoursesByMonth(this.month, this.year).pipe(take(1)).subscribe((data : any) => {
   
-     this.ListCourses = data[0].transactions;
-     console.log("data api >>>>", data[0].transactions)
+    this.ListCourses = data;
+     console.log("data api >>>>", data)
    })
   }
 
@@ -94,7 +106,7 @@ months = ["hello","janvier","fevrier","mars","avril","mai","juin", "juillet","ao
 
   
   initCourseList(){
-   // this.getListCourse();
+   
     this.filteredActive = false;
     this.coursesFilterForm.patchValue({
      from: [""],
@@ -103,6 +115,8 @@ months = ["hello","janvier","fevrier","mars","avril","mai","juin", "juillet","ao
      priceMax: [""],
      person: [""],
    });
+
+   this.getCourseByMonth();
  }
 
 
@@ -111,7 +125,7 @@ months = ["hello","janvier","fevrier","mars","avril","mai","juin", "juillet","ao
 }
 
 
-
+/*
 deepFilter(){
     
   console.log("date range>>>", this.coursesFilterForm.get('from').value,this.coursesFilterForm.get('to').value);
@@ -173,7 +187,93 @@ deepFilter(){
           'end'
         );
       }
+}*/
+
+
+
+
+
+deepFilter(){
+  this.filteredActive = true;
+  console.log("date range>>>", this.coursesFilterForm.get('from').value,this.coursesFilterForm.get('to').value);
+   console.log("price>>>", this.coursesFilterForm.get('priceMin').value,this.coursesFilterForm.get('priceMax').value);
+ if( this.coursesFilterForm.get('from').value != "" || this.coursesFilterForm.get('to').value != ""  || this.coursesFilterForm.get('priceMax').value != ""  || this.coursesFilterForm.get('priceMin').value != ""  || this.coursesFilterForm.get('person').value){
+   
+    if((this.coursesFilterForm.get('from').value != "") && (this.coursesFilterForm.get('to').value != "") && (this.coursesFilterForm.get('priceMin').value != "") && (this.coursesFilterForm.get('priceMax').value != "") && (this.coursesFilterForm.get('person').value != "")){
+      
+      console.log("all>>>",this.coursesFilterForm.get('from').value, this.coursesFilterForm.get('to').value,this.coursesFilterForm.get('priceMax').value,this.coursesFilterForm.get('priceMin').value,this.coursesFilterForm.get('person').value);
+          let from = formatDate(this.coursesFilterForm.get('from').value, 'yyyy-MM-dd', 'en');
+          let to = formatDate(this.coursesFilterForm.get('to').value, 'yyyy-MM-dd', 'en') ;
+          let prixMin = this.coursesFilterForm.get('priceMin').value;
+          let prixMax = this.coursesFilterForm.get('priceMax').value;
+          let person = this.coursesFilterForm.get('person').value;
+        this.service.getListCourseByallOptions(prixMin, prixMax, from, to , person).subscribe((resp:any)=>{
+          let obj = resp.find(obj => (obj._id.month == this.month && obj._id.year == this.year));
+          console.log(obj);
+          this.ListCourses = [obj];
+           // this.ListCourses = resp;
+           // this.totalLength = resp.length;
+            this.config.totalItems = obj.length;
+            this.filteredActive = true;
+        })
+       }
+  
+      else if(this.coursesFilterForm.get('from').value != "" && this.coursesFilterForm.get('to').value != ""){
+              let from = formatDate(this.coursesFilterForm.get('from').value, 'yyyy-MM-dd', 'en');
+              let to = formatDate(this.coursesFilterForm.get('to').value, 'yyyy-MM-dd', 'en') ;
+            
+              this.service.getListCourseByDateRange(from,to).subscribe((resp:any) => {
+                          console.log("resp>>", resp);
+                          let obj = resp.find(obj => ( obj._id.month == this.month && obj._id.year == this.year ));
+                          console.log(obj);
+                          this.ListCourses = [obj];
+                          //this.totalLength = resp.length;
+                          this.config.totalItems = obj.length;
+                          this.filteredActive = true;
+                })
+      }else if(this.coursesFilterForm.get('priceMin').value != "" && this.coursesFilterForm.get('priceMax').value != "" ){
+        console.log("testtt");
+    
+            let prixMin = this.coursesFilterForm.get('priceMin').value;
+            let prixMax = this.coursesFilterForm.get('priceMax').value;
+
+            this.service.getListCourseByPrice(prixMin,prixMax).subscribe((resp:any) => {
+                        console.log("resp>>", resp);
+                        let obj = resp.find(obj => ( obj._id.month == this.month && obj._id.year == this.year) );
+                        console.log("price object>>",obj);
+                        this.ListCourses = [obj];
+                       // this.totalLength = resp.length;
+                        this.config.totalItems = obj.length;
+                        this.filteredActive = true;
+              })
+          
+      }else if(this.coursesFilterForm.get('person').value != ""){
+          let name = this.coursesFilterForm.get('person').value;
+          /*this.search(name)*/
+
+          this.service.getListCourseByPerson(name).subscribe((resp:any) => {
+            console.log("resp>>", resp);
+            let obj = resp.find(obj => ( obj._id.month == this.month && obj._id.year == this.year) );
+            console.log(obj);
+            this.ListCourses = [obj];
+           // this.ListCourses = resp;
+           // this.totalLength = resp.length;
+            this.config.totalItems = obj.length;
+            this.filteredActive = true;
+  })
+        
+      }
+  
+ }  else{
+        this.showNotification(
+          'snackbar-danger',
+          "Formulaire invalide",
+          'top',
+          'end'
+        );
+      }
 }
+
 
 
 checkFromDate(date){

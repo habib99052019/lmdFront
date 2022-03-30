@@ -115,7 +115,7 @@ const routes: Routes = [
     component: AddCourseComponent
   },
   {
-    path: 'courses/detail/:number/add',
+    path: 'courses/detail/:number/:year/add',
     component: AddCourseComponent
   },
   {
@@ -123,7 +123,7 @@ const routes: Routes = [
     component: ShowCourseComponent
   },
   {
-    path: 'courses/detail/:number/show/:id',
+    path: 'courses/detail/:number/:year/show/:id',
     component: ShowCourseComponent
   },
   {
@@ -131,12 +131,12 @@ const routes: Routes = [
     component: EditCourseComponent
   },
   {
-    path: 'courses/detail/:number/edit/:id',
+    path: 'courses/detail/:number/:year/edit/:id',
     component: EditCourseComponent
   },
   
   {
-    path: 'courses/detail/:month',
+    path: 'courses/detail/:month/:year',
     component: DetailCourseComponent
   }
 ];
