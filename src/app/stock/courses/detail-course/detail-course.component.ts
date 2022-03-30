@@ -37,9 +37,10 @@ year:any;
 
 months = ["hello","janvier","fevrier","mars","avril","mai","juin", "juillet","aout","september","october","november","december"]
 
-
 object :any;
 
+startDate:any;
+startDate2:any;
 
   constructor(
     private route: ActivatedRoute, 
@@ -53,11 +54,18 @@ object :any;
      
       //this.object = this.router.getCurrentNavigation();
       console.log("month, year>>>", this.month, this.year);
+      var d = new Date();
+      var n = d.getUTCDate();
+      console.log(" today>>>>",n);
       
+
+       this.startDate = this.startDate2 = new Date(this.year,this.month - 1, n)
       
      }
 
 
+
+     
 
   ngOnInit(): void {
     

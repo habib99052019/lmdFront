@@ -52,21 +52,21 @@ dataToSent:any;
 /* /////////// end custom pagination ///////// */
  
 
-months = ["hello","janvier","fevrier","mars","avril","mai","juin", "juillet","aout","september","october","november","december"]
+months = ["hello","Janvier","Février","Mars","Avril","Mai","Juin", "Juillet","Aout","Septembre","Octobre","Novembre","Décembre"]
 
 monthItem = [
-  {name:"janvier", number:1},
-  {name:"fevrier", number:2},
-  {name:"mars", number:3},
-  {name:"avril", number:4},
-  {name:"mai", number:5},
-  {name:"juin", number:6},
-  {name:"juillet", number:7},
-  {name:"aout", number:8},
-  {name:"september", number:9},
-  {name:"october", number:10},
-  {name:"november", number:11},
-  {name:"december", number:12}
+  {name:"Janvier", number:1},
+  {name:"Février", number:2},
+  {name:"Mars", number:3},
+  {name:"Avril", number:4},
+  {name:"Mai", number:5},
+  {name:"Juin", number:6},
+  {name:"Juillet", number:7},
+  {name:"Aout", number:8},
+  {name:"Septembre", number:9},
+  {name:"Octobre", number:10},
+  {name:"Novembre", number:11},
+  {name:"Décembre", number:12}
 ]
 
 filtred = false;
@@ -115,6 +115,9 @@ showFiltred = true;
       this.totalLength = data.length;
       this.config.totalItems = data.length;
 
+
+     
+
 /* get item by month */
   let obj = this.ListCourses.find(obj => obj._id.month == 5);
   console.log(obj);
@@ -146,6 +149,7 @@ showFiltred = true;
    })
   }
 */
+
   labelMonth ( m : number) {
     return this.months[m]
   }
