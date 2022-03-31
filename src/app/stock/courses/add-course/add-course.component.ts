@@ -54,6 +54,9 @@ config = {
 /* /////////// end custom pagination ///////// */
 
 
+arrayCourses = [];
+code:number;
+
   constructor(
      private fb: FormBuilder,
      public router: Router,
@@ -73,7 +76,7 @@ config = {
     
     console.log("update price>>>",this.updatePrice);
     this.getUserById();
-    
+    this.getListCourse();
     
   }
 
@@ -84,6 +87,28 @@ config = {
       
     })
   }
+
+
+  getListCourse(){
+    this.service.getListCourse().pipe(take(1)).subscribe((data : any) => {
+      console.log("courses api>>>",data );
+     
+      data.map(el => {
+         console.log("el>>>",el.transactions);
+       this.arrayCourses.push(el.transactions)
+       let innerLength = 0;
+      for (const row of this.arrayCourses) {
+        innerLength += row.length;
+      }
+  
+       console.log("arraycourses>>", innerLength);
+       this.code = innerLength + 1;
+        
+        
+      })
+  })
+  }
+
 
 
   /*getListOfArticlesByAllDepot(){
@@ -317,7 +342,7 @@ config = {
 
     //test pour ajouter le type des icons
    const  objectTosent = {
-      code: "123",
+      code: this.code,
       date: formatDate(this.addCourseForm.get("date").value, 'yyyy-MM-dd', 'en'),
       articleList: this.addedArticles,
       types: ["room"],
