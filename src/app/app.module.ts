@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -24,6 +24,10 @@ import {
 import { ClickOutsideModule } from 'ng-click-outside';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 
 //pagination module
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -67,6 +71,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider,
     { provide: MAT_DATE_LOCALE, useValue: 'fr-BR' },
+    { provide: LOCALE_ID, useValue: "fr-FR" }
   ],
   entryComponents: [],
   bootstrap: [AppComponent],

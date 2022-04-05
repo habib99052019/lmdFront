@@ -136,7 +136,7 @@ getListOfArticles(){
   this.service.getListOfArticles().pipe(take(1)).subscribe((data : any)=>{
     this.ListArticles = data;
     
-    console.log("data>>>>", data.length);
+    console.log("data>>>>", data);
     
   })
 }
@@ -287,7 +287,7 @@ search(query:string){
 
 
   addCourse = () => {
-    if (this.addCourseForm.invalid || !this.addedArticles.length) {
+  /*  if (this.addCourseForm.invalid || !this.addedArticles.length) {
       this.showNotification(
         'snackbar-danger',
          "formulaire invalid",
@@ -295,7 +295,7 @@ search(query:string){
         'end'
       );
         return;
-      }
+      }*/
     console.log("add course", this.addCourseForm.get("date"));
     console.log(this.addCourseForm.get("date").value);
 

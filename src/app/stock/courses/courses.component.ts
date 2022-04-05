@@ -42,7 +42,7 @@ export class CoursesComponent implements OnInit {
 
  config = {
   id: 'custom',
-  itemsPerPage: 2,
+  itemsPerPage: 1,
   currentPage: 1,
   totalItems: 0
 };
@@ -79,7 +79,7 @@ showFiltred = true;
       private snackBar: MatSnackBar,
       private router: Router
     ) {
-     
+      this.getListCourse();
     }
 
   ngOnInit(): void {
@@ -110,11 +110,13 @@ showFiltred = true;
       this.totalLength = data.length;
       this.config.totalItems = data.length;*/
 
-      this.ListCourses = data;
+     // this.ListCourses = data;
       this.filterData = data;
       this.totalLength = data.length;
       this.config.totalItems = data.length;
 
+
+      this.ListCourses =  data.sort((a, b) => (a._id.month - b._id.month && a._id.year - b._id.year));
 
      
 

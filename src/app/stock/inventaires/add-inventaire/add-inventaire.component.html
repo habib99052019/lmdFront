@@ -1,0 +1,389 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Stock</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <!--href="#" onClick="return false;"-->
+                            <a> <i class="fas fa-home"></i>Accueil</a>
+                        </li>
+                        <li class="breadcrumb-item active">Stock</li>
+                        <li class="breadcrumb-item bcrumb-3">Inventaires</li>
+                        <li class="breadcrumb-item bcrumb-3">Ajouter</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card" style="height: 100%" style="margin-bottom: 30px">
+                    <div class="card-body">
+                        <div style="margin-bottom: 20px" class="row">
+                            <div class="col-12">
+                                <button mat-mini-fab color="primary" aria-label="back button" (click)="backAction()">
+                    <mat-icon>keyboard_backspace</mat-icon>
+                  </button>
+                            </div>
+                            <div class="col-12">
+                                <h3 *ngIf="!addByFamily && !chooseFamily && !check" style="margin: 0; text-align: center; padding-top: 10px">
+                                    Ajouter un inventaire
+                                </h3>
+                            </div>
+                        </div>
+                        <!-- page first -->
+
+                        <div class="row" style="padding: 30px" *ngIf="!addByFamily && !chooseFamily && !check">
+                            <div class="col-12">
+                                <p>
+                                    Veuillez cliquer sur <b>Dépots</b>, <b>Catégories</b> ou
+                                    <b>Familles</b> pour continuer.
+                                </p>
+                            </div>
+                            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12" style="padding: 10px">
+                                <mat-card class="example-card">
+                                    <mat-card-header style="justify-content: center">
+                                        <mat-card-title>Dépots</mat-card-title>
+                                    </mat-card-header>
+                                    <mat-card-content style="padding: 20px; text-align: center">
+                                        <mat-icon svgIcon="depot" style="width: 50px; height: 50px"></mat-icon>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12" style="padding: 10px">
+                                <mat-card class="example-card">
+                                    <mat-card-header style="justify-content: center">
+                                        <mat-card-title>Catégories</mat-card-title>
+                                    </mat-card-header>
+                                    <mat-card-content style="padding: 20px; text-align: center">
+                                        <mat-icon svgIcon="category" style="width: 50px; height: 50px"></mat-icon>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12" style="padding: 10px">
+                                <mat-card class="example-card" (click)="addByFamilyAction()">
+                                    <mat-card-header style="justify-content: center">
+                                        <mat-card-title>Familles</mat-card-title>
+                                    </mat-card-header>
+                                    <mat-card-content style="padding: 20px; text-align: center">
+                                        <mat-icon svgIcon="family" style="width: 50px; height: 50px"></mat-icon>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </div>
+                        <!-- page addby family -->
+                        <div *ngIf="addByFamily">
+                            <p style="text-align: center">
+                                Veuillez choisir une <b>famille</b> pour continuer.
+                            </p>
+                            <form class="row">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Rechercher</mat-label>
+                                    <input matInput type="text" [matAutocomplete]="auto" #query (keyup)="search(query.value)" />
+                                    <mat-icon matSuffix>search</mat-icon>
+                                    <mat-autocomplete #auto="matAutocomplete"> </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12" style="padding: 10px; height: 350px" *ngFor="
+                      let family of families
+                        | paginate
+                          : {
+                              itemsPerPage: 3,
+                              currentPage: page,
+                              totalItems: totalLength
+                            }
+                    ">
+                                    <mat-card class="example-card" style="height: 100%" (click)="chooseFamilyAction(family)">
+                                        <mat-card-header style="justify-content: center">
+                                            <mat-card-title>{{ family.name }}</mat-card-title>
+                                        </mat-card-header>
+                                        <img mat-card-image [src]="family.img" alt="Photo of a Shiba Inu" style="height: 70%" />
+                                        <mat-card-content> </mat-card-content>
+                                    </mat-card>
+                                </div>
+                                <pagination-controls class="text-center" (pageChange)="page = $event" previousLabel="Précédente" nextLabel="Suivante"></pagination-controls>
+                            </div>
+                        </div>
+                        <!-- page formulaire -->
+
+                        <div *ngIf="chooseFamily">
+                            <p style="padding-top: 20px">
+                                Veuillez remplir la formulaire suivante puis cliquer sur
+                                <b>Vérifier</b> pour créer un inventaire pour la famille
+                                <b>{{ familyName }}</b
+                  >.
+                </p>
+                <form
+                  [formGroup]="addInventaireForm"
+                  id="addInventaireForm"
+                  *ngIf="!showAddArticle"
+                >
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field
+                        class="mb-3"
+                        appearance="outline"
+                        style="width: 100%"
+                      >
+                        <mat-label>Désignation</mat-label>
+                        <input
+                          matInput
+                          formControlName="name"
+                          type="text"
+                          class="example-right-align"
+                          [value]=""
+                          required
+                        />
+                        <mat-error
+                          *ngIf="
+                            addInventaireForm.get('name').hasError('required')
+                          "
+                        >
+                          La désignation de l'inventaire est
+                          <strong>obligatoire</strong>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="col">
+                      <mat-form-field
+                        class="mb-3"
+                        appearance="outline"
+                        style="width: 100%"
+                      >
+                        <mat-label>Date</mat-label>
+                        <input
+                          matInput
+                          [matDatepicker]="picker"
+                          formControlName="date"
+                          required
+                        />
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="picker"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error
+                          *ngIf="
+                            !addInventaireForm
+                              .get('date')
+                              .hasError('matDatepickerParse') &&
+                            addInventaireForm.get('date').hasError('required')
+                          "
+                        >
+                          La date de l'inventaire est <strong>obligatoire</strong>
+                        </mat-error>
+                        <mat-error
+                          *ngIf="
+                            addInventaireForm
+                              .get('date')
+                              .hasError('matDatepickerParse')
+                          "
+                        >
+                          La date de l'inventaire est <strong>invalide</strong>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </form>
+                <h5 style="margin: 20px 0">Liste des articles</h5>
+                <div class="row mb-7">
+                  <div
+                    class="col"
+                    style="margin-bottom: 10px"
+                    *ngFor="
+                      let article of articles
+                        | paginate
+                          : {
+                              itemsPerPage: 3,
+                              currentPage: page,
+                              totalItems: articles.length
+                            }
+                    "
+                  >
+                    <mat-card
+                      class="example-card"
+                      style="
+                        background-color: white;
+                        border: 2px solid rgb(0 0 0 / 12%);
+                      "
+                    >
+                      <mat-card-header style="justify-content: space-between">
+                        <mat-card-title>{{ article.name }}</mat-card-title>
+                        <mat-card-subtitle style="display: flex">
+                        </mat-card-subtitle>
+                        <img
+                          mat-card-md-image
+                          [src]="article.img"
+                          alt="article image"
+                        />
+                      </mat-card-header>
+                      <mat-card-content style="padding-top: 20px">
+                        <form class="row" [formGroup]="addArticleForm">
+                          <mat-form-field class="col" appearance="outline">
+                            <mat-label>Stock réel</mat-label>
+                            <input
+                              style="margin: 0"
+                              matInput
+                              type="number"
+                              name="quantity"
+                              [value]="article.quantity"
+                              [readonly]="true"
+                            />
+                          </mat-form-field>
+                          <mat-form-field class="col" appearance="outline">
+                            <mat-label>Stock calculé</mat-label>
+                            <input
+                              style="margin: 0"
+                              matInput
+                              type="number"
+                              name="calculatedQuantity"
+                              [value]="article.calculatedQuantity"
+                              (blur)="
+                                changeCalculatedQuantity(
+                                  $event.target.value,
+                                  article
+                                )
+                              "
+                            />
+                          </mat-form-field>
+                          <mat-form-field class="col" appearance="outline">
+                            <mat-label>Ecart</mat-label>
+                            <input
+                              style="margin: 0"
+                              matInput
+                              type="number"
+                              name="difference"
+                              [value]="article.difference"
+                              (keyup)="
+                                changeDifference($event.target.value, article)
+                              "
+                            />
+                          </mat-form-field>
+                        </form>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+                <pagination-controls
+                  class="text-center"
+                  (pageChange)="page = $event"
+                  *ngIf="searchArticles"
+                  previousLabel="Précédente"
+                  nextLabel="Suivante"
+                ></pagination-controls>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 10px;
+                  "
+                >
+                  <div style="display: flex; align-items: flex-end">
+                    <button mat-raised-button routerLink="..">
+                      <mat-icon>clear</mat-icon>
+                      Annuler
+                    </button>
+                  </div>
+                  <div style="display: flex; align-items: center">
+                    <button
+                      style="margin-top: 10px"
+                      mat-raised-button
+                      color="primary"
+                      (click)="checkArticles()"
+                      form="addInventaireForm"
+                    >
+                      <mat-icon>done</mat-icon>
+                      Vérifier
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- page check -->
+              <div *ngIf="check">
+                <p style="padding-top: 20px">
+                  Pour terminer cliquer sur <b>Confirmer</b>.
+                            </p>
+                            <h5 style="margin: 20px 0">Liste des articles ajoutés</h5>
+                            <div class="row mb-7">
+                                <div class="col" style="margin-bottom: 10px" *ngFor="
+                      let article of addedArticles
+                        | paginate
+                          : {
+                              itemsPerPage: 3,
+                              currentPage: page,
+                              totalItems: addedArticles.length
+                            }
+                    ">
+                                    <mat-card class="example-card" style="
+                        background-color: white;
+                        border: 2px solid rgb(0 0 0 / 12%);
+                      ">
+                                        <mat-card-header style="justify-content: space-between">
+                                            <mat-card-title>{{ article.name }}</mat-card-title>
+                                            <mat-card-subtitle style="display: flex">
+                                            </mat-card-subtitle>
+                                            <img mat-card-md-image [src]="article.img" alt="article image" />
+                                        </mat-card-header>
+                                        <mat-card-content style="padding-top: 20px">
+                                            <form class="row" [formGroup]="addArticleForm">
+                                                <mat-form-field class="col" appearance="outline">
+                                                    <mat-label>Stock réel</mat-label>
+                                                    <input style="margin: 0" matInput type="number" name="quantity" [value]="article.quantity" [readonly]="true" />
+                                                </mat-form-field>
+                                                <mat-form-field class="col" appearance="outline">
+                                                    <mat-label>Stock calculé</mat-label>
+                                                    <input style="margin: 0" matInput type="number" name="calculatedQuantity" [value]="article.calculatedQuantity" (blur)="
+                                changeCalculatedQuantity(
+                                  $event.target.value,
+                                  article
+                                )
+                              " [readonly]="true" />
+                                                </mat-form-field>
+                                                <mat-form-field class="col" appearance="outline">
+                                                    <mat-label>Ecart</mat-label>
+                                                    <input style="margin: 0" matInput type="number" name="difference" [value]="article.difference" (keyup)="
+                                changeDifference($event.target.value, article)
+                              " [readonly]="true" />
+                                                </mat-form-field>
+                                            </form>
+                                        </mat-card-content>
+                                        <mat-card-actions align="end">
+                                            <button mat-stroked-button color="warn">
+                          <mat-icon>delete</mat-icon>Supprimer
+                        </button>
+                                            <button mat-stroked-button>
+                          <mat-icon>edit</mat-icon>Modifier
+                        </button>
+                                        </mat-card-actions>
+                                    </mat-card>
+                                </div>
+                                <div style="
+                      display: flex;
+                      justify-content: space-between;
+                      margin-top: 10px;
+                    ">
+                                    <div style="display: flex; align-items: flex-end">
+                                        <button mat-raised-button routerLink="..">
+                        <mat-icon>clear</mat-icon>
+                        Annuler
+                      </button>
+                                    </div>
+                                    <div style="display: flex; align-items: center">
+                                        <button style="margin-top: 10px" mat-raised-button color="primary" (click)="addInventaire()" form="addInventaireForm">
+                        <mat-icon>done</mat-icon>
+                        Confirmer
+                      </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

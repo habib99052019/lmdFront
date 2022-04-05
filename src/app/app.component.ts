@@ -26,6 +26,12 @@ export class AppComponent {
 
     iconRegistry.addSvgIcon('thermometer', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/thermometer.svg"));
     iconRegistry.addSvgIcon('quantity', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/quantity.svg"));
+    iconRegistry.addSvgIcon('inventory', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/inventory.svg"));
+    iconRegistry.addSvgIcon('category', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/category.svg"));
+    iconRegistry.addSvgIcon('home', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/home.svg"));
+    iconRegistry.addSvgIcon('depot', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/depot.svg"));
+    iconRegistry.addSvgIcon('label', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/label.svg"));
+    iconRegistry.addSvgIcon('family', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/family.svg"));
 
   }
 }

@@ -146,4 +146,15 @@ getCoursesByMonth(number,year){
   return this.http.get(this.ApiPath + 'courses/month?number=' + number + '&year=' + year);
 }
 
+//get list of all family  
+getListOfAllFamilies(){
+  return this.http.get(this.ApiPath + '/family/all')
+}
+
+//get list of all articles by family  
+getArticlesByFamily(name) {
+  return this.http.get(this.ApiPath + '/family/articles/all?name=' + name)
+
+}
+
 }

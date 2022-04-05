@@ -19,6 +19,8 @@ import { ArticleComponent } from './depot/categorie/famille/type/article/article
 import { ShowArticleComponent } from './depot/categorie/famille/type/article/show-article/show-article.component';
 import { TypeComponent } from './depot/categorie/famille/type/type.component';
 import { DepotComponent } from './depot/depot.component';
+import { AddInventaireComponent } from './inventaires/add-inventaire/add-inventaire.component';
+import { InventairesComponent } from './inventaires/inventaires.component';
 
 
 const routes: Routes = [
@@ -138,7 +140,15 @@ const routes: Routes = [
   {
     path: 'courses/detail/:month/:year',
     component: DetailCourseComponent
-  }
+  },
+  {
+    path: 'inventaires',
+    component: InventairesComponent
+  },
+  {
+    path: 'inventaires/add',
+    component: AddInventaireComponent
+  },
 ];
 
 @NgModule({

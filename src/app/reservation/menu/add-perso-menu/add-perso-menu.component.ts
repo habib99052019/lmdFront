@@ -136,7 +136,8 @@ export class AddPersoMenuComponent implements OnInit {
 
 getPlatList(){
   this.service.getPlatListByCategory().pipe(take(1)).subscribe((plats:any[]) => {
-  
+    
+    
         this.DessertsList = plats[0];
         this.BoissonsList = plats[1];
         this.PatesList = plats[2];

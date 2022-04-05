@@ -6,6 +6,8 @@ import { AuthService } from './service/auth.service';
 import { ReservationServiceService } from './service/reservation-service.service';
 import { DynamicScriptLoaderService } from './service/dynamic-script-loader.service';
 import { throwIfAlreadyLoaded } from './guard/module-import.guard';
+import { StockService } from './service/stock.service';
+import { InventaireService } from './service/inventaire.service';
 
 @NgModule({
   declarations: [],
@@ -15,7 +17,11 @@ import { throwIfAlreadyLoaded } from './guard/module-import.guard';
     AuthGuard,
     AuthService,
     DynamicScriptLoaderService,
-    ReservationServiceService
+    ReservationServiceService,
+    StockService,
+    InventaireService
+    
+
   ],
 })
 export class CoreModule {

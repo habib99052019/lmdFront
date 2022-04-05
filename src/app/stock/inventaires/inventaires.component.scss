@@ -1,0 +1,11 @@
+.inventoriesHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inventoryItem {
+    background-color: #eee;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}

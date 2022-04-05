@@ -8,14 +8,23 @@
                             <h4 class="page-title">Stock</h4>
                         </li>
                         <li class="breadcrumb-item bcrumb-1">
-                            <!--href="#" onClick="return false;"-->
-                            <a>
+                            <a routerLink="/dashboard/main">
                                 <i class="fas fa-home"></i>Accueil</a>
                         </li>
-                        <li class="breadcrumb-item active">Stock</li>
+
+                        <li class="breadcrumb-item bcrumb-3">
+                            <a style=" cursor: pointer;">
+                                Stock
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-3">
+                            <a style=" cursor: pointer;" (click)="gotoAllDepotComponent()">
+                                Gestion de stock
+                            </a>
+                        </li>
                         <li class="breadcrumb-item bcrumb-3">
 
-                            Gestion de stock
+                            <span style="color: rgb(31, 29, 29) !important;font-size: 14px;">Toutes les articles</span>
 
                         </li>
                     </ul>
@@ -54,7 +63,7 @@
                                                 <!--<li><a style="cursor: pointer;" (click)="gotoTypeComponent(type.name,family.name)">{{type.name}}</a></li>-->
                                                 <li><a style="color: black !important;">{{type.name}}</a></li>
                                             </ul>
-                                            <div [routerLink]="['show', article._id]" *ngFor="let article  of type.listArticle" style="background-color: rgb(188, 217, 226);" class="col-lg-12 d-flex  align-items-center justify-content-between mb-2  pt-3 p-2 mr-5 ml-5 rounded ">
+                                            <div [routerLink]="['show', article._id]" *ngFor="let article  of type.listArticle" style="background-color:  rgb(229 230 233);cursor: pointer;" class="col-lg-12 d-flex  align-items-center justify-content-between mb-2  pt-3 p-2 mr-5 ml-5 rounded ">
 
                                                 <div style="display: flex;align-items: center;">
                                                     <img alt="image" src='{{ article.img }}' class="image" />

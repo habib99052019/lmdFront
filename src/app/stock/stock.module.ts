@@ -30,6 +30,8 @@ import { EditCourseComponent } from './courses/edit-course/edit-course.component
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ShowArticleComponent } from './depot/categorie/famille/type/article/show-article/show-article.component';
 import { DetailCourseComponent } from './courses/detail-course/detail-course.component';
+import { InventairesComponent } from './inventaires/inventaires.component';
+import { AddInventaireComponent } from './inventaires/add-inventaire/add-inventaire.component';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { DetailCourseComponent } from './courses/detail-course/detail-course.com
     ShowCourseComponent,
     EditCourseComponent,
     ShowArticleComponent,
-    DetailCourseComponent 
+    DetailCourseComponent,
+    InventairesComponent,
+    AddInventaireComponent 
     
    
   ],
