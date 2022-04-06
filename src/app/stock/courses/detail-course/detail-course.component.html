@@ -182,10 +182,13 @@
                             </pagination-template>
                         </div>-->
 
+                        <div style="display:flex;justify-content:flex-end;margin-top: 10px; margin-bottom: 15px;margin-right:20px;" *ngIf="filteredActive" (click)="initCourseList()">
+                            <span style="cursor: pointer;background-color: aliceblue;border-radius: 5px;width: 140px; ">
+                           <!--<mat-icon style="color:red;font-size:30px;">remove_circle_outline</mat-icon>--> 
+                            <p style="color:rgb(24, 25, 26);padding-top: 11px;padding-left: 8px;">Réinitialiser les filtres</p> 
+                           </span>
+                        </div>
 
-                        <span style="display:flex;justify-content:flex-end;margin-top: 10px; margin-bottom: 15px;margin-right:25px;cursor: pointer;" *ngIf="filteredActive" (click)="initCourseList()">
-                            <mat-icon style="color:red;font-size:30px;">remove_circle_outline</mat-icon>
-                         </span>
                         <div class="mt-4">
 
 
@@ -194,7 +197,7 @@
                                 <div style="display: flex; justify-content: space-between;"><span style="margin-right: 30px;">{{ labelMonth(course._id.month )}} {{course._id.year}} </span>
 
                                 </div>
-                                <div *ngFor="let c of course.transactions | paginate: config" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;cursor:pointer" (click)="selectedItem(course._id)">
+                                <div *ngFor="let c of course.transactions.slice().reverse() | paginate: config" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px;cursor:pointer" (click)="selectedItem(course._id)">
 
                                     <mat-card class="courseItem">
                                         <div style="display: flex; align-items: center">
@@ -213,10 +216,10 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        <div style="display: flex; align-items: center">
+                                        <!--<div style="display: flex; align-items: center">
                                             <mat-icon matListIcon *ngIf="typeExist(c.types, 'room')">hotel</mat-icon>
                                             <mat-icon matListIcon *ngIf="typeExist(c.types, 'food')">local_dining</mat-icon>
-                                        </div>
+                                        </div>-->
                                         <div style="display: flex; align-items: center">
                                             <mat-icon matListIcon>monetization_on</mat-icon>
                                             <h5 style="margin: 0">{{ c.price }} dt</h5>
