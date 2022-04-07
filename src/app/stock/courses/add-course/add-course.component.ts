@@ -56,13 +56,26 @@ config = {
 
 arrayCourses = [];
 code:number;
+dateNow:string;
+datetosent:any;
 
   constructor(
      private fb: FormBuilder,
      public router: Router,
      private service: StockService,
      private snackBar: MatSnackBar,
-    ) {}
+    ) {
+
+      var d = new Date();
+      this.datetosent = d; 
+      console.log(" today>>>>",formatDate(d, 'dd-MM-yyyy', 'en'));
+      this.dateNow = formatDate(d, 'dd-MM-yyyy', 'en');
+
+       
+    }
+
+
+
 
   ngOnInit(): void {
     if(this.article == undefined){
@@ -330,7 +343,7 @@ code:number;
     console.log(this.addCourseForm.get("date").value);
     console.log("list>>>>",this.addedArticles);*/
 
-   if (this.addCourseForm.invalid || !this.addedArticles.length) {
+   if (!this.addedArticles.length) {
     this.showNotification(
       'snackbar-danger',
        "formulaire invalid",
@@ -343,7 +356,7 @@ code:number;
     //test pour ajouter le type des icons
    const  objectTosent = {
       code: this.code,
-      date: formatDate(this.addCourseForm.get("date").value, 'yyyy-MM-dd', 'en'),
+      date: formatDate(this.datetosent, 'yyyy-MM-dd', 'en'),
       articleList: this.addedArticles,
       types: ["room"],
       price: this.totalPrice,

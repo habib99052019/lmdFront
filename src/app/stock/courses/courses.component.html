@@ -196,8 +196,18 @@
                                 </div>
                             </div>-->
 
-                            <span style="display:flex;justify-content:flex-end;margin-top: 10px; margin-bottom: 15px;margin-right:25px;cursor: pointer;" *ngIf="filteredActive" (click)="initCourseList()">
-                                <mat-icon style="color:red;font-size:30px;">remove_circle_outline</mat-icon> </span>
+                            <!--<span style="display:flex;justify-content:flex-end;margin-top: 10px; margin-bottom: 15px;margin-right:25px;cursor: pointer;" *ngIf="filteredActive" (click)="initCourseList()">
+                                <mat-icon style="color:red;font-size:30px;">remove_circle_outline</mat-icon>
+                            
+                            </span>-->
+
+                            <div style="display:flex;justify-content:flex-end;margin-top: 10px; margin-bottom: 15px;margin-right:20px;" *ngIf="filteredActive" (click)="initCourseList()">
+                                <span style="cursor: pointer;background-color: aliceblue;border-radius: 5px;width: 140px; ">
+                              
+                                <p style="color:rgb(24, 25, 26);padding-top: 11px;padding-left: 8px;">Réinitialiser les filtres</p> 
+                               </span>
+                            </div>
+
                             <div *ngFor="let course of ListCourses | paginate: config" style="display: flex; flex-direction: column;">
 
                                 <div style="display: flex; justify-content: space-between;"><span style="margin-right: 30px;margin-top: 5px;">{{ labelMonth(course._id.month )}}  {{course._id.year}}  </span>
@@ -230,7 +240,7 @@
                                             <mat-icon matListIcon>monetization_on</mat-icon>
                                             <h5 style="margin: 0">{{ c.price }} dt</h5>
                                         </div>
-                                        <div style="display: flex; align-items: center">
+                                        <div style="display: flex;width: 100px;justify-content: space-between;">
                                             <button mat-icon-button color="accent" class="btn-tbl-edit" [routerLink]="['edit',c._id]">
                                               <mat-icon aria-label="Edit" class="col-white"
                                                 >edit

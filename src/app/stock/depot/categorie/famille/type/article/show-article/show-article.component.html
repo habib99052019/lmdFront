@@ -21,6 +21,9 @@
         <div class="row" *ngIf="this.article">
             <div class="col-md-12 col-sm-12">
                 <div class="card" style="height: 100%" style="margin-bottom: 30px">
+                    <div style="margin-left: 10px; margin-top: 5px;">
+                        <span routerLink="../.."><mat-icon style="font-size: 55px; color: rgb(50, 76, 228); cursor: pointer;">reply</mat-icon></span>
+                    </div>
                     <div class="card-body">
                         <div style="display: flex; justify-content: space-between">
                             <div style="display: flex; align-items: center">
@@ -36,7 +39,7 @@
                                     <div style="display: flex;align-items: center;justify-content: space-between;">
                                         <div style="display: flex;align-items: center;">
                                             <mat-icon style="margin-right: 5px;">assignment</mat-icon>
-                                            name
+                                            nom
                                         </div>
 
                                         <h5 style="margin: 0">{{article.name}}</h5>
@@ -48,7 +51,7 @@
                                             <mat-icon style="margin-right: 5px;" svgIcon="quantity"></mat-icon>
                                             quantite
                                         </div>
-                                        <h5 style="margin: 0">{{article.quantity}} kg</h5>
+                                        <h5 style="margin: 0">{{article.quantity}} {{article.unity}} </h5>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
@@ -107,13 +110,6 @@
                             </ul>
                         </div>
 
-
-                        <div style="display: flex; align-items: flex-end">
-                            <button mat-raised-button routerLink="../..">
-                              <mat-icon>clear</mat-icon>
-                              Annuler
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
