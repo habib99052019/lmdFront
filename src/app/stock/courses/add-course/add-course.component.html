@@ -60,8 +60,8 @@
                             </div>
                         </form>-->
 
-                        <div style="font-size: 7px;margin-top: 10px;margin-bottom: 4px;">
-                            <mat-form-field style="width: 8%" appearance="outline">
+                        <div class="autoDate">
+                            <mat-form-field class="mat-form" appearance="outline">
                                 <input [readonly]="true" matInput type="text" [value]='this.dateNow'>
                             </mat-form-field>
                         </div>
@@ -100,7 +100,7 @@
 
 
 
-                                <div class="col">
+                                <!--<div class="col">
                                     <button mat-raised-button color="primary" style="margin-right: 10px; margin-bottom: 10px">
                                        <mat-icon>add</mat-icon>
                                         Nouvel article inconnu
@@ -109,13 +109,13 @@
                                         <mat-icon>clear</mat-icon>
                                           annuler
                                      </button>
-                                </div>
+                                </div>-->
                             </div>
 
 
 
                             <div class="row mb-7">
-                                <div class="col" style="margin-bottom: 10px" *ngFor="let article of searchArticles | paginate: config">
+                                <div class="col-xl-4 col-md-4 col-sm-12" style="margin-bottom: 10px;" *ngFor="let article of searchArticles | paginate: config">
                                     <mat-card class="example-card" style="border: 3px solid #6c757d;">
                                         <mat-card-header style="justify-content: space-between">
                                             <mat-card-title>{{article.name}}</mat-card-title>
@@ -198,7 +198,7 @@
                                                <mat-icon>clear</mat-icon>Annuler
                                            </button>
                                             <button style="margin-left: 10px" mat-raised-button color="primary" *ngIf="article.isHide" (click)="addArticleToCourse(article)">
-                                              <mat-icon matSuffix>add_shopping_cart</mat-icon>
+                                              <mat-icon>add_shopping_cart</mat-icon>
                                               Ajouter à la course
                                             </button>
 
@@ -252,14 +252,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col" *ngIf="!showAddNewArticle" style="padding-bottom: 10px">
-                                        <mat-card class="example-card" style="background-color: #eee;height: 365px;display: flex;justify-content: center;align-items: center;" (click)="addNewArticle()">
+                                        <mat-card class="example-card" style="background-color: #eee;height: 365px;display: flex;justify-content: center;align-items: center;width: 365px" (click)="addNewArticle()">
                                             <div style="text-align: center">
                                                 <mat-icon style="transform: scale(2)">add</mat-icon>
                                             </div>
                                         </mat-card>
                                     </div>
 
-                                    <div class="col" style="padding-bottom: 10px" *ngFor="let article of addedArticles">
+                                    <div class="col-xl-4 col-md-4 col-sm-12" style="padding-bottom: 10px" *ngFor="let article of addedArticles">
                                         <mat-card class="example-card">
                                             <mat-card-header style="justify-content: space-between">
                                                 <mat-card-title>{{ article.name }}</mat-card-title>
@@ -286,7 +286,7 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                                                            <!--<mat-icon svgIcon="thermometer"></mat-icon>-->
+                                                            <mat-icon svgIcon="thermometer"></mat-icon>
                                                             <h5 style="margin: 0">{{ article.unity }}</h5>
                                                         </div>
 
@@ -312,14 +312,14 @@
                                             </mat-card-content>
                                             <mat-card-actions style="display:flex; justify-content: space-between;" *ngIf="!article.isHide">
                                                 <button mat-stroked-button color="warn" (click)="removeArticle(article)">
-                                                   <mat-icon>delete</mat-icon>Supprimer
+                                                   <mat-icon >delete</mat-icon> Supprimer
                                                 </button>
                                                 <button mat-stroked-button (click)="updateArticle(article)">
-                                                  <mat-icon>edit</mat-icon>Modifier
+                                                  <mat-icon >edit</mat-icon>Modifier  
                                                 </button>
                                                 <button mat-stroked-button (click)="closeCourseArticle(article._id)">
                                                     <mat-icon>clear</mat-icon>
-                                                    Annuler
+                                                     Annuler
                                                </button>
                                             </mat-card-actions>
                                             <!--add edit icon here-->

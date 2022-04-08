@@ -39,7 +39,7 @@ export class EditCourseComponent implements OnInit {
 
 config = {
   id: 'custom',
-  itemsPerPage: 5,
+  itemsPerPage: 3,
   currentPage: 1,
   totalItems: 0
 };
@@ -269,6 +269,10 @@ search(query:string){
         this.addArticleToCourseForm.get("price").value,
     };
     this.addedArticles.push(article);
+    const index =  this.searchArticles.splice(this.searchArticles.findIndex(a => a._id === item._id) , 1)
+ 
+    console.log("index >>>", index);
+     this.config.totalItems = this.searchArticles.length;
     this.price = "";
     this.quantity = "";
     this.addArticleToCourseForm.patchValue({
@@ -307,7 +311,7 @@ search(query:string){
     }
      //test pour ajouter le type des icons
    const  objectTosent = {
-    code: "123",
+    code: this.Course.code,
     date: this.Course.date,
     articleList: this.addedArticles,
     types: ["room"],
@@ -352,6 +356,8 @@ search(query:string){
     },0)
     this.totalPrice = totalprice;
     this.showOldPrice = false;
+    this.searchArticles.push(article);
+    this.config.totalItems = this.searchArticles.length;
   }
 
 

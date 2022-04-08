@@ -47,7 +47,7 @@ export class AddCourseComponent implements OnInit {
   /* /////////// start custom pagination ///////// */
 config = {
   id: 'custom',
-  itemsPerPage: 5,
+  itemsPerPage: 3,
   currentPage: 1,
   totalItems: 0
 };
@@ -58,6 +58,8 @@ arrayCourses = [];
 code:number;
 dateNow:string;
 datetosent:any;
+
+newArticleArray: any = [];
 
   constructor(
      private fb: FormBuilder,
@@ -157,8 +159,8 @@ datetosent:any;
   getListOfArticles(){
     this.service.getListOfArticles().pipe(take(1)).subscribe((data : any)=>{
       this.ListArticles = data;
-      
-      console.log("data>>>>", data.length);
+   
+      console.log("data>>>>", data);
       
     })
   }
@@ -245,7 +247,7 @@ datetosent:any;
        ) 
        : this.ListArticles;
 
-      console.log(this.ListArticles);
+      console.log("search articls",this.ListArticles,this.searchArticles );
       this.totalLength = this.searchArticles.length;
       this.config.totalItems = this.searchArticles.length;
       console.log("articles length>>>",this.totalLength);
@@ -306,8 +308,8 @@ datetosent:any;
 
 
   addArticleToCourse = (item) => {
-    console.log("articles>>>",item);
-    
+    console.log("articles>>>",item._id);
+   
    if (this.addArticleToCourseForm.invalid) {
       return;
     }
@@ -323,7 +325,16 @@ datetosent:any;
         this.addArticleToCourseForm.get("quantity").value *
         this.addArticleToCourseForm.get("price").value,
     };
+    
     this.addedArticles.push(article);
+   const index =  this.searchArticles.splice(this.searchArticles.findIndex(a => a._id === item._id) , 1)
+ 
+   console.log("index >>>", index);
+    this.config.totalItems = this.searchArticles.length;
+   
+   
+    console.log("list articles >>>", this.searchArticles);
+    
     this.price = "";
     this.quantity = "";
     this.addArticleToCourseForm.patchValue({
@@ -381,7 +392,8 @@ datetosent:any;
     console.log("article",article);
     this.totalPrice = this.totalPrice - article.totalPrice;
     this.addedArticles.splice(this.addedArticles.findIndex(a => a.id === article._id) , 1)
-
+    //this.searchArticles.push(article);
+   // this.config.totalItems = this.searchArticles.length;
   }
 
 
@@ -431,11 +443,10 @@ const objtosent = {
   this.inputData2,
      
  };
-//const summerFruitsCopy = [...this.addedArticles];
+
 const targetIndex = this.addedArticles.findIndex(f=>f.id === article.id); 
 console.log("index>>>", targetIndex );
 
-//summerFruitsCopy[targetIndex] = objtosent;
 this.addedArticles[targetIndex]  = objtosent;
 console.log("list>>>>", this.addedArticles);
  const totalprice = this.addedArticles.reduce((acc,cur) => {
