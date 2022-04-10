@@ -41,7 +41,8 @@ object :any;
 
 startDate:any;
 startDate2:any;
-
+existe = false;
+showpagination = true;
   constructor(
     private route: ActivatedRoute, 
     private fb: FormBuilder,
@@ -114,8 +115,10 @@ startDate2:any;
 
   
   initCourseList(){
-   
+    this.getCourseByMonth();
     this.filteredActive = false;
+    this.showpagination = true;
+    this.existe = false;
     this.coursesFilterForm.patchValue({
      from: [""],
      to: [""],
@@ -219,6 +222,13 @@ deepFilter(){
           let obj = resp.find(obj => (obj._id.month == this.month && obj._id.year == this.year));
           console.log(obj);
           this.ListCourses = [obj];
+          if(obj == undefined){
+            this.existe = true; 
+            this.showpagination = false;
+          }else{
+            this.existe = false ;
+            this.showpagination = true;
+          }
            // this.ListCourses = resp;
            // this.totalLength = resp.length;
             this.config.totalItems = obj.length;
@@ -235,6 +245,13 @@ deepFilter(){
                           let obj = resp.find(obj => ( obj._id.month == this.month && obj._id.year == this.year ));
                           console.log(obj);
                           this.ListCourses = [obj];
+                          if(obj == undefined){
+                            this.existe = true; 
+                            this.showpagination = false;
+                          }else{
+                            this.existe = false ;
+                            this.showpagination = true;
+                          }
                           //this.totalLength = resp.length;
                           this.config.totalItems = obj.length;
                           this.filteredActive = true;
@@ -248,22 +265,39 @@ deepFilter(){
             this.service.getListCourseByPrice(prixMin,prixMax).subscribe((resp:any) => {
                         console.log("resp>>", resp);
                         let obj = resp.find(obj => ( obj._id.month == this.month && obj._id.year == this.year) );
-                        console.log("price object>>",obj);
+                        console.log("price object>>",[obj]);
                         this.ListCourses = [obj];
+                        if(obj == undefined){
+                          this.existe = true; 
+                          this.showpagination = false;
+                        }else{
+                          this.existe = false ;
+                          this.showpagination = true;
+                        }
                        // this.totalLength = resp.length;
                         this.config.totalItems = obj.length;
                         this.filteredActive = true;
               })
           
       }else if(this.coursesFilterForm.get('person').value != ""){
+        console.log("test person>>>>");
+        
           let name = this.coursesFilterForm.get('person').value;
-          /*this.search(name)*/
+        
 
           this.service.getListCourseByPerson(name).subscribe((resp:any) => {
             console.log("resp>>", resp);
             let obj = resp.find(obj => ( obj._id.month == this.month && obj._id.year == this.year) );
             console.log(obj);
             this.ListCourses = [obj];
+            if(obj == undefined){
+              this.existe = true; 
+              this.showpagination = false;
+            }else{
+              this.existe = false ;
+              this.showpagination = true;
+            }
+            
            // this.ListCourses = resp;
            // this.totalLength = resp.length;
             this.config.totalItems = obj.length;

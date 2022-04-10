@@ -260,11 +260,14 @@
                                 </div>
 
                             </div>
+                            <div style="text-align: center;;margin-bottom: 40px;" *ngIf="this.existe">
+                                Aucun course trouver
+                            </div>
                             <!--previousLabel="" nextLabel=""  (pageChange)="page = $event"  
                                 <pagination-controls class="text-center" (pageChange)="page = $event" *ngIf="ListCourses" previousLabel="précédente" nextLabel="suivant"></pagination-controls>
                             -->
 
-                            <pagination-template class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
+                            <pagination-template class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event" *ngIf="this.showpagination">
                                 <div class="custom-pagination">
                                     <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
 

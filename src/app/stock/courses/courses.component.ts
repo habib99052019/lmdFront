@@ -72,6 +72,8 @@ monthItem = [
 filtred = false;
 canselFiltred = false;
 showFiltred = true;
+existe = false;
+showpagination = true;
 
   constructor(
       private fb: FormBuilder,
@@ -284,6 +286,13 @@ deepFilter(){
           let person = this.coursesFilterForm.get('person').value;
         this.service.getListCourseByallOptions(prixMin, prixMax, from, to , person).subscribe((resp:any)=>{
             this.ListCourses = resp;
+            if(resp.length == 0){
+              this.existe = true; 
+              this.showpagination = false;
+            }else{
+              this.existe = false ;
+              this.showpagination = true;
+            }
            // this.totalLength = resp.length;
             this.config.totalItems = resp.length;
             this.filteredActive = true;
@@ -297,6 +306,13 @@ deepFilter(){
               this.service.getListCourseByDateRange(from,to).subscribe((resp:any) => {
                           console.log("resp>>", resp);
                           this.ListCourses = resp;
+                          if(resp.length == 0){
+                            this.existe = true; 
+                            this.showpagination = false;
+                          }else{
+                            this.existe = false ;
+                            this.showpagination = true;
+                          }
                           //this.totalLength = resp.length;
                           this.config.totalItems = resp.length;
                           this.filteredActive = true;
@@ -310,6 +326,13 @@ deepFilter(){
             this.service.getListCourseByPrice(prixMin,prixMax).subscribe((resp:any) => {
                         console.log("resp>>", resp);
                         this.ListCourses = resp;
+                        if(resp.length == 0){
+                          this.existe = true; 
+                          this.showpagination = false;
+                        }else{
+                          this.existe = false ;
+                          this.showpagination = true;
+                        }
                        // this.totalLength = resp.length;
                         this.config.totalItems = resp.length;
                         this.filteredActive = true;
@@ -322,6 +345,13 @@ deepFilter(){
           this.service.getListCourseByPerson(name).subscribe((resp:any) => {
             console.log("resp>>", resp);
             this.ListCourses = resp;
+            if(resp.length == 0){
+              this.existe = true; 
+              this.showpagination = false;
+            }else{
+              this.existe = false ;
+              this.showpagination = true;
+            }
            // this.totalLength = resp.length;
             this.config.totalItems = resp.length;
             this.filteredActive = true;
@@ -344,6 +374,8 @@ deepFilter(){
   initCourseList(){
      this.getListCourse();
      this.filteredActive = false;
+     this.showpagination = true;
+     this.existe = false;
      this.coursesFilterForm.patchValue({
       from: [""],
       to: [""],

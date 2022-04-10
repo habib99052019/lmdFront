@@ -356,8 +356,8 @@ search(query:string){
     },0)
     this.totalPrice = totalprice;
     this.showOldPrice = false;
-    this.searchArticles.push(article);
-    this.config.totalItems = this.searchArticles.length;
+  //  this.searchArticles.push(article);
+   // this.config.totalItems = this.searchArticles.length;
   }
 
 
