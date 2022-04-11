@@ -113,18 +113,19 @@ showpagination = true;
       this.config.totalItems = data.length;*/
 
      // this.ListCourses = data;
+     this.ListCourses =  data.sort((a, b) => ( b._id.month - a._id.month ));
       this.filterData = data;
       this.totalLength = data.length;
       this.config.totalItems = data.length;
 
 
-      this.ListCourses =  data.sort((a, b) => (a._id.month - b._id.month && a._id.year - b._id.year));
+     
 
      
 
-/* get item by month */
-  let obj = this.ListCourses.find(obj => obj._id.month == 5);
-  console.log(obj);
+
+ /* let obj = this.ListCourses.find(obj => obj._id.month == 5);
+  console.log(obj);*/
       
   })
   }

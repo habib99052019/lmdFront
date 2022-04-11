@@ -20,6 +20,17 @@
     mat-icon {
         font-size: 18px !important;
     }
+    .custom-pagination {
+        margin-right: 26% !important;
+        margin-left: 10%;
+    }
+    .options {
+        display: flex !important;
+        align-items: center !important;
+        padding-left: 8px !important;
+        width: 80px !important;
+        margin-left: 10px !important;
+    }
 }
 
 $color-outline: rgb(183, 182, 185);
@@ -86,4 +97,10 @@ p {
     width: 20px;
     font-size: 9px !important;
     height: 70px !important;
+}
+
+.options {
+    display: flex;
+    width: 100px;
+    justify-content: space-between;
 }

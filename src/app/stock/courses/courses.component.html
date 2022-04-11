@@ -240,7 +240,7 @@
                                             <mat-icon matListIcon>monetization_on</mat-icon>
                                             <h5 style="margin: 0">{{ c.price }} dt</h5>
                                         </div>
-                                        <div style="display: flex;width: 100px;justify-content: space-between;">
+                                        <div class="options">
                                             <button mat-icon-button color="accent" class="btn-tbl-edit" [routerLink]="['edit',c._id]">
                                               <mat-icon aria-label="Edit" class="col-white"
                                                 >edit
@@ -267,7 +267,7 @@
                                 <pagination-controls class="text-center" (pageChange)="page = $event" *ngIf="ListCourses" previousLabel="précédente" nextLabel="suivant"></pagination-controls>
                             -->
 
-                            <pagination-template class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event" *ngIf="this.showpagination">
+                            <pagination-template class="pagination" class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event" *ngIf="this.showpagination">
                                 <div class="custom-pagination">
                                     <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
 

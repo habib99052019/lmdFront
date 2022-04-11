@@ -315,8 +315,8 @@ BoissonsList: any[] = [
   ]
 
   NaturSaison: any[] = [
-    "Haut de saison",
-     "Bas de saison"  
+    "Haute saison",
+     "Basse saison"  
   ]
 
   
@@ -427,7 +427,7 @@ getErrorMessage() {
 
 showNatureSaisonType(event:MatSelectChange){
   this.nature = event.value;
-  if(event.value === 'Haut de saison'){
+  if(event.value === 'Haute saison'){
       this.showHautSaison  = true;
       this.showBasSaison = false;
   }else{

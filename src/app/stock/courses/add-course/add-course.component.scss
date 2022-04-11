@@ -73,6 +73,7 @@ p {
     font-size: 7px;
     margin-top: 10px;
     margin-bottom: 4px;
+    width: 1020px;
 }
 
 .mat-form {
@@ -83,4 +84,28 @@ p {
     .mat-form {
         width: 22%
     }
+    .add {
+        background-color: #eee;
+        height: 365px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 90% !important;
+        margin: 0 auto !important;
+    }
+    .autoDate {
+        font-size: 7px;
+        margin-top: 10px;
+        margin-bottom: 4px;
+        width: 540px;
+    }
+}
+
+.add {
+    background-color: #eee;
+    height: 365px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 365px;
 }
