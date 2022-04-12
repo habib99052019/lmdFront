@@ -6,7 +6,6 @@ p {
 
 .custom-pagination .page-number {
     display: inline-block;
-    /* padding: 5px 12px; */
     background: transparent;
     margin: 0px 4px;
     border-radius: 5px;
@@ -15,7 +14,6 @@ p {
 
 .page-number.current {
     background: #2A303A !important;
-    /* border: 2px solid #458873; */
 }
 
 .page-number span {
@@ -40,5 +38,38 @@ p {
     pointer-events: none;
 }
 
+.newarticle {
+    background-color: red;
+}
+
 
 /* /////////// end custom pagination ///////// */
+
+@media (max-width: 767px) {
+    .custom-pagination {
+        margin-right: 26% !important;
+        margin-left: 10%;
+    }
+    .mat-card {
+        transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+        display: block;
+        position: relative;
+        padding: 16px;
+        border-radius: 4px;
+    }
+    mat-form-field {
+        width: 90% !important;
+    }
+    .actions {
+        font-size: 8px !important;
+    }
+    .icon {
+        margin-top: 1px;
+        font-size: 19px !important;
+    }
+    .mat-card-actions:not(.mat-card-actions-align-end) .mat-stroked-button:first-child {
+        margin-left: 0;
+        margin-right: 0px;
+        padding-left: 3%;
+    }
+}

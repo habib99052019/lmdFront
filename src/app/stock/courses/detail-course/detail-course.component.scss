@@ -87,3 +87,21 @@ p {
     font-size: 9px !important;
     height: 70px !important;
 }
+
+.reply {
+    font-size: 55px;
+    color: rgb(50, 76, 228) !important;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .custom-pagination {
+        margin-right: 26% !important;
+        margin-left: 10%;
+    }
+    .reply {
+        font-size: 55px !important;
+        color: rgb(50, 76, 228) !important;
+        cursor: pointer;
+    }
+}

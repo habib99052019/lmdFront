@@ -23,7 +23,7 @@
             <div class="col-md-12 col-sm-12">
                 <div class="card" style="height: 100%" style="margin-bottom: 30px">
                     <span routerLink=".." style="margin-bottom: 20px;margin-left: 20px;margin-top: 8px;">
-                        <mat-icon style="font-size: 55px; color: rgb(50, 76, 228) !important; cursor: pointer;">
+                        <mat-icon class="reply">
                             reply
                         </mat-icon>
                     </span>
@@ -31,12 +31,12 @@
                         <div style="display: flex; justify-content: space-between">
                             <div style="display: flex; align-items: center">
                                 <mat-icon matListIcon>shopping_cart</mat-icon>
-                                <h5 style="margin: 0">Course 150</h5>
+                                <h5 class="c_number">Course {{this.code}}</h5>
                             </div>
                             <div style="display: flex;flex-direction: column;align-items: center;">
                                 <div style="display: flex;align-items: center;padding-bottom: 10px;color: rgb(0 0 0 / 20%);">
-                                    <mat-icon matListIcon>monetization_on</mat-icon>
-                                    <h5 style="margin: 0 0 0 5px">{{ totalPrice }} DT</h5>
+                                    <mat-icon class="icon_price" matListIcon>monetization_on</mat-icon>
+                                    <h5 class="price">{{ totalPrice }} DT</h5>
                                 </div>
                             </div>
                         </div>
@@ -63,6 +63,7 @@
                         <div class="autoDate">
                             <mat-form-field class="mat-form" appearance="outline">
                                 <input [readonly]="true" matInput type="text" [value]='this.dateNow'>
+                                <mat-icon matSuffix>today</mat-icon>
                             </mat-form-field>
                         </div>
 
@@ -245,7 +246,7 @@
                             <mat-divider style="margin: 20px 0; width: 30%"></mat-divider>
                         </div>
                         <div>
-                            <h5>Articles</h5>
+                            <h5 class="title">Articles</h5>
                             <div class="row" style="padding: 10px">
                                 <div style="margin: 20px 0; text-align: center" *ngIf="showAddNewArticle && !addedArticles.length">
                                     Aucun article n'a été ajouté
@@ -312,14 +313,25 @@
                                             </mat-card-content>
                                             <mat-card-actions style="display:flex; justify-content: space-between;" *ngIf="!article.isHide">
                                                 <button mat-stroked-button color="warn" (click)="removeArticle(article)">
-                                                   <mat-icon >delete</mat-icon> Supprimer
+                                                    <div style="display: flex; align-items: center;">
+                                                        <mat-icon class="icon">delete</mat-icon>
+                                                        <span class="actions">Supprimer</span>
+                                                    </div>
+                                                   
                                                 </button>
                                                 <button mat-stroked-button (click)="updateArticle(article)">
-                                                  <mat-icon >edit</mat-icon>Modifier  
+                                                    <div style="display: flex; align-items: center;">
+                                                        <mat-icon class="icon">edit</mat-icon>
+                                                        <span class="actions">Modifier</span>
+                                                    </div>
+                                                   
                                                 </button>
                                                 <button mat-stroked-button (click)="closeCourseArticle(article._id)">
-                                                    <mat-icon>clear</mat-icon>
-                                                     Annuler
+                                                    <div style="display: flex; align-items: center;">
+                                                        <mat-icon class="icon">clear</mat-icon>
+                                                        <span class="actions">Annuler</span>
+                                                    </div>
+                                                   
                                                </button>
                                             </mat-card-actions>
                                             <!--add edit icon here-->
@@ -343,8 +355,8 @@
                             </div>
                             <div style="display: flex;flex-direction: column;align-items: center;color: rgb(0 0 0 / 20%);">
                                 <div style="display: flex; align-items: center">
-                                    <mat-icon matListIcon>monetization_on</mat-icon>
-                                    <h5 style="margin: 0 0 0 5px">{{ totalPrice }} DT</h5>
+                                    <mat-icon class="icon_price" matListIcon>monetization_on</mat-icon>
+                                    <h5 class="price">{{ totalPrice }} DT</h5>
                                 </div>
                                 <button style="margin-top: 10px" mat-raised-button color="primary" *ngIf="showAddNewArticle" (click)="addCourse()">
                                    <mat-icon>done</mat-icon>
