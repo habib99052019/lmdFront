@@ -72,12 +72,13 @@
                                                         <img alt="image" src='{{ article.img }}' class="image" />
                                                         <p style="margin-left: 7px;">{{article.name}}</p>
                                                     </div>
-                                                    <p>Marque: {{article.marque}}</p>
+                                                    <p>Marque : {{article.marque}}</p>
                                                     <span>
                                                         <mat-icon style="margin-left: 12px;">shopping_cart</mat-icon>
+                                                       
                                                         <div style="display: flex;">
-                                                           <span style="font-weight: bold;"> Quantite </span>
-                                                    <p style="margin-left: 5px;">{{article.quantity}}kg</p>
+                                                            <span style="font-weight:normal;"> Quantite </span>
+                                                    <p style="margin-left: 5px;font-weight: bold">{{article.quantity}} {{article.unity}}</p>
                                                 </div>
                                                 </span>
 
