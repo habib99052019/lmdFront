@@ -7,9 +7,93 @@
     background-color: rgb(0 0 0 / 20%);
 }
 
-.inventoryItem {
-    background-color: #eee;
+.boxDiv {
     display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
+    flex-direction: column;
+    font-weight: bold;
+    color: rgb(56, 56, 56);
+    border-radius: 12px;
+    box-shadow: 0.5px 0.5px 6px 0.5px #9e9e9e;
+}
+
+img {
+    border-top-right-radius: 12px 12px;
+    border-top-left-radius: 12px 12px;
+}
+
+.panel-header {
+    height: 80px;
+    border-bottom: 1px solid rgb(0 0 0 / 14%),
+}
+
+.article-img {
+    border-radius: 10px;
+    @media (max-width: 420px) {
+        height: 50px;
+        width: 60px;
+    }
+}
+
+.padding {
+    padding: 30px;
+    @media (max-width: 420px) {
+        padding: 10px 0;
+    }
+}
+
+:host ::ng-deep .mat-expansion-panel-body {
+    @media (max-width: 420px) {
+        padding: 0 10px 16px !important;
+        ;
+    }
+}
+
+.save-draft-btn {
+    margin: 20px 0;
+    float: right;
+    @media (max-width: 420px) {
+        padding: 0;
+        width: 100%;
+        float: none;
+    }
+}
+
+:host ::ng-deep .mat-button-wrapper {
+    @media (max-width: 420px) {
+        font-size: 12px;
+    }
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.full-width-btn {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+:host ::ng-deep .mat-expansion-panel-header {
+    @media (max-width: 420px) {
+        padding-left: 5px;
+        padding-right: 10px;
+    }
+}
+
+.panel-image {
+    width: 80px;
+    height: 60px;
+    border-radius: 10px;
+    margin-right: 10px;
+    @media (max-width: 420px) {
+        width: 50px;
+        height: 40px;
+    }
+}
+
+.panel-title {
+    @media (max-width: 420px) {
+        font-size: 12px;
+    }
 }

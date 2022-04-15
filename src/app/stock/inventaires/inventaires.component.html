@@ -20,154 +20,148 @@
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="card" style="height: 100%">
-                    <div class="card-body">
+                    <div class="card-body" style="padding: 30px">
                         <div class="inventoriesHeader">
-                            <h3 style="margin: 0">
-                                Liste des inventaires
-                            </h3>
+                            <h3 style="margin: 0">Liste des inventaires</h3>
                             <div>
-                                <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" style="margin-right: 10px" (click)="showFiltersAction()">
-                    <mat-icon>filter_list</mat-icon>
-                  </button>
+                                <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" style="margin-right: 10px" (click)="showFiltersAction()" *ngIf="!loading && inventaires.length">
+                  <mat-icon>filter_list</mat-icon>
+                </button>
                                 <button mat-mini-fab color="primary" routerLink="add" aria-label="Example icon button with a menu icon">
-                    <mat-icon>add</mat-icon>
-                  </button>
+                  <mat-icon>add</mat-icon>
+                </button>
                             </div>
                         </div>
+                        <div style="padding: 30px" *ngIf="loading">
+                            <mat-spinner style="margin: 0 auto"></mat-spinner>
+                        </div>
+
                         <!--- start >>> filters -->
 
-                        <!--<form class="row" [formGroup]="filterForm" *ngIf="showFilters">
-                <div class="row">
-                  <div class="col">
-                    <mat-form-field
-                      style="width: 100%"
-                      class="mb-3"
-                      appearance="outline"
-                    >
-                      <mat-label>De</mat-label>
-                      <input
-                        matInput
-                        formControlName="from"
-                        [matDatepicker]="picker1"
-                      />
-                      <mat-datepicker-toggle
-                        matSuffix
-                        [for]="picker1"
-                      ></mat-datepicker-toggle>
-                      <mat-datepicker #picker1></mat-datepicker>
-                      <mat-error *ngIf="">
-                        La date de début est <strong>invalide</strong>
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col">
-                    <mat-form-field
-                      style="width: 100%"
-                      class="mb-3"
-                      appearance="outline"
-                    >
-                      <mat-label>À</mat-label>
-                      <input
-                        matInput
-                        formControlName="to"
-                        [matDatepicker]="picker2"
-                      />
-                      <mat-datepicker-toggle
-                        matSuffix
-                        [for]="picker2"
-                      ></mat-datepicker-toggle>
-                      <mat-datepicker #picker2></mat-datepicker>
-                      <mat-error *ngIf="">
-                        La date de fin est <strong>invalide</strong>
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col">
-                    <mat-form-field
-                      style="width: 100%"
-                      class="mb-3"
-                      appearance="outline"
-                    >
-                      <mat-label>Personne</mat-label>
-                      <input
-                        matInput
-                        formControlName="person"
-                        type="text"
-                        [value]=""
-                      />
-                      <mat-icon matSuffix>person</mat-icon>
-                    </mat-form-field>
-                  </div>
-                  <div class="col">
-                    <mat-form-field
-                      style="width: 100%"
-                      class="mb-3"
-                      appearance="outline"
-                    >
-                      <mat-label>Désignation</mat-label>
-                      <input
-                        matInput
-                        formControlName="label"
-                        type="text"
-                        [value]=""
-                      />
-                      <mat-icon matSuffix>person</mat-icon>
-                    </mat-form-field>
-                  </div>
-                  <div class="col">
-                    <button
-                      mat-mini-fab
-                      routerLink="add"
-                      aria-label="Example icon button with a menu icon"
-                    >
-                      <mat-icon>search</mat-icon>
-                    </button>
-                  </div>
-                </div>
-              </form> -->
+                        <form style="padding-top: 30px" class="row" [formGroup]="filterForm" *ngIf="showFilters">
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field style="width: 100%" class="mb-3" appearance="outline">
+                                        <mat-label>De</mat-label>
+                                        <input matInput formControlName="from" [matDatepicker]="picker1" (dateChange)="deepFilter()" />
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                        <mat-error *ngIf="">
+                                            La date de début est <strong>invalide</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field style="width: 100%" class="mb-3" appearance="outline">
+                                        <mat-label>À</mat-label>
+                                        <input matInput formControlName="to" [matDatepicker]="picker2" (dateChange)="deepFilter()" />
+                                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                        <mat-error *ngIf="">
+                                            La date de fin est <strong>invalide</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field style="width: 100%" class="mb-3" appearance="outline">
+                                        <mat-label>Créateur</mat-label>
+                                        <input matInput formControlName="person" type="text" [value]="" (change)="deepFilter()" />
+                                        <mat-icon matSuffix>person</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field style="width: 100%" class="mb-3" appearance="outline">
+                                        <mat-label>Désignation</mat-label>
+                                        <input matInput formControlName="label" type="text" [value]="" (change)="deepFilter()" />
+                                        <mat-icon matSuffix>label_important</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
                         <!--- end >>> filters -->
-                        <div style="margin-top: 20px">
-                            <div *ngFor="
-                    let item of inventaires
-                      | paginate
-                        : {
-                            itemsPerPage: 4,
-                            currentPage: page,
-                            totalItems: inventaires.length
-                          }
-                  " class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px; cursor: pointer">
+
+                        <div *ngIf="!loading && !filteredList.length" style="
+                border-radius: 10px;
+                padding: 100px;
+                margin-top: 20px;
+                text-align: center;
+                font-weight: 100;
+                background-color: rgb(0 0 0 / 4%);
+              ">
+                            <h3 style="font-weight: 100">Aucun inventaire</h3>
+                        </div>
+                        <div [ngStyle]="{
+                'margin-top': showFilters ? '0' : '40px'
+              }" *ngIf="!loading">
+                            <div *ngFor="let item of filteredList | paginate: config" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px; cursor: pointer">
                                 <mat-card class="inventoryItem row">
                                     <div class="col" style="display: flex; align-items: center; padding: 10px 0">
                                         <mat-icon>label_important</mat-icon>
                                         <h5 style="margin: 0">{{ item.name }}</h5>
                                     </div>
-                                    <div class="col" style="display: flex; align-items: center; padding: 10px 0; justify-content: center;">
+                                    <div class="col" style="display: flex; align-items: center; padding: 10px 0">
                                         <mat-icon matListIcon>person</mat-icon>
                                         <h5 style="margin: 0">{{ item.clientID.first_name }}</h5>
                                     </div>
-                                    <div class="col" style="display: flex; align-items: center; padding: 10px 0; justify-content: center;">
+                                    <div class="col" style="display: flex; align-items: center; padding: 10px 0">
                                         <mat-icon matListIcon>insert_invitation</mat-icon>
                                         <h5 style="margin: 0">
                                             {{ item.date | date: "dd/LL/YY":"fr" }}
                                         </h5>
                                     </div>
+                                    <div class="col" style="display: flex; align-items: center; padding: 10px 0">
+                                        <mat-icon svgIcon="check" *ngIf="!item.isDraft"></mat-icon>
+                                        <h5 style="margin: 0; color: green; padding-left: 10px" *ngIf="!item.isDraft">
+                                            Validé
+                                        </h5>
+                                        <mat-icon svgIcon="draft" *ngIf="item.isDraft"></mat-icon>
+                                        <h5 style="margin: 0; color: red; padding-left: 10px" *ngIf="item.isDraft">
+                                            Brouillon
+                                        </h5>
+                                    </div>
                                     <div class="col" style="
-                        display: flex;
-                        align-items: center;
-                        justify-content: flex-end;
-                      ">
-                                        <button mat-icon-button color="accent" class="btn-tbl-edit">
-                        <mat-icon aria-label="Edit" class="col-white"
-                          >edit
-                        </mat-icon>
-                      </button>
-                                        <button mat-icon-button color="accent" class="btn-tbl-edit">
-                        <mat-icon class="col-white">visibility </mat-icon>
-                      </button>
+                      display: flex;
+                      align-items: center;
+                      justify-content: flex-end;
+                    ">
+                                        <button mat-stroked-button style="flex-grow: 1; margin-right: 5px" [disabled]="!item.isDraft" [routerLink]="['edit', item._id]">
+                      <mat-icon aria-label="Edit">edit </mat-icon>
+                    </button>
+                                        <button mat-stroked-button color="warn" style="flex-grow: 1" [disabled]="!item.isDraft" (click)="removeInventaireAction(item._id)">
+                      <mat-icon>delete </mat-icon>
+                    </button>
                                     </div>
                                 </mat-card>
                             </div>
-                            <pagination-controls class="text-center" (pageChange)="page = $event" previousLabel="Précédente" nextLabel="Suivante"></pagination-controls>
+                            <pagination-template class="pagination" class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event" *ngIf="filteredList.length > config.itemsPerPage">
+                                <div class="custom-pagination">
+                                    <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
+                                        <span (click)="p.previous()" style="
+                        background-color: #3f51b5;
+                        font-size: 40px;
+                        padding-right: 10px;
+                        padding-left: 10px;
+                        color: white;
+                        border-radius: 1px;
+                      ">
+                      <
+                    </span>
+                                    </div>
+                                    <div class="pagination-next" [ngClass]="{ disable: p.isLastPage() }">
+                                        <span (click)="p.next()" style="
+                        background-color: #3f51b5;
+                        font-size: 40px;
+                        padding-right: 10px;
+                        padding-left: 10px;
+                        margin: 60px;
+                        color: white;
+                        border-radius: 1px;
+                      ">
+                      >
+                    </span>
+                                    </div>
+                                </div>
+                            </pagination-template>
                         </div>
                     </div>
                 </div>

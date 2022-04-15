@@ -32,6 +32,8 @@ export class AppComponent {
     iconRegistry.addSvgIcon('depot', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/depot.svg"));
     iconRegistry.addSvgIcon('label', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/label.svg"));
     iconRegistry.addSvgIcon('family', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/family.svg"));
+    iconRegistry.addSvgIcon('check', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/check.svg"));
+    iconRegistry.addSvgIcon('draft', sanitizer.bypassSecurityTrustResourceUrl("./assets/icons/draft.svg"));
 
   }
 }

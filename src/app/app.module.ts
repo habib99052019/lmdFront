@@ -31,6 +31,10 @@ registerLocaleData(localeFr, 'fr');
 
 //pagination module
 import {NgxPaginationModule} from 'ngx-pagination';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+
+
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -46,9 +50,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PageLoaderComponent,
     SidebarComponent,
     RightSidebarComponent,
-   
-  
-  
+    
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ClickOutsideModule,
     CoreModule,
     SharedModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    SlickCarouselModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

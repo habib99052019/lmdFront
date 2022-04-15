@@ -114,7 +114,7 @@ export const ROUTES: RouteInfo[] = [
         
         {
           path: 'stock/inventaires',
-          title: 'Inventaire',
+          title: 'Inventaires',
           moduleName: 'stock',
           iconType: '',
           icon: '',

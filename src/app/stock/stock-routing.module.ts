@@ -20,6 +20,7 @@ import { ShowArticleComponent } from './depot/categorie/famille/type/article/sho
 import { TypeComponent } from './depot/categorie/famille/type/type.component';
 import { DepotComponent } from './depot/depot.component';
 import { AddInventaireComponent } from './inventaires/add-inventaire/add-inventaire.component';
+import { EditInventaireComponent } from './inventaires/edit-inventaire/edit-inventaire.component';
 import { InventairesComponent } from './inventaires/inventaires.component';
 
 
@@ -148,6 +149,10 @@ const routes: Routes = [
   {
     path: 'inventaires/add',
     component: AddInventaireComponent
+  },
+  {
+    path: 'inventaires/edit/:id',
+    component: EditInventaireComponent
   },
 ];
 

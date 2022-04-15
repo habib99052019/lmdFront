@@ -9,7 +9,7 @@
     //  margin: 5px;
     border-radius: 12px;
     //margin-left: 150px;
-    box-shadow: 0.5px 0.5px 6px 0.5px#9e9e9e;
+    box-shadow: 0.5px 0.5px 6px 0.5px #9e9e9e;
 }
 
 .boxDiv2 {
@@ -20,7 +20,7 @@
     font-weight: bold;
     color: rgb(56, 56, 56);
     border-radius: 12px;
-    box-shadow: 0.5px 0.5px 6px 0.5px#9e9e9e;
+    box-shadow: 0.5px 0.5px 6px 0.5px #9e9e9e;
     background-color: rgb(13, 9, 245);
 }
 
@@ -71,4 +71,19 @@ img {
     height: 90px;
     object-fit: cover;
     border-radius: 0%;
+}
+
+@media (max-width: 767px) {
+    .row {
+        --bs-gutter-x: 0rem !important;
+        --bs-gutter-y: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: calc(var(--bs-gutter-y) * -1);
+        margin-right: calc(var(--bs-gutter-x) * -.5);
+        margin-left: calc(var(--bs-gutter-x) * -.5);
+    }
+    .visible {
+        display: none;
+    }
 }

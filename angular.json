@@ -38,13 +38,17 @@
                             "src/assets/scss/style.scss",
                             "src/assets/scss/theme/all-themes.scss",
                             "src/styles.scss",
-                            "./node_modules/angular-calendar/scss/angular-calendar.scss"
+                            "./node_modules/angular-calendar/scss/angular-calendar.scss",
+                            "./node_modules/slick-carousel/slick/slick.scss",
+                            "./node_modules/slick-carousel/slick/slick-theme.scss"
                         ],
                         "scripts": [
-                            
+
                             "./node_modules/moment/min/moment.min.js",
                             "./node_modules/chart.js/dist/Chart.bundle.js",
-                            "./node_modules/apexcharts/dist/apexcharts.min.js"
+                            "./node_modules/apexcharts/dist/apexcharts.min.js",
+                            "./node_modules/jquery/dist/jquery.min.js",
+                            "./node_modules/slick-carousel/slick/slick.min.js"
                         ],
                         "vendorChunk": true,
                         "extractLicenses": false,

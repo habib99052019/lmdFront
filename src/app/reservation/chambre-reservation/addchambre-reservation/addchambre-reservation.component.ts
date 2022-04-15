@@ -378,7 +378,9 @@ selectRoomType2(){
 if (this.reservationChambreForm.value.roomID){
 
   this._reservationService.getStandardRoomByName(this.reservationChambreForm.value.roomID).subscribe((room:any) => {
-  
+
+  //  console.log("room1>>>",room);
+    
 
     if (this.roomType === 'single' && this.taarifType === 'bas de saison'){
       this.RoomPrice = room[0].singleBprice;

@@ -49,7 +49,10 @@ export class ArticleComponent implements OnInit {
     this.router.navigate(['stock/gestion-stock/depot/categorie/Economat/Alimentaire/' + this.pathName]);
   }
 
-  
+  gotoshowArticle(id){
+   // stock/gestion-stock/depot/tous/Alimentaire/Viandes/Agneau/show/621ca0e5f5b4d351088c28a1
+    this.router.navigate(['stock/gestion-stock/depot/categorie/tous/'+ this.categorieName + '/' + this.pathName + '/' + this.articleName + '/show/' + id]);
+  }
 
   
   gotoCategorieComponent(){

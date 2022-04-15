@@ -1,32 +1,34 @@
 <nav #navbar class="navbar active">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a href="#" onClick="return false;" class="navbar-toggle collapsed"
-        (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-expanded="false"></a>
-      <a href="#" onClick="return false;" class="bars" (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
-      <a class="navbar-brand" routerLink="dashboard/main">
-        <img src="assets/images/logo.png" alt="" />
-        <span class="logo-name">Dar ichkeul </span>
-      </a>
-    </div>
-    <div class="collapse navbar-collapse" [ngbCollapse]="isNavbarCollapsed">
-      <ul class="float-start collapse-menu-icon">
-        <li>
-          <button mat-icon-button (click)="callSidemenuCollapse()" class="sidemenu-collapse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!--onClick="return false;"
+             onClick="return false;"
+          -->
+            <a href="#" onClick="return false;" class="navbar-toggle collapsed" (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-expanded="false"></a>
+            <a href="#" onClick="return false;" class="bars" (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
+            <a class="navbar-brand" routerLink="dashboard/main">
+                <img src="assets/images/logo.png" alt="" />
+                <span class="logo-name">Dar ichkeul </span>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" [ngbCollapse]="isNavbarCollapsed">
+            <ul class="float-start collapse-menu-icon">
+                <li>
+                    <button mat-icon-button (click)="callSidemenuCollapse()" class="sidemenu-collapse">
             <mat-icon>menu</mat-icon>
           </button>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <!-- Full Screen Button -->
-        <li class="fullscreen">
-          <button mat-icon-button (click)="callFullscreen()" class=" nav-notification-icons">
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Full Screen Button -->
+                <li class="fullscreen">
+                    <button mat-icon-button (click)="callFullscreen()" class=" nav-notification-icons">
             <mat-icon>fullscreen</mat-icon>
           </button>
-        </li>
-        <!-- #END# Full Screen Button -->
-        <!-- #START# Notifications-->
-        <!--- <li    class="nav-item" ngbDropdown>
+                </li>
+                <!-- #END# Full Screen Button -->
+                <!-- #START# Notifications-->
+                <!--- <li    class="nav-item" ngbDropdown>
           <button [disabled]="true"   mat-icon-button ngbDropdownToggle class="nav-notification-icons">
             <mat-icon>notifications_none</mat-icon>
             <span class="label-count bg-orange"></span>
@@ -54,18 +56,19 @@
               All Notifications</a>
           </div>
         </li>-->
-        <!-- #END# Notifications-->
-        <li class="nav-item user_profile" ngbDropdown>
-          <a href="#" onClick="return false;" ngbDropdownToggle role="button" class="nav-notification-icons pt-0">
-            <img src="assets/images/user.jpg" class="rounded-circle" width="32" height="32" alt="User">
-          </a>
-          <div ngbDropdownMenu class="notification-dropdown pullDown">
-            <div class="noti-list" style="position: relative; max-width: 600px; max-height: 300px;" [perfectScrollbar]>
-              <ul class="menu">
-                <li class="body">
-                  <ul class="user_dw_menu">
+                <!-- #END# Notifications-->
+                <!--onClick="return false;"-->
+                <li class="nav-item user_profile" ngbDropdown>
+                    <a href="#" onClick="return false;" ngbDropdownToggle role="button" class="nav-notification-icons pt-0">
+                        <img src="assets/images/user.jpg" class="rounded-circle" width="32" height="32" alt="User">
+                    </a>
+                    <div ngbDropdownMenu class="notification-dropdown pullDown">
+                        <div class="noti-list" style="position: relative; max-width: 600px; max-height: 300px;" [perfectScrollbar]>
+                            <ul class="menu">
+                                <li class="body">
+                                    <ul class="user_dw_menu">
 
-                    <!--
+                                        <!--
 
                        <li>
                       <a   href="#" onClick="return false;">
@@ -84,25 +87,26 @@
                     </li>
 
                   -->
-                    <li>
-                      <!--routerLink="/authentication/signin"-->
-                      <a   (click)="logOut()" onClick="return false;">
-                        <mat-icon aria-hidden="false" class="msr-2">power_settings_new</mat-icon>Logout
-                      </a>
-                    </li>
-                  </ul>
+                                        <li>
+                                            <!--routerLink="/authentication/signin"-->
+                                            <!--onClick="return false;"-->
+                                            <a (click)="logOut()">
+                                                <mat-icon aria-hidden="false" class="msr-2">power_settings_new</mat-icon>Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <!-- #END# Tasks -->
-       <!--<li class="float-end">
+                <!-- #END# Tasks -->
+                <!--<li class="float-end">
           <button  [disabled]="true"   mat-icon-button (click)="toggleRightSidebar()" class="nav-notification-icons js-right-sidebar">
             <mat-icon id="settingBtn">settings</mat-icon>
           </button>
         </li>-->
-      </ul>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>

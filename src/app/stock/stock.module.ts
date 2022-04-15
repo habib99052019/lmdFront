@@ -32,6 +32,8 @@ import { ShowArticleComponent } from './depot/categorie/famille/type/article/sho
 import { DetailCourseComponent } from './courses/detail-course/detail-course.component';
 import { InventairesComponent } from './inventaires/inventaires.component';
 import { AddInventaireComponent } from './inventaires/add-inventaire/add-inventaire.component';
+import { EditInventaireComponent } from './inventaires/edit-inventaire/edit-inventaire.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 
 @NgModule({
@@ -55,7 +57,8 @@ import { AddInventaireComponent } from './inventaires/add-inventaire/add-inventa
     ShowArticleComponent,
     DetailCourseComponent,
     InventairesComponent,
-    AddInventaireComponent 
+    AddInventaireComponent,
+    EditInventaireComponent 
     
    
   ],
@@ -66,7 +69,8 @@ import { AddInventaireComponent } from './inventaires/add-inventaire/add-inventa
     StockRoutingModule,
     MatStepperModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    SlickCarouselModule
   ]
 })
 export class StockModule { }

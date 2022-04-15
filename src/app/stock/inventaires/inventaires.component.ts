@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { InventaireService } from "src/app/core/service/inventaire.service";
+import Swal from "sweetalert2";
 import { formatDate } from "@angular/common";
 
 @Component({
@@ -10,17 +11,24 @@ import { formatDate } from "@angular/common";
 })
 export class InventairesComponent implements OnInit {
   inventaires = [];
+  filteredList = [];
   showFilters = false;
   filterForm: FormGroup;
   page = 1;
-
+  loading: boolean = true;
+  config = {
+    id: "custom",
+    itemsPerPage: 6,
+    currentPage: 1,
+    totalItems: 0,
+  };
   constructor(
     public readonly inventaireService: InventaireService,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.getInventairesAction()
+    this.getInventairesAction();
     this.filterForm = this.createFilterForm();
   }
 
@@ -29,23 +37,24 @@ export class InventairesComponent implements OnInit {
       from: [""],
       to: [""],
       person: [""],
-      label: [""]
+      label: [""],
     });
   }
 
   showFiltersAction = () => {
     this.showFilters = !this.showFilters;
-  }
+  };
 
   getInventairesAction = () => {
     this.inventaireService.getInventaires().subscribe(
       (res) => {
-        console.log("res>>>>", res);
-        
+        this.loading = false;
         if (res.length) {
-          this.inventaires = res;
+          this.inventaires = res.reverse();
+          this.filteredList = this.inventaires;
         } else {
           this.inventaires = [];
+          this.filteredList = [];
         }
         console.log(this.inventaires);
       },
@@ -55,72 +64,59 @@ export class InventairesComponent implements OnInit {
     );
   };
 
-
-  
-  getInventaireAction = (id: string) => {
-    this.inventaireService.getInventaire(id).subscribe(
-      (res) => {
-        if (res) {
-        } else {
-        }
-        console.log(res);
-      },
-      (error) => {
-        console.log("getInventaireAction error", error);
-      }
-    );
-  };
-
-  addInventaireAction = () => {
-    const inventaire = {
-      date: new Date(),
-      articleList: [],
-      clientID: null,
-    };
-    this.inventaireService.addInventaire(inventaire).subscribe(
-      (res) => {
-        if (res) {
-          console.log(res);
-          return res;
-        } else {
-          return null;
-        }
-      },
-      (error) => {
-        console.log("addInventaireAction error", error);
-      }
-    );
-  };
-
   removeInventaireAction = (id: string) => {
-    this.inventaireService.removeInventaire(id).subscribe(
-      (res) => {
-        if (res) {
-        } else {
-        }
-        console.log(res);
-      },
-      (error) => {
-        console.log("removeInventaireAction error", error);
+    Swal.fire({
+      title: "êtes vous sure?",
+      showCancelButton: true,
+      cancelButtonText: "Annuler",
+      confirmButtonColor: "#f44336",
+      cancelButtonColor: "#96a2b4",
+      confirmButtonText: "Oui",
+    }).then((result) => {
+      if (result.value) {
+        this.inventaireService.removeInventaire(id).subscribe(
+          (res) => {
+            if (res) {
+              this.getInventairesAction();
+            }
+          },
+          (error) => {
+            console.log("removeInventaireAction error", error);
+          }
+        );
       }
-    );
+    });
   };
-  updateInventaireAction = (id: string) => {
-    const inventaire = {
-      date: new Date(),
-      articleList: [],
-      clientID: null,
-    };
-    this.inventaireService.updateInventaire(id, inventaire).subscribe(
-      (res) => {
-        if (res) {
-        } else {
-        }
-        console.log(res);
-      },
-      (error) => {
-        console.log("removeInventaireAction error", error);
-      }
-    );
-  };
+
+  deepFilter() {
+    const from = this.filterForm.get("from").value
+      ? formatDate(this.filterForm.get("from").value, "yyyy-MM-dd", "en")
+      : null;
+    const to = this.filterForm.get("to").value
+      ? formatDate(this.filterForm.get("to").value, "yyyy-MM-dd", "en")
+      : null;
+    const label = this.filterForm.get("label").value;
+    const person = this.filterForm.get("person").value;
+
+    this.filteredList = this.inventaires.filter((inventaire) => {
+      const date = inventaire.date
+        ? formatDate(inventaire.date, "yyyy-MM-dd", "en")
+        : null;
+
+      return (
+        inventaire.clientID.first_name
+          .trim()
+          .toLowerCase()
+          .includes(person.trim().toLowerCase()) &&
+        inventaire.name.toLowerCase().includes(label.trim().toLowerCase()) &&
+        (from && to
+          ? date >= from && date <= to
+          : from && !to
+          ? date >= from
+          : !from && to
+          ? date <= to
+          : true)
+      );
+    });
+  }
 }

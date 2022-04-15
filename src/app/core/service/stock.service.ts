@@ -157,4 +157,9 @@ getArticlesByFamily(name) {
 
 }
 
+//get list familys by depot
+getListOfFamiliesByDepot(name){
+  return this.http.get(this.ApiPath + 'depots/families?name=' + name )
+}
+
 }
