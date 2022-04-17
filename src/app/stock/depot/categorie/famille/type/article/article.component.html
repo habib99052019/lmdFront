@@ -64,7 +64,7 @@
 
                         <div class="row mt-2">
                             <h4>{{articleName}}</h4>
-                            <div *ngFor="let article of Articles">
+                            <div class="visible" *ngFor="let article of Articles">
 
 
                                 <div (click)="gotoshowArticle(article._id)" style="background-color: rgb(229 230 233); cursor: pointer;" class="col-lg-12 d-flex  align-items-center justify-content-between mb-2  pt-3 p-2 mr-5 ml-5 rounded ">
@@ -85,6 +85,34 @@
 
                             </div>
                         </div>
+
+                        <div class="visible2" *ngFor="let article of Articles">
+
+
+                            <div (click)="gotoshowArticle(article._id)" style="margin-bottom: 10px;background-color:  rgb(229 230 233)">
+                                <div class="boxDiv text-center">
+                                    <div style="width: 100%;">
+                                        <img alt="image" width="100%" height="80px" src='{{ article.img }}' class="img" />
+
+                                    </div>
+
+
+                                    <div style="display: flex;flex-direction: column;">
+                                        <span style="margin-bottom:7px;align-self: flex-center; font-size: 15px;margin-top: 10px;font-weight: bold">{{article.name}}</span>
+                                        <!--<span> <span style="font-weight:normal;" >Marque</span> : {{article.marque}}</span>
+                                                    <span> <span style="font-weight:normal;" >Quantity</span> : {{article.quantity}} {{article.unity}} </span>-->
+
+                                        <span style="font-weight:normal;margin-top: 3px;">Marque</span>
+                                        <span style="margin-left: 5px;font-weight: bold;">{{article.marque}}</span>
+                                        <span style="font-weight:normal;margin-top: 2px;"> Quantite </span>
+                                        <p style="margin-left: 5px;font-weight: bold">{{article.quantity}} {{article.unity}}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
 
 
 

@@ -86,4 +86,31 @@ img {
     .visible {
         display: none;
     }
+    .img {
+        float: none !important;
+        width: 100px !important;
+        height: 90px;
+        -o-object-fit: cover;
+        object-fit: cover;
+        border-radius: 0%;
+        margin-top: 8px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .visible2 {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .visible2 {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .visible2 {
+        display: none;
+    }
 }
