@@ -51,6 +51,8 @@ export class InventairesComponent implements OnInit {
         this.loading = false;
         if (res.length) {
           this.inventaires = res.reverse();
+          console.log("inventaire malek>>>>", this.inventaires);
+          
           this.filteredList = this.inventaires;
         } else {
           this.inventaires = [];

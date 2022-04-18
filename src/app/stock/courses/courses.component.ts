@@ -118,14 +118,6 @@ showpagination = true;
       this.totalLength = data.length;
       this.config.totalItems = data.length;
 
-
-     
-
-     
-
-
- /* let obj = this.ListCourses.find(obj => obj._id.month == 5);
-  console.log(obj);*/
       
   })
   }
@@ -341,7 +333,7 @@ deepFilter(){
           
       }else if(this.coursesFilterForm.get('person').value != ""){
           let name = this.coursesFilterForm.get('person').value;
-          /*this.search(name)*/
+         
 
           this.service.getListCourseByPerson(name).subscribe((resp:any) => {
             console.log("resp>>", resp);
@@ -369,6 +361,10 @@ deepFilter(){
         );
       }
 }
+
+
+
+
 
 
 

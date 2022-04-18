@@ -21,15 +21,17 @@
             <div class="col-md-12 col-sm-12">
                 <div class="card" style="height: 100%">
                     <div class="card-body" style="padding: 30px">
-                        <div class="inventoriesHeader">
-                            <h3 style="margin: 0">Liste des inventaires</h3>
-                            <div>
-                                <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" style="margin-right: 10px" (click)="showFiltersAction()" *ngIf="!loading && inventaires.length">
-                  <mat-icon>filter_list</mat-icon>
-                </button>
-                                <button mat-mini-fab color="primary" routerLink="add" aria-label="Example icon button with a menu icon">
-                  <mat-icon>add</mat-icon>
-                </button>
+                        <div class="inventoriesHeader row">
+                            <h3 class="col" style="margin: 0; padding-bottom: 20px">
+                                Liste des inventaires
+                            </h3>
+                            <div class="col" style="display: flex; justify-content: flex-end">
+                                <button mat-fab color="primary" aria-label="Example icon button with a menu icon" style="margin-right: 10px" (click)="showFiltersAction()" *ngIf="!loading && inventaires.length">
+                    <mat-icon>filter_list</mat-icon>
+                  </button>
+                                <button mat-fab color="primary" routerLink="add" aria-label="Example icon button with a menu icon">
+                    <mat-icon>add</mat-icon>
+                  </button>
                             </div>
                         </div>
                         <div style="padding: 30px" *ngIf="loading">
@@ -81,18 +83,18 @@
                         <!--- end >>> filters -->
 
                         <div *ngIf="!loading && !filteredList.length" style="
-                border-radius: 10px;
-                padding: 100px;
-                margin-top: 20px;
-                text-align: center;
-                font-weight: 100;
-                background-color: rgb(0 0 0 / 4%);
-              ">
+                  border-radius: 10px;
+                  padding: 100px;
+                  margin-top: 20px;
+                  text-align: center;
+                  font-weight: 100;
+                  background-color: rgb(0 0 0 / 4%);
+                ">
                             <h3 style="font-weight: 100">Aucun inventaire</h3>
                         </div>
                         <div [ngStyle]="{
-                'margin-top': showFilters ? '0' : '40px'
-              }" *ngIf="!loading">
+                  'margin-top': showFilters ? '0' : '40px'
+                }" *ngIf="!loading">
                             <div *ngFor="let item of filteredList | paginate: config" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 10px; cursor: pointer">
                                 <mat-card class="inventoryItem row">
                                     <div class="col" style="display: flex; align-items: center; padding: 10px 0">
@@ -120,46 +122,27 @@
                                         </h5>
                                     </div>
                                     <div class="col" style="
-                      display: flex;
-                      align-items: center;
-                      justify-content: flex-end;
-                    ">
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                      ">
                                         <button mat-stroked-button style="flex-grow: 1; margin-right: 5px" [disabled]="!item.isDraft" [routerLink]="['edit', item._id]">
-                      <mat-icon aria-label="Edit">edit </mat-icon>
-                    </button>
+                        <mat-icon aria-label="Edit">edit </mat-icon>
+                      </button>
                                         <button mat-stroked-button color="warn" style="flex-grow: 1" [disabled]="!item.isDraft" (click)="removeInventaireAction(item._id)">
-                      <mat-icon>delete </mat-icon>
-                    </button>
+                        <mat-icon>delete </mat-icon>
+                      </button>
                                     </div>
                                 </mat-card>
                             </div>
                             <pagination-template class="pagination" class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event" *ngIf="filteredList.length > config.itemsPerPage">
-                                <div class="custom-pagination">
-                                    <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
-                                        <span (click)="p.previous()" style="
-                        background-color: #3f51b5;
-                        font-size: 40px;
-                        padding-right: 10px;
-                        padding-left: 10px;
-                        color: white;
-                        border-radius: 1px;
-                      ">
-                      <
-                    </span>
-                                    </div>
-                                    <div class="pagination-next" [ngClass]="{ disable: p.isLastPage() }">
-                                        <span (click)="p.next()" style="
-                        background-color: #3f51b5;
-                        font-size: 40px;
-                        padding-right: 10px;
-                        padding-left: 10px;
-                        margin: 60px;
-                        color: white;
-                        border-radius: 1px;
-                      ">
-                      >
-                    </span>
-                                    </div>
+                                <div class="custom-pagination" style="display: flex; justify-content: center">
+                                    <button mat-fab color="primary" (click)="p.previous()" [disabled]="p.isFirstPage()" style="margin: 5px">
+                      <mat-icon>keyboard_arrow_left</mat-icon>
+                    </button>
+                                    <button mat-fab color="primary" [disabled]="p.isLastPage()" (click)="p.next()" style="margin: 5px">
+                      <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
                                 </div>
                             </pagination-template>
                         </div>

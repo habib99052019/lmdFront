@@ -24,815 +24,763 @@
                     <div class="card-body">
                         <div>
                             <span (click)="backAction()"><mat-icon
-                    style="
-                      font-size: 55px;
-                      color: rgb(50, 76, 228);
-                      cursor: pointer;
-                    "
-                    >reply</mat-icon
-                  ></span
-                >
-              </div>
-  
-              <!-- Third Step start 1-->
-              <div class="row" style="padding: 30px" *ngIf="all">
-                <h4 style="margin-bottom: 30px">
-                  {{ depot ? depot : "Tous les dépôts" }} -
-                  {{ inventory.date | date: "dd/LL/YYYY":"fr" }}
-                </h4>
-                <form [formGroup]="editInventaireForm" id="editInventaireForm">
-                  <div class="row">
-                    <div class="col">
-                      <mat-form-field
-                        class="mb-3"
-                        appearance="outline"
-                        style="width: 100%"
-                      >
-                        <mat-label>Désignation</mat-label>
-                        <input
-                          matInput
-                          formControlName="name"
-                          type="text"
-                          class="example-right-align"
-                          [(ngModel)]="inventory.name"
-                          required
-                        />
-                        <mat-error
-                          *ngIf="
-                            editInventaireForm.get('name').hasError('required')
-                          "
-                        >
-                          La désignation de l'inventaire est
-                          <strong>obligatoire</strong>
-                        </mat-error>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </form>
-                <mat-accordion class="example-headers-align" multi>
-                  <mat-expansion-panel
-                    *ngFor="let depot of inventory.articleList"
-                    style="margin-bottom: 10px"
-                    [expanded]="depot == inventory.articleList[0]"
-                  >
-                    <mat-expansion-panel-header
-                      class="panel-header"
-                      [ngStyle]="{
-                        'background-color': depot.isValid ? '#00800030' : ''
-                      }"
-                    >
-                      <mat-panel-title style="align-items: flex-end">
-                        <img
-                          [src]="depot.img"
-                          style="
-                            width: 80px;
-                            height: 60px;
-                            border-radius: 10px;
-                            margin-right: 10px;
-                          "
-                        />
-  
-                        <p>
-                          <b>{{ depot.name }} / Catégories</b>
-                        </p>
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-  
-                    <div class="row mb-7" style="padding-top: 10px">
-                      <mat-accordion class="example-headers-align" multi>
-                        <mat-expansion-panel
-                          *ngFor="let category of depot.listCategorys"
-                          style="margin-bottom: 10px"
-                        >
-                          <mat-expansion-panel-header
-                            class="panel-header"
-                            [ngStyle]="{
-                              'background-color': category.isValid
-                                ? '#00800030'
-                                : ''
-                            }"
-                          >
-                            <mat-panel-title style="align-items: flex-end">
-                              <img
-                                [src]="category.img"
-                                style="
-                                  width: 80px;
-                                  height: 60px;
-                                  border-radius: 10px;
-                                  margin-right: 10px;
-                                "
-                              />
-                              <p>
-                                <b>{{ category.name }} / Familles</b>
-                              </p>
-                            </mat-panel-title>
-                          </mat-expansion-panel-header>
-                          <div class="row mb-7" style="padding-top: 10px">
-                            <mat-accordion class="example-headers-align" multi>
-                              <mat-expansion-panel
-                                *ngFor="let family of category.listFamily"
-                                style="margin-bottom: 10px"
-                              >
-                                <mat-expansion-panel-header
-                                  class="panel-header"
-                                  [ngStyle]="{
-                                    'background-color': family.isValid
-                                      ? '#00800030'
-                                      : ''
-                                  }"
-                                >
-                                  <mat-panel-title style="align-items: flex-end">
-                                    <img
-                                      [src]="family.img"
-                                      style="
-                                        width: 80px;
-                                        height: 60px;
-                                        border-radius: 10px;
-                                        margin-right: 10px;
-                                      "
-                                    />
-                                    <p>
-                                      <b>{{ family.name }} / Types</b>
-                                    </p>
-                                  </mat-panel-title>
-                                </mat-expansion-panel-header>
-                                <div class="row mb-7" style="padding-top: 10px">
-                                  <mat-accordion
-                                    class="example-headers-align"
-                                    multi
-                                  >
-                                    <mat-expansion-panel
-                                      *ngFor="let type of family.listType"
-                                      style="margin-bottom: 10px"
-                                    >
-                                      <mat-expansion-panel-header
-                                        class="panel-header"
-                                        [ngStyle]="{
-                                          'background-color': type.isValid
-                                            ? '#00800030'
-                                            : ''
-                                        }"
-                                      >
-                                        <mat-panel-title
-                                          style="align-items: flex-end"
-                                        >
-                                          <img
-                                            [src]="type.img"
-                                            style="
-                                              width: 80px;
-                                              height: 60px;
-                                              border-radius: 10px;
-                                              margin-right: 10px;
-                                            "
-                                          />
-                                          <p>
-                                            <b>{{ type.name }} / Articles</b>
-                                          </p>
-                                        </mat-panel-title>
-                                      </mat-expansion-panel-header>
-                                      <div
-                                        class="row mb-7"
-                                        style="padding-top: 10px"
-                                      >
-                                        <ngx-slick-carousel
-                                          class="carousel"
-                                          #slickModal="slick-carousel"
-                                          [config]="slideConfig"
-                                        >
-                                          <div
-                                            ngxSlickItem
-                                            class="col-12"
-                                            style="margin-bottom: 10px; margin-right: 10px"
-                                            *ngFor="
-                                              let article of type.listArticle
-                                            "
-                                            class="slide"
-                                          >
-                                            <mat-card
-                                              class="example-card"
-                                              [ngStyle]="{
-                                                'background-color':
-                                                  article.isValid
-                                                    ? '#00800030'
-                                                    : 'white',
-                                                border:
-                                                  '2px solid rgb(0 0 0 / 12%)'
-                                              }"
-                                            >
-                                              <mat-card-header
-                                                style="
-                                                  justify-content: space-between;
-                                                "
-                                              >
-                                                <mat-card-title>{{
-                                                  article.name
-                                                }}</mat-card-title>
-                                                <mat-card-subtitle
-                                                  style="display: flex"
-                                                >
-                                                </mat-card-subtitle>
-                                                <img
-                                                  mat-card-md-image
-                                                  [src]="article.img"
-                                                  alt="article image"
-                                                />
-                                              </mat-card-header>
-                                              <mat-card-content
-                                                style="padding-top: 20px"
-                                              >
-                                                <form
-                                                  class="row"
-                                                  [formGroup]="editArticleForm"
-                                                >
-                                                  <mat-form-field
-                                                    class="col"
-                                                    appearance="outline"
-                                                  >
-                                                    <mat-label
-                                                      >Stock calculé</mat-label
-                                                    >
-                                                    <input
-                                                      style="margin: 0"
-                                                      matInput
-                                                      type="number"
-                                                      name="quantity"
-                                                      [value]="article.quantity"
-                                                      [readonly]="true"
-                                                    />
-                                                  </mat-form-field>
-                                                  <mat-form-field
-                                                    class="col"
-                                                    appearance="outline"
-                                                  >
-                                                    <mat-label
-                                                      >Stock réel</mat-label
-                                                    >
-                                                    <input
-                                                      style="margin: 0"
-                                                      matInput
-                                                      type="number"
-                                                      name="realQuantity"
-                                                      [value]="
-                                                        article.realQuantity
-                                                      "
-                                                      (blur)="
-                                                        changeRealQuantity(
-                                                          $event.target.value,
-                                                          article
-                                                        )
-                                                      "
-                                                    />
-                                                  </mat-form-field>
-                                                  <mat-form-field
-                                                    class="col"
-                                                    appearance="outline"
-                                                  >
-                                                    <mat-label>Ecart</mat-label>
-                                                    <input
-                                                      style="margin: 0"
-                                                      matInput
-                                                      type="number"
-                                                      name="difference"
-                                                      [value]="article.difference"
-                                                      [readonly]="true"
-                                                    />
-                                                  </mat-form-field>
-                                                </form>
-                                              </mat-card-content>
-                                            </mat-card></div
-                                        ></ngx-slick-carousel>
-                                      </div>
-                                    </mat-expansion-panel>
-                                  </mat-accordion>
-                                </div>
-                              </mat-expansion-panel>
-                            </mat-accordion>
-                          </div>
-                        </mat-expansion-panel>
-                      </mat-accordion>
-                    </div>
-                  </mat-expansion-panel>
-                </mat-accordion>
-                <div class="row" style="height: 50px; margin-top: 20px">
-                  <div class="col-6">
-                    <button
-                      mat-raised-button
-                      routerLink=".."
-                      style="width: 100%; height: 100%"
-                    >
-                      <mat-icon>clear</mat-icon>
-                      Annuler
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button
-                      style="width: 100%; height: 100%"
-                      mat-raised-button
-                      color="primary"
-                      (click)="editInventaire()"
-                      form="editInventaireForm"
-                    >
-                      <mat-icon>done</mat-icon>
-                      Confirmer
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <!-- Third Step end 1-->
-              <!-- Third Step start 2-->
-              <div class="row" style="padding: 30px" *ngIf="byCategory">
-                <h4 style="margin-bottom: 30px">
-                  {{ depotName }} /
-                  {{ categoryName ? categoryName : "Toutes les catégories" }} -
-                  {{ inventory.date | date: "dd/LL/YYYY":"fr" }}
-                </h4>
-                <form [formGroup]="editInventaireForm" id="editInventaireForm">
-                  <div class="row">
-                    <div class="col">
-                      <mat-form-field
-                        class="mb-3"
-                        appearance="outline"
-                        style="width: 100%"
-                      >
-                        <mat-label style="font-size: 16px">Désignation</mat-label>
-                        <input
-                          matInput
-                          formControlName="name"
-                          type="text"
-                          class="example-right-align"
-                          [(ngModel)]="inventory.name"
-                          required
-                        />
-                        <mat-error
-                          *ngIf="
-                            editInventaireForm.get('name').hasError('required')
-                          "
-                        >
-                          La désignation de l'inventaire est
-                          <strong>obligatoire</strong>
-                        </mat-error>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </form>
-                <mat-accordion class="example-headers-align" multi>
-                  <mat-expansion-panel
-                    *ngFor="let family of inventory.articleList"
-                    style="margin-bottom: 10px"
-                    [expanded]="family == inventory.articleList[0]"
-                  >
-                    <mat-expansion-panel-header
-                      class="panel-header"
-                      [ngStyle]="{
-                        'background-color': family.isValid ? '#00800030' : ''
-                      }"
-                    >
-                      <mat-panel-title style="align-items: flex-end">
-                        <img
-                          [src]="family.img"
-                          style="
-                            width: 80px;
-                            height: 60px;
-                            border-radius: 10px;
-                            margin-right: 10px;
-                          "
-                        />
-                        <p>
-                          <b>{{ family.name }} / Types</b>
-                        </p>
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="row mb-7" style="padding-top: 10px">
-                      <mat-accordion class="example-headers-align" multi>
-                        <mat-expansion-panel
-                          *ngFor="let type of family.listType"
-                          style="margin-bottom: 10px"
-                        >
-                          <mat-expansion-panel-header
-                            class="panel-header"
-                            [ngStyle]="{
-                              'background-color': type.isValid ? '#00800030' : ''
-                            }"
-                          >
-                            <mat-panel-title style="align-items: flex-end">
-                              <img
-                                [src]="type.img"
-                                style="
-                                  width: 80px;
-                                  height: 60px;
-                                  border-radius: 10px;
-                                  margin-right: 10px;
-                                "
-                              />
-                              <p>
-                                <b>{{ type.name }} / Articles</b>
-                              </p>
-                            </mat-panel-title>
-                          </mat-expansion-panel-header>
-  
-                          <div class="row mb-7" style="padding-top: 10px">
-                            <ngx-slick-carousel
-                              class="carousel"
-                              #slickModal="slick-carousel"
-                              [config]="slideConfig"
-                            >
-                              <div
-                                ngxSlickItem
-                                class="col-12"
-                                style="margin-bottom: 10px; margin-right: 10px"
-                                *ngFor="let article of type.listArticle"
-                                class="slide"
-                              >
-                                <mat-card
-                                  class="example-card"
-                                  [ngStyle]="{
-                                    'background-color': article.isValid
-                                      ? '#00800030'
-                                      : 'white',
-                                    border: '2px solid rgb(0 0 0 / 12%)'
-                                  }"
-                                >
-                                  <mat-card-header
-                                    style="justify-content: space-between"
-                                  >
-                                    <mat-card-title>{{
-                                      article.name
-                                    }}</mat-card-title>
-                                    <mat-card-subtitle style="display: flex">
-                                    </mat-card-subtitle>
-                                    <img
-                                      mat-card-md-image
-                                      [src]="article.img"
-                                      alt="article image"
-                                    />
-                                  </mat-card-header>
-                                  <mat-card-content style="padding-top: 20px">
-                                    <form
-                                      class="row"
-                                      [formGroup]="editArticleForm"
-                                    >
-                                      <mat-form-field
-                                        class="col"
-                                        appearance="outline"
-                                      >
-                                        <mat-label>Stock calculé</mat-label>
-                                        <input
-                                          style="margin: 0"
-                                          matInput
-                                          type="number"
-                                          name="quantity"
-                                          [value]="article.quantity"
-                                          [readonly]="true"
-                                        />
-                                      </mat-form-field>
-                                      <mat-form-field
-                                        class="col"
-                                        appearance="outline"
-                                      >
-                                        <mat-label>Stock reél</mat-label>
-                                        <input
-                                          style="margin: 0"
-                                          matInput
-                                          type="number"
-                                          name="realQuantity"
-                                          [value]="article.realQuantity"
-                                          (blur)="
-                                            changeRealQuantity(
-                                              $event.target.value,
-                                              article
-                                            )
-                                          "
-                                        />
-                                      </mat-form-field>
-                                      <mat-form-field
-                                        class="col"
-                                        appearance="outline"
-                                      >
-                                        <mat-label>Ecart</mat-label>
-                                        <input
-                                          style="margin: 0"
-                                          matInput
-                                          type="number"
-                                          name="difference"
-                                          [value]="article.difference"
-                                          [readonly]="true"
-                                        />
-                                      </mat-form-field>
-                                    </form>
-                                  </mat-card-content>
-                                </mat-card>
-                              </div>
-                            </ngx-slick-carousel>
-                          </div>
-                        </mat-expansion-panel>
-                      </mat-accordion>
-                    </div>
-                  </mat-expansion-panel>
-                </mat-accordion>
-                <div class="row" style="height: 50px; margin-top: 20px">
-                  <div class="col-6">
-                    <button
-                      mat-raised-button
-                      routerLink=".."
-                      style="width: 100%; height: 100%"
-                    >
-                      <mat-icon>clear</mat-icon>
-                      Annuler
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button
-                      style="width: 100%; height: 100%"
-                      mat-raised-button
-                      color="primary"
-                      (click)="editInventaire()"
-                      form="editInventaireForm"
-                    >
-                      <mat-icon>done</mat-icon>
-                      Confirmer
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <!-- Third Step start 2-->
-  
-              <!-- Third Step start 3-->
-              <div class="row" style="padding: 30px" *ngIf="byDepot">
-                <h4 style="margin-bottom: 30px">
-                  {{ depotName }} /
-                  {{ categoryName ? categoryName : "Toutes les catégories" }} -
-                  {{ inventory.date | date: "dd/LL/YYYY":"fr" }}
-                </h4>
-                <form [formGroup]="editInventaireForm" id="editInventaireForm">
-                  <div class="row">
-                    <div class="col">
-                      <mat-form-field
-                        class="mb-3"
-                        appearance="outline"
-                        style="width: 100%"
-                      >
-                        <mat-label style="font-size: 16px">Désignation</mat-label>
-                        <input
-                          matInput
-                          formControlName="name"
-                          type="text"
-                          class="example-right-align"
-                          [(ngModel)]="inventory.name"
-                          required
-                        />
-                        <mat-error
-                          *ngIf="
-                            editInventaireForm.get('name').hasError('required')
-                          "
-                        >
-                          La désignation de l'inventaire est
-                          <strong>obligatoire</strong>
-                        </mat-error>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </form>
-                <mat-accordion class="example-headers-align" multi>
-                  <mat-expansion-panel
-                    *ngFor="let category of inventory.articleList"
-                    style="margin-bottom: 10px"
-                    [expanded]="category == inventory.articleList[0]"
-                  >
-                    <mat-expansion-panel-header
-                      class="panel-header"
-                      [ngStyle]="{
-                        'background-color': category.isValid ? '#00800030' : ''
-                      }"
-                    >
-                      <mat-panel-title style="align-items: flex-end">
-                        <img
-                          [src]="category.img"
-                          style="
-                            width: 80px;
-                            height: 60px;
-                            border-radius: 10px;
-                            margin-right: 10px;
-                          "
-                        />
-                        <p>
-                          <b>{{ category.name }} / Familles</b>
-                        </p>
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="row mb-7" style="padding-top: 10px">
-                      <mat-accordion class="example-headers-align" multi>
-                        <mat-expansion-panel
-                          *ngFor="let family of category.listFamily"
-                          style="margin-bottom: 10px"
-                        >
-                          <mat-expansion-panel-header
-                            class="panel-header"
-                            [ngStyle]="{
-                              'background-color': family.isValid
-                                ? '#00800030'
-                                : ''
-                            }"
-                          >
-                            <mat-panel-title style="align-items: flex-end">
-                              <img
-                                [src]="family.img"
-                                style="
-                                  width: 80px;
-                                  height: 60px;
-                                  border-radius: 10px;
-                                  margin-right: 10px;
-                                "
-                              />
-                              <p>
-                                <b>{{ family.name }} / Types</b>
-                              </p>
-                            </mat-panel-title>
-                          </mat-expansion-panel-header>
-  
-                          <div class="row mb-7" style="padding-top: 10px">
-                            <mat-accordion class="example-headers-align" multi>
-                              <mat-expansion-panel
-                                *ngFor="let type of family.listType"
-                                style="margin-bottom: 10px"
-                              >
-                                <mat-expansion-panel-header
-                                  class="panel-header"
-                                  [ngStyle]="{
-                                    'background-color': type.isValid
-                                      ? '#00800030'
-                                      : ''
-                                  }"
-                                >
-                                  <mat-panel-title style="align-items: flex-end">
-                                    <img
-                                      [src]="type.img"
-                                      style="
-                                        width: 80px;
-                                        height: 60px;
-                                        border-radius: 10px;
-                                        margin-right: 10px;
-                                      "
-                                    />
-                                    <p>
-                                      <b>{{ type.name }} / Articles</b>
-                                    </p>
-                                  </mat-panel-title>
-                                </mat-expansion-panel-header>
-  
-                                <div class="row mb-7" style="padding-top: 10px">
-                                  <ngx-slick-carousel
-                                    class="carousel"
-                                    #slickModal="slick-carousel"
-                                    [config]="slideConfig"
-                                  >
-                                    <div
-                                      ngxSlickItem
-                                      class="col-12"
-                                      style="margin-bottom: 10px; margin-right: 10px"
-                                      *ngFor="let article of type.listArticle"
-                                      class="slide"
-                                    >
-                                      <mat-card
-                                        class="example-card"
-                                        [ngStyle]="{
-                                          'background-color': article.isValid
-                                            ? '#00800030'
-                                            : 'white',
-                                          border: '2px solid rgb(0 0 0 / 12%)'
-                                        }"
-                                      >
-                                        <mat-card-header
-                                          style="justify-content: space-between"
-                                        >
-                                          <mat-card-title>{{
-                                            article.name
-                                          }}</mat-card-title>
-                                          <mat-card-subtitle
-                                            style="display: flex"
-                                          >
-                                          </mat-card-subtitle>
-                                          <img
-                                            mat-card-md-image
-                                            [src]="article.img"
-                                            alt="article image"
-                                          />
-                                        </mat-card-header>
-                                        <mat-card-content
-                                          style="padding-top: 20px"
-                                        >
-                                          <form
-                                            class="row"
-                                            [formGroup]="editArticleForm"
-                                          >
-                                            <mat-form-field
-                                              class="col"
-                                              appearance="outline"
-                                            >
-                                              <mat-label>Stock calculé</mat-label>
-                                              <input
-                                                style="margin: 0"
-                                                matInput
-                                                type="number"
-                                                name="quantity"
-                                                [value]="article.quantity"
-                                                [readonly]="true"
-                                              />
-                                            </mat-form-field>
-                                            <mat-form-field
-                                              class="col"
-                                              appearance="outline"
-                                            >
-                                              <mat-label>Stock réel</mat-label>
-                                              <input
-                                                style="margin: 0"
-                                                matInput
-                                                type="number"
-                                                name="realQuantity"
-                                                [value]="article.realQuantity"
-                                                (blur)="
-                                                  changeRealQuantity(
-                                                    $event.target.value,
-                                                    article
-                                                  )
-                                                "
-                                              />
-                                            </mat-form-field>
-                                            <mat-form-field
-                                              class="col"
-                                              appearance="outline"
-                                            >
-                                              <mat-label>Ecart</mat-label>
-                                              <input
-                                                style="margin: 0"
-                                                matInput
-                                                type="number"
-                                                name="difference"
-                                                [value]="article.difference"
-                                                [readonly]="true"
-                                              />
-                                            </mat-form-field>
-                                          </form>
-                                        </mat-card-content>
-                                      </mat-card>
-                                    </div>
-                                  </ngx-slick-carousel>
-                                </div>
-                              </mat-expansion-panel>
-                            </mat-accordion>
-                          </div>
-                        </mat-expansion-panel>
-                      </mat-accordion>
-                    </div>
-                  </mat-expansion-panel>
-                </mat-accordion>
-                <div class="row" style="height: 50px; margin-top: 20px">
-                  <div class="col-6">
-                    <button
-                      mat-raised-button
-                      routerLink=".."
-                      style="width: 100%; height: 100%"
-                    >
-                      <mat-icon>clear</mat-icon>
-                      Annuler
-                    </button>
-                  </div>
-                  <div class="col-6">
-                    <button
-                      style="width: 100%; height: 100%"
-                      mat-raised-button
-                      color="primary"
-                      (click)="editInventaire()"
-                      form="editInventaireForm"
-                    >
-                      <mat-icon>done</mat-icon>
-                      Confirmer
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <!-- Third Step start 3-->
-  
-              <!--Invalid form-->
-              <div style="padding: 30px" *ngIf="isDraft">
-                <p style="font-size: 22px; color: red">
-                  Pour ajouter votre inventaire, veuillez remplir le stock réel
-                  pour tous les articles ou si vous souhaitez terminer plus tard,
-                  veuillez cliquer sur <b>Enregistrer en tant que brouillon</b>.
-                </p>
-                <button
-                  style="margin: 20px 0; float: right"
-                  mat-stroked-button
-                  (click)="saveAsDraft()"
-                  form="editInventaireForm"
-                >
-                  <mat-icon>done</mat-icon>
-                  Enregistrer en tant que brouillon
-                </button>
-              </div>
-              <!--Invalid form-->
+                  style="
+                    font-size: 55px;
+                    color: rgb(50, 76, 228);
+                    cursor: pointer;
+                  "
+                  >reply</mat-icon
+                ></span
+              >
             </div>
+
+            <!-- Third Step start 1-->
+            <div class="row" class="padding" *ngIf="all">
+              <h4 style="margin-bottom: 30px">
+                {{ depot ? depot : "Tous les dépôts" }} -
+                {{ inventory.date | date: "dd/LL/YYYY":"fr" }}
+              </h4>
+              <form [formGroup]="editInventaireForm" id="editInventaireForm">
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field
+                      class="mb-3"
+                      appearance="outline"
+                      style="width: 100%"
+                    >
+                      <mat-label>Désignation</mat-label>
+                      <input
+                        matInput
+                        formControlName="name"
+                        type="text"
+                        class="example-right-align"
+                        [(ngModel)]="inventory.name"
+                        required
+                      />
+                      <mat-error
+                        *ngIf="
+                          editInventaireForm.get('name').hasError('required')
+                        "
+                      >
+                        La désignation de l'inventaire est
+                        <strong>obligatoire</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </form>
+              <mat-accordion class="example-headers-align" multi>
+                <mat-expansion-panel
+                  *ngFor="let depot of inventory.articleList"
+                  style="margin-bottom: 10px"
+                  [expanded]="depot == inventory.articleList[0]"
+                >
+                  <mat-expansion-panel-header
+                    class="panel-header"
+                    [ngStyle]="{
+                      'background-color': depot.isValid ? '#00800030' : ''
+                    }"
+                  >
+                    <mat-panel-title style="align-items: center">
+                      <img [src]="depot.img" class="panel-image" />
+
+                      <p class="no-margin panel-title">
+                        <b>{{ depot.name }} / Catégories</b>
+                      </p>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <div class="row mb-7" style="padding-top: 10px">
+                    <mat-accordion class="example-headers-align" multi>
+                      <mat-expansion-panel
+                        *ngFor="let category of depot.listCategorys"
+                        style="margin-bottom: 10px"
+                      >
+                        <mat-expansion-panel-header
+                          class="panel-header"
+                          [ngStyle]="{
+                            'background-color': category.isValid
+                              ? '#00800030'
+                              : ''
+                          }"
+                        >
+                          <mat-panel-title style="align-items: center">
+                            <img [src]="category.img" class="panel-image" />
+                            <p class="no-margin panel-title">
+                              <b>{{ category.name }} / Familles</b>
+                            </p>
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="row mb-7" style="padding-top: 10px">
+                          <mat-accordion class="example-headers-align" multi>
+                            <mat-expansion-panel
+                              *ngFor="let family of category.listFamily"
+                              style="margin-bottom: 10px"
+                            >
+                              <mat-expansion-panel-header
+                                class="panel-header"
+                                [ngStyle]="{
+                                  'background-color': family.isValid
+                                    ? '#00800030'
+                                    : ''
+                                }"
+                              >
+                                <mat-panel-title style="align-items: center">
+                                  <img [src]="family.img" class="panel-image" />
+                                  <p class="no-margin panel-title">
+                                    <b>{{ family.name }} / Types</b>
+                                  </p>
+                                </mat-panel-title>
+                              </mat-expansion-panel-header>
+                              <div class="row mb-7" style="padding-top: 10px">
+                                <mat-accordion
+                                  class="example-headers-align"
+                                  multi
+                                >
+                                  <mat-expansion-panel
+                                    *ngFor="let type of family.listType"
+                                    style="margin-bottom: 10px"
+                                  >
+                                    <mat-expansion-panel-header
+                                      class="panel-header"
+                                      [ngStyle]="{
+                                        'background-color': type.isValid
+                                          ? '#00800030'
+                                          : ''
+                                      }"
+                                    >
+                                      <mat-panel-title
+                                      style="align-items: center"
+                                      >
+                                        <img
+                                          [src]="type.img"
+                                          class="panel-image"
+                                        />
+                                        <p class="no-margin panel-title">
+                                          <b>{{ type.name }} / Articles</b>
+                                        </p>
+                                      </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div
+                                      class="row mb-7"
+                                      style="padding-top: 10px"
+                                    >
+                                      <ngx-slick-carousel
+                                        class="carousel"
+                                        #slickModal="slick-carousel"
+                                        [config]="slideConfig"
+                                      >
+                                        <div
+                                          ngxSlickItem
+                                          class="col-12"
+                                          style="
+                                            margin-bottom: 10px;
+                                            margin-right: 10px;
+                                          "
+                                          *ngFor="
+                                            let article of type.listArticle
+                                          "
+                                          class="slide"
+                                        >
+                                          <mat-card
+                                            class="example-card"
+                                            [ngStyle]="{
+                                              'background-color':
+                                                article.isValid
+                                                  ? '#00800030'
+                                                  : 'white',
+                                              border:
+                                                '2px solid rgb(0 0 0 / 12%)'
+                                            }"
+                                          >
+                                            <mat-card-header
+                                              style="
+                                                justify-content: space-between;
+                                              "
+                                            >
+                                              <mat-card-title>{{
+                                                article.name
+                                              }}</mat-card-title>
+                                              <mat-card-subtitle
+                                                style="display: flex"
+                                              >
+                                              </mat-card-subtitle>
+                                              <img
+                                                class="article-img"
+                                                mat-card-md-image
+                                                [src]="article.img"
+                                                alt="article image"
+                                              />
+                                            </mat-card-header>
+                                            <mat-card-content
+                                              style="padding-top: 20px"
+                                            >
+                                              <form
+                                                class="row"
+                                                [formGroup]="editArticleForm"
+                                              >
+                                                <mat-form-field
+                                                  class="col"
+                                                  appearance="outline"
+                                                  class="no-margin"
+                                                >
+                                                  <mat-label
+                                                    >Stock calculé</mat-label
+                                                  >
+                                                  <input
+                                                    class="no-margin"
+                                                    matInput
+                                                    type="number"
+                                                    name="quantity"
+                                                    [value]="article.quantity"
+                                                    [readonly]="true"
+                                                  />
+                                                </mat-form-field>
+                                                <mat-form-field
+                                                  class="col"
+                                                  appearance="outline"
+                                                  class="no-margin"
+                                                >
+                                                  <mat-label
+                                                    >Stock réel</mat-label
+                                                  >
+                                                  <input
+                                                    class="no-margin"
+                                                    matInput
+                                                    type="number"
+                                                    name="realQuantity"
+                                                    [value]="
+                                                      article.realQuantity
+                                                    "
+                                                    (blur)="
+                                                      changeRealQuantity(
+                                                        $event.target.value,
+                                                        article
+                                                      )
+                                                    "
+                                                  />
+                                                </mat-form-field>
+                                                <mat-form-field
+                                                  class="col"
+                                                  appearance="outline"
+                                                  class="no-margin"
+                                                >
+                                                  <mat-label>Ecart</mat-label>
+                                                  <input
+                                                    class="no-margin"
+                                                    matInput
+                                                    type="number"
+                                                    name="difference"
+                                                    [value]="article.difference"
+                                                    [readonly]="true"
+                                                  />
+                                                </mat-form-field>
+                                              </form>
+                                            </mat-card-content>
+                                          </mat-card></div
+                                      ></ngx-slick-carousel>
+                                    </div>
+                                  </mat-expansion-panel>
+                                </mat-accordion>
+                              </div>
+                            </mat-expansion-panel>
+                          </mat-accordion>
+                        </div>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+              <div class="row" style="height: 50px; margin-top: 20px">
+                <div class="col-6">
+                  <button
+                    mat-raised-button
+                    routerLink=".."
+                    class="full-width-btn"
+                  >
+                    <mat-icon>clear</mat-icon>
+                    Annuler
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button
+                    class="full-width-btn"
+                    mat-raised-button
+                    color="primary"
+                    (click)="editInventaire()"
+                    form="editInventaireForm"
+                  >
+                    <mat-icon>done</mat-icon>
+                    Confirmer
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Third Step end 1-->
+            <!-- Third Step start 2-->
+            <div class="row" class="padding" *ngIf="byCategory">
+              <h4 style="margin-bottom: 30px">
+                {{ depotName }} /
+                {{ categoryName ? categoryName : "Toutes les catégories" }} -
+                {{ inventory.date | date: "dd/LL/YYYY":"fr" }}
+              </h4>
+              <form [formGroup]="editInventaireForm" id="editInventaireForm">
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field
+                      class="mb-3"
+                      appearance="outline"
+                      style="width: 100%"
+                    >
+                      <mat-label style="font-size: 16px">Désignation</mat-label>
+                      <input
+                        matInput
+                        formControlName="name"
+                        type="text"
+                        class="example-right-align"
+                        [(ngModel)]="inventory.name"
+                        required
+                      />
+                      <mat-error
+                        *ngIf="
+                          editInventaireForm.get('name').hasError('required')
+                        "
+                      >
+                        La désignation de l'inventaire est
+                        <strong>obligatoire</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </form>
+              <mat-accordion class="example-headers-align" multi>
+                <mat-expansion-panel
+                  *ngFor="let family of inventory.articleList"
+                  style="margin-bottom: 10px"
+                  [expanded]="family == inventory.articleList[0]"
+                >
+                  <mat-expansion-panel-header
+                    class="panel-header"
+                    [ngStyle]="{
+                      'background-color': family.isValid ? '#00800030' : ''
+                    }"
+                  >
+                    <mat-panel-title style="align-items: center">
+                      <img [src]="family.img" class="panel-image" />
+                      <p class="no-margin panel-title">
+                        <b>{{ family.name }} / Types</b>
+                      </p>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="row mb-7" style="padding-top: 10px">
+                    <mat-accordion class="example-headers-align" multi>
+                      <mat-expansion-panel
+                        *ngFor="let type of family.listType"
+                        style="margin-bottom: 10px"
+                      >
+                        <mat-expansion-panel-header
+                          class="panel-header"
+                          [ngStyle]="{
+                            'background-color': type.isValid ? '#00800030' : ''
+                          }"
+                        >
+                          <mat-panel-title style="align-items: center">
+                            <img [src]="type.img" class="panel-image" />
+                            <p class="no-margin panel-title">
+                              <b>{{ type.name }} / Articles</b>
+                            </p>
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <div class="row mb-7" style="padding-top: 10px">
+                          <ngx-slick-carousel
+                            class="carousel"
+                            #slickModal="slick-carousel"
+                            [config]="slideConfig"
+                          >
+                            <div
+                              ngxSlickItem
+                              class="col-12"
+                              style="margin-bottom: 10px; margin-right: 10px"
+                              *ngFor="let article of type.listArticle"
+                              class="slide"
+                            >
+                              <mat-card
+                                class="example-card"
+                                [ngStyle]="{
+                                  'background-color': article.isValid
+                                    ? '#00800030'
+                                    : 'white',
+                                  border: '2px solid rgb(0 0 0 / 12%)'
+                                }"
+                              >
+                                <mat-card-header
+                                  style="justify-content: space-between"
+                                >
+                                  <mat-card-title>{{
+                                    article.name
+                                  }}</mat-card-title>
+                                  <mat-card-subtitle style="display: flex">
+                                  </mat-card-subtitle>
+                                  <img
+                                    class="article-img"
+                                    mat-card-md-image
+                                    [src]="article.img"
+                                    alt="article image"
+                                  />
+                                </mat-card-header>
+                                <mat-card-content style="padding-top: 20px">
+                                  <form
+                                    class="row"
+                                    [formGroup]="editArticleForm"
+                                  >
+                                    <mat-form-field
+                                      class="col"
+                                      appearance="outline"
+                                      class="no-margin"
+                                    >
+                                      <mat-label>Stock calculé</mat-label>
+                                      <input
+                                        class="no-margin"
+                                        matInput
+                                        type="number"
+                                        name="quantity"
+                                        [value]="article.quantity"
+                                        [readonly]="true"
+                                      />
+                                    </mat-form-field>
+                                    <mat-form-field
+                                      class="col"
+                                      appearance="outline"
+                                      class="no-margin"
+                                    >
+                                      <mat-label>Stock reél</mat-label>
+                                      <input
+                                        class="no-margin"
+                                        matInput
+                                        type="number"
+                                        name="realQuantity"
+                                        [value]="article.realQuantity"
+                                        (blur)="
+                                          changeRealQuantity(
+                                            $event.target.value,
+                                            article
+                                          )
+                                        "
+                                      />
+                                    </mat-form-field>
+                                    <mat-form-field
+                                      class="col"
+                                      appearance="outline"
+                                      class="no-margin"
+                                    >
+                                      <mat-label>Ecart</mat-label>
+                                      <input
+                                        class="no-margin"
+                                        matInput
+                                        type="number"
+                                        name="difference"
+                                        [value]="article.difference"
+                                        [readonly]="true"
+                                      />
+                                    </mat-form-field>
+                                  </form>
+                                </mat-card-content>
+                              </mat-card>
+                            </div>
+                          </ngx-slick-carousel>
+                        </div>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+              <div class="row" style="height: 50px; margin-top: 20px">
+                <div class="col-6">
+                  <button
+                    mat-raised-button
+                    routerLink=".."
+                    class="full-width-btn"
+                  >
+                    <mat-icon>clear</mat-icon>
+                    Annuler
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button
+                    class="full-width-btn"
+                    mat-raised-button
+                    color="primary"
+                    (click)="editInventaire()"
+                    form="editInventaireForm"
+                  >
+                    <mat-icon>done</mat-icon>
+                    Confirmer
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Third Step start 2-->
+
+            <!-- Third Step start 3-->
+            <div class="row" class="padding" *ngIf="byDepot">
+              <h4 style="margin-bottom: 30px">
+                {{ depotName }} /
+                {{ categoryName ? categoryName : "Toutes les catégories" }} -
+                {{ inventory.date | date: "dd/LL/YYYY":"fr" }}
+              </h4>
+              <form [formGroup]="editInventaireForm" id="editInventaireForm">
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field
+                      class="mb-3"
+                      appearance="outline"
+                      style="width: 100%"
+                    >
+                      <mat-label style="font-size: 16px">Désignation</mat-label>
+                      <input
+                        matInput
+                        formControlName="name"
+                        type="text"
+                        class="example-right-align"
+                        [(ngModel)]="inventory.name"
+                        required
+                      />
+                      <mat-error
+                        *ngIf="
+                          editInventaireForm.get('name').hasError('required')
+                        "
+                      >
+                        La désignation de l'inventaire est
+                        <strong>obligatoire</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </form>
+              <mat-accordion class="example-headers-align" multi>
+                <mat-expansion-panel
+                  *ngFor="let category of inventory.articleList"
+                  style="margin-bottom: 10px"
+                  [expanded]="category == inventory.articleList[0]"
+                >
+                  <mat-expansion-panel-header
+                    class="panel-header"
+                    [ngStyle]="{
+                      'background-color': category.isValid ? '#00800030' : ''
+                    }"
+                  >
+                    <mat-panel-title style="align-items: center">
+                      <img [src]="category.img" class="panel-image" />
+                      <p class="no-margin panel-title">
+                        <b>{{ category.name }} / Familles</b>
+                      </p>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="row mb-7" style="padding-top: 10px">
+                    <mat-accordion class="example-headers-align" multi>
+                      <mat-expansion-panel
+                        *ngFor="let family of category.listFamily"
+                        style="margin-bottom: 10px"
+                      >
+                        <mat-expansion-panel-header
+                          class="panel-header"
+                          [ngStyle]="{
+                            'background-color': family.isValid
+                              ? '#00800030'
+                              : ''
+                          }"
+                        >
+                          <mat-panel-title style="align-items: center">
+                            <img [src]="family.img" class="panel-image" />
+                            <p class="no-margin panel-title">
+                              <b>{{ family.name }} / Types</b>
+                            </p>
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                        <div class="row mb-7" style="padding-top: 10px">
+                          <mat-accordion class="example-headers-align" multi>
+                            <mat-expansion-panel
+                              *ngFor="let type of family.listType"
+                              style="margin-bottom: 10px"
+                            >
+                              <mat-expansion-panel-header
+                                class="panel-header"
+                                [ngStyle]="{
+                                  'background-color': type.isValid
+                                    ? '#00800030'
+                                    : ''
+                                }"
+                              >
+                                <mat-panel-title style="align-items: center">
+                                  <img [src]="type.img" class="panel-image" />
+                                  <p class="no-margin panel-title">
+                                    <b>{{ type.name }} / Articles</b>
+                                  </p>
+                                </mat-panel-title>
+                              </mat-expansion-panel-header>
+
+                              <div class="row mb-7" style="padding-top: 10px">
+                                <ngx-slick-carousel
+                                  class="carousel"
+                                  #slickModal="slick-carousel"
+                                  [config]="slideConfig"
+                                >
+                                  <div
+                                    ngxSlickItem
+                                    class="col-12"
+                                    style="
+                                      margin-bottom: 10px;
+                                      margin-right: 10px;
+                                    "
+                                    *ngFor="let article of type.listArticle"
+                                    class="slide"
+                                  >
+                                    <mat-card
+                                      class="example-card"
+                                      [ngStyle]="{
+                                        'background-color': article.isValid
+                                          ? '#00800030'
+                                          : 'white',
+                                        border: '2px solid rgb(0 0 0 / 12%)'
+                                      }"
+                                    >
+                                      <mat-card-header
+                                        style="justify-content: space-between"
+                                      >
+                                        <mat-card-title>{{
+                                          article.name
+                                        }}</mat-card-title>
+                                        <mat-card-subtitle
+                                          style="display: flex"
+                                        >
+                                        </mat-card-subtitle>
+                                        <img
+                                          class="article-img"
+                                          mat-card-md-image
+                                          [src]="article.img"
+                                          alt="article image"
+                                        />
+                                      </mat-card-header>
+                                      <mat-card-content
+                                        style="padding-top: 20px"
+                                      >
+                                        <form
+                                          class="row"
+                                          [formGroup]="editArticleForm"
+                                        >
+                                          <mat-form-field
+                                            class="col"
+                                            appearance="outline"
+                                            class="no-margin"
+                                          >
+                                            <mat-label>Stock calculé</mat-label>
+                                            <input
+                                              class="no-margin"
+                                              matInput
+                                              type="number"
+                                              name="quantity"
+                                              [value]="article.quantity"
+                                              [readonly]="true"
+                                            />
+                                          </mat-form-field>
+                                          <mat-form-field
+                                            class="col"
+                                            appearance="outline"
+                                            class="no-margin"
+                                          >
+                                            <mat-label>Stock réel</mat-label>
+                                            <input
+                                              class="no-margin"
+                                              matInput
+                                              type="number"
+                                              name="realQuantity"
+                                              [value]="article.realQuantity"
+                                              (blur)="
+                                                changeRealQuantity(
+                                                  $event.target.value,
+                                                  article
+                                                )
+                                              "
+                                            />
+                                          </mat-form-field>
+                                          <mat-form-field
+                                            class="col"
+                                            appearance="outline"
+                                          >
+                                            <mat-label>Ecart</mat-label>
+                                            <input
+                                              style="margin: 0"
+                                              matInput
+                                              type="number"
+                                              name="difference"
+                                              [value]="article.difference"
+                                              [readonly]="true"
+                                            />
+                                          </mat-form-field>
+                                        </form>
+                                      </mat-card-content>
+                                    </mat-card>
+                                  </div>
+                                </ngx-slick-carousel>
+                              </div>
+                            </mat-expansion-panel>
+                          </mat-accordion>
+                        </div>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+              <div class="row" style="height: 50px; margin-top: 20px">
+                <div class="col-6">
+                  <button
+                    mat-raised-button
+                    routerLink=".."
+                    class="full-width-btn"
+                  >
+                    <mat-icon>clear</mat-icon>
+                    Annuler
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button
+                    class="full-width-btn"
+                    mat-raised-button
+                    color="primary"
+                    (click)="editInventaire()"
+                    form="editInventaireForm"
+                  >
+                    <mat-icon>done</mat-icon>
+                    Confirmer
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Third Step start 3-->
+
+            <!--Invalid form-->
+            <div class="padding" *ngIf="isDraft">
+              <p style="font-size: 22px; color: red">
+                Pour ajouter votre inventaire, veuillez remplir le stock réel
+                pour tous les articles ou si vous souhaitez terminer plus tard,
+                veuillez cliquer sur <b>Enregistrer en tant que brouillon</b>.
+              </p>
+              <button
+                class="save-draft-btn"
+                mat-stroked-button
+                (click)="saveAsDraft()"
+                form="editInventaireForm"
+              >
+                <mat-icon>done</mat-icon>
+                Enregistrer en tant que brouillon
+              </button>
+            </div>
+            <!--Invalid form-->
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

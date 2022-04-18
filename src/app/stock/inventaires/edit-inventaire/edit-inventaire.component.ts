@@ -32,8 +32,9 @@ export class EditInventaireComponent implements OnInit {
     slidesToShow: 1,
     slidesToScroll: 1,
     dots: true,
-    centerMode: true,
+    centerMode: false,
     infinite: false,
+    arrows: true,
   };
   constructor(
     private route: ActivatedRoute,

@@ -195,15 +195,15 @@
                             <pagination-controls class="text-center" (pageChange)="page = $event" *ngIf="searchArticles" previousLabel="précédente" nextLabel="suivant"></pagination-controls>
                             -->
 
-                            <pagination-template *ngIf="searchArticles" class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
+                            <!--<pagination-template *ngIf="searchArticles" class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
                                 <div class="custom-pagination">
                                     <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
-                                        <!--*ngIf="!p.isFirstPage()"-->
+                                       
                                         <span (click)="p.previous()" style="background-color: #3f51b5;font-size:40px;padding-right:10px;padding-left:10px; color:white; border-radius:1px;">
                                             <
                                         </span>
                                     </div>
-                                    <!--<div
+                                    <div
                                             class="page-number"
                                             *ngFor="let page of p.pages"
                                             [class.current]="p.getCurrent() === page.value"
@@ -216,13 +216,24 @@
                                             <div *ngIf="p.getCurrent() === page.value">
                                                 <span>{{ page.label }}</span>
                                             </div>
-                                            </div>-->
-                                    <!--*ngIf="!p.isLastPage()"-->
+                                            </div>
+                                   
                                     <div class="pagination-next" [ngClass]="{'disable': p.isLastPage()}">
                                         <span (click)="p.next()" style="background-color:#3f51b5;font-size:40px;padding-right:10px;padding-left:10px;margin:60px;color:white;border-radius:1px;">
                                                     >
                                         </span>
                                     </div>
+                                </div>
+                            </pagination-template>-->
+
+                            <pagination-template class="pagination" class="text-center" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event" *ngIf="this.totalLength  > config.itemsPerPage">
+                                <div class="custom-pagination" style="display: flex; justify-content: center">
+                                    <button mat-fab color="primary" (click)="p.previous()" [disabled]="p.isFirstPage()" style="margin: 5px">
+                                <mat-icon>keyboard_arrow_left</mat-icon>
+                                </button>
+                                    <button mat-fab color="primary" [disabled]="p.isLastPage()" (click)="p.next()" style="margin: 5px">
+                                <mat-icon>keyboard_arrow_right</mat-icon>
+                               </button>
                                 </div>
                             </pagination-template>
 
