@@ -34,3 +34,7 @@
     font-size: 80px;
     color: white;
 }
+
+:host ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0px;
+}

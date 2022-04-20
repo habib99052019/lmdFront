@@ -16,6 +16,7 @@ export class InventairesComponent implements OnInit {
   filterForm: FormGroup;
   page = 1;
   loading: boolean = true;
+  showResetFilter : boolean = false;
   config = {
     id: "custom",
     itemsPerPage: 6,
@@ -51,8 +52,6 @@ export class InventairesComponent implements OnInit {
         this.loading = false;
         if (res.length) {
           this.inventaires = res.reverse();
-          console.log("inventaire malek>>>>", this.inventaires);
-          
           this.filteredList = this.inventaires;
         } else {
           this.inventaires = [];
@@ -91,10 +90,13 @@ export class InventairesComponent implements OnInit {
   };
 
   deepFilter() {
-    const from = this.filterForm.get("from").value
-      ? formatDate(this.filterForm.get("from").value, "yyyy-MM-dd", "en")
+    this.showResetFilter = true;
+    let from = this.filterForm.get("from").value;
+    let to = this.filterForm.get("to").value;
+    from = from
+      ? formatDate(from, "yyyy-MM-dd", "en")
       : null;
-    const to = this.filterForm.get("to").value
+     to = to
       ? formatDate(this.filterForm.get("to").value, "yyyy-MM-dd", "en")
       : null;
     const label = this.filterForm.get("label").value;
@@ -106,11 +108,11 @@ export class InventairesComponent implements OnInit {
         : null;
 
       return (
-        inventaire.clientID.first_name
+        (person ? inventaire.clientID.first_name
           .trim()
           .toLowerCase()
-          .includes(person.trim().toLowerCase()) &&
-        inventaire.name.toLowerCase().includes(label.trim().toLowerCase()) &&
+          .includes(person.trim().toLowerCase()) : true) &&
+          (label ? inventaire.name.toLowerCase().includes(label.trim().toLowerCase()) : true) &&
         (from && to
           ? date >= from && date <= to
           : from && !to
@@ -120,5 +122,16 @@ export class InventairesComponent implements OnInit {
           : true)
       );
     });
+  }
+  resetFilter(){
+    this.showResetFilter = false;
+    this.showFilters = false;
+    this.filterForm.patchValue({
+      from: "",
+      to: "",
+      person: "",
+      label: "",
+    });
+    this.filteredList = this.inventaires;
   }
 }

@@ -41,43 +41,75 @@
                         <!--- start >>> filters -->
 
                         <form style="padding-top: 30px" class="row" [formGroup]="filterForm" *ngIf="showFilters">
-                            <div class="row">
-                                <div class="col">
+                            <div class="row" style="padding-right: 0">
+                                <div class="col" style="padding-right: 0">
                                     <mat-form-field style="width: 100%" class="mb-3" appearance="outline">
                                         <mat-label>De</mat-label>
-                                        <input matInput formControlName="from" [matDatepicker]="picker1" (dateChange)="deepFilter()" />
+                                        <!--(dateChange)="deepFilter()"-->
+                                        <input matInput formControlName="from" [matDatepicker]="picker1" />
                                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                         <mat-datepicker #picker1></mat-datepicker>
-                                        <mat-error *ngIf="">
-                                            La date de début est <strong>invalide</strong>
-                                        </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col">
+                                <div class="col" style="padding-right: 0">
                                     <mat-form-field style="width: 100%" class="mb-3" appearance="outline">
                                         <mat-label>À</mat-label>
-                                        <input matInput formControlName="to" [matDatepicker]="picker2" (dateChange)="deepFilter()" />
+                                        <input matInput formControlName="to" [matDatepicker]="picker2" />
                                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                         <mat-datepicker #picker2></mat-datepicker>
-                                        <mat-error *ngIf="">
-                                            La date de fin est <strong>invalide</strong>
-                                        </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col">
+                                <div class="col" style="padding-right: 0">
                                     <mat-form-field style="width: 100%" class="mb-3" appearance="outline">
                                         <mat-label>Créateur</mat-label>
-                                        <input matInput formControlName="person" type="text" [value]="" (change)="deepFilter()" />
+                                        <input matInput formControlName="person" type="text" [value]="" />
                                         <mat-icon matSuffix>person</mat-icon>
                                     </mat-form-field>
                                 </div>
-                                <div class="col">
+                                <div class="col" style="padding-right: 0">
                                     <mat-form-field style="width: 100%" class="mb-3" appearance="outline">
                                         <mat-label>Désignation</mat-label>
-                                        <input matInput formControlName="label" type="text" [value]="" (change)="deepFilter()" />
+                                        <!--(change)="deepFilter()"-->
+                                        <input matInput formControlName="label" type="text" [value]="" />
                                         <mat-icon matSuffix>label_important</mat-icon>
                                     </mat-form-field>
                                 </div>
+                                <div class="col" style="padding-right: 0">
+                                    <button mat-raised-button color="primary" style="
+                        margin-right: 5px;
+                        margin-top: 3px;
+                        height: 53px;
+                        width: 100%;
+                      " (click)="deepFilter()">
+                      <mat-icon>search </mat-icon>
+                      Chercher
+                    </button>
+                                </div>
+                            </div>
+
+                            <div style="
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 10px;
+                    margin-bottom: 15px;
+                    margin-right: 20px;
+                  " *ngIf="showResetFilter" (click)="resetFilter()">
+                                <span style="
+                      cursor: pointer;
+                      background-color: aliceblue;
+                      border-radius: 5px;
+                      width: 150px;
+                    ">
+                    <p
+                      style="
+                        color: rgb(24, 25, 26);
+                        padding-top: 11px;
+                        padding-left: 8px;
+                      "
+                    >
+                      Réinitialiser les filtres
+                    </p>
+                  </span>
                             </div>
                         </form>
                         <!--- end >>> filters -->
