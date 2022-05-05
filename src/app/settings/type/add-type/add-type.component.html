@@ -1,0 +1,328 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Stock</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <!--href="#" onClick="return false;"-->
+                            <a>
+                                <i class="fas fa-home"></i>Accueil</a>
+                        </li>
+                        <li class="breadcrumb-item active">Paramètres</li>
+                        <li class="breadcrumb-item bcrumb-3">Type</li>
+                        <li class="breadcrumb-item bcrumb-3">Ajouter</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card" style="height: 100%">
+                    <div class="card-body">
+                        <div class="row" style="padding: 30px" *ngIf="chooseDepot">
+                            <div class="text-center mt-3" style="margin-bottom: 30px">
+                                <h3 style="
+                                  font-weight: bold;
+                                  font-family: open sans, sans-serif;
+                                  font-size: 30px;
+                                ">
+                                    Veuillez choisir un dépôt pour continuer
+                                </h3>
+                            </div>
+
+                            <div class="row mt-2 mb-5" style="margin-top: 30px">
+                                <a class="col-lg-2 mb-3" routerLink="/settings/depot/add">
+                                    <div class="boxDiv text-center" style="height: 137.5px">
+                                        <div style="
+                                      display: flex;
+                                      justify-content: center;
+                                      height: 100%;
+                                      align-items: center;
+                                    ">
+                                            <mat-icon style="transform: scale(2)">add</mat-icon>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="col-lg-2 mb-3" *ngFor="let item of depots">
+                                    <a (click)="chooseDepotAction(item)">
+                                        <div class="boxDiv text-center">
+                                            <div style="width: 100%">
+                                                <img alt="image" width="100%" height="80px" src="{{ item.img }}" class="image" />
+                                            </div>
+                                            <span style="
+                                        margin-bottom: 25px;
+                                        align-self: flex-center;
+                                        font-size: 15px;
+                                        margin-top: 10px;
+                                      ">{{ item.name }}</span
+                                    >
+                                  </div>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row" style="padding: 30px" *ngIf="chooseCategory">
+                            <div>
+                                <span (click) = "backButtonAction()"
+                                  ><mat-icon
+                                    style="
+                                      font-size: 55px;
+                                      color: rgb(50, 76, 228);
+                                      cursor: pointer;
+                                    "
+                                    >reply</mat-icon
+                                  ></span
+                                >
+                              </div>
+                            <div class="text-center mt-3" style="margin-bottom: 30px">
+                              <h3
+                                style="
+                                  font-weight: bold;
+                                  font-family: open sans, sans-serif;
+                                  font-size: 30px;
+                                "
+                              >
+                                Veuillez choisir une catégorie pour continuer
+                              </h3>
+                            </div>
+              
+                            <div class="row mt-2 mb-5" style="margin-top: 30px">
+                              <a class="col-lg-2 mb-3" routerLink="/settings/category/add">
+                                <div class="boxDiv text-center" style="height: 137.5px">
+                                  <div
+                                    style="
+                                      display: flex;
+                                      justify-content: center;
+                                      height: 100%;
+                                      align-items: center;
+                                    "
+                                  >
+                                    <mat-icon style="transform: scale(2)">add</mat-icon>
+                                  </div>
+                                </div>
+                              </a>
+                              <div class="col-lg-2 mb-3" *ngFor="let item of categories">
+                                <a (click)="chooseCategoryAction(item)">
+                                  <div class="boxDiv text-center">
+                                    <div style="width: 100%">
+                                      <img
+                                        alt="image"
+                                        width="100%"
+                                        height="80px"
+                                        src="{{ item.img }}"
+                                        class="image"
+                                      />
+                                    </div>
+                                    <span
+                                      style="
+                                        margin-bottom: 25px;
+                                        align-self: flex-center;
+                                        font-size: 15px;
+                                        margin-top: 10px;
+                                      "
+                                      >{{ item.name }}</span
+                                    >
+                                  </div>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+              
+                          <div class="row" style="padding: 30px" *ngIf="chooseFamily">
+                            <div>
+                                <span (click) = "backButtonAction()"
+                                  ><mat-icon
+                                    style="
+                                      font-size: 55px;
+                                      color: rgb(50, 76, 228);
+                                      cursor: pointer;
+                                    "
+                                    >reply</mat-icon
+                                  ></span
+                                >
+                              </div>
+                            <div class="text-center mt-3" style="margin-bottom: 30px">
+                              <h3
+                                style="
+                                  font-weight: bold;
+                                  font-family: open sans, sans-serif;
+                                  font-size: 30px;
+                                "
+                              >
+                                Veuillez choisir une famille pour continuer
+                              </h3>
+                            </div>
+              
+                            <div class="row mt-2 mb-5" style="margin-top: 30px">
+                              <a class="col-lg-2 mb-3" routerLink="/settings/family/add">
+                                <div class="boxDiv text-center" style="height: 137.5px">
+                                  <div
+                                    style="
+                                      display: flex;
+                                      justify-content: center;
+                                      height: 100%;
+                                      align-items: center;
+                                    "
+                                  >
+                                    <mat-icon style="transform: scale(2)">add</mat-icon>
+                                  </div>
+                                </div>
+                              </a>
+                              <div class="col-lg-2 mb-3" *ngFor="let item of families">
+                                <a (click)="chooseFamilyAction(item)">
+                                  <div class="boxDiv text-center">
+                                    <div style="width: 100%">
+                                      <img
+                                        alt="image"
+                                        width="100%"
+                                        height="80px"
+                                        src="{{ item.img }}"
+                                        class="image"
+                                      />
+                                    </div>
+                                    <span
+                                      style="
+                                        margin-bottom: 25px;
+                                        align-self: flex-center;
+                                        font-size: 15px;
+                                        margin-top: 10px;
+                                      "
+                                      >{{ item.name }}</span
+                                    >
+                                  </div>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+              
+                          <div class="row" style="padding: 30px" *ngIf="addType">
+                            <div>
+                                <span (click) = "backButtonAction()"
+                                  ><mat-icon
+                                    style="
+                                      font-size: 55px;
+                                      color: rgb(50, 76, 228);
+                                      cursor: pointer;
+                                    "
+                                    >reply</mat-icon
+                                  ></span
+                                >
+                              </div>
+                            <div class="text-center mt-3">
+                                <h3
+                                  style="
+                                    font-weight: bold;
+                                    font-family: open sans, sans-serif;
+                                    font-size: 30px;
+                                    margin-bottom: 30px;
+                                  "
+                                >
+                                Veuillez remplir la formulaire puis cliquer sur confirmer
+                                </h3>
+                              </div>
+                              <div
+                              class="preview"
+                              *ngIf="imgFile"
+                              style="text-align: center; margin-bottom: 20px"
+                            >
+                              <img
+                                [src]="imgFile"
+                                style="width: 150px; height: 150px; border-radius: 12px"
+                              />
+                            </div>
+                            <div class="row">
+                              <div class="mb-3 col">
+                                <button
+                                  mat-raised-button
+                                  color="primary"
+                                  (click)="openInput()"
+                                >
+                                  <mat-icon>image</mat-icon> Choisir une image
+                                </button>
+                                <input
+                                  id="fileInput"
+                                  hidden
+                                  type="file"
+                                  (change)="onImageChange($event)"
+                                  name="file"
+                                  accept=".jpg,.jpeg,.png,.jfif"
+                                  formControlName="file"
+                                />
+                              </div>
+                            </div>
+                            <form [formGroup]="addTypeForm" id="addTypeForm">
+                              <div class="row">
+                                <div class="col-12">
+                                  <mat-form-field
+                                    class="mb-3"
+                                    appearance="outline"
+                                    style="width: 100%"
+                                  >
+                                    <mat-label style="font-size: 16px">Désignation</mat-label>
+                                    <input
+                                      matInput
+                                      formControlName="name"
+                                      type="text"
+                                      class="example-right-align"
+                                      [value]=""
+                                      required
+                                    />
+                                    <mat-error
+                                      *ngIf="addTypeForm.get('name').hasError('required')"
+                                    >
+                                      La désignation de type est
+                                      <strong>obligatoire</strong>
+                                    </mat-error>
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-12">
+                                    <mat-form-field
+                                      class="mb-3"
+                                      appearance="outline"
+                                      style="width: 100%"
+                                    >
+                                      <mat-label style="font-size: 16px">Description</mat-label>
+                                      <textarea
+                                        matInput
+                                        formControlName="description"
+                                        class="example-right-align"
+                                        [value]=""
+                                      ></textarea>
+                                    </mat-form-field>
+                                  </div>
+                              </div>
+                            </form>
+                            <div class="row" style="height: 50px; margin-top: 20px">
+                              <div class="col-6">
+                                <button
+                                  mat-raised-button
+                                  class="full-width-btn"
+                                >
+                                  <mat-icon>clear</mat-icon>
+                                  Annuler
+                                </button>
+                              </div>
+                              <div class="col-6">
+                                <button
+                                  class="full-width-btn"
+                                  mat-raised-button
+                                  color="primary"
+                                  (click)="addTypeAction()"
+                                  form="addTypeForm"
+                                >
+                                  <mat-icon>done</mat-icon>
+                                  Confirmer
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

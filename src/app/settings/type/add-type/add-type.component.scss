@@ -1,0 +1,19 @@
+.boxDiv {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    color: rgb(56, 56, 56);
+    border-radius: 12px;
+    box-shadow: 0.5px 0.5px 6px 0.5px #9e9e9e;
+}
+
+img {
+    border-top-right-radius: 12px 12px;
+    border-top-left-radius: 12px 12px;
+}
+
+.full-width-btn {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}

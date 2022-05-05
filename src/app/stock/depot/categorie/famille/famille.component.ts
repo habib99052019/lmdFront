@@ -31,6 +31,8 @@ export class FamilleComponent implements OnInit {
 
   getListFamilyByCategorie(){
     this.service.getListFamilyByCategorie(this.name).pipe(take(1)).subscribe((data : any)=>{
+      console.log("data family>>>",data);
+      
         this.Familles = data[0].listFamily;
         this.pathName = data[0].idDepot.name;
         console.log("familles>>>", data);

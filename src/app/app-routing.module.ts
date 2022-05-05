@@ -32,6 +32,12 @@ const routes: Routes = [
           import('./stock/stock.module').then((m) => m.StockModule),
       },
       {
+        path: 'settings',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./settings/settings.module').then((m) => m.SettingsModule),
+      },
+      {
         path: 'extra-pages',
         loadChildren: () =>
           import('./extra-pages/extra-pages.module').then(

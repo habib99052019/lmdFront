@@ -123,8 +123,86 @@ export const ROUTES: RouteInfo[] = [
           badge: '',
           badgeClass: '',
           submenu: [],
+        }
+    ],
+  },
+
+  ,  
+        
+        {
+        path: '',
+        title: 'Parmètres',
+        moduleName: 'settings',
+        iconType: 'material-icons-two-tone',
+        icon: 'settings',
+        class: 'menu-toggle',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        submenu: [
+
+      {
+        path: 'settings/article/add',
+        title: 'Articles',
+        moduleName: 'settings',
+        iconType: '',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        submenu: [],
+      },
+      
+        {
+          path: 'settings/type/add',
+          title: 'Types',//
+          moduleName: 'settings',
+          iconType: '',
+          icon: '',
+          class: 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          submenu: [],
         },
-       
+        
+        {
+          path: 'settings/family/add',
+          title: 'Familles',
+          moduleName: 'settings',
+          iconType: '',
+          icon: '',
+          class: 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          submenu: [],
+        },
+        {
+          path: 'settings/category/add',
+          title: 'Catégories',
+          moduleName: 'settings',
+          iconType: '',
+          icon: '',
+          class: 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          submenu: [],
+        },
+        {
+          path: 'settings/depot/add',
+          title: 'Dépôts',
+          moduleName: 'settings',
+          iconType: '',
+          icon: '',
+          class: 'ml-menu',
+          groupTitle: false,
+          badge: '',
+          badgeClass: '',
+          submenu: [],
+        },
       
      
     ],

@@ -62,8 +62,8 @@
 
                         <div class="autoDate">
                             <mat-form-field class="mat-form" appearance="outline">
-                                <input [readonly]="true" matInput type="text" [value]='this.dateNow'>
-                                <mat-icon matSuffix>today</mat-icon>
+                                <input [disabled]="true" matInput type="text" [value]='this.dateNow'>
+                                <mat-icon style="color:rgb(172, 172, 172)" matSuffix>today</mat-icon>
                             </mat-form-field>
                         </div>
 
@@ -86,7 +86,7 @@
                                 <form class="col">
 
                                     <mat-form-field class="mb-3" appearance="outline">
-                                        <mat-label>Search</mat-label>
+                                        <mat-label style="color:black">Search</mat-label>
                                         <input matInput type="text" [matAutocomplete]="auto" #query (keyup)="search(query.value)" [value]='this.article'>
                                         <mat-icon matSuffix>local_grocery_store</mat-icon>
                                         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">

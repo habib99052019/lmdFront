@@ -162,4 +162,30 @@ getListOfFamiliesByDepot(name){
   return this.http.get(this.ApiPath + 'depots/families?name=' + name )
 }
 
+
+
+//add new depot
+addDepot(depot : any){
+  return this.http.post(this.ApiPath + '/depots', depot)
+}
+//add new category
+addCategory(category : any){
+  return this.http.post(this.ApiPath + 'categories', category)
+}
+
+//add new family
+addFamily(family : any){
+  return this.http.post(this.ApiPath + 'family', family)
+}
+
+//add new type
+addType(type : any){
+  return this.http.post(this.ApiPath + 'types', type)
+}
+
+//add new article
+addArticle(article : any){
+  return this.http.post(this.ApiPath + 'articles', article)
+}
+
 }
