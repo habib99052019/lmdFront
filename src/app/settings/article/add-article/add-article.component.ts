@@ -1,9 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import { take } from "rxjs";
@@ -36,7 +32,7 @@ export class AddArticleComponent implements OnInit {
   depot: any;
   imgFile: string;
   currentFile;
-  unities: string[] = ['Kg', 'L', 'Pièce'];
+  unities: string[] = ["Kg", "L", "Pièce"];
   selectedUnity;
   submited = false;
   addNewArticle = false;
@@ -44,15 +40,17 @@ export class AddArticleComponent implements OnInit {
   isFromCourse = false;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private stockService: StockService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    public router: Router,
+    public router: Router
   ) {
-    const navigation  = this.router.getCurrentNavigation();
-    this.isFromCourse = navigation.extras.state ? navigation.extras.state.isFromCourse : false;
-    console.log(this.isFromCourse)
+    const navigation = this.router.getCurrentNavigation();
+    this.isFromCourse = navigation.extras.state
+      ? navigation.extras.state.isFromCourse
+      : false;
+    console.log(this.isFromCourse);
   }
 
   ngOnInit(): void {
@@ -62,28 +60,51 @@ export class AddArticleComponent implements OnInit {
   }
 
   ngDoCheck(): void {
-     if(this.add){
+    if (this.add) {
       this.getListArticlesOfAllDepots();
-     }
+    }
   }
   byId(index, item) {
     return item._id;
- }
-  createAddArticleForm(): FormGroup {
-    return this.fb.group({
-      name: ["", Validators.required],
-      description: [""],
-      image: ["", Validators.required],
-      unity: ["", Validators.required],
-      quantity: ["", Validators.required],
-      marque: [""],
-      file: [""],
-    });
   }
+  createAddArticleForm(): FormGroup {
+    console.log(this.isFromCourse)
+    if(this.isFromCourse){
+      return this.fb.group({
+        name: ["", Validators.required],
+        description: [""],
+        unity: [""],
+        quantity: ["", Validators.required],
+        marque: [""],
+        file: [""],
+      });
+    }else{
+      return this.fb.group({
+        name: ["", Validators.required],
+        description: [""],
+        unity: [""],
+        marque: [""],
+        file: [""],
+      });
+    }
+
+  }
+
+  getQuantity = (article) => {
+    const addArticles = localStorage.getItem("addedArticlesInStorage")
+      ? JSON.parse(localStorage.getItem("addedArticlesInStorage"))
+      : [];
+    addArticles.forEach((item) => {
+      if (item._id === article._id) {
+        return item.quantity;
+      }
+    });
+    return article.quantity;
+  };
 
   createAddArticleToCourseForm(): FormGroup {
     return this.fb.group({
-      quantity: ["", Validators.required,],
+      quantity: ["", Validators.required],
       price: ["", Validators.required],
     });
   }
@@ -145,17 +166,26 @@ export class AddArticleComponent implements OnInit {
 
   selectUnity = (unity: any) => {
     this.selectedUnity = unity;
-  }
+  };
 
   addArticleAction = () => {
     this.submited = true;
+    console.log(this.addArticleForm)
+    if (this.addArticleForm.invalid || !this.currentFile || !this.selectedUnity) {
+      console.log("dzdzez")
+      return;
+    }
+  
     const formData: FormData = new FormData();
     formData.append("file", this.currentFile ? this.currentFile[0] : null);
-    formData.append("name", this.addArticleForm.get("name").value);
-    formData.append("marque", this.addArticleForm.get("marque").value);
-    formData.append("quantity", this.addArticleForm.get("quantity").value);
+    formData.append("name", this.addArticleForm.get("name").value.trim());
+    formData.append("marque", this.addArticleForm.get("marque").value.trim());
+    formData.append("quantity", this.isFromCourse ? this.addArticleForm.get("quantity").value: 0);
     formData.append("unity", this.selectedUnity);
-    formData.append("description", this.addArticleForm.get("description").value);
+    formData.append(
+      "description",
+      this.addArticleForm.get("description").value
+    );
     formData.append("idType", this.type._id);
 
     this.stockService.addArticle(formData).subscribe((article) => {
@@ -175,7 +205,7 @@ export class AddArticleComponent implements OnInit {
   addNewArticleAction = () => {
     this.addNewArticle = true;
     this.addArticle = false;
-  }
+  };
 
   backButtonAction = () => {
     if (this.addArticle) {
@@ -190,11 +220,13 @@ export class AddArticleComponent implements OnInit {
     } else if (this.chooseCategory) {
       this.chooseCategory = false;
       this.chooseDepot = true;
-    }else if(this.addNewArticle){
+    } else if (this.addNewArticle) {
       this.addArticle = true;
       this.addNewArticle = false;
-    }else{
+    } else if (this.isFromCourse) {
       this.router.navigate(["stock/courses/add"]);
+    } else{
+      // back to list of articles
     }
   };
   showNotification(colorName, text, placementFrom, placementAlign) {
@@ -216,14 +248,50 @@ export class AddArticleComponent implements OnInit {
         this.addArticleToCourseForm.get("quantity").value *
         this.addArticleToCourseForm.get("price").value,
     };
-    const addArticles = localStorage.getItem('addedArticlesInStorage') ? JSON.parse(localStorage.getItem('addedArticlesInStorage')) : [];
-    addArticles.push(article)
-    localStorage.setItem('addedArticlesInStorage', JSON.stringify(addArticles))
-    this.addArticleToCourseForm.patchValue({
-      quantity: ["", Validators.required],
-      price: ["", Validators.required],
-    });
+    const addArticles = localStorage.getItem("addedArticlesInStorage")
+      ? JSON.parse(localStorage.getItem("addedArticlesInStorage"))
+      : [];
+    addArticles.push(article);
+    localStorage.setItem("addedArticlesInStorage", JSON.stringify(addArticles));
+    item.quantity = this.addArticleToCourseForm.get("quantity").value;
+    item.price = this.addArticleToCourseForm.get("price").value;
     item.isValid = true;
+  };
 
-  }
+  removeArticleFromCourse = (item) => {
+    let addArticles = localStorage.getItem("addedArticlesInStorage")
+      ? JSON.parse(localStorage.getItem("addedArticlesInStorage"))
+      : [];
+    addArticles = addArticles.filter((article) => article._id !== item._id);
+    localStorage.setItem("addedArticlesInStorage", JSON.stringify(addArticles));
+    item.quantity = "";
+    item.price = "";
+    item.isValid = false;
+  };
+
+  editArticle = (item) => {
+    let addArticles = localStorage.getItem("addedArticlesInStorage")
+      ? JSON.parse(localStorage.getItem("addedArticlesInStorage"))
+      : [];
+    addArticles = addArticles.forEach((element) => {
+      if (element._id === item._id) {
+        element.quantity = this.addArticleToCourseForm.get("quantity").value;
+        element.price = this.addArticleToCourseForm.get("price").value;
+        element.totalPrice =
+          this.addArticleToCourseForm.get("quantity").value *
+          this.addArticleToCourseForm.get("price").value;
+      }
+    });
+    localStorage.setItem("addedArticlesInStorage", JSON.stringify(addArticles));
+    item.quantity = this.addArticleToCourseForm.get("quantity").value;
+    item.price = this.addArticleToCourseForm.get("price").value;
+  };
+
+  cancelAction = () => {
+    if (this.isFromCourse) {
+      this.router.navigate(["stock/courses/add"]);
+    } else {
+      // back to list of articles
+    }
+  };
 }

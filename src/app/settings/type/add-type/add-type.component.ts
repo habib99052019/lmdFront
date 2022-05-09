@@ -20,15 +20,16 @@ export class AddTypeComponent implements OnInit {
   addType: boolean = false;
   addTypeForm: FormGroup;
 
-  family:any;
+  family: any;
   imgFile: string;
   currentFile: any;
+  submited: boolean = false;
 
   constructor(
     private stockService: StockService,
     private fb: FormBuilder,
     public router: Router,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +41,6 @@ export class AddTypeComponent implements OnInit {
     return this.fb.group({
       name: ["", Validators.required],
       description: [""],
-      image: ["", Validators.required],
       file: [""],
     });
   }
@@ -90,21 +90,26 @@ export class AddTypeComponent implements OnInit {
   };
 
   addTypeAction = () => {
+    this.submited = true;
+
+    if (this.addTypeForm.invalid || !this.currentFile) {
+      return;
+    }
     const formData: FormData = new FormData();
     formData.append("file", this.currentFile ? this.currentFile[0] : null);
-    formData.append("name", this.addTypeForm.get("name").value);
+    formData.append("name", this.addTypeForm.get("name").value.trim());
     formData.append("description", this.addTypeForm.get("description").value);
     formData.append("idFamily", this.family._id);
 
-    this.stockService.addType(formData).subscribe(type => {
-      console.log("resp>>>",type);
+    this.stockService.addType(formData).subscribe((type) => {
+      console.log("resp>>>", type);
       this.showNotification(
-       'snackbar-success',
+        "snackbar-success",
         "Le type a été ajouté avec succès",
-       'top',
-       'end'
-     );
-  })
+        "top",
+        "end"
+      );
+    });
   };
 
   backButtonAction = () => {
@@ -123,11 +128,15 @@ export class AddTypeComponent implements OnInit {
   };
 
   showNotification(colorName, text, placementFrom, placementAlign) {
-    this.snackBar.open(text, '', {
+    this.snackBar.open(text, "", {
       duration: 3000,
       verticalPosition: placementFrom,
       horizontalPosition: placementAlign,
       panelClass: colorName,
     });
-}
+  }
+
+  cancelAction = () => {
+    // back to list of types
+  }
 }

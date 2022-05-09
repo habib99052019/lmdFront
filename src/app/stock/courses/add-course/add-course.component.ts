@@ -348,6 +348,7 @@ newArticleArray: any = [];
 
 
   addCourse = () => {
+    
 
   /*  JSON.parse(this.CureentUser).user
     console.log("add course",formatDate(this.addCourseForm.get("date").value, 'yyyy-MM-dd', 'en') );

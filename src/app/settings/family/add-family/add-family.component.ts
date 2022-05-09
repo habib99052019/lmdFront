@@ -16,18 +16,29 @@ export class AddFamilyComponent implements OnInit {
   chooseDepot: boolean = true;
   chooseCategory: boolean = false;
   addFamily: boolean = false;
-  category:any;
+  category: any;
 
   addFamilyForm: FormGroup;
   imgFile: string;
-  currentFile:any;
+  currentFile: any;
+  submited: boolean = false;
+  isFromAddArticle = false;
+  isFromAddType = false;
 
   constructor(
     private stockService: StockService,
     private fb: FormBuilder,
     public router: Router,
-    private snackBar: MatSnackBar,
-  ) {}
+    private snackBar: MatSnackBar
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    this.isFromAddArticle = navigation.extras.state
+      ? navigation.extras.state.isFromAddArticle
+      : false;
+    this.isFromAddType = navigation.extras.state
+      ? navigation.extras.state.isFromAddType
+      : false;
+  }
 
   ngOnInit(): void {
     this.getListArticlesOfAllDepots();
@@ -38,7 +49,6 @@ export class AddFamilyComponent implements OnInit {
     return this.fb.group({
       name: ["", Validators.required],
       description: [""],
-      image: ["", Validators.required],
       file: [""],
     });
   }
@@ -82,22 +92,26 @@ export class AddFamilyComponent implements OnInit {
   };
 
   addFamilyAction = () => {
+    this.submited = true;
 
+    if (this.addFamilyForm.invalid || !this.currentFile) {
+      return;
+    }
     const formData: FormData = new FormData();
     formData.append("file", this.currentFile ? this.currentFile[0] : null);
-    formData.append("name", this.addFamilyForm.get("name").value);
+    formData.append("name", this.addFamilyForm.get("name").value.trim());
     formData.append("description", this.addFamilyForm.get("description").value);
     formData.append("idCategory", this.category._id);
 
-    this.stockService.addFamily(formData).subscribe(family => {
-      console.log("resp>>>",family);
+    this.stockService.addFamily(formData).subscribe((family) => {
+      console.log("resp>>>", family);
       this.showNotification(
-       'snackbar-success',
+        "snackbar-success",
         "La famille a été ajoutée avec succès",
-       'top',
-       'end'
-     );
-  })
+        "top",
+        "end"
+      );
+    });
   };
 
   backButtonAction = () => {
@@ -108,15 +122,19 @@ export class AddFamilyComponent implements OnInit {
       this.chooseCategory = false;
       this.chooseDepot = true;
     } else {
-      this.router.navigate(["settings/article/add"]);
+      // back to list of families
     }
   };
   showNotification(colorName, text, placementFrom, placementAlign) {
-    this.snackBar.open(text, '', {
+    this.snackBar.open(text, "", {
       duration: 3000,
       verticalPosition: placementFrom,
       horizontalPosition: placementAlign,
       panelClass: colorName,
     });
-}
+  }
+
+  cancelAction = () => {
+    // back to list of family
+  }
 }

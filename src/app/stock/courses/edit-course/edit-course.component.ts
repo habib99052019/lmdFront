@@ -35,6 +35,7 @@ export class EditCourseComponent implements OnInit {
   totalLength:any;
   page:number = 1;
   article:any;
+  oldListArticles: any;
 /* /////////// start custom pagination ///////// */
 
 config = {
@@ -124,12 +125,17 @@ config = {
 
   getCourseById(){
     this.service.getCourseById(this.id).pipe(take(1)).subscribe((data : any) => {
+      this.oldListArticles = data;
       console.log("courses api>>>",data );
       this.Course = data;
       this.addedArticles = data.articleList;
+      
       console.log("this.addedArticles>>>",this.addedArticles);
+      console.log("old list >>>",this.oldListArticles);
   })
 }
+
+
 
 
 getListOfArticles(){
@@ -291,6 +297,14 @@ search(query:string){
 
 
   addCourse = () => {
+
+
+    this.service.getCourseById(this.id).pipe(take(1)).subscribe((data : any) => {
+      console.log("list log>>>>",data.articleList);
+
+
+
+      
   /*  if (this.addCourseForm.invalid || !this.addedArticles.length) {
       this.showNotification(
         'snackbar-danger',
@@ -310,13 +324,17 @@ search(query:string){
 
     }
      //test pour ajouter le type des icons
+
+     console.log("old list2 >>>",this.oldListArticles);
    const  objectTosent = {
     code: this.Course.code,
     date: this.Course.date,
     articleList: this.addedArticles,
+    oldList: data.articleList,
     types: ["room"],
     price: this.priceUpdated,
     clientID: this.Course.clientID._id,
+   
     
   }
    
@@ -343,6 +361,11 @@ search(query:string){
     );
    })
   
+  })
+  
+ 
+  
+
 
 
  };

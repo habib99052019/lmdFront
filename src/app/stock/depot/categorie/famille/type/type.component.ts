@@ -31,10 +31,12 @@ export class TypeComponent implements OnInit {
 
   getListOfTypesByFamily(){
     this.service.getListOfTypesByFamily(this.name).pipe(take(1)).subscribe((data : any)=>{
+      console.log("types>>>", data);
+      
       this.Types = data[0].listType;
       this.pathName = data[0].idCategory.name;
       this.DepotName = data[0].idCategory.idDepot.name;
-      console.log("types>>>", data);
+      
       
      })
   }
