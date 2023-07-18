@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/service/auth.service';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -27,11 +28,12 @@ export class SigninComponent implements OnInit {
     return this.loginForm.controls;
   }
   onSubmit() {
-    //console.log('login credientials>>>',this.f.username.value, this.f.password.value);
-    
+    console.log('login credientials>>>',this.f.username.value, this.f.password.value);
+  
     this.submitted = true;
     this.error = '';
     if (this.loginForm.invalid) {
+
       this.error = 'Username and Password not valid !';
       return;
     } else {

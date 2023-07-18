@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { URL } from 'url';
 
 @Injectable({
   providedIn: 'root',
@@ -26,13 +27,19 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
+    environment.API="https://www.heart-of-carthage-dubai.com/"
+    const url ="https://www.heart-of-carthage-dubai.com/auth/login/"
+    console.log(url ,"rr")
+   
     return this.http
-      .post<any>(`${environment.API}`+"auth/login", {
+      .post<any>(url, {
         username,
         password,
       })
       .pipe(
+
         map((user) => {
+          console.log(user.valueOf() ,"&&&&")
           // store user details and jwt token in local storage to keep user logged in between page refreshes
          localStorage.setItem('currentUser', JSON.stringify(user));
          this.currentUserSubject.next(user);

@@ -10,7 +10,9 @@ export class ReservationServiceService {
   ApiPath = environment.API 
 
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient) { 
+    console.log(this.ApiPath)
+  }
 
   
   getReservationList(){
@@ -23,7 +25,9 @@ export class ReservationServiceService {
 
   //add new room reservation 
   addReservation(reservation : any){
-   return this.http.post(this.ApiPath + 'reservations' , reservation);
+  const url=this.ApiPath + 'reservations'
+  console.log(url,'rrr')
+  return this.http.post(this.ApiPath + 'reservations' , reservation);
   }
 
   getUserList(){
@@ -67,6 +71,8 @@ export class ReservationServiceService {
   }
 
   getListOfMenusReservation(){
+
+    console.log( this.ApiPath ,"er")
     return this.http.get(this.ApiPath + 'reservations/menus')
   }
 

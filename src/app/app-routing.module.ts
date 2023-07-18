@@ -8,32 +8,32 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: '/authentication/signin', pathMatch: 'full' },
 
       {
         path: 'dashboard',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         loadChildren: () =>
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
       
       {
         path: 'reservation',
-        canActivate: [AuthGuard],
+       // canActivate: [AuthGuard],
         loadChildren: () =>
           import('./reservation/reservation.module').then((m) => m.ReservationModule),
       },
       {
         path: 'stock',
-        canActivate: [AuthGuard],
+       // canActivate: [AuthGuard],
         loadChildren: () =>
           import('./stock/stock.module').then((m) => m.StockModule),
       },
       {
         path: 'settings',
-        canActivate: [AuthGuard],
+       // canActivate: [AuthGuard],
         loadChildren: () =>
           import('./settings/settings.module').then((m) => m.SettingsModule),
       },

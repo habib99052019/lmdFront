@@ -544,145 +544,203 @@ verifyPriceTosent(){
   }
 }
 
+// addNewReservation(){
+
+  
+  
+  
+  
+//  if(this.datetosent != undefined){
+//   this.realStartTosent = formatDate(this.date.value, 'yyyy-MM-dd', 'en')+'T13:00:00';
+//   this.startFiltre = formatDate(this.date.value, 'yyyy-MM-dd', 'en');
+//  }else{
+//   this.realStartTosent = formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00';
+//   this.startFiltre = formatDate(this.startDate, 'yyyy-MM-dd', 'en');
+//  }
+ 
+
+//  const realEnd = formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en')+'T11:00:00';
+  
+
+  
+//   if (this.end == ''){
+    
+//     this.numberPersons(this.reservationChambreForm.get('number_adulte').value,this.reservationChambreForm.get('number_children').value)
+//     this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
+//     this.verifyPriceTosent()
+//     const reservation = {
+//     roomType: 'room' ,
+//     first_name : this.reservationChambreForm.get('first_name').value,
+//     last_name : this.reservationChambreForm.get('last_name').value,
+//     name : this.reservationChambreForm.get('roomID').value,
+//     backgroundColor:"yellow",
+//     other:this.roombackgroundColor,
+//     last:realEnd,
+//     SINGLE_BAS_SAISON: this.SINGLE_BAS_SAISON,
+//     DOUBLE_BAS_SAISON:this.DOUBLE_BAS_SAISON,
+//     SINGLE_HAUTE_SAISON:this.SINGLE_HAUTE_SAISON,
+//     DOUBLE_HAUTE_SAISON:this.DOUBLE_HAUTE_SAISON,
+//     status_room:"RESERVE",
+//     status_reservation: "INITIALISER",    
+//     startDate : this.realStartTosent,
+//     endDate : realEnd,
+//     number_phone:this.reservationChambreForm.get('number_phone').value,
+//     startFiltre:this.startFiltre,
+//     endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
+//     number_guests : 0,
+//     number_children :this.reservationChambreForm.get('number_children').value,
+//     number_adulte:this.reservationChambreForm.get('number_adulte').value,
+//     number_persons:this.nbp,
+//     number_days:this.Days,
+//     comment : this.reservationChambreForm.get('comment').value,
+//     extra : this.reservationChambreForm.get('extra').value,
+//     price : this.priceTotal,
+//     tarifType:this.taarifType,
+//     remark:this.reservationChambreForm.get('remarque').value,
+//     email: this.reservationChambreForm.get('email').value,
+//   }
+
+ 
+  
+
+//   this._reservationService.addReservation(reservation).subscribe((data : any) => {
+  
+//    console.log(data)
+    
+//   //   this.showNotification(
+//   //     'snackbar-success',
+//   //      data.message,
+//   //     'top',
+//   //     'end'
+//   //   );
+//   //   this.router.navigate(['/reservation/calendrier'])
+//   // }, err => {
+    
+//   //    this.showNotification(
+//   //     'snackbar-danger',
+//   //      err,
+//   //     'top',
+//   //     'end'
+//   //   );
+//   })
+
+//   }else {
+//     this.numberPersons(this.reservationChambreForm.get('number_adulte').value,this.reservationChambreForm.get('number_children').value)
+//     this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
+//     this.verifyPriceTosent()
+//     const reservation = {
+//       roomType: 'room' ,
+//       first_name : this.reservationChambreForm.get('first_name').value,
+//       last_name : this.reservationChambreForm.get('last_name').value,
+//       name : this.reservationChambreForm.get('roomID').value,
+//       backgroundColor:"yellow",
+//       other:this.roombackgroundColor,
+//       last:realEnd,
+//       SINGLE_BAS_SAISON: this.SINGLE_BAS_SAISON,
+//       DOUBLE_BAS_SAISON:this.DOUBLE_BAS_SAISON,
+//       SINGLE_HAUTE_SAISON:this.SINGLE_HAUTE_SAISON,
+//       DOUBLE_HAUTE_SAISON:this.DOUBLE_HAUTE_SAISON,
+//       status_room:"RESERVE",
+//       status_reservation: "INITIALISER",    
+//       startDate : this.end,
+//       endDate : realEnd,
+//       number_phone:this.reservationChambreForm.get('number_phone').value,
+//       startFiltre:this.endfiltreSearsh,
+//       endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
+//       number_guests : 0,
+//       number_children :this.reservationChambreForm.get('number_children').value,
+//       number_adulte:this.reservationChambreForm.get('number_adulte').value,
+//       number_persons:this.nbp,
+//       number_days:this.Days,
+//       comment : this.reservationChambreForm.get('comment').value,
+//       extra : this.reservationChambreForm.get('extra').value,
+//       price : this.priceTotal,
+//       tarifType:this.taarifType,
+//       remark:this.reservationChambreForm.get('remarque').value
+//     }
+
+//     this._reservationService.addReservation(reservation).subscribe((data : any) => {
+//      console.log(data)
+      
+//     //   this.showNotification(
+//     //     'snackbar-success',
+//     //      data.message,
+//     //     'top',
+//     //     'end'
+//     //   );
+//     //   alert("secssuful")
+//     //  this.router.navigate(['/reservation/calendrier'])
+//     // }, err => {
+      
+//     //   this.showNotification(
+//     //    'snackbar-danger',
+//     //     err,
+//     //    'top',
+//     //    'end'
+//     //  );
+//    })
+  
+//   }
+
+// }
 addNewReservation(){
+   console.log(5)
+   if(this.datetosent != undefined){
+    this.realStartTosent = formatDate(this.date.value, 'yyyy-MM-dd', 'en')+'T13:00:00';
+    this.startFiltre = formatDate(this.date.value, 'yyyy-MM-dd', 'en');
+   }else{
+    this.realStartTosent = formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00';
+    this.startFiltre = formatDate(this.startDate, 'yyyy-MM-dd', 'en');
+   }
+   const realEnd = formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en')+'T11:00:00';
+  
 
   
-  
-  
-  
- if(this.datetosent != undefined){
-  this.realStartTosent = formatDate(this.date.value, 'yyyy-MM-dd', 'en')+'T13:00:00';
-  this.startFiltre = formatDate(this.date.value, 'yyyy-MM-dd', 'en');
- }else{
-  this.realStartTosent = formatDate(this.startDate, 'yyyy-MM-dd', 'en')+'T13:00:00';
-  this.startFiltre = formatDate(this.startDate, 'yyyy-MM-dd', 'en');
- }
+   if (this.end == ''){
+     
+     this.numberPersons(this.reservationChambreForm.get('number_adulte').value,this.reservationChambreForm.get('number_children').value)
+     this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
+     this.verifyPriceTosent()
+     const reservation = {
+     roomType: 'room' ,
+     first_name : this.reservationChambreForm.get('first_name').value,
+     last_name : this.reservationChambreForm.get('last_name').value,
+     name : this.reservationChambreForm.get('roomID').value,
+     backgroundColor:"yellow",
+     other:this.roombackgroundColor,
+     last:realEnd,
+     SINGLE_BAS_SAISON: this.SINGLE_BAS_SAISON,
+     DOUBLE_BAS_SAISON:this.DOUBLE_BAS_SAISON,
+     SINGLE_HAUTE_SAISON:this.SINGLE_HAUTE_SAISON,
+     DOUBLE_HAUTE_SAISON:this.DOUBLE_HAUTE_SAISON,
+     status_room:"RESERVE",
+     status_reservation: "INITIALISER",    
+     startDate : this.realStartTosent,
+     endDate : realEnd,
+     number_phone:this.reservationChambreForm.get('number_phone').value,
+     startFiltre:this.startFiltre,
+     endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
+     number_guests : 0,
+     number_children :this.reservationChambreForm.get('number_children').value,
+     number_adulte:this.reservationChambreForm.get('number_adulte').value,
+     number_persons:this.nbp,
+     number_days:this.Days,
+     comment : this.reservationChambreForm.get('comment').value,
+     extra : this.reservationChambreForm.get('extra').value,
+     price : this.priceTotal,
+     tarifType:this.taarifType,
+     remark:this.reservationChambreForm.get('remarque').value,
+     email: this.reservationChambreForm.get('email').value,
+   }
  
-
- const realEnd = formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en')+'T11:00:00';
-  
-
-  
-  if (this.end == ''){
-    
-    this.numberPersons(this.reservationChambreForm.get('number_adulte').value,this.reservationChambreForm.get('number_children').value)
-    this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
-    this.verifyPriceTosent()
-    const reservation = {
-    roomType: 'room' ,
-    first_name : this.reservationChambreForm.get('first_name').value,
-    last_name : this.reservationChambreForm.get('last_name').value,
-    name : this.reservationChambreForm.get('roomID').value,
-    backgroundColor:"yellow",
-    other:this.roombackgroundColor,
-    last:realEnd,
-    SINGLE_BAS_SAISON: this.SINGLE_BAS_SAISON,
-    DOUBLE_BAS_SAISON:this.DOUBLE_BAS_SAISON,
-    SINGLE_HAUTE_SAISON:this.SINGLE_HAUTE_SAISON,
-    DOUBLE_HAUTE_SAISON:this.DOUBLE_HAUTE_SAISON,
-    status_room:"RESERVE",
-    status_reservation: "INITIALISER",    
-    startDate : this.realStartTosent,
-    endDate : realEnd,
-    number_phone:this.reservationChambreForm.get('number_phone').value,
-    startFiltre:this.startFiltre,
-    endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
-    number_guests : 0,
-    number_children :this.reservationChambreForm.get('number_children').value,
-    number_adulte:this.reservationChambreForm.get('number_adulte').value,
-    number_persons:this.nbp,
-    number_days:this.Days,
-    comment : this.reservationChambreForm.get('comment').value,
-    extra : this.reservationChambreForm.get('extra').value,
-    price : this.priceTotal,
-    tarifType:this.taarifType,
-    remark:this.reservationChambreForm.get('remarque').value,
-    email: this.reservationChambreForm.get('email').value,
-  }
-
- 
-  
-
-  this._reservationService.addReservation(reservation).subscribe((data : any) => {
-  
+  //  this._reservationService.addReservation(reservation)
    
-    
-    this.showNotification(
-      'snackbar-success',
-       data.message,
-      'top',
-      'end'
-    );
-    this.router.navigate(['/reservation/calendrier'])
-  }, err => {
-    
-     this.showNotification(
-      'snackbar-danger',
-       err,
-      'top',
-      'end'
-    );
-  })
-
-  }else {
-    this.numberPersons(this.reservationChambreForm.get('number_adulte').value,this.reservationChambreForm.get('number_children').value)
-    this.verifyRoomColor(this.reservationChambreForm.get('roomID').value)
-    this.verifyPriceTosent()
-    const reservation = {
-      roomType: 'room' ,
-      first_name : this.reservationChambreForm.get('first_name').value,
-      last_name : this.reservationChambreForm.get('last_name').value,
-      name : this.reservationChambreForm.get('roomID').value,
-      backgroundColor:"yellow",
-      other:this.roombackgroundColor,
-      last:realEnd,
-      SINGLE_BAS_SAISON: this.SINGLE_BAS_SAISON,
-      DOUBLE_BAS_SAISON:this.DOUBLE_BAS_SAISON,
-      SINGLE_HAUTE_SAISON:this.SINGLE_HAUTE_SAISON,
-      DOUBLE_HAUTE_SAISON:this.DOUBLE_HAUTE_SAISON,
-      status_room:"RESERVE",
-      status_reservation: "INITIALISER",    
-      startDate : this.end,
-      endDate : realEnd,
-      number_phone:this.reservationChambreForm.get('number_phone').value,
-      startFiltre:this.endfiltreSearsh,
-      endFiltre: formatDate(this.reservationChambreForm.get('endDate').value, 'yyyy-MM-dd', 'en'),
-      number_guests : 0,
-      number_children :this.reservationChambreForm.get('number_children').value,
-      number_adulte:this.reservationChambreForm.get('number_adulte').value,
-      number_persons:this.nbp,
-      number_days:this.Days,
-      comment : this.reservationChambreForm.get('comment').value,
-      extra : this.reservationChambreForm.get('extra').value,
-      price : this.priceTotal,
-      tarifType:this.taarifType,
-      remark:this.reservationChambreForm.get('remarque').value
-    }
-
-    this._reservationService.addReservation(reservation).subscribe((data : any) => {
+  //    this._reservationService.addReservation(reservation).subscribe((data : any) => {
+  //    console.log(data)})
+  // console.log(reservation,"data")
  
-      
-      this.showNotification(
-        'snackbar-success',
-         data.message,
-        'top',
-        'end'
-      );
-      this.router.navigate(['/reservation/calendrier'])
-    }, err => {
-      
-      this.showNotification(
-       'snackbar-danger',
-        err,
-       'top',
-       'end'
-     );
-   })
-  
-  }
-
+   }
 }
-
 
 showNotification(colorName, text, placementFrom, placementAlign) {
   this.snackBar.open(text, '', {

@@ -146,7 +146,7 @@ export class ChambreAddFormDialogComponent implements OnInit{
     }
   }
 
-
+///
 
   selectRoomType(event: any){
     this.roomType = event.value;    
