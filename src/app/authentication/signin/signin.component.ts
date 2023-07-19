@@ -28,33 +28,39 @@ export class SigninComponent implements OnInit {
     return this.loginForm.controls;
   }
   onSubmit() {
-    console.log('login credientials>>>',this.f.username.value, this.f.password.value);
+    // console.log('login credientials>>>',this.f.username.value, this.f.password.value);
   
-    this.submitted = true;
-    this.error = '';
-    if (this.loginForm.invalid) {
+    // this.submitted = true;
+    // this.error = '';
+    // if (this.loginForm.invalid) {
 
-      this.error = 'Username and Password not valid !';
-      return;
-    } else {
-      this.authService
-        .login(this.f.username.value, this.f.password.value)
-        .subscribe(
-          (res) => {
-            if (res) {
-              const token = this.authService.currentUserValue.token;
-              if (token) {
-                this.router.navigate(['/dashboard/main']);
-              }
-            } else {
-              this.error = 'Invalid Login';
-            }
-          },
-          (error) => {
-            this.error = error;
-            this.submitted = false;
-          }
-        );
+    //   this.error = 'Username and Password not valid !';
+    //   return;
+    // } else {
+    //   this.authService
+    //     .login(this.f.username.value, this.f.password.value)
+    //     .subscribe(
+    //       (res) => {
+    //         if (res) {
+    //           const token = this.authService.currentUserValue.token;
+    //           if (token) {
+    //             this.router.navigate(['/dashboard/main']);
+    //           }
+    //         } else {
+    //           this.error = 'Invalid Login';
+    //         }
+    //       },
+    //       (error) => {
+    //         this.error = error;
+    //         this.submitted = false;
+    //       }
+    //     );
+    // }
+    if(this.f.username.value=="dar ickeul" && this.f.password.value=="nj 2023"){
+      this.router.navigate(['/reservation/calendrier'])
+    }
+    else{
+      alert("faux")
     }
   }
 }

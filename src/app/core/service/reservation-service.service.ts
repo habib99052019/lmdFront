@@ -14,7 +14,7 @@ export class ReservationServiceService {
     console.log(this.ApiPath)
   }
 
-  
+      
   getReservationList(){
     return this.http.get(this.ApiPath + 'reservations');
   }
@@ -36,7 +36,7 @@ export class ReservationServiceService {
 
   getReservation(id){
     return this.http.get(this.ApiPath + 'reservations/' + id)
-  }
+  }0
 
   getRoomById(id){
     return this.http.get(this.ApiPath + 'rooms/' + id);

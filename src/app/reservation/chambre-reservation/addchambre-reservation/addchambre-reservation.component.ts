@@ -735,9 +735,9 @@ addNewReservation(){
  
   //  this._reservationService.addReservation(reservation)
    
-  //    this._reservationService.addReservation(reservation).subscribe((data : any) => {
-  //    console.log(data)})
-  // console.log(reservation,"data")
+     this._reservationService.addReservation(reservation).subscribe((data : any) => {
+     console.log(data)})
+  console.log(reservation,"data")
  
    }
 }
